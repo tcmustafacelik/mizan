@@ -239,6 +239,7 @@ input[type=search]{font-family:var(--f-body)}
 .ghspin{display:inline-block;width:16px;height:16px;border-radius:50%;border:2.5px solid currentColor;border-right-color:transparent;animation:ghsp .8s linear infinite;margin-inline-end:8px;vertical-align:-3px}@keyframes ghsp{to{transform:rotate(360deg)}}
 .ghc .cardhead h2{display:flex;align-items:center;gap:8px}.ghc .cardhead h2 svg{color:var(--accent)}.ghc .btn.wide{width:100%;margin-top:12px;min-height:48px;justify-content:center;gap:8px}.ghc .tbl a{color:var(--accent);font-weight:600}
 .ghst{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px;margin:0 0 6px;padding:10px 12px;border-radius:12px;background:var(--accent-soft)}.ghst:empty{display:none}.ghst::before{content:'';width:10px;height:10px;border-radius:50%;background:var(--good,#16a34a);flex:none;box-shadow:0 0 0 4px color-mix(in srgb,var(--good,#16a34a) 25%,transparent)}
+.ghfq{margin:10px 0 4px}.ghfq>b{display:block;font-size:14px;margin-bottom:6px}.ghfq .segr{display:grid;grid-template-columns:1fr 1fr;gap:6px}.ghfq .chip{justify-content:center;margin:0}.ghfq .hint{margin-top:6px}
 .ghst.busy::before{background:var(--accent);animation:ghp 1s infinite}.ghst.pend::before{background:var(--warn,#d97706)}.ghst.err{color:var(--bad,#dc2626)}.ghst.err::before{background:var(--bad,#dc2626)}
 .ghb{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;flex:0 0 auto;color:var(--good,#16a34a);background:color-mix(in srgb,currentColor 14%,transparent)}.ghb svg{width:16px;height:16px}.ghb.busy{color:var(--accent);animation:ghp 1s infinite}.ghb.pend{color:var(--warn,#d97706)}.ghb.err{color:var(--bad,#dc2626)}
 @keyframes ghp{50%{opacity:.35}}
@@ -1911,6 +1912,10 @@ Object.assign(UX.tr,{pn_set_h:'PIN belirle',pn_set_p:'Hızlı bağlantını koru
 Object.assign(UX.en,{pn_set_h:'Choose a PIN',pn_set_p:'Pick a 6-digit PIN to protect your quick connect.',pn_rep_h:'Enter the PIN again',pn_rep_p:'Type the same 6 digits once more.',pn_mismatch:"PINs don't match, start over.",pn_ask_h:'Enter your PIN',pn_ask_p:'The 6-digit PIN you chose for quick connect.',pn_wrong:'Wrong PIN, try again',pn_done_h:'Your quick connect is ready',pn_done_p:'Save this link in Notes or send it to yourself on WhatsApp. Tapping it opens Mizan; enter the PIN to connect.',pn_ok:'Done',pn_next:'Next',pn_make:'Create'});
 Object.assign(UX.ru,{pn_set_h:'Задайте PIN',pn_set_p:'Выберите 6-значный PIN для защиты быстрого подключения.',pn_rep_h:'Повторите PIN',pn_rep_p:'Введите те же 6 цифр ещё раз.',pn_mismatch:'PIN не совпадают, начните заново.',pn_ask_h:'Введите PIN',pn_ask_p:'6-значный PIN быстрого подключения.',pn_wrong:'Неверный PIN, попробуйте снова',pn_done_h:'Быстрое подключение готово',pn_done_p:'Сохраните ссылку в Заметках или отправьте себе в WhatsApp. Нажатие откроет Mizan; введите PIN для подключения.',pn_ok:'Готово',pn_next:'Далее',pn_make:'Создать'});
 Object.assign(UX.ar,{pn_set_h:'اختر رمز PIN',pn_set_p:'اختر رمز PIN من 6 أرقام لحماية الاتصال السريع.',pn_rep_h:'أعد إدخال PIN',pn_rep_p:'اكتب الأرقام الستة نفسها مرة أخرى.',pn_mismatch:'الرمزان غير متطابقين، ابدأ من جديد.',pn_ask_h:'أدخل رمز PIN',pn_ask_p:'رمز PIN المكون من 6 أرقام للاتصال السريع.',pn_wrong:'PIN خاطئ، حاول مرة أخرى',pn_done_h:'الاتصال السريع جاهز',pn_done_p:'احفظ هذا الرابط في الملاحظات أو أرسله لنفسك على واتساب. الضغط عليه يفتح ميزان؛ أدخل PIN للاتصال.',pn_ok:'تم',pn_next:'التالي',pn_make:'إنشاء'});
+Object.assign(UX.tr,{gh_fq:"Otomatik eşitleme",gh_fq_live:"Anında",gh_fq_m1:"Dakikada bir",gh_fq_h1:"Saatte bir",gh_fq_d1:"Günde bir",gh_fqh_live:"Her kaydettiğinde birkaç saniye içinde buluta gider; diğer cihazlardaki değişiklikler her dakika alınır. Bir şeye dokunman gerekmez.",gh_fqh_m1:"Değişiklikler dakikada bir buluta gönderilir ve buluttakiler alınır.",gh_fqh_h1:"Saatte bir otomatik eşitlenir (uygulama açıkken ya da açılınca).",gh_fqh_d1:"Günde bir otomatik yedeklenir, WhatsApp yedeği gibi (uygulama açıkken ya da açılınca).",gh_nx:p=>`sonraki: ${p.t}`});
+Object.assign(UX.en,{gh_fq:"Automatic sync",gh_fq_live:"Instant",gh_fq_m1:"Every minute",gh_fq_h1:"Hourly",gh_fq_d1:"Daily",gh_fqh_live:"Every save reaches the cloud within seconds; changes from your other devices are fetched every minute. Nothing to tap.",gh_fqh_m1:"Changes are sent to the cloud and fetched once a minute.",gh_fqh_h1:"Syncs automatically once an hour (while the app is open or when it opens).",gh_fqh_d1:"Backs up automatically once a day, like a WhatsApp backup (while the app is open or when it opens).",gh_nx:p=>`next: ${p.t}`});
+Object.assign(UX.ru,{gh_fq:"Автосинхронизация",gh_fq_live:"Сразу",gh_fq_m1:"Каждую минуту",gh_fq_h1:"Каждый час",gh_fq_d1:"Раз в день",gh_fqh_live:"Каждое сохранение уходит в облако за секунды; изменения с других устройств загружаются каждую минуту. Нажимать ничего не нужно.",gh_fqh_m1:"Изменения отправляются и загружаются раз в минуту.",gh_fqh_h1:"Синхронизация раз в час (пока приложение открыто или при открытии).",gh_fqh_d1:"Резервная копия раз в день, как в WhatsApp (пока приложение открыто или при открытии).",gh_nx:p=>`следующая: ${p.t}`});
+Object.assign(UX.ar,{gh_fq:"المزامنة التلقائية",gh_fq_live:"فورًا",gh_fq_m1:"كل دقيقة",gh_fq_h1:"كل ساعة",gh_fq_d1:"يوميًا",gh_fqh_live:"كل حفظ يصل إلى السحابة خلال ثوانٍ، وتُجلب تغييرات أجهزتك الأخرى كل دقيقة. لا حاجة للضغط على شيء.",gh_fqh_m1:"تُرسل التغييرات وتُجلب مرة كل دقيقة.",gh_fqh_h1:"مزامنة تلقائية كل ساعة (أثناء فتح التطبيق أو عند فتحه).",gh_fqh_d1:"نسخ احتياطي تلقائي مرة يوميًا مثل واتساب (أثناء فتح التطبيق أو عند فتحه).",gh_nx:p=>`التالية: ${p.t}`});
 Object.assign(UX.ar,{bk_share:'مشاركة النسخة',bk_share_note:'ترسل النسخة إلى درايف أو البريد أو واتساب.',bk_share_no:'هذا المتصفح لا يدعم مشاركة الملفات، تم تنزيل النسخة.',where:p=>`بيانات هذه النسخة مرتبطة بالعنوان: ${p.u}. إذا فتحت الملف من مكان آخر ستكون البيانات منفصلة.`,rate_old:p=>`عمر السعر ${p.n}`,h:'س',d:'يوم'});
 const ux=(k,p)=>{let v=(UX[LANG]||UX.tr)[k];if(v===undefined)v=UX.tr[k];return typeof v==='function'?v(p||{}):v};
 const shortDay=iso=>{const [y,m,d]=String(iso).split('-').map(Number);return d+' '+MSHORT[LANG][m-1]};
@@ -5169,7 +5174,8 @@ view.addEventListener('click',async e=>{
   if(act==='tourShow'){tourShow();return}
   if(act==='toWeb'){moveToWeb();return}
   if(act==='ghConnect'){ghConnect();return}
-  if(act==='ghNow'){ghPull(true);return}
+  if(act==='ghNow'){if(GH)GH.tick=Date.now();ghPull(true);return}
+  if(act==='ghFq'){if(!GH)return;GH.fq=a.dataset.fq;GH.tick=Date.now();ghSave();if(GH.fq==='live'&&GH.pending)ghSoon(300);renderAyar();toast('☁ '+ux('gh_fq_'+GH.fq));return}
   if(act==='qkMake'){qkMake();return}
   if(act==='qkUse'){qkUse((document.getElementById('qkIn')||{}).value);return}
   if(act==='ghOff'){ghDisconnect();return}
@@ -5990,6 +5996,11 @@ let GH=(()=>{try{const g=JSON.parse(localStorage.getItem(LS_GH)||'null');return 
 let ghApplying=false,ghT=null,ghBusy=false,ghErr='',ghLastPull=0,ghErrToast=0;
 const ghSave=()=>{try{GH?localStorage.setItem(LS_GH,JSON.stringify(GH)):localStorage.removeItem(LS_GH)}catch(e){}};
 const ghOn=()=>!!(GH&&!db);
+const GH_FQ={live:0,m1:60000,h1:3600000,d1:86400000};
+const ghFq=()=>GH&&GH_FQ[GH.fq]!=null?GH.fq:'live';
+function ghNext(){if(!GH||ghFq()==='live')return 0;return (GH.tick||GH.at||Date.now())+GH_FQ[ghFq()]}
+function ghTickDue(){if(!ghOn()||ghBusy)return;const f=ghFq();if(f==='live'){if(GH.pending&&!ghT)ghSoon(500);if(!document.hidden&&Date.now()-ghLastPull>60000&&!dirty)ghPull(false);return}
+  if(Date.now()>=ghNext()&&!dirty){GH.tick=Date.now();ghSave();ghPull(false)}}
 const ghUrl=()=>`https://api.github.com/repos/${GH.repo}/contents/${GH.path||'mizan-data.json'}`;
 const ghHdr=x=>({Authorization:'Bearer '+GH.token,Accept:x||'application/vnd.github+json'});
 const ghE=c=>{const e=new Error('gh '+c);e.gh=c;return e};
@@ -6012,13 +6023,13 @@ async function ghGet(known){
 }
 function ghMsg(e){const c=e&&e.gh;return c==='net'?ux('gh_enet'):c===401?ux('gh_e401'):c===403?ux('gh_e403'):c===404?ux('gh_e404'):c==='pw'?ux('gh_epw'):c==='bad'?ux('gh_ebad'):ux('gh_eoth',{c:c||(e&&e.message)||'?'})}
 function ghFail(e,loud){ghErr=ghMsg(e);ghDraw();if(loud||((e&&e.gh!=='net')&&Date.now()-ghErrToast>20000)){ghErrToast=Date.now();toast(ghErr)}}
-function ghStText(){if(!GH)return '';if(ghBusy)return ux('gh_busy');if(ghErr)return ghErr;if(GH.pending)return ux('gh_pend');return GH.at?ux('gh_okt',{t:ghWhen(GH.at)}):''}
+function ghStText(){if(!GH)return '';if(ghBusy)return ux('gh_busy');if(ghErr)return ghErr;const nx=ghNext(),tail=nx?' · '+ux('gh_nx',{t:new Date(nx).toDateString()===new Date().toDateString()?new Date(nx).toLocaleTimeString(LANG==='ar'?'ar':LANG,{hour:'2-digit',minute:'2-digit'}):ghWhen(nx)}):'';if(GH.pending)return ux('gh_pend')+tail;return GH.at?ux('gh_okt',{t:ghWhen(GH.at)})+tail:''}
 function ghDraw(){
   const el=document.getElementById('ghSt');if(el){el.textContent=ghStText();el.className='ghst '+(ghBusy?'busy':ghErr?'err':GH&&GH.pending?'pend':'ok')}
   const b=document.getElementById('ghBadge');if(b){b.hidden=!ghOn();if(ghOn()){b.className='ghb '+(ghBusy?'busy':ghErr?'err':GH.pending?'pend':'ok');b.innerHTML=ic(ghErr?'cloud-off':'cloud');b.title=ghStText()}}
 }
-function ghSoon(ms){if(!ghOn())return;clearTimeout(ghT);ghT=setTimeout(()=>ghPush(),ms==null?2500:ms)}
-function ghMark(){if(ghApplying||!ghOn())return;GH.pending=true;ghSave();ghDraw();ghSoon()}
+function ghSoon(ms){if(!ghOn())return;clearTimeout(ghT);ghT=setTimeout(()=>{ghT=null;ghPush()},ms==null?2500:ms)}
+function ghMark(){if(ghApplying||!ghOn())return;GH.pending=true;ghSave();ghDraw();if(ghFq()==='live')ghSoon()}
 async function ghPush(depth){
   if(!ghOn())return;
   if(ghBusy){ghSoon(1500);return}
@@ -6099,6 +6110,7 @@ function ghCardHTML(){
   if(ghOn())return `<section class="card ghc" id="ghCard"><div class="cardhead"><h2>${ic('cloud')}${ux('gh_h')}</h2></div>
     <p id="ghSt" class="ghst ${ghBusy?'busy':ghErr?'err':GH.pending?'pend':'ok'}">${esc(ghStText())}</p>
     <p class="hint">${ux('gh_repo')}: <b>${esc(GH.repo)}</b>${GH.pw?` · 🔒 ${ux('gh_enc')}`:''}</p>
+    <div class="ghfq"><b>${ux('gh_fq')}</b><div class="segr" role="radiogroup" aria-label="${esc(ux('gh_fq'))}">${['live','m1','h1','d1'].map(k=>`<button type="button" class="chip" role="radio" data-act="ghFq" data-fq="${k}" aria-pressed="${ghFq()===k}" aria-checked="${ghFq()===k}">${ux('gh_fq_'+k)}</button>`).join('')}</div><p class="hint">${ux('gh_fqh_'+ghFq())}</p></div>
     <div class="actions"><button type="button" class="btn primary" data-act="ghNow">${ic('refresh')}${ux('gh_now')}</button><button type="button" class="btn" data-act="ghOff">${ic('cloud-off')}${ux('gh_off')}</button></div>
     <div class="qkbox"><b>${ic('cloud')}${ux('qk_h')}</b><p class="hint">${ux('qk_mk_p')}</p><button type="button" class="btn primary wide" data-act="qkMake">${ic('cloud')}${ux('qk_mk')}</button></div></section>`;
   return `<section class="card ghc" id="ghCard"><div class="cardhead"><h2>${ic('cloud')}${ux('gh_h')}</h2></div>
@@ -6113,11 +6125,11 @@ function ghCardHTML(){
 }
 function ghStart(){
   const bd=document.getElementById('ghBadge');if(bd)bd.addEventListener('click',()=>{tab='ayar';render();const c=document.getElementById('ghCard');if(c)c.scrollIntoView({block:'start',behavior:'smooth'});if(ghOn()&&!ghBusy)ghPull(true)});
-  ghDraw();if(!ghOn())return;
-  setTimeout(()=>ghPull(false),1500);
-  document.addEventListener('visibilitychange',()=>{if(!ghOn())return;if(document.visibilityState==='hidden'){if(GH.pending){clearTimeout(ghT);ghPush()}}else if(Date.now()-ghLastPull>20000)ghPull(false)});
+  ghDraw();
+  setTimeout(()=>{if(!ghOn())return;if(ghFq()==='live')ghPull(false);else ghTickDue()},1500);
+  document.addEventListener('visibilitychange',()=>{if(!ghOn())return;const lv=ghFq()==='live';if(document.visibilityState==='hidden'){if(GH.pending&&(lv||ghFq()==='m1')){clearTimeout(ghT);ghT=null;ghPush()}}else if(lv){if(Date.now()-ghLastPull>20000)ghPull(false)}else ghTickDue()});
   window.addEventListener('online',()=>{if(ghOn()&&GH.pending)ghSoon(500)});
-  setInterval(()=>{if(ghOn()&&!document.hidden&&Date.now()-ghLastPull>120000&&!dirty)ghPull(false)},30000);
+  setInterval(()=>{ghTickDue();ghDraw()},15000);
 }
 /* ================= Web uygulamasına taşıma (dosya sürümü → GitHub Pages) ================= */
 const MV_SITE='https://tcmustafacelik.github.io/mizan/';
@@ -6268,7 +6280,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='169';
+const APP_VER='170';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
