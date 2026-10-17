@@ -235,7 +235,8 @@ input[type=search]{font-family:var(--f-body)}
 .gqi{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;flex:none;background:linear-gradient(135deg,var(--accent),#8b5cf6);color:#fff;box-shadow:0 6px 14px color-mix(in srgb,var(--accent) 35%,transparent)}.gqi svg{width:22px;height:22px;fill:currentColor}.gqi.alt{background:linear-gradient(135deg,#0ea5e9,#10b981);box-shadow:0 6px 14px rgba(16,185,129,.3)}
 .pfield{display:flex;align-items:center;gap:4px;margin-top:6px;padding:4px 4px 4px 0;border-radius:14px;border:1.5px solid var(--line);background:var(--surface);transition:border-color .15s,box-shadow .15s}.pfield:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 20%,transparent)}
 .pfield input{flex:1;min-width:0;border:0!important;background:none!important;box-shadow:none!important;outline:0;padding:0 12px!important;height:42px;font:500 15px var(--f-body);color:var(--fg)}.pfield input#qkIn,.pfield input#ghTok{font-family:var(--f-num);font-size:14px}
-.pbtn{display:inline-flex;align-items:center;gap:6px;flex:none;height:38px;padding:0 12px;border:0;border-radius:10px;background:var(--accent-soft);color:var(--accent);font:600 13.5px var(--f-body);cursor:pointer;transition:background .15s,transform .1s}.pbtn:active{transform:scale(.95)}.pbtn svg{width:17px;height:17px;fill:currentColor}.pbtn.eye{padding:0 10px;background:none;color:var(--muted-tx,var(--muted))}.pbtn.eye[aria-pressed=true]{color:var(--accent)}.pbtn.done{background:var(--good,#16a34a);color:#fff}
+.pbtn{display:inline-flex;align-items:center;gap:6px;flex:none;height:38px;padding:0 12px;border:0;border-radius:10px;background:var(--accent-soft);color:var(--accent);font:600 13.5px var(--f-body);cursor:pointer;transition:background .15s,transform .1s}.pbtn:active{transform:scale(.95)}.pbtn svg{width:17px;height:17px;fill:currentColor}.pbtn.eye{padding:0 10px;background:none;color:var(--muted-tx,var(--muted))}.pbtn.eye[aria-pressed=true]{color:var(--accent)}.pbtn.clr{padding:0;width:34px;justify-content:center;background:color-mix(in srgb,var(--fg) 8%,transparent);color:var(--muted-tx,var(--muted));border-radius:50%;height:30px;width:30px}.pbtn.clr svg{width:16px;height:16px}.pfield input:placeholder-shown~.clr{display:none}
+.pbtn.done{background:var(--good,#16a34a);color:#fff}
 .gqk .btn.wide,.gmb .btn.wide{width:100%;min-height:48px;justify-content:center}
 .gman{width:100%;margin-top:12px;padding:12px;border-radius:18px;border:1px solid var(--line);background:var(--surface);color:var(--fg);font:inherit;text-align:start;cursor:pointer}.gman.open .fqch{transform:rotate(180deg)}
 .gmb{display:grid;gap:12px;padding:12px 4px 2px}.gmb .hint{margin:0}.gmb label.f{margin:0}
@@ -1973,6 +1974,10 @@ Object.assign(UX.tr,{is_empty_h:"Henüz gelir yok",is_empty_p:"Maaş, kira, ek i
 Object.assign(UX.en,{is_empty_h:"No income yet",is_empty_p:"Add regular income such as salary, rent or a side job with the button below, or load your backup."});
 Object.assign(UX.ru,{is_empty_h:"Доходов пока нет",is_empty_p:"Добавьте регулярные доходы (зарплата, аренда, подработка) кнопкой ниже или загрузите резервную копию."});
 Object.assign(UX.ar,{is_empty_h:"لا يوجد دخل بعد",is_empty_p:"أضف دخلك المنتظم مثل الراتب أو الإيجار أو عمل إضافي بالزر أدناه، أو حمّل نسختك الاحتياطية."});
+Object.assign(UX.tr,{gh_clear:"Temizle"});
+Object.assign(UX.en,{gh_clear:"Clear"});
+Object.assign(UX.ru,{gh_clear:"Очистить"});
+Object.assign(UX.ar,{gh_clear:"مسح"});
 Object.assign(UX.ar,{bk_share:'مشاركة النسخة',bk_share_note:'ترسل النسخة إلى درايف أو البريد أو واتساب.',bk_share_no:'هذا المتصفح لا يدعم مشاركة الملفات، تم تنزيل النسخة.',where:p=>`بيانات هذه النسخة مرتبطة بالعنوان: ${p.u}. إذا فتحت الملف من مكان آخر ستكون البيانات منفصلة.`,rate_old:p=>`عمر السعر ${p.n}`,h:'س',d:'يوم'});
 const ux=(k,p)=>{let v=(UX[LANG]||UX.tr)[k];if(v===undefined)v=UX.tr[k];return typeof v==='function'?v(p||{}):v};
 const shortDay=iso=>{const [y,m,d]=String(iso).split('-').map(Number);return d+' '+MSHORT[LANG][m-1]};
@@ -5357,7 +5362,8 @@ view.addEventListener('input',e=>{
 });
 view.addEventListener('click',async e=>{const pz=e.target.closest&&e.target.closest('[data-paste]');if(pz){e.preventDefault();const f=document.getElementById(pz.dataset.paste);if(!f)return;let txt='';try{txt=await navigator.clipboard.readText()}catch(x){}
     txt=(txt||'').trim();if(!txt){f.focus();toast(ux('gh_paste_hold'));return}f.value=pz.dataset.paste==='ghRepo'?txt.replace(/^https?:\/\/github\.com\//i,'').replace(/\.git$/,'').replace(/\/+$/,''):txt.replace(/\s+/g,'');f.dispatchEvent(new Event('input',{bubbles:true}));pz.classList.add('done');setTimeout(()=>pz.classList.remove('done'),1200);
-    if(pz.dataset.paste==='qkIn'&&typeof qkParse==='function'&&qkParse(f.value))qkUse(f.value);return}
+    if(pz.dataset.paste==='qkIn'&&typeof qkParse==='function'){if(qkParse(f.value))qkUse(f.value);else toast(ux('qk_bad'))}return}
+  const cl=e.target.closest&&e.target.closest('[data-clear]');if(cl){e.preventDefault();const f=document.getElementById(cl.dataset.clear);if(f){f.value='';f.dispatchEvent(new Event('input',{bubbles:true}));f.focus()}return}
   const ey=e.target.closest&&e.target.closest('[data-eye]');if(ey){e.preventDefault();const f=document.getElementById(ey.dataset.eye);if(!f)return;const sh=f.type==='password';f.type=sh?'text':'password';ey.setAttribute('aria-pressed',String(sh));return}});
 view.addEventListener('keydown',e=>{const x=e.target;if(e.key==='Enter'&&x.id==='qkIn'){e.preventDefault();qkUse(x.value);return}if(e.key==='Enter'&&x.tagName==='INPUT'&&x.closest('#incCard')){e.preventDefault();x.blur()}});
 view.addEventListener('change',async e=>{
@@ -6199,7 +6205,7 @@ function ghCardHTML(){
     <div class="ghfq${ghFqOpen?' open':''}" style="--fqc:${GH_FQC[ghFq()][1]}"><button type="button" class="fqhd" data-act="ghFqT" aria-expanded="${ghFqOpen}"><span class="fqi">${ic(GH_FQC[ghFq()][0])}</span><span class="fqhx"><small>${ux('gh_fq')}</small><b>${ux('gh_fq_'+ghFq())}</b></span>${ic('chev-down','fqch')}</button>${ghFqOpen?`<div class="fqlist" role="radiogroup" aria-label="${esc(ux('gh_fq'))}">${Object.keys(GH_FQ).map(k=>`<button type="button" class="fqo" role="radio" data-act="ghFq" data-fq="${k}" aria-checked="${ghFq()===k}" style="--fqc:${GH_FQC[k][1]}"><span class="fqi">${ic(GH_FQC[k][0])}</span><span class="fqt">${ux('gh_fq_'+k)}</span>${k==='live'?`<span class="fqb">${ux('gh_fq_rec')}</span>`:''}<span class="fqr" aria-hidden="true">${ghFq()===k?ic('check'):''}</span></button>`).join('')}</div><p class="hint">${ux('gh_fqh_'+ghFq())}</p>`:''}</div>
     <div class="actions"><button type="button" class="btn primary" data-act="ghNow">${ic('refresh')}${ux('gh_now')}</button><button type="button" class="btn" data-act="ghOff">${ic('cloud-off')}${ux('gh_off')}</button></div>
     <div class="qkbox"><b>${ic('cloud')}${ux('qk_h')}</b><p class="hint">${ux('qk_mk_p')}</p><button type="button" class="btn primary wide" data-act="qkMake">${ic('cloud')}${ux('qk_mk')}</button></div></section>`;
-  const pf=(id,extra,btn)=>`<div class="pfield"><input id="${id}" ${extra}>${btn}</div>`,pb=id=>`<button type="button" class="pbtn" data-paste="${id}" aria-label="${esc(ux('gh_paste'))}">${ic('paste')}<span>${ux('gh_paste')}</span></button>`,eb=id=>`<button type="button" class="pbtn eye" data-eye="${id}" aria-label="${esc(ux('gh_show'))}" aria-pressed="false">${ic('eye')}</button>`;
+  const pf=(id,extra,btn)=>`<div class="pfield"><input id="${id}" ${/placeholder=/.test(extra)?'':'placeholder=" " '}${extra}><button type="button" class="pbtn clr" data-clear="${id}" aria-label="${esc(ux('gh_clear'))}" title="${esc(ux('gh_clear'))}">${ic('close')}</button>${btn}</div>`,pb=id=>`<button type="button" class="pbtn" data-paste="${id}" aria-label="${esc(ux('gh_paste'))}">${ic('paste')}<span>${ux('gh_paste')}</span></button>`,eb=id=>`<button type="button" class="pbtn eye" data-eye="${id}" aria-label="${esc(ux('gh_show'))}" aria-pressed="false">${ic('eye')}</button>`;
   const man=ghManOpen==null?!(()=>{try{return localStorage.getItem('gg_gh_last')}catch(e){return ''}})():ghManOpen;
   return `<section class="card ghc" id="ghCard"><div class="cardhead"><h2>${ic('cloud')}${ux('gh_h')}</h2></div>
     <div class="gqk"><div class="gqh"><span class="gqi">${ic('zap')}</span><span><b>${ux('qk_use')}</b><small>${ux('qk_use_p')}</small></span></div>
@@ -6372,7 +6378,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='181';
+const APP_VER='182';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
