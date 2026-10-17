@@ -213,6 +213,7 @@ input[type=search]{font-family:var(--f-body)}
 @media (max-width:420px){.hrow{grid-template-columns:auto 1fr 86px auto;grid-template-areas:"d n a x" "v v v v"}.hrow .dot{grid-area:d}.hrow .hn{grid-area:n}.hrow input{grid-area:a}.hrow b{grid-area:v;text-align:end}.hrow .btn{grid-area:x}}
 #tapdbg{position:fixed;left:8px;right:8px;bottom:8px;z-index:200;background:rgba(10,14,24,.92);color:#cfe3ff;border-radius:12px;padding:8px 10px;font:11px/1.35 ui-monospace,monospace;pointer-events:none;max-height:45vh;overflow:hidden}#tapdbg b{display:block;color:#fff;font:600 11.5px var(--f-body);margin-bottom:4px}#tapdbg pre{margin:0;white-space:pre-wrap;word-break:break-all}
 .lmore{display:block;width:100%;margin-top:8px}
+.mvc{border:1.5px solid var(--accent)!important;background:linear-gradient(135deg,var(--accent-soft),var(--surface))!important}.mvc .cardhead h2{display:flex;align-items:center;gap:8px}.mvc .btn.wide{width:100%;margin-top:10px;min-height:48px;justify-content:center;gap:8px}
 .verl{margin:18px 0 6px;text-align:center;font:500 12.5px var(--f-num);color:var(--muted-tx,var(--muted));letter-spacing:.04em}.verl b{font-family:var(--f-body)}
 .rcv.ucf{place-items:center;padding:20px;background:rgba(8,12,24,.5);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);animation:pkf .18s ease-out}
 .ucin{width:100%;max-width:400px;display:grid;justify-items:center;gap:12px;text-align:center;background:var(--solid,var(--surface));color:var(--fg);border-radius:26px;padding:24px 20px 18px;box-shadow:0 24px 60px -18px rgba(0,0,0,.45);animation:ucp .28s cubic-bezier(.2,.9,.3,1.25)}
@@ -1861,6 +1862,10 @@ Object.assign(UX.tr,{uc_ok:'Devam et',uc_yes:'Evet, değiştir',uc_del:'Sil',uc_
 Object.assign(UX.en,{uc_ok:'Continue',uc_yes:'Yes, change',uc_del:'Delete',uc_base_h:'Change data currency?',uc_base_p:p=>`This does not convert numbers; it only states which currency you entered them in. Change it only if you really entered your amounts in ${p.b}; if you entered lira, keep ${p.a}.`,uc_ow_h:'Overwrite existing amounts?',uc_del_h:'Delete?',uc_load_h:'Saved data could not be read',uc_xl_h:'Match the Excel data?'});
 Object.assign(UX.ru,{uc_ok:'Продолжить',uc_yes:'Да, изменить',uc_del:'Удалить',uc_base_h:'Изменить валюту данных?',uc_base_p:p=>`Это не пересчитывает суммы, а лишь указывает, в какой валюте вы их вводили. Меняйте, только если действительно вводили суммы в ${p.b}; если в лирах — оставьте ${p.a}.`,uc_ow_h:'Перезаписать существующие суммы?',uc_del_h:'Удалить?',uc_load_h:'Сохранённые данные не прочитаны',uc_xl_h:'Сопоставить данные Excel?'});
 Object.assign(UX.ar,{uc_ok:'متابعة',uc_yes:'نعم، غيّر',uc_del:'حذف',uc_base_h:'تغيير عملة البيانات؟',uc_base_p:p=>`هذا لا يحوّل الأرقام، بل يحدد العملة التي أدخلتها بها فقط. غيّرها فقط إذا أدخلت المبالغ فعلًا بـ ${p.b}؛ وإن أدخلتها بالليرة فاترك ${p.a}.`,uc_ow_h:'استبدال المبالغ الحالية؟',uc_del_h:'حذف؟',uc_load_h:'تعذرت قراءة البيانات المحفوظة',uc_xl_h:'مطابقة بيانات Excel؟'});
+Object.assign(UX.tr,{mv_h:'Web uygulamasına taşı',mv_p:'Tüm verilerini (plan, Defter, ayarlar) tek dokunuşla yeni Mizan sitesine aktarır. Veriler internete gönderilmez; telefonunda bir sekmeden diğerine geçer.',mv_btn:'Verilerimi siteye taşı',mv_big:'Veri çok büyük, Yedek ile taşı.',mv_in_h:'Veriler geldi',mv_in_p:p=>`${p.d} kalem, ${p.m} ay ve ${p.l} Defter kaydı bu uygulamaya aktarılsın mı?`,mv_in_ow:'Bu uygulamadaki mevcut verinin yerine geçer.',mv_ok:'Aktar',mv_bad:'Taşınan veri okunamadı. Yedek dosyasıyla dene.'});
+Object.assign(UX.en,{mv_h:'Move to the web app',mv_p:'Moves all your data (plan, ledger, settings) to the new Mizan site in one tap. Nothing is sent over the internet; it passes from one tab to another on your phone.',mv_btn:'Move my data to the site',mv_big:'Data is too large; use Backup instead.',mv_in_h:'Your data arrived',mv_in_p:p=>`Import ${p.d} items, ${p.m} months and ${p.l} ledger entries into this app?`,mv_in_ow:'This replaces the data currently in this app.',mv_ok:'Import',mv_bad:'The moved data could not be read. Try a backup file.'});
+Object.assign(UX.ru,{mv_h:'Перенести в веб-приложение',mv_p:'Одним нажатием переносит все данные (план, журнал, настройки) на новый сайт Mizan. Ничего не отправляется в интернет — данные переходят из одной вкладки в другую на телефоне.',mv_btn:'Перенести мои данные',mv_big:'Слишком много данных, используйте резервную копию.',mv_in_h:'Данные получены',mv_in_p:p=>`Импортировать ${p.d} статей, ${p.m} мес. и ${p.l} записей журнала?`,mv_in_ow:'Текущие данные в этом приложении будут заменены.',mv_ok:'Импортировать',mv_bad:'Не удалось прочитать данные. Используйте файл резервной копии.'});
+Object.assign(UX.ar,{mv_h:'النقل إلى تطبيق الويب',mv_p:'ينقل كل بياناتك (الخطة، الدفتر، الإعدادات) إلى موقع ميزان الجديد بلمسة واحدة. لا يُرسل شيء عبر الإنترنت؛ تنتقل من تبويب إلى آخر في هاتفك.',mv_btn:'انقل بياناتي إلى الموقع',mv_big:'البيانات كبيرة جدًا، استخدم النسخة الاحتياطية.',mv_in_h:'وصلت بياناتك',mv_in_p:p=>`استيراد ${p.d} بندًا و${p.m} شهرًا و${p.l} قيدًا إلى هذا التطبيق؟`,mv_in_ow:'سيحل محل البيانات الحالية في هذا التطبيق.',mv_ok:'استيراد',mv_bad:'تعذرت قراءة البيانات المنقولة. جرّب ملف النسخة الاحتياطية.'});
 Object.assign(UX.ar,{bk_share:'مشاركة النسخة',bk_share_note:'ترسل النسخة إلى درايف أو البريد أو واتساب.',bk_share_no:'هذا المتصفح لا يدعم مشاركة الملفات، تم تنزيل النسخة.',where:p=>`بيانات هذه النسخة مرتبطة بالعنوان: ${p.u}. إذا فتحت الملف من مكان آخر ستكون البيانات منفصلة.`,rate_old:p=>`عمر السعر ${p.n}`,h:'س',d:'يوم'});
 const ux=(k,p)=>{let v=(UX[LANG]||UX.tr)[k];if(v===undefined)v=UX.tr[k];return typeof v==='function'?v(p||{}):v};
 const shortDay=iso=>{const [y,m,d]=String(iso).split('-').map(Number);return d+' '+MSHORT[LANG][m-1]};
@@ -4838,7 +4843,7 @@ function renderAyar(){
   const LN={tr:{tr:'Türkçe',en:'İngilizce',ru:'Rusça',ar:'Arapça'},en:{tr:'Turkish',en:'English',ru:'Russian',ar:'Arabic'},ru:{tr:'Турецкий',en:'Английский',ru:'Русский',ar:'Арабский'},ar:{tr:'التركية',en:'الإنجليزية',ru:'الروسية',ar:'العربية'}};
   const NATIVE={tr:'Türkçe',en:'English',ru:'Русский',ar:'العربية'};
   const langs=['tr','en','ru','ar'].map(k=>[k,LN[LANG][k],NATIVE[k]]);
-  $('#view').innerHTML=`
+  $('#view').innerHTML=(window.MIZAN_WEB?'':`<div class="mvw"><section class="card mvc"><div class="cardhead"><h2>${ic('upload')}${ux('mv_h')}</h2></div><p class="hint">${ux('mv_p')}</p><button type="button" class="btn primary wide" data-act="toWeb">${ic('upload')}${ux('mv_btn')}</button></section></div>`)+`
    <section class="card"><div class="cardhead"><h2>${t('st_lang')}</h2></div>
     <div class="langseg" role="radiogroup" aria-label="${esc(t('st_lang'))}">${langs.map(([k,n,nat])=>`<button type="button" class="langbtn" data-lang="${k}" aria-pressed="${LANG===k}"><span>${n}</span>${n!==nat?`<small lang="${k}">${nat}</small>`:''}</button>`).join('')}</div>
     <p class="hint" style="margin-top:10px">${t('st_lang_note')}</p></section>
@@ -5116,6 +5121,7 @@ view.addEventListener('click',async e=>{
   if(act==='bkSave'){backupSave();return}
   if(act==='bkShare'){backupShare();return}
   if(act==='tourShow'){tourShow();return}
+  if(act==='toWeb'){moveToWeb();return}
   if(act==='hsClear'){arm(a,ux('hs_confirm'),histClear);return}
   if(act==='bkPick'){$('#bkFile').click();return}
   if(act==='bkApply'){backupApply();return}
@@ -5653,6 +5659,7 @@ async function init(){
   startLive();
   welcomeInit();
   pingStart();
+  if(window.MIZAN_WEB)setTimeout(importFromHash,300);
   try{if(navigator.storage&&navigator.storage.persist)navigator.storage.persist()}catch(e){}
 }
 document.addEventListener('visibilitychange',()=>{
@@ -5923,6 +5930,30 @@ document.getElementById('view').addEventListener('click',e=>{const x=e.target;
   if(x.closest('[data-stpick]')){const f=document.getElementById('stFile');if(f)f.click();return}
 });
 
+/* ================= Web uygulamasına taşıma (dosya sürümü → GitHub Pages) ================= */
+const MV_SITE='https://tcmustafacelik.github.io/mizan/';
+const b64u=u=>{let s='';for(let i=0;i<u.length;i+=0x8000)s+=String.fromCharCode.apply(null,u.subarray(i,i+0x8000));return btoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')};
+const ub64=t=>{t=t.replace(/-/g,'+').replace(/_/g,'/');const b=atob(t),u=new Uint8Array(b.length);for(let i=0;i<b.length;i++)u[i]=b.charCodeAt(i);return u};
+async function zip8(str,inv){const s=new Blob([inv?str:new TextEncoder().encode(str)]).stream().pipeThrough(inv?new DecompressionStream('deflate-raw'):new CompressionStream('deflate-raw'));const buf=new Uint8Array(await new Response(s).arrayBuffer());return inv?new TextDecoder().decode(buf):buf}
+async function moveToWeb(){
+  try{
+    const data={app:'gelir-gider-takip',version:1,created:new Date().toISOString(),settings:{lang:LANG,theme:THEME,currency:CUR},plan:clone(JSON.parse(savedJson||JSON.stringify(plan))),ledger:ledger.map(({id,...r})=>r)};
+    const enc=b64u(await zip8(JSON.stringify(data)));
+    if(enc.length>1800000){toast(ux('mv_big'));return}
+    const url=MV_SITE+'#mizan-import='+enc;
+    const w=window.open(url,'_blank');if(!w)location.href=url;
+  }catch(e){toast(ux('mv_big'))}
+}
+async function importFromHash(){
+  const h=location.hash||'';if(!h.startsWith('#mizan-import='))return;
+  try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}
+  let d=null;try{d=JSON.parse(await zip8(ub64(h.slice(14)),1))}catch(e){}
+  if(!d||!validBackup(d)){toast(ux('mv_bad'));return}
+  const has=(plan.debts||[]).length||ledger.length;
+  const ok=await uiConfirm({title:ux('mv_in_h'),kind:'info',icon:'download',body:`<p>${esc(ux('mv_in_p',{d:d.plan.debts.length,m:d.plan.months.length,l:(d.ledger||[]).length}))}</p>${has?`<p><b>${esc(ux('mv_in_ow'))}</b></p>`:''}`,ok:ux('mv_ok')});
+  if(!ok)return;
+  bkData=d;await backupApply();
+}
 /* ================= Şık onay penceresi (tarayıcının confirm'ü yerine) ================= */
 let ucRes=null,ucAt=0,LT=0;document.addEventListener('touchend',()=>{LT=Date.now()},{capture:true,passive:true});
 const ghost=(e,at)=>e.isTrusted&&Date.now()-at<500&&Date.now()-LT<1500;
@@ -6001,7 +6032,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='162';
+const APP_VER='163';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
