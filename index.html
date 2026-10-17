@@ -213,6 +213,11 @@ input[type=search]{font-family:var(--f-body)}
 @media (max-width:420px){.hrow{grid-template-columns:auto 1fr 86px auto;grid-template-areas:"d n a x" "v v v v"}.hrow .dot{grid-area:d}.hrow .hn{grid-area:n}.hrow input{grid-area:a}.hrow b{grid-area:v;text-align:end}.hrow .btn{grid-area:x}}
 #tapdbg{position:fixed;left:8px;right:8px;bottom:8px;z-index:200;background:rgba(10,14,24,.92);color:#cfe3ff;border-radius:12px;padding:8px 10px;font:11px/1.35 ui-monospace,monospace;pointer-events:none;max-height:45vh;overflow:hidden}#tapdbg b{display:block;color:#fff;font:600 11.5px var(--f-body);margin-bottom:4px}#tapdbg pre{margin:0;white-space:pre-wrap;word-break:break-all}
 .lmore{display:block;width:100%;margin-top:8px}
+.qkbox{margin:12px 0 4px;padding:12px;border-radius:14px;background:var(--accent-soft);display:grid;gap:6px}.qkbox>b{display:flex;align-items:center;gap:8px;font-size:14.5px}.qkbox .hint{margin:0}.qkbox .btn.wide{width:100%;min-height:44px;justify-content:center;margin-top:4px}
+.qkout{width:100%;font:500 12.5px var(--f-num);border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:10px;resize:none;word-break:break-all}
+.qkacts{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}.qkacts .btn{min-height:40px}
+.qkor{text-align:center;font-size:12.5px;color:var(--muted-tx,var(--muted));margin:10px 0 2px;display:flex;align-items:center;gap:10px}.qkor::before,.qkor::after{content:'';flex:1;height:1px;background:var(--line)}
+.qkf{text-align:start;width:100%;margin-top:4px}.qkpin{text-align:center;font:600 22px var(--f-num)!important;letter-spacing:.3em}
 .ghcst{margin:10px 0 0;font-size:13.5px;line-height:1.45;min-height:1em;color:var(--muted-tx,var(--muted))}.ghcst:empty{display:none}.ghcst.err{color:var(--bad-tx,var(--bad));background:var(--bad-bg);padding:10px 12px;border-radius:12px;font-weight:500}.ghcst.busy{color:var(--accent)}
 .ghspin{display:inline-block;width:16px;height:16px;border-radius:50%;border:2.5px solid currentColor;border-right-color:transparent;animation:ghsp .8s linear infinite;margin-inline-end:8px;vertical-align:-3px}@keyframes ghsp{to{transform:rotate(360deg)}}
 .ghc .cardhead h2{display:flex;align-items:center;gap:8px}.ghc .cardhead h2 svg{color:var(--accent)}.ghc .btn.wide{width:100%;margin-top:12px;min-height:48px;justify-content:center;gap:8px}.ghc .tbl a{color:var(--accent);font-weight:600}
@@ -1881,6 +1886,10 @@ Object.assign(UX.tr,{gh_wait:'Bağlanıyor…',gh_step1:'GitHub\'a erişiliyor�
 Object.assign(UX.en,{gh_wait:'Connecting…',gh_step1:'Reaching GitHub…',gh_step2:'Checking the repository…',gh_step3:'Uploading your data…',gh_c401:'The token was not accepted. Make sure you pasted all of it (including github_pat_) and that it has not expired.',gh_cnet:'Could not reach GitHub. Check your internet (and VPN) and try again.'});
 Object.assign(UX.ru,{gh_wait:'Подключение…',gh_step1:'Связь с GitHub…',gh_step2:'Проверка репозитория…',gh_step3:'Отправка данных…',gh_c401:'Ключ не принят. Убедитесь, что вставили его полностью (включая github_pat_) и срок не истёк.',gh_cnet:'Не удалось связаться с GitHub. Проверьте интернет (и VPN) и повторите.'});
 Object.assign(UX.ar,{gh_wait:'جارٍ الاتصال…',gh_step1:'جارٍ الوصول إلى GitHub…',gh_step2:'جارٍ فحص المستودع…',gh_step3:'جارٍ رفع البيانات…',gh_c401:'لم يُقبل المفتاح. تأكد من لصقه كاملًا (بما في ذلك github_pat_) وأنه لم تنته صلاحيته.',gh_cnet:'تعذر الوصول إلى GitHub. تحقق من الإنترنت (وVPN) ثم أعد المحاولة.'});
+Object.assign(UX.tr,{qk_h:'Hızlı bağlantı',qk_mk:'Hızlı bağlantı kodu oluştur',qk_mk_p:'Anahtarı bir daha yazmamak için kısa bir PIN ile korunan bağlantı kodu oluşturur. Yeni dosyada, başka telefonda ya da tarayıcı temizlendikten sonra koda dokunup PIN girmen yeterli.',qk_pin:'PIN (en az 4 hane)',qk_pin2:'PIN',qk_short:'PIN en az 4 haneli olmalı',qk_ready_h:'Hızlı bağlantı kodun hazır',qk_ready_p:"Bu bağlantıyı kendine kaydet: Notlar'a ya da WhatsApp'ta kendine gönder. Dokununca Mizan açılır, PIN'i girince bağlanır. Kodu kimseyle paylaşma.",qk_copy:'Kopyala',qk_share:'Paylaş',qk_copied:'Kod kopyalandı',qk_use:'Kodla bağlan',qk_use_p:'Daha önce oluşturduğun hızlı bağlantı kodunu ya da bağlantıyı yapıştır.',qk_paste:'Hızlı bağlantı kodu',qk_ask_h:'Hızlı bağlantı',qk_ask_p:"Bağlanmak için PIN'ini gir.",qk_bad:'Kod geçersiz',qk_wrong:'PIN yanlış',qk_or:'ya da anahtarla bağlan'});
+Object.assign(UX.en,{qk_h:'Quick connect',qk_mk:'Create quick-connect code',qk_mk_p:'Creates a connection code protected by a short PIN so you never type the token again. In a new file, another phone or after clearing the browser, tap the code and enter the PIN.',qk_pin:'PIN (at least 4 digits)',qk_pin2:'PIN',qk_short:'PIN must be at least 4 digits',qk_ready_h:'Your quick-connect code is ready',qk_ready_p:"Save this link for yourself: in Notes or send it to yourself on WhatsApp. Tapping it opens Mizan; enter the PIN to connect. Don't share it with anyone.",qk_copy:'Copy',qk_share:'Share',qk_copied:'Code copied',qk_use:'Connect with code',qk_use_p:'Paste the quick-connect code or link you created earlier.',qk_paste:'Quick-connect code',qk_ask_h:'Quick connect',qk_ask_p:'Enter your PIN to connect.',qk_bad:'Invalid code',qk_wrong:'Wrong PIN',qk_or:'or connect with a token'});
+Object.assign(UX.ru,{qk_h:'Быстрое подключение',qk_mk:'Создать код быстрого подключения',qk_mk_p:'Создаёт код подключения, защищённый коротким PIN, чтобы больше не вводить токен. В новом файле, на другом телефоне или после очистки браузера нажмите на код и введите PIN.',qk_pin:'PIN (минимум 4 цифры)',qk_pin2:'PIN',qk_short:'PIN должен содержать минимум 4 цифры',qk_ready_h:'Код быстрого подключения готов',qk_ready_p:'Сохраните эту ссылку: в Заметках или отправьте себе в WhatsApp. Нажатие открывает Mizan; введите PIN для подключения. Никому её не передавайте.',qk_copy:'Копировать',qk_share:'Поделиться',qk_copied:'Код скопирован',qk_use:'Подключить по коду',qk_use_p:'Вставьте ранее созданный код или ссылку быстрого подключения.',qk_paste:'Код быстрого подключения',qk_ask_h:'Быстрое подключение',qk_ask_p:'Введите PIN для подключения.',qk_bad:'Неверный код',qk_wrong:'Неверный PIN',qk_or:'или подключитесь токеном'});
+Object.assign(UX.ar,{qk_h:'اتصال سريع',qk_mk:'أنشئ رمز اتصال سريع',qk_mk_p:'ينشئ رمز اتصال محميًا برقم PIN قصير حتى لا تكتب الرمز المميز مرة أخرى. في ملف جديد أو هاتف آخر أو بعد مسح المتصفح، اضغط الرمز وأدخل PIN.',qk_pin:'PIN (4 أرقام على الأقل)',qk_pin2:'PIN',qk_short:'يجب أن يتكون PIN من 4 أرقام على الأقل',qk_ready_h:'رمز الاتصال السريع جاهز',qk_ready_p:'احفظ هذا الرابط لنفسك: في الملاحظات أو أرسله لنفسك على واتساب. الضغط عليه يفتح ميزان؛ أدخل PIN للاتصال. لا تشاركه مع أحد.',qk_copy:'نسخ',qk_share:'مشاركة',qk_copied:'تم نسخ الرمز',qk_use:'اتصل بالرمز',qk_use_p:'الصق رمز أو رابط الاتصال السريع الذي أنشأته سابقًا.',qk_paste:'رمز الاتصال السريع',qk_ask_h:'اتصال سريع',qk_ask_p:'أدخل PIN للاتصال.',qk_bad:'رمز غير صالح',qk_wrong:'PIN خاطئ',qk_or:'أو اتصل بالرمز المميز'});
 Object.assign(UX.ar,{bk_share:'مشاركة النسخة',bk_share_note:'ترسل النسخة إلى درايف أو البريد أو واتساب.',bk_share_no:'هذا المتصفح لا يدعم مشاركة الملفات، تم تنزيل النسخة.',where:p=>`بيانات هذه النسخة مرتبطة بالعنوان: ${p.u}. إذا فتحت الملف من مكان آخر ستكون البيانات منفصلة.`,rate_old:p=>`عمر السعر ${p.n}`,h:'س',d:'يوم'});
 const ux=(k,p)=>{let v=(UX[LANG]||UX.tr)[k];if(v===undefined)v=UX.tr[k];return typeof v==='function'?v(p||{}):v};
 const shortDay=iso=>{const [y,m,d]=String(iso).split('-').map(Number);return d+' '+MSHORT[LANG][m-1]};
@@ -5140,6 +5149,8 @@ view.addEventListener('click',async e=>{
   if(act==='toWeb'){moveToWeb();return}
   if(act==='ghConnect'){ghConnect();return}
   if(act==='ghNow'){ghPull(true);return}
+  if(act==='qkMake'){qkMake();return}
+  if(act==='qkUse'){qkUse((document.getElementById('qkIn')||{}).value);return}
   if(act==='ghOff'){ghDisconnect();return}
   if(act==='hsClear'){arm(a,ux('hs_confirm'),histClear);return}
   if(act==='bkPick'){$('#bkFile').click();return}
@@ -5680,6 +5691,8 @@ async function init(){
   pingStart();
   ghStart();
   if(window.MIZAN_WEB)setTimeout(importFromHash,300);
+  setTimeout(qkFromHash,500);
+  window.addEventListener('hashchange',()=>{qkFromHash();if(window.MIZAN_WEB)importFromHash()});
   try{if(navigator.storage&&navigator.storage.persist)navigator.storage.persist()}catch(e){}
 }
 document.addEventListener('visibilitychange',()=>{
@@ -6022,10 +6035,10 @@ async function ghApply(d,sha){
   GH.sha=sha;GH.pending=false;GH.at=Date.now();ghErr='';ghSave();ghDraw();
   setTimeout(()=>toast('☁ '+ux('gh_pulled')),400);
 }
-async function ghConnect(){
-  const v=id=>((document.getElementById(id)||{}).value||'').trim();
+async function ghConnect(o){
+  const v=id=>o?String((o[{ghRepo:'r',ghTok:'t',ghPw:'p'}[id]])||'').trim():((document.getElementById(id)||{}).value||'').trim();
   let repo=v('ghRepo').replace(/^https?:\/\/github\.com\//i,'').replace(/\.git$/,'').replace(/^\/+|\/+$/g,'');
-  let token=v('ghTok').replace(/\s+/g,'');const pw=(document.getElementById('ghPw')||{}).value||'';
+  let token=v('ghTok').replace(/\s+/g,'');const pw=o?String(o.p||''):((document.getElementById('ghPw')||{}).value||'');
   if(token&&!/^(github_pat_|gh[pousr]_)/.test(token)&&/^11[A-Z0-9]{15,}_/.test(token))token='github_pat_'+token;
   const cst=document.getElementById('ghCst'),say=(m,cls)=>{if(cst){cst.textContent=m||'';cst.className='ghcst'+(cls?' '+cls:'')}};
   if(!/^[\w.-]+\/[\w.-]+$/.test(repo)||!token){say(ux('gh_need'),'err');toast(ux('gh_need'));return}
@@ -6065,8 +6078,11 @@ function ghCardHTML(){
   if(ghOn())return `<section class="card ghc" id="ghCard"><div class="cardhead"><h2>${ic('cloud')}${ux('gh_h')}</h2></div>
     <p id="ghSt" class="ghst ${ghBusy?'busy':ghErr?'err':GH.pending?'pend':'ok'}">${esc(ghStText())}</p>
     <p class="hint">${ux('gh_repo')}: <b>${esc(GH.repo)}</b>${GH.pw?` · 🔒 ${ux('gh_enc')}`:''}</p>
-    <div class="actions"><button type="button" class="btn primary" data-act="ghNow">${ic('refresh')}${ux('gh_now')}</button><button type="button" class="btn" data-act="ghOff">${ic('cloud-off')}${ux('gh_off')}</button></div></section>`;
+    <div class="actions"><button type="button" class="btn primary" data-act="ghNow">${ic('refresh')}${ux('gh_now')}</button><button type="button" class="btn" data-act="ghOff">${ic('cloud-off')}${ux('gh_off')}</button></div>
+    <div class="qkbox"><b>${ic('cloud')}${ux('qk_h')}</b><p class="hint">${ux('qk_mk_p')}</p><button type="button" class="btn wide" data-act="qkMake">${ux('qk_mk')}</button></div></section>`;
   return `<section class="card ghc" id="ghCard"><div class="cardhead"><h2>${ic('cloud')}${ux('gh_h')}</h2></div>
+    <div class="qkbox"><b>${ic('cloud')}${ux('qk_use')}</b><p class="hint">${ux('qk_use_p')}</p><textarea id="qkIn" class="qkout" rows="2" placeholder="MZ1.…" aria-label="${esc(ux('qk_paste'))}" autocapitalize="off" spellcheck="false"></textarea><button type="button" class="btn primary wide" data-act="qkUse">${ux('qk_use')}</button></div>
+    <p class="qkor">${ux('qk_or')}</p>
     <p class="hint">${ux('gh_p')}</p><ol class="tbl"><li>${ux('gh_s1')}</li><li>${ux('gh_s2')}</li><li>${ux('gh_s3')}</li></ol>
     <label class="f">${ux('gh_repo')}<input id="ghRepo" value="tcmustafacelik/mizan-data" autocapitalize="off" autocomplete="off" spellcheck="false"></label>
     <label class="f" style="margin-top:8px">${ux('gh_tok')}<input id="ghTok" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_…"></label>
@@ -6105,6 +6121,38 @@ async function importFromHash(){
   const ok=await uiConfirm({title:ux('mv_in_h'),kind:'info',icon:'download',body:`<p>${esc(ux('mv_in_p',{d:d.plan.debts.length,m:d.plan.months.length,l:(d.ledger||[]).length}))}</p>${has?`<p><b>${esc(ux('mv_in_ow'))}</b></p>`:''}`,ok:ux('mv_ok')});
   if(!ok)return;
   bkData=d;await backupApply();
+}
+/* ================= Hızlı bağlantı kodu (anahtarı her seferinde yazmamak için) ================= */
+const QK_SITE='https://tcmustafacelik.github.io/mizan/';
+const s2b=t=>b64u(new TextEncoder().encode(t)),b2s=t=>new TextDecoder().decode(ub64(t));
+function qkPinHTML(id,lab){return `<label class="f qkf">${esc(lab)}<input id="${id}" type="password" inputmode="numeric" autocomplete="off" maxlength="12" class="qkpin"></label>`}
+async function qkMake(){
+  if(!GH)return;
+  const ok=await uiConfirm({title:ux('qk_mk'),kind:'info',icon:'cloud',body:`<p>${esc(ux('qk_mk_p'))}</p>${qkPinHTML('qkPinA',ux('qk_pin'))}`,ok:ux('qk_mk')});
+  if(!ok)return;const pin=((document.getElementById('qkPinA')||{}).value||'').trim();
+  if(pin.length<4){toast(ux('qk_short'));return}
+  const enc=await encryptBackup(JSON.stringify({r:GH.repo,t:GH.token,p:GH.pw||''}),pin);
+  const o=JSON.parse(enc),code='MZ1.'+s2b(JSON.stringify({s:o.salt,i:o.iv,c:o.ct,n:o.iter}));
+  const link=QK_SITE+'#mizan-link='+code;
+  await uiConfirm({title:ux('qk_ready_h'),kind:'info',icon:'check',body:`<p>${esc(ux('qk_ready_p'))}</p><textarea id="qkOut" class="qkout" readonly rows="3">${esc(link)}</textarea><div class="qkacts"><button type="button" class="btn" data-qk="copy">${ic('content-copy')}${esc(ux('qk_copy'))}</button>${navigator.share?`<button type="button" class="btn" data-qk="share">${ic('upload')}${esc(ux('qk_share'))}</button>`:''}</div>`,ok:'OK',cancel:t('cancel')});
+}
+document.addEventListener('click',async e=>{const b=e.target.closest&&e.target.closest('[data-qk]');if(!b)return;e.stopPropagation();const v=(document.getElementById('qkOut')||{}).value||'';
+  if(b.dataset.qk==='copy'){try{await navigator.clipboard.writeText(v);toast(ux('qk_copied'))}catch(x){const t2=document.getElementById('qkOut');if(t2){t2.select();try{document.execCommand('copy');toast(ux('qk_copied'))}catch(y){}}}}
+  else if(b.dataset.qk==='share'){try{await navigator.share({title:'Mizan',text:v})}catch(x){}}},true);
+function qkParse(raw){const m=String(raw||'').trim().match(/MZ1\.([A-Za-z0-9_-]+)/);if(!m)return null;try{const j=JSON.parse(b2s(m[1]));return j&&j.s&&j.i&&j.c?j:null}catch(e){return null}}
+async function qkUse(raw){
+  const j=qkParse(raw);if(!j){toast(ux('qk_bad'));return false}
+  const ok=await uiConfirm({title:ux('qk_ask_h'),kind:'info',icon:'cloud',body:`<p>${esc(ux('qk_ask_p'))}</p>${qkPinHTML('qkPinB',ux('qk_pin2'))}`,ok:ux('gh_conn')});
+  if(!ok)return false;const pin=((document.getElementById('qkPinB')||{}).value||'').trim();
+  let d=null;try{d=await decryptBackup({salt:j.s,iv:j.i,ct:j.c,iter:j.n},pin)}catch(e){}
+  if(!d||!d.t||!d.r){toast(ux('qk_wrong'));return false}
+  await ghConnect(d);return true;
+}
+async function qkFromHash(){
+  const h=location.hash||'';if(!h.startsWith('#mizan-link='))return;
+  const code=h.slice(12);try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}
+  if(ghOn())return;
+  tab='ayar';render();await qkUse(code);
 }
 /* ================= Şık onay penceresi (tarayıcının confirm'ü yerine) ================= */
 let ucRes=null,ucAt=0,LT=0;document.addEventListener('touchend',()=>{LT=Date.now()},{capture:true,passive:true});
@@ -6184,7 +6232,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='166';
+const APP_VER='167';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
