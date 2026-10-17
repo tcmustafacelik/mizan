@@ -5479,7 +5479,7 @@ function pwaCardHTML(){
    ${perm==='none'?`<p class="hint">${ux('nt_nosup')}</p>`:perm==='denied'?`<p class="hint" style="color:var(--warn)">${ux('nt_blocked')}</p>`:ntOn()?`<p class="pwok">✓ ${ux('nt_onx')}</p><p class="hint">${bg&&inst?ux('nt_bg'):ux('nt_fg')}</p><div class="actions"><button type="button" class="btn" data-ntoff>${ux('nt_off')}</button></div>`:`<p class="hint">${ux('nt_note')}</p><div class="actions"><button type="button" class="btn primary" data-nton>${ic('bell-ring-outline')}${ux('nt_btn')}</button></div>`}</section>`;
 }
 if(WEB){
-  navigator.serviceWorker.register('sw.js').then(r=>{swReg=r;ntSync();if(ntOn()){ntBg();if(r.active)r.active.postMessage('check')}if(tab==='ayar')renderAyar()}).catch(()=>{});
+  navigator.serviceWorker.register('sw.js',{updateViaCache:'none'}).then(r=>{swReg=r;try{r.update()}catch(e){}ntSync();if(ntOn()){ntBg();if(r.active)r.active.postMessage('check')}if(tab==='ayar')renderAyar()}).catch(()=>{});
   document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')ntSync()});
   window.addEventListener('appinstalled',()=>{instEv=null;toast(ux('pw_inst'));if(tab==='ayar')renderAyar()});
 }
@@ -6184,7 +6184,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='165';
+const APP_VER='166';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
