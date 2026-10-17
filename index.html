@@ -241,6 +241,27 @@ input[type=search]{font-family:var(--f-body)}
 .gman{width:100%;margin-top:12px;padding:12px;border-radius:18px;border:1px solid var(--line);background:var(--surface);color:var(--fg);font:inherit;text-align:start;cursor:pointer}.gman.open .fqch{transform:rotate(180deg)}
 .gmb{display:grid;gap:12px;padding:12px 4px 2px}.gmb .hint{margin:0}.gmb label.f{margin:0}
 .gsteps{list-style:none;margin:0;padding:0;display:grid;gap:8px}.gsteps li{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:14px;background:var(--surface2);font-size:14px;line-height:1.45}.gsteps i{font-style:normal;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;flex:none;background:var(--accent);color:#fff;font:700 13px var(--f-body)}.gsteps span{min-width:0;overflow-wrap:anywhere}
+.nfb{color:var(--muted-tx)}.nfb.has{color:#f97316;animation:nfring 2.4s ease-in-out 1}.nfb .nfn{position:absolute;top:-3px;inset-inline-end:-4px;min-width:16px;height:16px;padding:0 4px;border-radius:999px;background:linear-gradient(135deg,#ef4444,#f97316);color:#fff;font:700 10px/16px var(--f-body);font-style:normal;text-align:center;box-shadow:0 0 0 2px var(--bg,#fff)}
+@keyframes nfring{0%,100%{transform:rotate(0)}10%,30%{transform:rotate(14deg)}20%,40%{transform:rotate(-14deg)}50%{transform:rotate(0)}}
+.nfz .nfin:focus{outline:none}.nfz .nfin{width:100%;max-width:560px;max-height:min(86vh,720px);display:grid;grid-template-rows:auto 1fr;background:var(--solid,var(--surface));color:var(--fg);border-radius:26px 26px 0 0;box-shadow:0 -12px 40px -12px rgba(0,0,0,.4);overflow:hidden;animation:pku .26s cubic-bezier(.2,.9,.3,1.1)}
+.nfhd{padding:6px 14px 10px;background:linear-gradient(135deg,#6366f1 0%,#a855f7 45%,#ec4899 100%);color:#fff}.nfhd .pkgrab{background:rgba(255,255,255,.55)}
+.nfh1{display:flex;align-items:center;gap:12px;margin:4px 0 10px}.nfh1>span:nth-child(2){flex:1;display:flex;flex-direction:column}.nfh1 b{font-size:19px}.nfh1 small{opacity:.9;font-size:13px}
+.nfbell{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:rgba(255,255,255,.22);box-shadow:inset 0 0 0 1px rgba(255,255,255,.35)}.nfbell svg{width:24px;height:24px;fill:#fff}
+.nfx{width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,255,255,.2);color:#fff;display:grid;place-items:center;cursor:pointer}.nfx svg{width:18px;height:18px;fill:currentColor}
+.nftabs{display:flex;gap:6px;background:rgba(0,0,0,.18);padding:4px;border-radius:999px}.nftabs button{flex:1;border:0;border-radius:999px;background:none;color:#fff;font:600 13.5px var(--f-body);min-height:34px;cursor:pointer;opacity:.85}.nftabs button i{font-style:normal;display:inline-block;min-width:20px;padding:0 6px;border-radius:999px;background:rgba(255,255,255,.25);font-size:12px;margin-inline-start:4px}.nftabs button[aria-selected=true]{background:#fff;color:#7c3aed;opacity:1;box-shadow:0 2px 8px rgba(0,0,0,.15)}.nftabs button[aria-selected=true] i{background:#ede9fe}
+.nfbar{display:flex;gap:8px;margin-top:10px}.nfbar button{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:36px;border:0;border-radius:12px;background:rgba(255,255,255,.18);color:#fff;font:600 13px var(--f-body);cursor:pointer}.nfbar button:disabled{opacity:.45}.nfbar svg{width:16px;height:16px;fill:currentColor}
+.nfl{overflow:auto;overscroll-behavior:contain;touch-action:pan-y;padding:12px 12px calc(16px + env(safe-area-inset-bottom,0px));display:grid;gap:10px;align-content:start}
+.nfi{position:relative;border-radius:18px;background:color-mix(in srgb,var(--nc) 9%,var(--surface));border:1px solid color-mix(in srgb,var(--nc) 22%,var(--line));overflow:hidden;transition:transform .18s,opacity .18s}.nfi::before{content:'';position:absolute;inset-block:0;inset-inline-start:0;width:4px;background:var(--nc)}
+.nfi.un{background:color-mix(in srgb,var(--nc) 15%,var(--surface));box-shadow:0 6px 18px -10px var(--nc)}.nfi.out{transform:translateX(30%);opacity:0}
+.nfmain{display:flex;gap:12px;align-items:flex-start;width:100%;padding:12px 12px 6px 14px;border:0;background:none;color:inherit;text-align:start;font:inherit;cursor:pointer}
+.nfic{width:40px;height:40px;border-radius:13px;display:grid;place-items:center;flex:none;background:var(--nc);color:#fff;box-shadow:0 6px 14px -6px var(--nc)}.nfic svg{width:21px;height:21px;fill:currentColor}
+.nft{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}.nft b{font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.nfi:not(.un) .nft b{font-weight:600}.nft small{font-size:13px;line-height:1.35;color:var(--muted-tx,var(--muted))}.nfd{align-self:flex-start;margin-top:4px;font-size:11.5px;font-weight:700;color:var(--nc);background:color-mix(in srgb,var(--nc) 14%,transparent);padding:2px 8px;border-radius:999px}
+.nfdot{width:10px;height:10px;border-radius:50%;background:var(--nc);flex:none;margin-top:6px;box-shadow:0 0 0 4px color-mix(in srgb,var(--nc) 25%,transparent)}
+.nfa{display:flex;justify-content:flex-end;gap:6px;padding:0 10px 10px}.nfa button{width:36px;height:34px;border:0;border-radius:11px;background:color-mix(in srgb,var(--nc) 14%,var(--surface));color:var(--nc);display:grid;place-items:center;cursor:pointer}.nfa button svg{width:18px;height:18px;fill:currentColor}.nfa button.del{background:color-mix(in srgb,#ef4444 12%,var(--surface));color:#ef4444}.nfa button[aria-expanded=true]{background:var(--nc);color:#fff}
+.nfsz{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:0 12px 12px 14px;font-size:13px;color:var(--muted-tx)}.nfsz span{display:inline-flex;align-items:center;gap:4px}.nfsz svg{width:15px;height:15px;fill:currentColor}.nfsz button{border:0;border-radius:999px;padding:0 12px;min-height:32px;background:var(--nc);color:#fff;font:600 13px var(--f-body);cursor:pointer}
+.nfe{display:grid;justify-items:center;gap:6px;text-align:center;padding:30px 10px}.nfe span{width:64px;height:64px;border-radius:22px;display:grid;place-items:center;background:linear-gradient(135deg,#10b981,#3b82f6);color:#fff;box-shadow:0 10px 24px -10px #3b82f6}.nfe svg{width:32px;height:32px;fill:currentColor}.nfe b{font-size:16px}.nfe small{color:var(--muted-tx);font-size:13px;max-width:280px}
+.nfhid{justify-self:center;display:inline-flex;align-items:center;gap:6px;border:0;background:none;color:var(--muted-tx);font:500 13px var(--f-body);cursor:pointer;min-height:36px}.nfhid svg{width:16px;height:16px;fill:currentColor}
+@media (prefers-reduced-motion:reduce){.nfb.has{animation:none}.nfz .nfin{animation:none}}
 .qkbox{margin:12px 0 4px;padding:12px;border-radius:14px;background:var(--accent-soft);display:grid;gap:6px}.qkbox>b{display:flex;align-items:center;gap:8px;font-size:14.5px}.qkbox .hint{margin:0}.qkbox .btn.wide{width:100%;min-height:44px;justify-content:center;margin-top:4px}
 .qkout{width:100%;font:500 12.5px var(--f-num);border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:10px;resize:none;word-break:break-all}
 .qkacts{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}.qkacts .btn{min-height:40px}
@@ -1047,7 +1068,7 @@ input[type=checkbox],input[type=radio]{border-radius:revert}
 
 <div class="app">
   <header class="top">
-    <div class="brand"><h1><span class="logo" id="logo"></span><span class="ttl"><span id="appTitle"></span><small id="appTag"></small></span></h1><span class="brr"><span class="brtop"><button type="button" id="ping" class="ping" hidden></button><span id="batt" class="batt" hidden></span><button type="button" id="ghBadge" class="ghb" hidden aria-label="GitHub"></button><button type="button" id="helpBtn" class="hbtn"></button></span><span id="status" class="status"></span></span></div>
+    <div class="brand"><h1><span class="logo" id="logo"></span><span class="ttl"><span id="appTitle"></span><small id="appTag"></small></span></h1><span class="brr"><span class="brtop"><button type="button" id="ping" class="ping" hidden></button><span id="batt" class="batt" hidden></span><button type="button" id="ghBadge" class="ghb" hidden aria-label="GitHub"></button><button type="button" id="nfBtn" class="hbtn nfb"></button><button type="button" id="helpBtn" class="hbtn"></button></span><span id="status" class="status"></span></span></div>
     <nav class="tabs" id="tabs" role="tablist"></nav>
   </header>
   <main id="view"><p class="hint" id="loading"></p></main>
@@ -1983,6 +2004,14 @@ Object.assign(UX.tr,{qk_already:"Bu cihaz zaten buluta bağlı"});
 Object.assign(UX.en,{qk_already:"This device is already connected to the cloud"});
 Object.assign(UX.ru,{qk_already:"Это устройство уже подключено к облаку"});
 Object.assign(UX.ar,{qk_already:"هذا الجهاز متصل بالسحابة بالفعل"});
+Object.assign(UX.tr,{nf_h:"Bildirimler",nf_unread:p=>`${p.n} okunmamış`,nf_allread:"Hepsi okundu",nf_all:"Tümü",nf_un:"Okunmamış",nf_readall:"Tümünü okundu say",nf_readall_d:"Tümü okundu olarak işaretlendi",nf_clear:"Tümünü temizle",nf_cleared_all:"Bildirimler temizlendi · gerekirse yarın yeniden gelir",nf_cleared:"Temizlendi · gerekirse yarın yeniden gelir",nf_undo:"Geri al",nf_mr:"Okundu say",nf_mu:"Okunmadı say",nf_snooze:"Ertele",nf_s1:"1 gün",nf_s3:"3 gün",nf_s7:"1 hafta",nf_snoozed:p=>`${p.d} ertelendi`,nf_del:"Temizle",nf_e_h:"Her şey yolunda",nf_e_p:"Şu an bildirim yok. Ödeme ve maaş günleri yaklaşınca burada görünür.",nf_e_un:"Okunmamış bildirim yok",nf_hidden:p=>`${p.n} gizli bildirimi geri getir`,nf_over:p=>`${p.d} gün gecikti · ${p.v}`,nf_today:p=>`Bugün ödenecek · ${p.v}`,nf_soon:p=>`${p.d} gün sonra · ${p.v}`,nf_inc_t:p=>`${p.n} yattı mı?`,nf_inc_s:p=>`Yatış günü ${p.d} · ${p.v} · yattıysa Plan'da işaretle`,nf_gh_t:"Bulut eşitleme durdu",nf_bk_t:"Yedek alma zamanı",nf_k_over:"Gecikti",nf_k_today:"Bugün",nf_k_soon:"Yaklaşıyor",nf_k_inc:"Gelir",nf_k_rate:"Kur",nf_k_err:"Bulut",nf_k_bk:"Yedek"});
+Object.assign(UX.en,{nf_h:"Notifications",nf_unread:p=>`${p.n} unread`,nf_allread:"All read",nf_all:"All",nf_un:"Unread",nf_readall:"Mark all read",nf_readall_d:"All marked as read",nf_clear:"Clear all",nf_cleared_all:"Notifications cleared · they come back tomorrow if still needed",nf_cleared:"Cleared · comes back tomorrow if still needed",nf_undo:"Undo",nf_mr:"Mark read",nf_mu:"Mark unread",nf_snooze:"Snooze",nf_s1:"1 day",nf_s3:"3 days",nf_s7:"1 week",nf_snoozed:p=>`Snoozed for ${p.d}`,nf_del:"Clear",nf_e_h:"All good",nf_e_p:"No notifications right now. Upcoming payments and paydays will show up here.",nf_e_un:"No unread notifications",nf_hidden:p=>`Bring back ${p.n} hidden`,nf_over:p=>`${p.d} days overdue · ${p.v}`,nf_today:p=>`Due today · ${p.v}`,nf_soon:p=>`In ${p.d} days · ${p.v}`,nf_inc_t:p=>`Has ${p.n} arrived?`,nf_inc_s:p=>`Payday ${p.d} · ${p.v} · mark it on Plan if it arrived`,nf_gh_t:"Cloud sync stopped",nf_bk_t:"Time for a backup",nf_k_over:"Overdue",nf_k_today:"Today",nf_k_soon:"Upcoming",nf_k_inc:"Income",nf_k_rate:"Rate",nf_k_err:"Cloud",nf_k_bk:"Backup"});
+Object.assign(UX.ru,{nf_h:"Уведомления",nf_unread:p=>`Непрочитанных: ${p.n}`,nf_allread:"Всё прочитано",nf_all:"Все",nf_un:"Непрочитанные",nf_readall:"Прочитать все",nf_readall_d:"Все отмечены как прочитанные",nf_clear:"Очистить все",nf_cleared_all:"Уведомления очищены · завтра вернутся, если актуальны",nf_cleared:"Очищено · завтра вернётся, если актуально",nf_undo:"Отменить",nf_mr:"Прочитано",nf_mu:"Не прочитано",nf_snooze:"Отложить",nf_s1:"1 день",nf_s3:"3 дня",nf_s7:"1 неделя",nf_snoozed:p=>`Отложено: ${p.d}`,nf_del:"Очистить",nf_e_h:"Всё в порядке",nf_e_p:"Уведомлений нет. Ближайшие платежи и дни зарплаты появятся здесь.",nf_e_un:"Нет непрочитанных",nf_hidden:p=>`Вернуть скрытые: ${p.n}`,nf_over:p=>`Просрочено на ${p.d} дн. · ${p.v}`,nf_today:p=>`Оплатить сегодня · ${p.v}`,nf_soon:p=>`Через ${p.d} дн. · ${p.v}`,nf_inc_t:p=>`${p.n} поступила?`,nf_inc_s:p=>`День выплаты ${p.d} · ${p.v} · отметьте в Плане`,nf_gh_t:"Синхронизация остановлена",nf_bk_t:"Пора сделать резервную копию",nf_k_over:"Просрочено",nf_k_today:"Сегодня",nf_k_soon:"Скоро",nf_k_inc:"Доход",nf_k_rate:"Курс",nf_k_err:"Облако",nf_k_bk:"Копия"});
+Object.assign(UX.ar,{nf_h:"الإشعارات",nf_unread:p=>`${p.n} غير مقروءة`,nf_allread:"كلها مقروءة",nf_all:"الكل",nf_un:"غير المقروءة",nf_readall:"تعليم الكل كمقروء",nf_readall_d:"تم تعليم الكل كمقروء",nf_clear:"مسح الكل",nf_cleared_all:"مُسحت الإشعارات · تعود غدًا إن لزم",nf_cleared:"مُسح · يعود غدًا إن لزم",nf_undo:"تراجع",nf_mr:"تعليم كمقروء",nf_mu:"تعليم كغير مقروء",nf_snooze:"تأجيل",nf_s1:"يوم",nf_s3:"3 أيام",nf_s7:"أسبوع",nf_snoozed:p=>`أُجّل ${p.d}`,nf_del:"مسح",nf_e_h:"كل شيء على ما يرام",nf_e_p:"لا إشعارات الآن. ستظهر هنا الدفعات وأيام الراتب القادمة.",nf_e_un:"لا إشعارات غير مقروءة",nf_hidden:p=>`إظهار ${p.n} مخفية`,nf_over:p=>`متأخر ${p.d} يوم · ${p.v}`,nf_today:p=>`يُدفع اليوم · ${p.v}`,nf_soon:p=>`بعد ${p.d} أيام · ${p.v}`,nf_inc_t:p=>`هل وصل ${p.n}؟`,nf_inc_s:p=>`يوم الصرف ${p.d} · ${p.v} · علّمه في الخطة إن وصل`,nf_gh_t:"توقفت المزامنة السحابية",nf_bk_t:"حان وقت النسخ الاحتياطي",nf_k_over:"متأخر",nf_k_today:"اليوم",nf_k_soon:"قريبًا",nf_k_inc:"دخل",nf_k_rate:"سعر",nf_k_err:"السحابة",nf_k_bk:"نسخة"});
+Object.assign(UX.tr,{nf_none:"Bildirim yok"});
+Object.assign(UX.en,{nf_none:"No notifications"});
+Object.assign(UX.ru,{nf_none:"Нет уведомлений"});
+Object.assign(UX.ar,{nf_none:"لا إشعارات"});
 Object.assign(UX.ar,{bk_share:'مشاركة النسخة',bk_share_note:'ترسل النسخة إلى درايف أو البريد أو واتساب.',bk_share_no:'هذا المتصفح لا يدعم مشاركة الملفات، تم تنزيل النسخة.',where:p=>`بيانات هذه النسخة مرتبطة بالعنوان: ${p.u}. إذا فتحت الملف من مكان آخر ستكون البيانات منفصلة.`,rate_old:p=>`عمر السعر ${p.n}`,h:'س',d:'يوم'});
 const ux=(k,p)=>{let v=(UX[LANG]||UX.tr)[k];if(v===undefined)v=UX.tr[k];return typeof v==='function'?v(p||{}):v};
 const shortDay=iso=>{const [y,m,d]=String(iso).split('-').map(Number);return d+' '+MSHORT[LANG][m-1]};
@@ -3356,19 +3385,92 @@ document.addEventListener('securitypolicyviolation',e=>{const u=String(e.blocked
 window.addEventListener('online',()=>{PING.fail=0;pingMeasure(true)});
 window.addEventListener('offline',()=>{PING.off=true;PING.ms=null;drawPing()});
 try{if(navigator.connection)navigator.connection.addEventListener('change',()=>pingMeasure(true))}catch(e){}
+
+/* ================= Bildirim merkezi ================= */
+const LS_NF='gg_nf';let nfOpenAt=0,nfTab='all',nfSnz=null,nfUndo=null;
+const dayAdd=(iso,n)=>{const [y,m,d]=iso.split('-').map(Number),x=new Date(y,m-1,d+n);return x.getFullYear()+'-'+pad(x.getMonth()+1)+'-'+pad(x.getDate())};
+const dayDiff=(a,b)=>{const p=s=>{const [y,m,d]=s.split('-').map(Number);return Date.UTC(y,m-1,d)};return Math.round((p(a)-p(b))/864e5)};
+function nfState(){try{const o=JSON.parse(localStorage.getItem(LS_NF)||'{}');return{read:o.read||{},hide:o.hide||{}}}catch(e){return{read:{},hide:{}}}}
+function nfSave(st){const t=todayStr(),cut=Date.now()-90*864e5;for(const k in st.hide)if(st.hide[k]<=t)delete st.hide[k];for(const k in st.read)if(st.read[k]<cut)delete st.read[k];try{localStorage.setItem(LS_NF,JSON.stringify(st))}catch(e){}}
+const NF_KIND={over:['#ef4444','alert-triangle',0],err:['#dc2626','cloud-off',1],today:['#f97316','bell-ring-outline',2],inc:['#10b981','banknote',3],soon:['#3b82f6','calendar',4],rate:['#14b8a6','arrow-up-right',5],bk:['#8b5cf6','upload',6]};
+function nfAll(){
+  const out=[];if(!plan)return out;const today=todayStr(),cur=ymToday(),prev=addYm(cur,-1);
+  for(const m of plan.months){if(m.ym!==cur&&m.ym!==prev)continue;const [Y,M]=m.ym.split('-').map(Number),dim=new Date(Y,M,0).getDate();
+    for(const d of plan.debts){if(!(Number(d.due)>0)||paidOf(m.ym,d.id))continue;const a=dvLeft(m,d.id);if(!(a>0))continue;
+      const dt=m.ym+'-'+pad(Math.min(Number(d.due),dim)),df=dayDiff(dt,today);const kind=df<0?'over':df===0?'today':df<=3?'soon':null;if(!kind)continue;
+      out.push({k:'pay|'+d.id+'|'+m.ym,kind,ico:kind==='soon'?(d.icon||'calendar'):NF_KIND[kind][1],title:d.name,sub:kind==='over'?ux('nf_over',{d:-df,v:money(a)}):kind==='today'?ux('nf_today',{v:money(a)}):ux('nf_soon',{d:df,v:money(a)}),date:dt,go:'plan'})}}
+  const mc=plan.months.find(x=>x.ym===cur);
+  if(mc){const [Y,M]=cur.split('-').map(Number),dim=new Date(Y,M,0).getDate();for(const x of incSources()){if(!(Number(x.day)>0)||!(incAmt(mc,x)>0)||recvOf(cur,x.k))continue;const dt=cur+'-'+pad(Math.min(Number(x.day),dim));if(dt>today)continue;
+    out.push({k:'inc|'+x.k+'|'+cur,kind:'inc',ico:x.icon||'banknote',title:ux('nf_inc_t',{n:x.n}),sub:ux('nf_inc_s',{d:shortDay(dt),v:money(incAmt(mc,x))}),date:dt,go:'plan'})}}
+  try{plan.debts.forEach(d=>{const tg=num(d.target);if(isUnit(d)&&tg>0){const r=unitRate(d.unit);if(r!=null&&r<=tg&&leftRaw(d)>0)out.push({k:'rate|'+d.id,kind:'rate',ico:'arrow-up-right',title:d.name,sub:ux('rate_ok',{n:d.name}),date:today,go:'kalem'})}})}catch(e){}
+  if(GH&&GH.hard)out.push({k:'gh|'+GH.hard,kind:'err',ico:'cloud-off',title:ux('nf_gh_t'),sub:ghMsg({gh:GH.hard}),date:today,go:'ayar'});
+  try{if(!db){const i=bkInfo();if(i.need)out.push({k:'bk',kind:'bk',ico:'upload',title:ux('nf_bk_t'),sub:i.days===null?ux('bkw_never'):ux('bkw_days',{d:i.days}),date:today,go:'bk'})}}catch(e){}
+  return out.sort((a,b)=>NF_KIND[a.kind][2]-NF_KIND[b.kind][2]||(a.date<b.date?-1:a.date>b.date?1:0));
+}
+function nfList(){const st=nfState(),t=todayStr();return nfAll().filter(x=>!(st.hide[x.k]&&st.hide[x.k]>t)).map(x=>({...x,rk:x.k+'#'+x.kind,read:!!st.read[x.k+'#'+x.kind]}))}
+function nfHiddenKeys(){const st=nfState(),t=todayStr();return Object.keys(st.hide).filter(k=>st.hide[k]>t)}
+function nfDraw(){
+  const b=document.getElementById('nfBtn');if(!b)return;const L=nfList(),n=L.filter(x=>!x.read).length;
+  b.innerHTML=ic('bell-ring-outline')+(n?`<i class="nfn">${n>9?'9+':n}</i>`:'');b.classList.toggle('has',!!n);
+  const lab=ux('nf_h')+(n?' · '+ux('nf_unread',{n}):'');b.setAttribute('aria-label',lab);b.title=lab;
+  if(!b.dataset.b){b.dataset.b=1;b.addEventListener('click',()=>nfOpen())}
+  const z=document.getElementById('nfz');if(z&&!z.hidden)nfRender();
+}
+function nfItemHTML(x){const [col]=NF_KIND[x.kind];
+  return `<div class="nfi${x.read?'':' un'}" style="--nc:${col}" data-nfk="${esc(x.k)}"><button type="button" class="nfmain" data-nfgo="${esc(x.k)}"><span class="nfic">${ic(x.ico)}</span><span class="nft"><b>${esc(x.title)}</b><small>${esc(x.sub)}</small><span class="nfd">${esc(ux('nf_k_'+x.kind))} · ${esc(shortDay(x.date))}</span></span>${x.read?'':'<i class="nfdot" aria-hidden="true"></i>'}</button>
+   <div class="nfa"><button type="button" data-nfread="${esc(x.k)}" aria-label="${esc(x.read?ux('nf_mu'):ux('nf_mr'))}" title="${esc(x.read?ux('nf_mu'):ux('nf_mr'))}">${ic(x.read?'eye':'check')}</button><button type="button" data-nfsnz="${esc(x.k)}" aria-expanded="${nfSnz===x.k}" aria-label="${esc(ux('nf_snooze'))}" title="${esc(ux('nf_snooze'))}">${ic('clock')}</button><button type="button" class="del" data-nfdel="${esc(x.k)}" aria-label="${esc(ux('nf_del'))}" title="${esc(ux('nf_del'))}">${ic('close')}</button></div>
+   ${nfSnz===x.k?`<div class="nfsz"><span>${ic('clock')}${ux('nf_snooze')}:</span>${[1,3,7].map(d=>`<button type="button" data-nfsd="${d}" data-nfk2="${esc(x.k)}">${ux('nf_s'+d)}</button>`).join('')}</div>`:''}</div>`}
+function nfRender(){
+  const z=document.getElementById('nfz');if(!z)return;const L=nfList(),un=L.filter(x=>!x.read),show=nfTab==='un'?un:L,hid=nfHiddenKeys().length;
+  z.innerHTML=`<div class="nfin" role="dialog" aria-modal="true" aria-label="${esc(ux('nf_h'))}"><div class="nfhd"><div class="pkgrab" aria-hidden="true"></div>
+    <div class="nfh1"><span class="nfbell">${ic('bell-ring-outline')}</span><span><b>${ux('nf_h')}</b><small>${un.length?ux('nf_unread',{n:un.length}):L.length?ux('nf_allread'):ux('nf_none')}</small></span><button type="button" class="nfx" data-nf="x" aria-label="${esc(ux('pk_close'))}">${ic('close')}</button></div>
+    <div class="nftabs" role="tablist"><button type="button" role="tab" data-nftab="all" aria-selected="${nfTab==='all'}">${ux('nf_all')} <i>${L.length}</i></button><button type="button" role="tab" data-nftab="un" aria-selected="${nfTab==='un'}">${ux('nf_un')} <i>${un.length}</i></button></div>
+    ${L.length?`<div class="nfbar"><button type="button" data-nf="readall" ${un.length?'':'disabled'}>${ic('check')}${ux('nf_readall')}</button><button type="button" data-nf="clear">${ic('trash')}${ux('nf_clear')}</button></div>`:''}</div>
+    <div class="nfl">${show.length?show.map(nfItemHTML).join(''):`<div class="nfe"><span>${ic(L.length?'check':'bell-ring-outline')}</span><b>${L.length?ux('nf_e_un'):ux('nf_e_h')}</b><small>${L.length?'':ux('nf_e_p')}</small></div>`}
+    ${hid?`<button type="button" class="nfhid" data-nf="unhide">${ic('eye')}${ux('nf_hidden',{n:hid})}</button>`:''}</div></div>`;
+}
+function nfOpen(){let z=document.getElementById('nfz');nfOpenAt=Date.now();nfSnz=null;
+  if(!z){z=document.createElement('div');z.id='nfz';z.className='rcv pks nfz';z.hidden=true;document.body.appendChild(z);
+    z.addEventListener('click',nfClick);z.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();nfClose()}})}
+  nfRender();z.hidden=false;requestAnimationFrame(()=>{const d=z.querySelector('.nfin');if(d){d.tabIndex=-1;d.focus({preventScroll:true})}});
+}
+function nfClose(){const z=document.getElementById('nfz');if(z)z.hidden=true;nfSnz=null;nfDraw();drawRemind()}
+function nfSetRead(keys,v){const st=nfState(),L=nfList();keys.forEach(k=>{const x=L.find(q=>q.k===k);if(!x)return;if(v)st.read[x.rk]=Date.now();else delete st.read[x.rk]});nfSave(st)}
+function nfHide(keys,days){const st=nfState(),prev=JSON.stringify(st),until=dayAdd(todayStr(),days);keys.forEach(k=>st.hide[k]=until);nfSave(st);nfUndo=prev}
+function nfUndoDo(){if(!nfUndo)return;try{localStorage.setItem(LS_NF,nfUndo)}catch(e){}nfUndo=null;nfRender();nfDraw()}
+function nfClick(e){
+  if(ghost(e,nfOpenAt)){e.preventDefault();e.stopPropagation();return}
+  const z=e.currentTarget,x=e.target;if(x===z||x.closest('[data-nf=x]')){nfClose();return}
+  const a=x.closest('[data-nf]');if(a){const v=a.dataset.nf,L=nfList();
+    if(v==='readall'){nfSetRead(L.map(q=>q.k),true);toast(ux('nf_readall_d'))}
+    else if(v==='clear'){nfHide(L.map(q=>q.k),1);toast(ux('nf_cleared_all'),{label:ux('nf_undo'),fn:nfUndoDo})}
+    else if(v==='unhide'){const st=nfState();st.hide={};nfSave(st)}
+    nfRender();nfDraw();return}
+  const tb=x.closest('[data-nftab]');if(tb){nfTab=tb.dataset.nftab;nfRender();return}
+  const r=x.closest('[data-nfread]');if(r){const k=r.dataset.nfread,it=nfList().find(q=>q.k===k);nfSetRead([k],!(it&&it.read));nfRender();nfDraw();return}
+  const sz=x.closest('[data-nfsnz]');if(sz){nfSnz=nfSnz===sz.dataset.nfsnz?null:sz.dataset.nfsnz;nfRender();return}
+  const sd=x.closest('[data-nfsd]');if(sd){const d=Number(sd.dataset.nfsd);nfHide([sd.dataset.nfk2],d);nfSnz=null;nfRender();nfDraw();toast(ux('nf_snoozed',{d:ux('nf_s'+d)}),{label:ux('nf_undo'),fn:nfUndoDo});return}
+  const dl=x.closest('[data-nfdel]');if(dl){const el=dl.closest('.nfi');const go=()=>{nfHide([dl.dataset.nfdel],1);nfRender();nfDraw();toast(ux('nf_cleared'),{label:ux('nf_undo'),fn:nfUndoDo})};if(el&&!matchMedia('(prefers-reduced-motion: reduce)').matches){el.classList.add('out');setTimeout(go,180)}else go();return}
+  const g=x.closest('[data-nfgo]');if(g){const k=g.dataset.nfgo,it=nfList().find(q=>q.k===k);if(!it)return;nfSetRead([k],true);nfClose();
+    if(it.go==='bk'){tab='ayar';render();setTimeout(()=>{const c=document.getElementById('tbCard')||document.getElementById('bkCard');if(c){c.classList.remove('col');c.scrollIntoView({behavior:'smooth',block:'start'})}},120)}
+    else if(it.go==='ayar'){tab='ayar';render();setTimeout(()=>{const c=document.getElementById('ghCard');if(c){c.classList.remove('col');c.scrollIntoView({behavior:'smooth',block:'start'})}},120)}
+    else{tab=it.go;render();setTimeout(()=>{const c=document.getElementById('paycard');if(c&&tab==='plan')c.scrollIntoView({behavior:'smooth',block:'start'})},120)}
+    return}
+}
 function drawRemind(){
   let b=document.getElementById('remind');
   if(!b){b=document.createElement('div');b.id='remind';b.className='remind';b.hidden=true;alertsBox().appendChild(b);
     b.addEventListener('click',e=>{
       if(e.target.closest('.x')){try{localStorage.setItem('gg_rm',todayStr())}catch(x){}b.hidden=true;return}
-      if(e.target.closest('.go')){tab='plan';render();window.scrollTo(0,0)}
+      if(e.target.closest('.go')){nfOpen()}
     });
     b.style.display='';}
+  nfDraw();
   let dis='';try{dis=localStorage.getItem('gg_rm')||''}catch(e){}
-  const c=remindCounts();
+  const c=(()=>{const L=nfList().filter(x=>!x.read);return{over:L.filter(x=>x.kind==='over').length,today:L.filter(x=>x.kind==='today').length,soon:L.filter(x=>x.kind==='soon').length}})();
   const parts=[];
   if(c){if(c.over)parts.push(t('rm_overdue',{n:c.over}));if(c.today)parts.push(t('rm_today',{n:c.today}));if(c.soon)parts.push(t('rm_soon',{n:c.soon}))}
-  try{plan.debts.forEach(d=>{const tg=num(d.target);if(isUnit(d)&&tg>0){const r=unitRate(d.unit);if(r!=null&&r<=tg&&leftRaw(d)>0)parts.push(ux('rate_ok',{n:d.name}))}})}catch(e){}
+  try{nfList().filter(x=>x.kind==='rate'&&!x.read).forEach(x=>parts.push(x.sub))}catch(e){}
   if(!parts.length||dis===todayStr()||tab==='plan'){b.hidden=true;return}
   b.innerHTML=`<button type="button" class="go">${ic('bell-ring-outline')}<span>${esc(parts.join(' · '))}</span></button><button type="button" class="x" aria-label="${esc(t('rm_hide'))}">×</button>`;
   b.hidden=false;
@@ -5384,7 +5486,7 @@ view.addEventListener('change',async e=>{
   if(x.id==='pcMode'){pcs.mode=x.value;$('#pcLa').textContent=t('pc_a_'+pcs.mode);$('#pcLb').textContent=t('pc_b_'+pcs.mode);pcUpdate();return}
   if(x.id==='cvFrom'||x.id==='cvTo'){cv[x.id==='cvFrom'?'from':'to']=x.value;cvUpdate();return}
   if(x.id==='welChk'){welSet(x.checked);return}
-  if(x.dataset.recv){setRecv(x.dataset.rym,x.dataset.recv,x.checked);queueSave();drawPay();return}
+  if(x.dataset.recv){setRecv(x.dataset.rym,x.dataset.recv,x.checked);queueSave();drawPay();drawRemind();return}
   if(x.dataset.isname!==undefined){const k=x.dataset.isname,v=x.value.trim();if(k==='s'||k==='c'){plan.incName=plan.incName||{};if(v)plan.incName[k]=v;else delete plan.incName[k];if(!Object.keys(plan.incName).length)delete plan.incName}else{const z=(plan.incSrc||[]).find(q=>q.id===k);if(z){if(!v){x.value=z.n||'';toast(ux('is_e_keep'));return}if(incSources().some(q=>q.k!==k&&q.n.toLocaleLowerCase(LANG)===v.toLocaleLowerCase(LANG))){x.value=z.n||'';toast(ux('is_e_dup'));return}z.n=v}}queueSave();return}
   if(x.dataset.isday!==undefined){const k=x.dataset.isday,v=Math.round(Number(x.value)),ok=v>=1&&v<=31;if(!ok)x.value='';if(k==='s'||k==='c'){plan.payday=plan.payday||{};if(ok)plan.payday[k]=v;else delete plan.payday[k];if(!Object.keys(plan.payday).length)delete plan.payday}else{const z=(plan.incSrc||[]).find(q=>q.id===k);if(z){if(ok)z.day=v;else delete z.day}}queueSave();return}
   if(x.dataset.mamt!==undefined){const k=x.dataset.mamt,m=plan.months.find(q=>q.ym===x.dataset.mym);if(m){const v=Number(x.value);srcSet(m,k,v>0?v:0);segOpen.add(k+'|'+m.ym);queueSave();isRefresh()}return}
@@ -5580,7 +5682,7 @@ const ntOn=()=>{try{return localStorage.getItem('gg_nt')==='1'&&typeof Notificat
 function ntItems(){
   const out=[];if(!plan)return out;const now=new Date(),lim=new Date(now.getFullYear(),now.getMonth(),now.getDate()+40),today=todayStr();
   for(const m of plan.months){const [Y,M]=m.ym.split('-').map(Number);if(new Date(Y,M-1,1)>lim)continue;const dim=new Date(Y,M,0).getDate();
-    for(const d of plan.debts){if(!(Number(d.due)>0)||paidOf(m.ym,d.id))continue;const a=dvLeft(m,d.id);if(!(a>0))continue;const dt=m.ym+'-'+pad(Math.min(Number(d.due),dim));if(dt<today)continue;out.push({k:d.id+'|'+m.ym,d:dt,n:d.name,v:money(a)})}}
+    for(const d of plan.debts){if(!(Number(d.due)>0)||paidOf(m.ym,d.id))continue;const a=dvLeft(m,d.id);if(!(a>0))continue;const dt=m.ym+'-'+pad(Math.min(Number(d.due),dim));if(dt<today)continue;{const h=nfState().hide['pay|'+d.id+'|'+m.ym];if(h&&h>today)continue}out.push({k:d.id+'|'+m.ym,d:dt,n:d.name,v:money(a)})}}
   return out;
 }
 async function ntSync(){
@@ -6124,6 +6226,7 @@ function ghFail(e,loud){ghErr=ghMsg(e);const c=e&&e.gh,hard=GH&&GH_HARD.includes
 const ghOk=()=>{if(GH&&GH.hard){GH.hard=null;ghSave();if(tab==='ayar')renderAyar()}};
 function ghStText(){if(!GH)return '';if(ghBusy)return ux('gh_busy');if(GH.hard)return ghMsg({gh:GH.hard});if(ghErr)return ghErr;const nx=ghNext(),tail=nx?' · '+ux('gh_nx',{t:new Date(nx).toDateString()===new Date().toDateString()?new Date(nx).toLocaleTimeString(LANG==='ar'?'ar':LANG,{hour:'2-digit',minute:'2-digit'}):ghWhen(nx)}):'';if(GH.pending)return ux('gh_pend')+tail;return GH.at?ux('gh_okt',{t:ghWhen(GH.at)})+tail:''}
 function ghDraw(){
+  if(typeof nfDraw==='function')setTimeout(nfDraw,0);
   const el=document.getElementById('ghSt');if(el){el.textContent=ghStText();el.className='ghst '+(ghBusy?'busy':ghErr||GH&&GH.hard?'err':GH&&GH.pending?'pend':'ok')}
   const b=document.getElementById('ghBadge');if(b){b.hidden=!ghOn();if(ghOn()){b.className='ghb '+(ghBusy?'busy':ghErr||GH.hard?'err':GH.pending?'pend':'ok');b.innerHTML=ic(ghErr||GH.hard?'cloud-off':'cloud');b.title=ghStText()}}
 }
@@ -6390,7 +6493,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='184';
+const APP_VER='185';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
