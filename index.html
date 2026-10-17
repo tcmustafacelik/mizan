@@ -5089,7 +5089,7 @@ view.addEventListener('click',async e=>{
   const th=x.closest('[data-theme-set]');
   if(th){setTheme(th.dataset.themeSet);return}
   const gbb=x.closest('button[data-gbg]');if(gbb&&tab==='ayar'){try{localStorage.setItem('gg_gbg',gbb.dataset.gbg)}catch(e){}applyTheme();renderAyar();return}
-  const fsb=x.closest('[data-fs]');if(fsb&&tab==='ayar'){try{localStorage.setItem('gg_fs',fsb.dataset.fs)}catch(e){}applyTheme();headSig='';requestAnimationFrame(setHead);renderAyar();return}
+  const fsb=x.closest('button[data-fs]');if(fsb&&tab==='ayar'){try{localStorage.setItem('gg_fs',fsb.dataset.fs)}catch(e){}applyTheme();headSig='';requestAnimationFrame(setHead);renderAyar();return}
   const lg=x.closest('[data-lang]');
   if(lg){setLang(lg.dataset.lang);return}
   const km=x.closest('[data-km]');
@@ -6232,7 +6232,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='167';
+const APP_VER='168';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
