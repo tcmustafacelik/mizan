@@ -213,6 +213,8 @@ input[type=search]{font-family:var(--f-body)}
 @media (max-width:420px){.hrow{grid-template-columns:auto 1fr 86px auto;grid-template-areas:"d n a x" "v v v v"}.hrow .dot{grid-area:d}.hrow .hn{grid-area:n}.hrow input{grid-area:a}.hrow b{grid-area:v;text-align:end}.hrow .btn{grid-area:x}}
 #tapdbg{position:fixed;left:8px;right:8px;bottom:8px;z-index:200;background:rgba(10,14,24,.92);color:#cfe3ff;border-radius:12px;padding:8px 10px;font:11px/1.35 ui-monospace,monospace;pointer-events:none;max-height:45vh;overflow:hidden}#tapdbg b{display:block;color:#fff;font:600 11.5px var(--f-body);margin-bottom:4px}#tapdbg pre{margin:0;white-space:pre-wrap;word-break:break-all}
 .lmore{display:block;width:100%;margin-top:8px}
+.ghcst{margin:10px 0 0;font-size:13.5px;line-height:1.45;min-height:1em;color:var(--muted-tx,var(--muted))}.ghcst:empty{display:none}.ghcst.err{color:var(--bad-tx,var(--bad));background:var(--bad-bg);padding:10px 12px;border-radius:12px;font-weight:500}.ghcst.busy{color:var(--accent)}
+.ghspin{display:inline-block;width:16px;height:16px;border-radius:50%;border:2.5px solid currentColor;border-right-color:transparent;animation:ghsp .8s linear infinite;margin-inline-end:8px;vertical-align:-3px}@keyframes ghsp{to{transform:rotate(360deg)}}
 .ghc .cardhead h2{display:flex;align-items:center;gap:8px}.ghc .cardhead h2 svg{color:var(--accent)}.ghc .btn.wide{width:100%;margin-top:12px;min-height:48px;justify-content:center;gap:8px}.ghc .tbl a{color:var(--accent);font-weight:600}
 .ghst{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px;margin:0 0 6px;padding:10px 12px;border-radius:12px;background:var(--accent-soft)}.ghst:empty{display:none}.ghst::before{content:'';width:10px;height:10px;border-radius:50%;background:var(--good,#16a34a);flex:none;box-shadow:0 0 0 4px color-mix(in srgb,var(--good,#16a34a) 25%,transparent)}
 .ghst.busy::before{background:var(--accent);animation:ghp 1s infinite}.ghst.pend::before{background:var(--warn,#d97706)}.ghst.err{color:var(--bad,#dc2626)}.ghst.err::before{background:var(--bad,#dc2626)}
@@ -1875,6 +1877,10 @@ Object.assign(UX.tr,{gh_h:"Bulut eşitleme (GitHub)",gh_p:"Her kaydettiğinde ve
 Object.assign(UX.en,{gh_h:"Cloud sync (GitHub)",gh_p:"Every time you save, your data is stored automatically in your own private GitHub repository. Sign in with the same details on another phone or computer and your data appears there.",gh_s1:"On GitHub, <a href=\"https://github.com/new\" target=\"_blank\" rel=\"noopener\">create a Private repository</a> named <b>mizan-data</b>",gh_s2:"<a href=\"https://github.com/settings/personal-access-tokens/new\" target=\"_blank\" rel=\"noopener\">Create an access token</a>: Only select repositories → mizan-data, Permissions → Contents: Read and write",gh_s3:"Enter the repository and token below and tap Connect",gh_repo:"Repository",gh_tok:"Access token",gh_pw:"Encryption password (recommended)",gh_pw_n:"If filled, data is encrypted before it goes to GitHub. Enter the same password on your other devices. If you forget it the cloud data cannot be opened. The token and password are stored only on this device.",gh_conn:"Connect",gh_now:"Sync now",gh_off:"Disconnect",gh_off_q:"Turn off cloud sync? Your data stays on this device and on GitHub.",gh_enc:"encrypted",gh_busy:"Syncing…",gh_pend:"Changes waiting to be sent",gh_okt:p=>`In sync · last: ${p.t}`,gh_pushed:"Saved to the cloud",gh_pulled:"Latest cloud data loaded",gh_connected:"Connected, sync is on",gh_need:"Repository and token are required",gh_e401:"The token is invalid or expired. Disconnect and connect with a new token.",gh_e403:"The token cannot write to this repository (needs Contents: Read and write).",gh_e404:"Repository not found, or the token cannot access it.",gh_epw:"Wrong encryption password; the cloud data could not be opened.",gh_ebad:"The cloud file could not be read.",gh_enet:"No internet; changes will be sent once online.",gh_eoth:p=>`GitHub error (${p.c})`,gh_pub_h:"This repository is public",gh_pub_p:"Anyone can see data put in a public repository. Make it Private or enter an encryption password.",gh_pub_ok:"It is encrypted, continue",gh_cf_h:"New data in the cloud",gh_cf_p:p=>`The cloud has data saved from another device (${p.t}), and this device also has unsent changes. Which one should stay?`,gh_cf_take:"Use the cloud data",gh_cf_keep:"Use this device",gh_first_h:"Data found in the cloud",gh_first_p:p=>`Your GitHub repository has data from ${p.t}. Load it onto this device? If you choose “Use this device”, the cloud file is replaced with this device's data (the old version stays in GitHub history).`});
 Object.assign(UX.ru,{gh_h:"Облачная синхронизация (GitHub)",gh_p:"При каждом сохранении данные автоматически сохраняются в вашем закрытом репозитории GitHub. Войдите с теми же данными на другом устройстве — данные появятся там.",gh_s1:"На GitHub <a href=\"https://github.com/new\" target=\"_blank\" rel=\"noopener\">создайте закрытый (Private) репозиторий</a> <b>mizan-data</b>",gh_s2:"<a href=\"https://github.com/settings/personal-access-tokens/new\" target=\"_blank\" rel=\"noopener\">Создайте токен доступа</a>: Only select repositories → mizan-data, Permissions → Contents: Read and write",gh_s3:"Введите репозиторий и токен ниже и нажмите «Подключить»",gh_repo:"Репозиторий",gh_tok:"Токен доступа",gh_pw:"Пароль шифрования (рекомендуется)",gh_pw_n:"Если заполнен, данные шифруются перед отправкой в GitHub. Введите тот же пароль на других устройствах. Если забудете его, облачные данные не открыть. Токен и пароль хранятся только на этом устройстве.",gh_conn:"Подключить",gh_now:"Синхронизировать",gh_off:"Отключить",gh_off_q:"Выключить синхронизацию? Данные останутся на устройстве и в GitHub.",gh_enc:"зашифровано",gh_busy:"Синхронизация…",gh_pend:"Есть неотправленные изменения",gh_okt:p=>`Синхронизировано · ${p.t}`,gh_pushed:"Сохранено в облаке",gh_pulled:"Загружены последние данные из облака",gh_connected:"Подключено, синхронизация включена",gh_need:"Нужны репозиторий и токен",gh_e401:"Токен недействителен или истёк. Отключитесь и подключитесь с новым токеном.",gh_e403:"У токена нет права записи в репозиторий (нужно Contents: Read and write).",gh_e404:"Репозиторий не найден или токен не имеет к нему доступа.",gh_epw:"Неверный пароль шифрования, облачные данные не открыты.",gh_ebad:"Не удалось прочитать облачный файл.",gh_enet:"Нет интернета; изменения отправятся при подключении.",gh_eoth:p=>`Ошибка GitHub (${p.c})`,gh_pub_h:"Репозиторий открытый",gh_pub_p:"Данные в открытом репозитории видны всем. Сделайте его Private или задайте пароль шифрования.",gh_pub_ok:"Данные зашифрованы, продолжить",gh_cf_h:"В облаке новые данные",gh_cf_p:p=>`В облаке есть данные с другого устройства (${p.t}), а на этом устройстве есть неотправленные изменения. Что оставить?`,gh_cf_take:"Взять из облака",gh_cf_keep:"Оставить с этого устройства",gh_first_h:"В облаке найдены данные",gh_first_p:p=>`В репозитории есть данные от ${p.t}. Загрузить их на это устройство? Если выбрать «Оставить с этого устройства», облачный файл заменится (старая версия останется в истории GitHub).`});
 Object.assign(UX.ar,{gh_h:"المزامنة السحابية (GitHub)",gh_p:"في كل حفظ تُخزَّن بياناتك تلقائيًا في مستودع GitHub الخاص بك. سجّل بالمعلومات نفسها على هاتف أو حاسوب آخر فتظهر بياناتك هناك.",gh_s1:"على GitHub <a href=\"https://github.com/new\" target=\"_blank\" rel=\"noopener\">أنشئ مستودعًا خاصًا (Private)</a> باسم <b>mizan-data</b>",gh_s2:"<a href=\"https://github.com/settings/personal-access-tokens/new\" target=\"_blank\" rel=\"noopener\">أنشئ رمز وصول (token)</a>: Only select repositories → mizan-data، Permissions → Contents: Read and write",gh_s3:"اكتب اسم المستودع والرمز أدناه ثم اضغط اتصال",gh_repo:"المستودع",gh_tok:"رمز الوصول",gh_pw:"كلمة مرور التشفير (موصى بها)",gh_pw_n:"إذا ملأتها تُشفَّر البيانات قبل إرسالها إلى GitHub. أدخل كلمة المرور نفسها على أجهزتك الأخرى. إذا نسيتها فلا يمكن فتح البيانات السحابية. يُحفظ الرمز وكلمة المرور على هذا الجهاز فقط.",gh_conn:"اتصال",gh_now:"زامن الآن",gh_off:"قطع الاتصال",gh_off_q:"إيقاف المزامنة السحابية؟ تبقى البيانات على هذا الجهاز وعلى GitHub.",gh_enc:"مشفّرة",gh_busy:"جارٍ المزامنة…",gh_pend:"تغييرات بانتظار الإرسال",gh_okt:p=>`متزامن · آخر مرة: ${p.t}`,gh_pushed:"حُفظ في السحابة",gh_pulled:"جُلبت أحدث بيانات السحابة",gh_connected:"تم الاتصال، المزامنة مفعّلة",gh_need:"المستودع والرمز مطلوبان",gh_e401:"الرمز غير صالح أو منتهي. اقطع الاتصال واتصل برمز جديد.",gh_e403:"لا يملك الرمز صلاحية الكتابة في المستودع (يلزم Contents: Read and write).",gh_e404:"المستودع غير موجود أو لا يستطيع الرمز الوصول إليه.",gh_epw:"كلمة مرور التشفير خاطئة، تعذر فتح بيانات السحابة.",gh_ebad:"تعذرت قراءة ملف السحابة.",gh_enet:"لا يوجد إنترنت؛ ستُرسل التغييرات عند الاتصال.",gh_eoth:p=>`خطأ GitHub (${p.c})`,gh_pub_h:"هذا المستودع عام",gh_pub_p:"البيانات في المستودع العام يراها الجميع. اجعله Private أو أدخل كلمة مرور التشفير.",gh_pub_ok:"البيانات مشفّرة، تابع",gh_cf_h:"بيانات جديدة في السحابة",gh_cf_p:p=>`في السحابة بيانات محفوظة من جهاز آخر (${p.t})، وعلى هذا الجهاز تغييرات لم تُرسل. أيهما يبقى؟`,gh_cf_take:"خذ بيانات السحابة",gh_cf_keep:"استخدم هذا الجهاز",gh_first_h:"وُجدت بيانات في السحابة",gh_first_p:p=>`في مستودعك بيانات بتاريخ ${p.t}. تحميلها إلى هذا الجهاز؟ إذا اخترت «استخدم هذا الجهاز» يُستبدل ملف السحابة (تبقى النسخة القديمة في سجل GitHub).`});
+Object.assign(UX.tr,{gh_wait:'Bağlanıyor…',gh_step1:'GitHub\'a erişiliyor…',gh_step2:'Depo kontrol ediliyor…',gh_step3:'Veriler gönderiliyor…',gh_c401:'Anahtar kabul edilmedi. Anahtarın tamamını (başındaki github_pat_ dahil) yapıştırdığından ve süresinin dolmadığından emin ol.',gh_cnet:'GitHub\'a ulaşılamadı. İnternetini (ve VPN\'i) kontrol edip tekrar dene.'});
+Object.assign(UX.en,{gh_wait:'Connecting…',gh_step1:'Reaching GitHub…',gh_step2:'Checking the repository…',gh_step3:'Uploading your data…',gh_c401:'The token was not accepted. Make sure you pasted all of it (including github_pat_) and that it has not expired.',gh_cnet:'Could not reach GitHub. Check your internet (and VPN) and try again.'});
+Object.assign(UX.ru,{gh_wait:'Подключение…',gh_step1:'Связь с GitHub…',gh_step2:'Проверка репозитория…',gh_step3:'Отправка данных…',gh_c401:'Ключ не принят. Убедитесь, что вставили его полностью (включая github_pat_) и срок не истёк.',gh_cnet:'Не удалось связаться с GitHub. Проверьте интернет (и VPN) и повторите.'});
+Object.assign(UX.ar,{gh_wait:'جارٍ الاتصال…',gh_step1:'جارٍ الوصول إلى GitHub…',gh_step2:'جارٍ فحص المستودع…',gh_step3:'جارٍ رفع البيانات…',gh_c401:'لم يُقبل المفتاح. تأكد من لصقه كاملًا (بما في ذلك github_pat_) وأنه لم تنته صلاحيته.',gh_cnet:'تعذر الوصول إلى GitHub. تحقق من الإنترنت (وVPN) ثم أعد المحاولة.'});
 Object.assign(UX.ar,{bk_share:'مشاركة النسخة',bk_share_note:'ترسل النسخة إلى درايف أو البريد أو واتساب.',bk_share_no:'هذا المتصفح لا يدعم مشاركة الملفات، تم تنزيل النسخة.',where:p=>`بيانات هذه النسخة مرتبطة بالعنوان: ${p.u}. إذا فتحت الملف من مكان آخر ستكون البيانات منفصلة.`,rate_old:p=>`عمر السعر ${p.n}`,h:'س',d:'يوم'});
 const ux=(k,p)=>{let v=(UX[LANG]||UX.tr)[k];if(v===undefined)v=UX.tr[k];return typeof v==='function'?v(p||{}):v};
 const shortDay=iso=>{const [y,m,d]=String(iso).split('-').map(Number);return d+' '+MSHORT[LANG][m-1]};
@@ -5960,7 +5966,7 @@ function ghDev(){let d='';try{d=localStorage.getItem('gg_devid')||''}catch(e){}i
 function ghSnap(){return{app:'gelir-gider-takip',version:1,created:new Date().toISOString(),updated:Date.now(),dev:ghDev(),settings:{lang:LANG,theme:THEME,currency:CUR},plan:clone(JSON.parse(savedJson||JSON.stringify(plan))),ledger:ledger.map(({id,...r})=>r)}}
 async function ghPack(d){const txt=JSON.stringify(d);if(!GH.pw)return txt;const e=JSON.parse(await encryptBackup(txt,GH.pw));e.updated=d.updated;e.dev=d.dev;return JSON.stringify(e)}
 async function ghUnpack(o,pw){if(o&&o.enc===1){if(!pw)throw ghE('pw');try{return await decryptBackup(o,pw)}catch(e){throw ghE('pw')}}return o}
-async function ghFetch(url,opt){let r;try{r=await fetch(url,{cache:'no-store',...opt})}catch(e){throw ghE('net')}return r}
+async function ghFetch(url,opt){let r;const ac=new AbortController(),tm=setTimeout(()=>ac.abort(),15000);try{r=await fetch(url,{cache:'no-store',...opt,signal:ac.signal})}catch(e){throw ghE('net')}finally{clearTimeout(tm)}return r}
 async function ghGet(known){
   const r=await ghFetch(ghUrl()+'?t='+Date.now(),{headers:ghHdr()});
   if(r.status===404)return null;
@@ -5971,7 +5977,7 @@ async function ghGet(known){
   return {sha:j.sha,obj};
 }
 function ghMsg(e){const c=e&&e.gh;return c==='net'?ux('gh_enet'):c===401?ux('gh_e401'):c===403?ux('gh_e403'):c===404?ux('gh_e404'):c==='pw'?ux('gh_epw'):c==='bad'?ux('gh_ebad'):ux('gh_eoth',{c:c||(e&&e.message)||'?'})}
-function ghFail(e,loud){ghErr=ghMsg(e);ghDraw();if((loud||(e&&e.gh!=='net'))&&Date.now()-ghErrToast>20000){ghErrToast=Date.now();toast(ghErr)}}
+function ghFail(e,loud){ghErr=ghMsg(e);ghDraw();if(loud||((e&&e.gh!=='net')&&Date.now()-ghErrToast>20000)){ghErrToast=Date.now();toast(ghErr)}}
 function ghStText(){if(!GH)return '';if(ghBusy)return ux('gh_busy');if(ghErr)return ghErr;if(GH.pending)return ux('gh_pend');return GH.at?ux('gh_okt',{t:ghWhen(GH.at)}):''}
 function ghDraw(){
   const el=document.getElementById('ghSt');if(el){el.textContent=ghStText();el.className='ghst '+(ghBusy?'busy':ghErr?'err':GH&&GH.pending?'pend':'ok')}
@@ -6019,10 +6025,13 @@ async function ghApply(d,sha){
 async function ghConnect(){
   const v=id=>((document.getElementById(id)||{}).value||'').trim();
   let repo=v('ghRepo').replace(/^https?:\/\/github\.com\//i,'').replace(/\.git$/,'').replace(/^\/+|\/+$/g,'');
-  const token=v('ghTok'),pw=(document.getElementById('ghPw')||{}).value||'';
-  if(!/^[\w.-]+\/[\w.-]+$/.test(repo)||!token){toast(ux('gh_need'));return}
-  const btn=document.querySelector('[data-act="ghConnect"]');if(btn)btn.disabled=true;
-  const done=()=>{if(btn)btn.disabled=false};
+  let token=v('ghTok').replace(/\s+/g,'');const pw=(document.getElementById('ghPw')||{}).value||'';
+  if(token&&!/^(github_pat_|gh[pousr]_)/.test(token)&&/^11[A-Z0-9]{15,}_/.test(token))token='github_pat_'+token;
+  const cst=document.getElementById('ghCst'),say=(m,cls)=>{if(cst){cst.textContent=m||'';cst.className='ghcst'+(cls?' '+cls:'')}};
+  if(!/^[\w.-]+\/[\w.-]+$/.test(repo)||!token){say(ux('gh_need'),'err');toast(ux('gh_need'));return}
+  const btn=document.querySelector('[data-act="ghConnect"]');const old=btn?btn.innerHTML:'';if(btn){btn.disabled=true;btn.innerHTML=`<span class="ghspin" aria-hidden="true"></span>${esc(ux('gh_wait'))}`}
+  const done=()=>{if(btn&&btn.isConnected){btn.disabled=false;btn.innerHTML=old}};
+  say(ux('gh_step1'),'busy');
   const prev=GH;GH={repo,token,pw,path:'mizan-data.json',sha:'',pending:false,at:0};
   try{
     const r=await ghFetch('https://api.github.com/repos/'+repo,{headers:ghHdr()});
@@ -6032,8 +6041,10 @@ async function ghConnect(){
       if(!pw){GH=prev;done();await uiConfirm({title:ux('gh_pub_h'),msg:ux('gh_pub_p'),kind:'danger',icon:'alert-triangle',ok:'OK',cancel:t('cancel')||'×'});return}
       if(!(await uiConfirm({title:ux('gh_pub_h'),msg:ux('gh_pub_p'),kind:'warn',ok:ux('gh_pub_ok')}))){GH=prev;done();return}
     }
+    say(ux('gh_step2'),'busy');
     const rem=await ghGet();let d=null;
     if(rem){d=await ghUnpack(rem.obj,pw);if(!validBackup(d))throw ghE('bad')}
+    say(ux('gh_step3'),'busy');
     ghSave();
     if(!rem){await ghPush()}
     else{
@@ -6043,7 +6054,7 @@ async function ghConnect(){
     }
     toast('☁ '+ux('gh_connected'));
     if(tab==='ayar')render();ghDraw();
-  }catch(e){GH=prev;ghSave();done();ghErr='';ghFail(e,true)}
+  }catch(e){GH=prev;ghSave();done();ghErr='';const m=e&&e.gh===401?ux('gh_c401'):e&&e.gh==='net'?ux('gh_cnet'):ghMsg(e);say('⚠ '+m+(typeof e.gh==='number'?` (HTTP ${e.gh})`:''),'err');ghErr='';ghErrToast=Date.now();toast(m)}
 }
 async function ghDisconnect(){
   if(!(await uiConfirm({title:ux('gh_off'),msg:ux('gh_off_q'),kind:'warn',icon:'cloud-off',ok:ux('gh_off')})))return;
@@ -6061,7 +6072,7 @@ function ghCardHTML(){
     <label class="f" style="margin-top:8px">${ux('gh_tok')}<input id="ghTok" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_…"></label>
     <label class="f" style="margin-top:8px">${ux('gh_pw')}<input id="ghPw" type="password" autocomplete="new-password"></label>
     <p class="hint" style="margin-top:6px">${ux('gh_pw_n')}</p>
-    <button type="button" class="btn primary wide ghgo" data-act="ghConnect">${ic('cloud')}${ux('gh_conn')}</button></section>`;
+    <button type="button" class="btn primary wide ghgo" data-act="ghConnect">${ic('cloud')}${ux('gh_conn')}</button><p id="ghCst" class="ghcst" role="status" aria-live="polite"></p></section>`;
 }
 function ghStart(){
   const bd=document.getElementById('ghBadge');if(bd)bd.addEventListener('click',()=>{tab='ayar';render();const c=document.getElementById('ghCard');if(c)c.scrollIntoView({block:'start',behavior:'smooth'});if(ghOn()&&!ghBusy)ghPull(true)});
@@ -6173,7 +6184,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='164';
+const APP_VER='165';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
