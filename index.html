@@ -1933,6 +1933,10 @@ Object.assign(UX.tr,{gh_fq_rec:"önerilen"});
 Object.assign(UX.en,{gh_fq_rec:"recommended"});
 Object.assign(UX.ru,{gh_fq_rec:"рекомендуется"});
 Object.assign(UX.ar,{gh_fq_rec:"موصى به"});
+Object.assign(UX.tr,{gh_repo_ph:"kullanıcıadın/mizan-data"});
+Object.assign(UX.en,{gh_repo_ph:"your-username/mizan-data"});
+Object.assign(UX.ru,{gh_repo_ph:"ваш-логин/mizan-data"});
+Object.assign(UX.ar,{gh_repo_ph:"اسم-المستخدم/mizan-data"});
 Object.assign(UX.ar,{bk_share:'مشاركة النسخة',bk_share_note:'ترسل النسخة إلى درايف أو البريد أو واتساب.',bk_share_no:'هذا المتصفح لا يدعم مشاركة الملفات، تم تنزيل النسخة.',where:p=>`بيانات هذه النسخة مرتبطة بالعنوان: ${p.u}. إذا فتحت الملف من مكان آخر ستكون البيانات منفصلة.`,rate_old:p=>`عمر السعر ${p.n}`,h:'س',d:'يوم'});
 const ux=(k,p)=>{let v=(UX[LANG]||UX.tr)[k];if(v===undefined)v=UX.tr[k];return typeof v==='function'?v(p||{}):v};
 const shortDay=iso=>{const [y,m,d]=String(iso).split('-').map(Number);return d+' '+MSHORT[LANG][m-1]};
@@ -6120,6 +6124,7 @@ async function ghConnect(o){
       else{const take=empty||await uiConfirm({title:ux('gh_first_h'),msg:ux('gh_first_p',{t:ghWhen(rem.obj.updated||Date.now())}),kind:'info',icon:'cloud',ok:ux('gh_cf_take'),cancel:ux('gh_cf_keep')});
       if(take)await ghApply(d,rem.sha);else{GH.sha=rem.sha;ghSave();await ghPush()}}
     }
+    try{localStorage.setItem('gg_gh_last',repo)}catch(e){}
     toast('☁ '+ux('gh_connected'));
     if(tab==='ayar')render();ghDraw();
   }catch(e){GH=prev;ghSave();done();ghErr='';const m=e&&e.gh===401?ux('gh_c401'):e&&e.gh==='net'?ux('gh_cnet'):ghMsg(e);say('⚠ '+m+(typeof e.gh==='number'?` (HTTP ${e.gh})`:''),'err');ghErr='';ghErrToast=Date.now();toast(m)}
@@ -6140,7 +6145,7 @@ function ghCardHTML(){
     <div class="qkbox"><b>${ic('cloud')}${ux('qk_use')}</b><p class="hint">${ux('qk_use_p')}</p><textarea id="qkIn" class="qkout" rows="2" placeholder="MZ1.…" aria-label="${esc(ux('qk_paste'))}" autocapitalize="off" spellcheck="false"></textarea><button type="button" class="btn primary wide" data-act="qkUse">${ux('qk_use')}</button></div>
     <p class="qkor">${ux('qk_or')}</p>
     <p class="hint">${ux('gh_p')}</p><ol class="tbl"><li>${ux('gh_s1')}</li><li>${ux('gh_s2')}</li><li>${ux('gh_s3')}</li></ol>
-    <label class="f">${ux('gh_repo')}<input id="ghRepo" value="tcmustafacelik/mizan-data" autocapitalize="off" autocomplete="off" spellcheck="false"></label>
+    <label class="f">${ux('gh_repo')}<input id="ghRepo" value="${esc((()=>{try{return localStorage.getItem('gg_gh_last')||''}catch(e){return ''}})())}" placeholder="${esc(ux('gh_repo_ph'))}" autocapitalize="off" autocomplete="off" spellcheck="false"></label>
     <label class="f" style="margin-top:8px">${ux('gh_tok')}<input id="ghTok" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_…"></label>
     <label class="f" style="margin-top:8px">${ux('gh_pw')}<input id="ghPw" type="password" autocomplete="new-password"></label>
     <p class="hint" style="margin-top:6px">${ux('gh_pw_n')}</p>
@@ -6303,7 +6308,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='173';
+const APP_VER='174';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
