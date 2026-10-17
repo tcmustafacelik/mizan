@@ -1476,10 +1476,9 @@ function catIcon(e){
 /* ================= Veri ================= */
 /* İlk kurulum verisi: yüklediğin planın aynısı. Kayıt oluştuktan sonra kullanılmaz. */
 function seed(){
-  /* Boş başlangıç: 24 ay, borç yok. Kendi verini Ayarlar > Yedek'ten içeri al. */
-  const months=[],d=new Date();let y=d.getFullYear(),m=d.getMonth()+1;
-  for(let i=0;i<24;i++){months.push({ym:y+'-'+pad(m),salary:0,comp:0,need:0,d:{}});m++;if(m>12){m=1;y++}}
-  return {debts:[],months};
+  /* Boş başlangıç: yalnızca bu ay, borç yok. (Testler window.MIZAN_SEED ile örnek veri verebilir.) */
+  if(window.MIZAN_SEED)return JSON.parse(JSON.stringify(window.MIZAN_SEED));
+  return {debts:[],months:[{ym:ymToday(),salary:0,comp:0,need:0,d:{}}]};
 }
 
 
@@ -1961,6 +1960,14 @@ Object.assign(UX.tr,{gh_paste:"Yapıştır",gh_paste_hold:"Kopyaladığın metin
 Object.assign(UX.en,{gh_paste:"Paste",gh_paste_hold:"Couldn't read the clipboard. Long-press the box → Paste.",gh_show:"Show",gh_man:"Connect with a token",gh_man_s:"First setup, or if you have no code"});
 Object.assign(UX.ru,{gh_paste:"Вставить",gh_paste_hold:"Не удалось прочитать буфер. Удерживайте поле → Вставить.",gh_show:"Показать",gh_man:"Подключить по токену",gh_man_s:"Первая настройка или если нет кода"});
 Object.assign(UX.ar,{gh_paste:"لصق",gh_paste_hold:"تعذرت قراءة الحافظة. اضغط مطولًا على الحقل ← لصق.",gh_show:"إظهار",gh_man:"الاتصال برمز الوصول",gh_man_s:"الإعداد الأول أو إن لم يكن لديك رمز"});
+Object.assign(UX.tr,{rs2_h:"Her şey sıfırlansın mı?",rs2_p:"Plan, gelirler, borçlar, aylar ve defterdeki tüm kayıtlar silinir; yalnızca bu ay boş olarak kalır. Geri almak için yedeğini Ayarlar → Yedek'ten yükleyebilirsin.",rs2_cloud:"Bulut eşitleme açık: buluttaki dosya da boş hale gelir (eski hali GitHub geçmişinde kalır). Bulutu korumak istiyorsan önce bağlantıyı kes.",rs2_ok:"Sıfırla"});
+Object.assign(UX.en,{rs2_h:"Reset everything?",rs2_p:"The plan, income, debts, months and all ledger entries are deleted; only this month remains, empty. To get them back, load your backup from Settings → Backup.",rs2_cloud:"Cloud sync is on: the cloud file will be emptied too (the old version stays in GitHub history). Disconnect first if you want to keep the cloud copy.",rs2_ok:"Reset"});
+Object.assign(UX.ru,{rs2_h:"Сбросить всё?",rs2_p:"План, доходы, долги, месяцы и все записи журнала удаляются; остаётся только пустой текущий месяц. Чтобы вернуть данные, загрузите резервную копию в Настройки → Резервная копия.",rs2_cloud:"Синхронизация включена: файл в облаке тоже станет пустым (старая версия останется в истории GitHub). Чтобы сохранить облако, сначала отключитесь.",rs2_ok:"Сбросить"});
+Object.assign(UX.ar,{rs2_h:"إعادة ضبط كل شيء؟",rs2_p:"تُحذف الخطة والدخل والديون والأشهر وكل قيود الدفتر؛ ويبقى هذا الشهر فقط فارغًا. لاستعادتها حمّل نسختك الاحتياطية من الإعدادات ← النسخ الاحتياطي.",rs2_cloud:"المزامنة السحابية مفعّلة: سيصبح ملف السحابة فارغًا أيضًا (تبقى النسخة القديمة في سجل GitHub). اقطع الاتصال أولًا إن أردت الإبقاء على نسخة السحابة.",rs2_ok:"إعادة الضبط"});
+Object.assign(I18N.tr,{rs_data_btn:"Tüm verileri sıfırla",rs_data_note:"Her şeyi siler, uygulamayı boş haline döndürür (yalnızca bu ay kalır). Yedeğini yükleyince her şey geri gelir.",rs_data_done:"Her şey sıfırlandı"});
+Object.assign(I18N.en,{rs_data_btn:"Reset all data",rs_data_note:"Deletes everything and returns the app to empty (only this month remains). Loading your backup brings everything back.",rs_data_done:"Everything was reset"});
+Object.assign(I18N.ru,{rs_data_btn:"Сбросить все данные",rs_data_note:"Удаляет всё и возвращает приложение к пустому состоянию (остаётся только этот месяц). Загрузка резервной копии вернёт всё.",rs_data_done:"Всё сброшено"});
+Object.assign(I18N.ar,{rs_data_btn:"إعادة ضبط كل البيانات",rs_data_note:"يحذف كل شيء ويعيد التطبيق فارغًا (يبقى هذا الشهر فقط). تحميل نسختك الاحتياطية يعيد كل شيء.",rs_data_done:"تمت إعادة ضبط كل شيء"});
 Object.assign(UX.ar,{bk_share:'مشاركة النسخة',bk_share_note:'ترسل النسخة إلى درايف أو البريد أو واتساب.',bk_share_no:'هذا المتصفح لا يدعم مشاركة الملفات، تم تنزيل النسخة.',where:p=>`بيانات هذه النسخة مرتبطة بالعنوان: ${p.u}. إذا فتحت الملف من مكان آخر ستكون البيانات منفصلة.`,rate_old:p=>`عمر السعر ${p.n}`,h:'س',d:'يوم'});
 const ux=(k,p)=>{let v=(UX[LANG]||UX.tr)[k];if(v===undefined)v=UX.tr[k];return typeof v==='function'?v(p||{}):v};
 const shortDay=iso=>{const [y,m,d]=String(iso).split('-').map(Number);return d+' '+MSHORT[LANG][m-1]};
@@ -5242,14 +5249,15 @@ view.addEventListener('click',async e=>{
     applyLang();toast(t('rs_set_done'));return;
   }
   if(act==='resetData'){
-    arm(a,t('rs_sure'),async()=>{
+    const go=await uiConfirm({title:ux('rs2_h'),msg:ux('rs2_p')+(ghOn()?'\n\n'+ux('rs2_cloud'):''),kind:'danger',icon:'trash',ok:ux('rs2_ok')});if(!go)return;
+    await (async()=>{
       try{
         if(db){const ids=ledger.map(x=>x.id);for(const id of ids)await ledgerCol.doc(id).delete()}
         else{ledger=[];try{await lsWrite(LS_LEDGER,ledger)}catch(e){}}
         plan=seed();selected.clear();kSel.clear();kPending.length=0;openYm=null;rangeEdit=null;iconEdit=null;editingId=null;ledgerFilter='all';impData=null;
         useCurrency();await flush();render();toast(t('rs_data_done'));
       }catch(e){toast(t('t_savefail'))}
-    });return;
+    })();return;
   }
   if(act==='cvSwap'){const a=cv.from;cv.from=cv.to;cv.to=a;renderKur();return}
   if(act==='xlsx'){exportXlsx();return}
@@ -5754,6 +5762,7 @@ async function init(){
     try{const l=await lsRead(LS_LEDGER);if(l!=null&&!Array.isArray(l))throw 0;ledger=(l||[]).filter(e=>e&&typeof e.date==='string')}catch(e){keepBad(LS_LEDGER);loadBad=true;ledger=[]}
     stKind='local';
   }
+  if(plan.months.length&&plan.months[plan.months.length-1].ym<ymToday())ensureMonth(ymToday());if(!plan.months.length)plan.months.push({ym:ymToday(),salary:0,comp:0,need:0,d:{}});
   sortMonths();savedJson=JSON.stringify(plan);useCurrency();
   try{
     if(plan.currency&&plan.currency!=='TRY'&&localStorage.getItem('gg_curfix')!=='1'){
@@ -6354,7 +6363,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='179';
+const APP_VER='180';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
