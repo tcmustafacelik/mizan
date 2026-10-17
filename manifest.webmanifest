@@ -1,0 +1,20 @@
+{
+  "name": "Mizan · Gelir, gider ve borç takibi",
+  "short_name": "Mizan",
+  "description": "Gelirini, giderini ve borç ödemelerini tek yerde planla. Veriler yalnızca senin cihazında kalır.",
+  "lang": "tr",
+  "dir": "auto",
+  "start_url": "./",
+  "scope": "./",
+  "id": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0B4A53",
+  "theme_color": "#0F5C66",
+  "categories": ["finance", "productivity"],
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}
