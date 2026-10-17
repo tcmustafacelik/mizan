@@ -239,7 +239,7 @@ input[type=search]{font-family:var(--f-body)}
 .ghspin{display:inline-block;width:16px;height:16px;border-radius:50%;border:2.5px solid currentColor;border-right-color:transparent;animation:ghsp .8s linear infinite;margin-inline-end:8px;vertical-align:-3px}@keyframes ghsp{to{transform:rotate(360deg)}}
 .ghc .cardhead h2{display:flex;align-items:center;gap:8px}.ghc .cardhead h2 svg{color:var(--accent)}.ghc .btn.wide{width:100%;margin-top:12px;min-height:48px;justify-content:center;gap:8px}.ghc .tbl a{color:var(--accent);font-weight:600}
 .ghst{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px;margin:0 0 6px;padding:10px 12px;border-radius:12px;background:var(--accent-soft)}.ghst:empty{display:none}.ghst::before{content:'';width:10px;height:10px;border-radius:50%;background:var(--good,#16a34a);flex:none;box-shadow:0 0 0 4px color-mix(in srgb,var(--good,#16a34a) 25%,transparent)}
-.ghfq{margin:10px 0 4px}.ghfq>b{display:block;font-size:14px;margin-bottom:6px}.ghfq .segr{display:grid;grid-template-columns:1fr 1fr;gap:6px}.ghfq .chip{justify-content:center;margin:0}.ghfq .hint{margin-top:6px}
+.ghfq{margin:10px 0 4px}.ghfq>b{display:block;font-size:14px;margin-bottom:6px}.fqlist{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface)}.fqo{display:flex;align-items:center;gap:12px;min-height:48px;padding:0 14px;border:0;background:none;color:var(--fg);font:500 15px var(--f-body);text-align:start;cursor:pointer;width:100%}.fqo+.fqo{border-top:1px solid var(--line)}.fqr{width:22px;height:22px;border-radius:50%;border:2px solid var(--muted,#94a3b8);display:grid;place-items:center;flex:none}.fqr svg{width:14px;height:14px}.fqo[aria-checked=true]{background:var(--accent-soft);font-weight:700}.fqo[aria-checked=true] .fqr{background:var(--accent);border-color:var(--accent);color:#fff}.fqt{flex:1}.fqb{font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}.ghfq .hint{margin-top:6px}
 .ghst.busy::before{background:var(--accent);animation:ghp 1s infinite}.ghst.pend::before{background:var(--warn,#d97706)}.ghst.err{color:var(--bad,#dc2626)}.ghst.err::before{background:var(--bad,#dc2626)}
 .ghb{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;flex:0 0 auto;color:var(--good,#16a34a);background:color-mix(in srgb,currentColor 14%,transparent)}.ghb svg{width:16px;height:16px}.ghb.busy{color:var(--accent);animation:ghp 1s infinite}.ghb.pend{color:var(--warn,#d97706)}.ghb.err{color:var(--bad,#dc2626)}
 @keyframes ghp{50%{opacity:.35}}
@@ -1916,6 +1916,14 @@ Object.assign(UX.tr,{gh_fq:"Otomatik eşitleme",gh_fq_live:"Anında",gh_fq_m1:"D
 Object.assign(UX.en,{gh_fq:"Automatic sync",gh_fq_live:"Instant",gh_fq_m1:"Every minute",gh_fq_h1:"Hourly",gh_fq_d1:"Daily",gh_fqh_live:"Every save reaches the cloud within seconds; changes from your other devices are fetched every minute. Nothing to tap.",gh_fqh_m1:"Changes are sent to the cloud and fetched once a minute.",gh_fqh_h1:"Syncs automatically once an hour (while the app is open or when it opens).",gh_fqh_d1:"Backs up automatically once a day, like a WhatsApp backup (while the app is open or when it opens).",gh_nx:p=>`next: ${p.t}`});
 Object.assign(UX.ru,{gh_fq:"Автосинхронизация",gh_fq_live:"Сразу",gh_fq_m1:"Каждую минуту",gh_fq_h1:"Каждый час",gh_fq_d1:"Раз в день",gh_fqh_live:"Каждое сохранение уходит в облако за секунды; изменения с других устройств загружаются каждую минуту. Нажимать ничего не нужно.",gh_fqh_m1:"Изменения отправляются и загружаются раз в минуту.",gh_fqh_h1:"Синхронизация раз в час (пока приложение открыто или при открытии).",gh_fqh_d1:"Резервная копия раз в день, как в WhatsApp (пока приложение открыто или при открытии).",gh_nx:p=>`следующая: ${p.t}`});
 Object.assign(UX.ar,{gh_fq:"المزامنة التلقائية",gh_fq_live:"فورًا",gh_fq_m1:"كل دقيقة",gh_fq_h1:"كل ساعة",gh_fq_d1:"يوميًا",gh_fqh_live:"كل حفظ يصل إلى السحابة خلال ثوانٍ، وتُجلب تغييرات أجهزتك الأخرى كل دقيقة. لا حاجة للضغط على شيء.",gh_fqh_m1:"تُرسل التغييرات وتُجلب مرة كل دقيقة.",gh_fqh_h1:"مزامنة تلقائية كل ساعة (أثناء فتح التطبيق أو عند فتحه).",gh_fqh_d1:"نسخ احتياطي تلقائي مرة يوميًا مثل واتساب (أثناء فتح التطبيق أو عند فتحه).",gh_nx:p=>`التالية: ${p.t}`});
+Object.assign(UX.tr,{gh_fq_w1:"Haftada bir",gh_fq_mo1:"Ayda bir",gh_fqh_w1:"Haftada bir otomatik yedeklenir (uygulama açıkken ya da açılınca).",gh_fqh_mo1:"Ayda bir otomatik yedeklenir (uygulama açıkken ya da açılınca)."});
+Object.assign(UX.en,{gh_fq_w1:"Weekly",gh_fq_mo1:"Monthly",gh_fqh_w1:"Backs up automatically once a week (while the app is open or when it opens).",gh_fqh_mo1:"Backs up automatically once a month (while the app is open or when it opens)."});
+Object.assign(UX.ru,{gh_fq_w1:"Раз в неделю",gh_fq_mo1:"Раз в месяц",gh_fqh_w1:"Резервная копия раз в неделю (пока приложение открыто или при открытии).",gh_fqh_mo1:"Резервная копия раз в месяц (пока приложение открыто или при открытии)."});
+Object.assign(UX.ar,{gh_fq_w1:"أسبوعيًا",gh_fq_mo1:"شهريًا",gh_fqh_w1:"نسخ احتياطي تلقائي مرة أسبوعيًا (أثناء فتح التطبيق أو عند فتحه).",gh_fqh_mo1:"نسخ احتياطي تلقائي مرة شهريًا (أثناء فتح التطبيق أو عند فتحه)."});
+Object.assign(UX.tr,{gh_fq_rec:"önerilen"});
+Object.assign(UX.en,{gh_fq_rec:"recommended"});
+Object.assign(UX.ru,{gh_fq_rec:"рекомендуется"});
+Object.assign(UX.ar,{gh_fq_rec:"موصى به"});
 Object.assign(UX.ar,{bk_share:'مشاركة النسخة',bk_share_note:'ترسل النسخة إلى درايف أو البريد أو واتساب.',bk_share_no:'هذا المتصفح لا يدعم مشاركة الملفات، تم تنزيل النسخة.',where:p=>`بيانات هذه النسخة مرتبطة بالعنوان: ${p.u}. إذا فتحت الملف من مكان آخر ستكون البيانات منفصلة.`,rate_old:p=>`عمر السعر ${p.n}`,h:'س',d:'يوم'});
 const ux=(k,p)=>{let v=(UX[LANG]||UX.tr)[k];if(v===undefined)v=UX.tr[k];return typeof v==='function'?v(p||{}):v};
 const shortDay=iso=>{const [y,m,d]=String(iso).split('-').map(Number);return d+' '+MSHORT[LANG][m-1]};
@@ -5996,7 +6004,7 @@ let GH=(()=>{try{const g=JSON.parse(localStorage.getItem(LS_GH)||'null');return 
 let ghApplying=false,ghT=null,ghBusy=false,ghErr='',ghLastPull=0,ghErrToast=0;
 const ghSave=()=>{try{GH?localStorage.setItem(LS_GH,JSON.stringify(GH)):localStorage.removeItem(LS_GH)}catch(e){}};
 const ghOn=()=>!!(GH&&!db);
-const GH_FQ={live:0,m1:60000,h1:3600000,d1:86400000};
+const GH_FQ={live:0,m1:60000,h1:3600000,d1:86400000,w1:604800000,mo1:2592000000};
 const ghFq=()=>GH&&GH_FQ[GH.fq]!=null?GH.fq:'live';
 function ghNext(){if(!GH||ghFq()==='live')return 0;return (GH.tick||GH.at||Date.now())+GH_FQ[ghFq()]}
 function ghTickDue(){if(!ghOn()||ghBusy)return;const f=ghFq();if(f==='live'){if(GH.pending&&!ghT)ghSoon(500);if(!document.hidden&&Date.now()-ghLastPull>60000&&!dirty)ghPull(false);return}
@@ -6006,7 +6014,7 @@ const ghHdr=x=>({Authorization:'Bearer '+GH.token,Accept:x||'application/vnd.git
 const ghE=c=>{const e=new Error('gh '+c);e.gh=c;return e};
 const u8b64=t=>{const u=new TextEncoder().encode(t);let r='';for(let i=0;i<u.length;i+=0x8000)r+=String.fromCharCode.apply(null,u.subarray(i,i+0x8000));return btoa(r)};
 const b64txt=b=>{const x=atob(String(b).replace(/\s/g,'')),u=new Uint8Array(x.length);for(let i=0;i<x.length;i++)u[i]=x.charCodeAt(i);return new TextDecoder().decode(u)};
-const ghWhen=ts=>{try{return new Date(ts).toLocaleString(LANG==='ar'?'ar':LANG,{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}catch(e){return ''}};
+const ghWhen=ts=>{try{if(new Date(ts).toDateString()===new Date().toDateString())return new Date(ts).toLocaleTimeString(LANG==='ar'?'ar':LANG,{hour:'2-digit',minute:'2-digit'});return new Date(ts).toLocaleString(LANG==='ar'?'ar':LANG,{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}catch(e){return ''}};
 function ghDev(){let d='';try{d=localStorage.getItem('gg_devid')||''}catch(e){}if(!d){d=Math.random().toString(36).slice(2,10);try{localStorage.setItem('gg_devid',d)}catch(e){}}return d}
 function ghSnap(){return{app:'gelir-gider-takip',version:1,created:new Date().toISOString(),updated:Date.now(),dev:ghDev(),settings:{lang:LANG,theme:THEME,currency:CUR},plan:clone(JSON.parse(savedJson||JSON.stringify(plan))),ledger:ledger.map(({id,...r})=>r)}}
 async function ghPack(d){const txt=JSON.stringify(d);if(!GH.pw)return txt;const e=JSON.parse(await encryptBackup(txt,GH.pw));e.updated=d.updated;e.dev=d.dev;return JSON.stringify(e)}
@@ -6055,7 +6063,7 @@ async function ghPull(loud,depth){
   catch(e){ghBusy=false;ghFail(e,loud);return}
   ghBusy=false;
   if(!rem){GH.sha='';ghSave();return ghPush(depth)}
-  if(rem.sha===GH.sha){ghDraw();if(GH.pending)return ghPush(depth);if(loud)toast(ux('gh_okt',{t:ghWhen(GH.at||Date.now())}));return}
+  if(rem.sha===GH.sha){if(!GH.pending){GH.at=Date.now();ghSave()}ghDraw();if(GH.pending)return ghPush(depth);if(loud)toast(ux('gh_okt',{t:ghWhen(GH.at||Date.now())}));return}
   let take=!(GH.pending||dirty);
   if(!take)take=await uiConfirm({title:ux('gh_cf_h'),msg:ux('gh_cf_p',{t:ghWhen(rem.obj.updated||Date.now())}),kind:'warn',icon:'cloud',ok:ux('gh_cf_take'),cancel:ux('gh_cf_keep')});
   if(take)await ghApply(d,rem.sha);
@@ -6110,7 +6118,7 @@ function ghCardHTML(){
   if(ghOn())return `<section class="card ghc" id="ghCard"><div class="cardhead"><h2>${ic('cloud')}${ux('gh_h')}</h2></div>
     <p id="ghSt" class="ghst ${ghBusy?'busy':ghErr?'err':GH.pending?'pend':'ok'}">${esc(ghStText())}</p>
     <p class="hint">${ux('gh_repo')}: <b>${esc(GH.repo)}</b>${GH.pw?` · 🔒 ${ux('gh_enc')}`:''}</p>
-    <div class="ghfq"><b>${ux('gh_fq')}</b><div class="segr" role="radiogroup" aria-label="${esc(ux('gh_fq'))}">${['live','m1','h1','d1'].map(k=>`<button type="button" class="chip" role="radio" data-act="ghFq" data-fq="${k}" aria-pressed="${ghFq()===k}" aria-checked="${ghFq()===k}">${ux('gh_fq_'+k)}</button>`).join('')}</div><p class="hint">${ux('gh_fqh_'+ghFq())}</p></div>
+    <div class="ghfq"><b>${ux('gh_fq')}</b><div class="fqlist" role="radiogroup" aria-label="${esc(ux('gh_fq'))}">${['live','m1','h1','d1','w1','mo1'].map(k=>`<button type="button" class="fqo" role="radio" data-act="ghFq" data-fq="${k}" aria-checked="${ghFq()===k}"><span class="fqr" aria-hidden="true">${ghFq()===k?ic('check'):''}</span><span class="fqt">${ux('gh_fq_'+k)}</span>${k==='live'?`<span class="fqb">${ux('gh_fq_rec')}</span>`:''}</button>`).join('')}</div><p class="hint">${ux('gh_fqh_'+ghFq())}</p></div>
     <div class="actions"><button type="button" class="btn primary" data-act="ghNow">${ic('refresh')}${ux('gh_now')}</button><button type="button" class="btn" data-act="ghOff">${ic('cloud-off')}${ux('gh_off')}</button></div>
     <div class="qkbox"><b>${ic('cloud')}${ux('qk_h')}</b><p class="hint">${ux('qk_mk_p')}</p><button type="button" class="btn primary wide" data-act="qkMake">${ic('cloud')}${ux('qk_mk')}</button></div></section>`;
   return `<section class="card ghc" id="ghCard"><div class="cardhead"><h2>${ic('cloud')}${ux('gh_h')}</h2></div>
@@ -6280,7 +6288,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='170';
+const APP_VER='171';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
