@@ -4596,7 +4596,9 @@ function defCheck(){
   defBase=now;
 }
 const recvOf=(ym,k)=>plan.recv&&plan.recv[ym]&&plan.recv[ym][k];
-function setRecv(ym,k,v){plan.recv=plan.recv||{};const o=plan.recv[ym]||(plan.recv[ym]={});if(v)o[k]=todayStr();else{delete o[k];if(!Object.keys(o).length)delete plan.recv[ym];if(!Object.keys(plan.recv).length)delete plan.recv}}
+function recvDate(ym,k){const t=todayStr(),src=incSources().find(x=>x.k===k),day=Number(src&&src.day)||0;if(!day)return t;
+  const [y,m]=ym.split('-').map(Number),dd=Math.min(day,new Date(y,m,0).getDate()),d=ym+'-'+String(dd).padStart(2,'0');return d<=t?d:t}
+function setRecv(ym,k,v){plan.recv=plan.recv||{};const o=plan.recv[ym]||(plan.recv[ym]={});if(v)o[k]=recvDate(ym,k);else{delete o[k];if(!Object.keys(o).length)delete plan.recv[ym];if(!Object.keys(plan.recv).length)delete plan.recv}}
 function cfData(){
   const H=35,t0=new Date();t0.setHours(0,0,0,0);const dayMs=864e5,ymOf=dt=>dt.getFullYear()+'-'+pad(dt.getMonth()+1);
   const cash=plan.cash?num(plan.cash.v):0,ev=[...Array(H+1)].map(()=>[]),need=new Array(H+1).fill(0);const noday=new Set(),pastInc=new Set();
@@ -6352,7 +6354,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='178';
+const APP_VER='179';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
