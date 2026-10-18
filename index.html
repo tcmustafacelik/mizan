@@ -24,7 +24,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
 <style>
 /* Layout: tek sütun, üstte sabit sekmeler. Yön (LTR/RTL) ve dil JS ile değişir, kenarlar mantıksal özelliklerle yazıldı. */
 :root{
@@ -240,7 +240,7 @@ input[type=search]{font-family:var(--f-body)}
 .gqk .btn.wide,.gmb .btn.wide{width:100%;min-height:48px;justify-content:center}
 .gman{width:100%;margin-top:12px;padding:12px;border-radius:18px;border:1px solid var(--line);background:var(--surface);color:var(--fg);font:inherit;text-align:start;cursor:pointer}.gman.open .fqch{transform:rotate(180deg)}
 .gmb{display:grid;gap:12px;padding:12px 4px 2px}.gmb .hint{margin:0}.gmb label.f{margin:0}
-.gsteps{list-style:none;margin:0;padding:0;display:grid;gap:8px}.gsteps li{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:14px;background:var(--surface2);font-size:14px;line-height:1.45}.gsteps i{font-style:normal;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;flex:none;background:var(--accent);color:#fff;font:700 13px var(--f-body)}.gsteps span{min-width:0;overflow-wrap:anywhere}
+.gsteps{list-style:none;margin:0;padding:0;display:grid;gap:8px}.gsteps li{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:14px;background:var(--surface2);font-size:14px;line-height:1.45}.gsteps i{font-style:normal;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;flex:none;background:var(--accent);color:#fff;font:700 13px var(--f-body)}.gsteps span{min-width:0;overflow-wrap:anywhere}:root[data-theme="dark"] .gsteps i,:root[data-theme="glassd"] .gsteps i{color:#0B1026}
 .nfb{color:var(--muted-tx)}.nfb.has{color:#f97316;animation:nfring 2.4s ease-in-out 1}.nfb .nfn{position:absolute;top:-3px;inset-inline-end:-4px;min-width:16px;height:16px;padding:0 4px;border-radius:999px;background:linear-gradient(135deg,#ef4444,#f97316);color:#fff;font:700 10px/16px var(--f-body);font-style:normal;text-align:center;box-shadow:0 0 0 2px var(--bg,#fff)}
 @keyframes nfring{0%,100%{transform:rotate(0)}10%,30%{transform:rotate(14deg)}20%,40%{transform:rotate(-14deg)}50%{transform:rotate(0)}}
 .nfz .nfin:focus{outline:none}.nfz .nfin{width:100%;max-width:520px;max-height:min(70vh,560px);display:grid;grid-template-rows:auto 1fr;background:var(--solid,var(--surface));color:var(--fg);border-radius:20px 20px 0 0;box-shadow:0 -10px 30px -12px rgba(0,0,0,.35);overflow:hidden;animation:pku .24s cubic-bezier(.2,.9,.3,1.1)}
@@ -279,7 +279,7 @@ input[type=search]{font-family:var(--f-body)}
 #welcome .welhero{position:relative;overflow:hidden;border-radius:26px;padding:18px 16px 14px;color:#fff;background:linear-gradient(140deg,#4338ca 0%,#7c3aed 48%,#db2777 100%);box-shadow:0 18px 40px -22px #7c3aed,inset 0 1px 0 rgba(255,255,255,.25)}
 #welcome .welhero .wb1,#welcome .welhero .wb2{position:absolute;border-radius:50%;pointer-events:none;filter:blur(2px)}#welcome .welhero .wb1{width:180px;height:180px;right:-60px;top:-70px;background:radial-gradient(circle,rgba(255,255,255,.28),transparent 70%)}#welcome .welhero .wb2{width:140px;height:140px;left:-50px;bottom:-60px;background:radial-gradient(circle,rgba(56,189,248,.45),transparent 70%)}
 #welcome .whtop{position:relative;display:flex;align-items:center;gap:16px}
-#welcome .welhero .ringw{width:96px;height:96px;flex:none;position:relative}#welcome .welhero .ringw svg{width:96px;height:96px;transform:rotate(-90deg)}#welcome .welhero .bgc{fill:none;stroke:rgba(255,255,255,.22);stroke-width:10}#welcome .welhero .fgc{fill:none;stroke:#fff;stroke-width:10;stroke-linecap:round;transition:stroke-dashoffset 1.1s var(--ease)}#welcome .welhero .ringw>b{position:absolute;inset:0;display:grid;place-items:center;font:800 23px var(--f-display);letter-spacing:-.02em;color:#fff}
+#welcome .welhero .ringw{width:96px;height:96px;flex:none;position:relative}#welcome .welhero .ringw svg{width:96px;height:96px;transform:rotate(-90deg)}#welcome .welhero .bgc{fill:none;stroke:rgba(255,255,255,.22);stroke-width:10}#welcome .welhero .fgc{fill:none;stroke:#fff;stroke-width:10;stroke-linecap:round;transition:stroke-dashoffset 1.1s var(--ease)}#welcome .welhero .ringw>b{position:absolute;inset:0;display:grid;place-items:center;font:700 23px var(--f-display);letter-spacing:-.02em;color:#fff}
 #welcome .whtx{display:flex;flex-direction:column;gap:3px;min-width:0}#welcome .whtx small{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;opacity:.8}#welcome .whtx b{font-size:16px;line-height:1.3}#welcome .whtx span{font:700 15px var(--f-num);opacity:.95}#welcome .whtx em{font-style:normal;opacity:.7;font-weight:500}
 #welcome .whst{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:14px}#welcome .whst>div{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.2);border-radius:14px;padding:8px 8px;min-width:0;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 #welcome .whst span{display:flex;align-items:center;gap:4px;font-size:11.5px;font-weight:600;opacity:.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#welcome .whst span svg{width:13px;height:13px;fill:currentColor;flex:none}#welcome .whst b{display:block;margin-top:2px;font:700 12px var(--f-num);letter-spacing:-.03em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#welcome .whst b.neg{color:#fecaca}@media (max-width:390px){#welcome .whst{gap:6px}#welcome .whst>div{padding:7px 6px}#welcome .whst b{font-size:11px}#welcome .whst span{font-size:10.5px}}
@@ -6636,7 +6636,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='192';
+const APP_VER='193';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
