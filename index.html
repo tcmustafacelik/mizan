@@ -410,7 +410,7 @@ h3{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute
 .status{font-size:12px;color:var(--muted-tx);text-align:end;line-height:1.25}
 .brr{display:flex;flex-direction:column;align-items:flex-end;gap:3px;max-width:62%;min-width:0}
 .batt{display:inline-flex;align-items:center;gap:4px;font:600 12px var(--f-num);color:var(--muted-tx);font-variant-numeric:tabular-nums;white-space:nowrap}
-.batt svg{width:24px;height:13px;flex:none}@media (max-width:370px){.batt>span{display:none}}.batt .bo{fill:none;stroke:currentColor;stroke-width:1.4}.batt .bt{fill:currentColor}.batt .bf{fill:var(--bc,var(--good))}.batt .bz{fill:var(--fg);stroke:var(--surface);stroke-width:.8}
+.batt svg{width:24px;height:13px;flex:none}@media (max-width:380px){.brtop .batt>span{display:none}}.batt .bo{fill:none;stroke:currentColor;stroke-width:1.4}.batt .bt{fill:currentColor}.batt .bf{fill:var(--bc,var(--good))}.batt .bz{fill:var(--fg);stroke:var(--surface);stroke-width:.8}
 .ping{display:inline-flex;align-items:center;gap:5px;min-height:28px;padding:0 9px 0 8px;border-radius:999px;border:1px solid var(--line);background:color-mix(in srgb,var(--surface) 70%,transparent);color:var(--muted-tx);font:600 12px var(--f-num);font-variant-numeric:tabular-nums;white-space:nowrap;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:color .3s,border-color .3s,background-color .3s}
 .ping svg{width:24px;height:15px;flex:none;overflow:visible;direction:ltr}
 .ping .ga{fill:none;stroke-width:3.2;stroke-linecap:round}.ping .g1{stroke:var(--bad)}.ping .g2{stroke:var(--warn)}.ping .g3{stroke:var(--good)}
@@ -6499,7 +6499,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='186';
+const APP_VER='187';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
