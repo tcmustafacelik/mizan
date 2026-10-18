@@ -268,12 +268,14 @@ input[type=search]{font-family:var(--f-body)}
 .dvg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.dvt{display:flex;gap:10px;align-items:flex-start;padding:10px;border-radius:14px;background:color-mix(in srgb,var(--dc) 9%,var(--surface));border:1px solid color-mix(in srgb,var(--dc) 22%,var(--line))}.dvti{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;flex:none;background:var(--dc);color:#fff}.dvti svg{width:17px;height:17px;fill:currentColor}.dvt>span:last-child{display:flex;flex-direction:column;min-width:0}.dvt small{font-size:11.5px;color:var(--muted-tx);font-weight:600}.dvt b{font-size:13px;font-weight:600;line-height:1.3;overflow-wrap:anywhere}
 .dvc .hint{margin-top:10px}.dvt b,.dvip b,.dvh b,.dvh em{unicode-bidi:plaintext;text-align:start}
 .sxc>.cardhead{gap:12px}.sxc>.cardhead h2{display:flex;align-items:center;gap:12px;flex:1;min-width:0;margin:0}
-.sxi{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;flex:none;color:#fff;background:linear-gradient(135deg,var(--sc),color-mix(in srgb,var(--sc) 60%,#fff 0%) 60%,color-mix(in srgb,var(--sc) 70%,#000));box-shadow:0 8px 18px -10px var(--sc),inset 0 1px 0 rgba(255,255,255,.35)}.sxi svg{width:22px;height:22px;fill:currentColor;margin:0!important}
-.sxt{display:flex;flex-direction:column;min-width:0;gap:2px}.sxt b{font-size:16.5px;line-height:1.2}.sxt small{font:500 12.5px var(--f-body);color:color-mix(in srgb,var(--sc) 70%,var(--fg));opacity:.95;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
-.sxc.colb>.cardhead::after{width:30px;height:30px;border:0;transform:none;flex:none;border-radius:50%;background:color-mix(in srgb,var(--sc) 12%,transparent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2394a3b8'%3E%3Cpath d='M7.41 8.58 12 13.17l4.59-4.59L18 10l-6 6-6-6z'/%3E%3C/svg%3E") center/20px no-repeat;transition:transform .2s}
-.sxc.colb.col>.cardhead::after{transform:rotate(-90deg)}[dir=rtl] .sxc.colb.col>.cardhead::after{transform:rotate(90deg)}
-.sxc{position:relative;overflow:hidden}.sxc::before{content:'';position:absolute;inset-block:0;inset-inline-start:0;width:4px;background:var(--sc);opacity:.85}
-.sxc.col{padding-top:12px;padding-bottom:12px}
+.sxi{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;flex:none;color:#fff;background:linear-gradient(160deg,color-mix(in srgb,var(--sc) 78%,#fff),var(--sc));box-shadow:0 3px 8px -4px var(--sc)}.sxi svg{width:19px;height:19px;fill:currentColor;margin:0!important}
+.sxt{display:flex;flex-direction:column;min-width:0;gap:1px}.sxt b{font-size:15px;font-weight:600;line-height:1.25}.sxt small{font:500 12.5px var(--f-body);color:var(--muted-tx,var(--muted));white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.sxc.colb>.cardhead::after{width:9px;height:9px;border:0;border-inline-end:2px solid color-mix(in srgb,var(--muted-tx,#94a3b8) 70%,transparent);border-bottom:2px solid color-mix(in srgb,var(--muted-tx,#94a3b8) 70%,transparent);background:none;transform:rotate(45deg);flex:none;margin-inline-end:4px;transition:transform .2s}
+.sxc.colb.col>.cardhead::after{transform:rotate(-45deg)}[dir=rtl] .sxc.colb>.cardhead::after{transform:rotate(-45deg)}[dir=rtl] .sxc.colb.col>.cardhead::after{transform:rotate(45deg)}
+.sxc.col{padding-top:10px;padding-bottom:10px;box-shadow:none}
+.sxc.col+.sxc.col{margin-top:-16px;border-top-left-radius:0;border-top-right-radius:0;border-top:1px solid color-mix(in srgb,var(--line) 80%,transparent)}
+.sxc.col:has(+.sxc.col){border-bottom-left-radius:0;border-bottom-right-radius:0;border-bottom-color:transparent}
+.sxc.col+.sxc.col>.cardhead{position:relative}
 .qkbox{margin:12px 0 4px;padding:12px;border-radius:14px;background:var(--accent-soft);display:grid;gap:6px}.qkbox>b{display:flex;align-items:center;gap:8px;font-size:14.5px}.qkbox .hint{margin:0}.qkbox .btn.wide{width:100%;min-height:44px;justify-content:center;margin-top:4px}
 .qkout{width:100%;font:500 12.5px var(--f-num);border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:10px;resize:none;word-break:break-all}
 .qkacts{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}.qkacts .btn{min-height:40px}
@@ -6604,7 +6606,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='189';
+const APP_VER='190';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
