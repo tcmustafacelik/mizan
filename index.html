@@ -295,6 +295,19 @@ input[type=search]{font-family:var(--f-body)}
 #tour .tdots{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;width:100%;box-sizing:border-box;margin:8px 0 2px}#tour .tdots i{height:4px;width:auto;border-radius:3px;background:var(--line)}#tour .tdots i.on,#tour .tdots i.done{background:var(--tc)}#tour .tdots i.done{opacity:.45}
 #tour .tact{box-sizing:border-box}#tour .tact .btn.primary{background:var(--tc);border-color:var(--tc);color:#fff;min-width:120px;border-radius:14px}
 @media (prefers-reduced-motion:reduce){#tour .tbig{animation:none}}
+.wvhero{display:grid;justify-items:center;text-align:center;gap:8px;padding:10px 4px}.wvhero>svg{width:46px;height:46px;padding:12px;border-radius:18px;background:linear-gradient(135deg,#4f46e5,#a855f7);fill:#fff;box-sizing:content-box;box-shadow:0 12px 24px -12px #7c3aed}.wvhero b{font-size:17px}.wvhero p{margin:0;color:var(--muted-tx);font-size:13.5px;line-height:1.5;max-width:320px}.wvhero .btn{margin-top:6px}
+.wvcard .cardhead{display:flex;align-items:center;gap:8px}.wvcard .cardhead h2{flex:1;display:flex;align-items:center;gap:8px}
+.wvl{display:grid;gap:16px;margin:10px 0}
+.wvc{position:relative;aspect-ratio:1.586;max-width:380px;width:100%;margin:0 auto;border-radius:18px;padding:16px 18px;box-sizing:border-box;color:#fff;background:radial-gradient(120% 90% at 100% 0%,rgba(255,255,255,.22),transparent 55%),linear-gradient(135deg,var(--c1),var(--c2));box-shadow:0 16px 30px -16px var(--c1),inset 0 1px 0 rgba(255,255,255,.25);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
+.wvc::after{content:'';position:absolute;width:44px;height:32px;left:18px;top:52px;border-radius:7px;background:linear-gradient(135deg,#fde68a,#d4a72c);opacity:.9}
+.wvt{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}.wvt b{font-size:15px;letter-spacing:.02em}.wvn{font:800 italic 15px var(--f-body);letter-spacing:.04em;opacity:.95}
+.wvnum{align-self:flex-start;margin-top:40px;border:0;background:none;color:#fff;padding:0;font:600 clamp(17px,5.4vw,21px) var(--f-num);letter-spacing:.06em;cursor:pointer;text-shadow:0 1px 2px rgba(0,0,0,.25);white-space:nowrap}
+.wvb{display:flex;gap:14px}.wvb button{border:0;background:none;color:#fff;padding:0;text-align:start;font:600 13.5px var(--f-num);cursor:pointer;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.wvb button:first-child{flex:1}.wvb small{display:block;font:600 9.5px var(--f-body);letter-spacing:.08em;opacity:.75;text-transform:uppercase}
+.wvnote{margin:8px 4px 0;font-size:13px;color:var(--muted-tx)}
+.wva{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:8px}.wva .btn{gap:4px}.wva .btn svg{width:15px;height:15px;fill:currentColor}.wvdel{color:var(--bad-tx,#dc2626)!important}
+.wvf{display:grid;gap:10px;padding:12px;border-radius:16px;background:var(--surface2);margin:10px 0}.wvf h3{margin:0}.wvf .hint{margin:-4px 0 0;min-height:1em}.wvrow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.wvf input{font-family:var(--f-num)}#wvName,#wvHolder,#wvNote{font-family:var(--f-body)}
+.wvcols{display:flex;flex-wrap:wrap;gap:8px}.wvcols button{width:34px;height:34px;border-radius:50%;border:3px solid transparent;cursor:pointer;box-shadow:0 0 0 1px var(--line)}.wvcols button[aria-checked=true]{border-color:var(--surface);box-shadow:0 0 0 2px var(--fg)}
 .qkbox{margin:12px 0 4px;padding:12px;border-radius:14px;background:var(--accent-soft);display:grid;gap:6px}.qkbox>b{display:flex;align-items:center;gap:8px;font-size:14.5px}.qkbox .hint{margin:0}.qkbox .btn.wide{width:100%;min-height:44px;justify-content:center;margin-top:4px}
 .qkout{width:100%;font:500 12.5px var(--f-num);border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:10px;resize:none;word-break:break-all}
 .qkacts{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}.qkacts .btn{min-height:40px}
@@ -2065,6 +2078,10 @@ Object.assign(UX.tr,{mi_x_due:"gün eksik",mi_x_apr:"faiz eksik",mi_pers:"kişis
 Object.assign(UX.en,{mi_x_due:"no day",mi_x_apr:"no rate",mi_pers:"personal"});
 Object.assign(UX.ru,{mi_x_due:"нет дня",mi_x_apr:"нет ставки",mi_pers:"личный"});
 Object.assign(UX.ar,{mi_x_due:"بلا يوم",mi_x_apr:"بلا فائدة",mi_pers:"شخصي"});
+Object.assign(UX.tr,{wv_tab:"Kartlarım",wv_h:"Kartlarım",wv_card:"Kart",wv_intro:"Kart numarası, son kullanma, CVV ve notlarını tek yerde tut, dokunarak kopyala. Hepsi 6 haneli PIN ile şifrelenir.",wv_create:"Kasa oluştur",wv_set_h:"Kasa PIN'i belirle",wv_set_p:"Kartlarını açmak için 6 haneli bir PIN seç. Unutursan kartlar açılamaz.",wv_open_h:"Kartlarım",wv_open_p:"Kasayı açmak için PIN'ini gir.",wv_open:"Kasayı aç",wv_locked:"Kasa kilitli",wv_locked_p:"Kartlarını görmek için PIN'ini gir. Uygulamadan çıkınca ya da 3 dakika işlem yapmayınca kasa kendiliğinden kilitlenir.",wv_lock:"Kilitle",wv_autolock:"Kasa güvenlik için kilitlendi",wv_forgot:"PIN'i unuttum · kasayı sil",wv_reset_h:"Kasa silinsin mi?",wv_reset_p:"PIN olmadan kartlar açılamaz. Kasa ve içindeki tüm kartlar bu cihazdan silinir.",wv_add:"Kart ekle",wv_edit:"Düzenle",wv_name:"Kart adı / banka",wv_name_ph:"Örn. Yapı Kredi World",wv_numl:"Kart numarası",wv_exp:"SKT",wv_holder:"Kart sahibi",wv_note:"Not",wv_note_ph:"Örn. internet alışverişi için",wv_color:"Renk",wv_save:"Kaydet",wv_saved:"Kart kaydedildi",wv_num:"Numara",wv_copied:p=>`${p.f} kopyalandı`,wv_del_p:p=>`"${p.n}" kasadan silinsin mi?`,wv_need:"Kart adı ya da numarası gir",wv_exp_bad:"SKT AA/YY biçiminde olmalı (örn. 08/29)",wv_ok:"geçerli",wv_bad:"Numara hatalı olabilir, kontrol et",wv_empty:"Henüz kart yok.",wv_copy_num:"Numarayı kopyala",wv_sec:"Kartlar şifreli olarak yalnızca bu cihazda saklanır; buluta, yedeğe ve Excel'e girmez. Tarayıcı verisini silersen kartlar da silinir."});
+Object.assign(UX.en,{wv_tab:"My cards",wv_h:"My cards",wv_card:"Card",wv_intro:"Keep card numbers, expiry dates, CVVs and notes in one place and tap to copy. Everything is encrypted with a 6-digit PIN.",wv_create:"Create vault",wv_set_h:"Set a vault PIN",wv_set_p:"Choose a 6-digit PIN to open your cards. If you forget it, the cards can't be opened.",wv_open_h:"My cards",wv_open_p:"Enter your PIN to open the vault.",wv_open:"Open vault",wv_locked:"Vault locked",wv_locked_p:"Enter your PIN to see your cards. The vault locks itself when you leave the app or after 3 minutes of inactivity.",wv_lock:"Lock",wv_autolock:"Vault locked for security",wv_forgot:"Forgot PIN · delete vault",wv_reset_h:"Delete the vault?",wv_reset_p:"Without the PIN the cards can't be opened. The vault and all its cards will be deleted from this device.",wv_add:"Add card",wv_edit:"Edit",wv_name:"Card name / bank",wv_name_ph:"e.g. Chase Sapphire",wv_numl:"Card number",wv_exp:"Expiry",wv_holder:"Cardholder",wv_note:"Note",wv_note_ph:"e.g. for online shopping",wv_color:"Colour",wv_save:"Save",wv_saved:"Card saved",wv_num:"Number",wv_copied:p=>`${p.f} copied`,wv_del_p:p=>`Delete "${p.n}" from the vault?`,wv_need:"Enter a card name or number",wv_exp_bad:"Expiry must be MM/YY (e.g. 08/29)",wv_ok:"valid",wv_bad:"The number may be wrong, check it",wv_empty:"No cards yet.",wv_copy_num:"Copy number",wv_sec:"Cards are stored encrypted on this device only; they are not synced, backed up or exported. Clearing browser data deletes them too."});
+Object.assign(UX.ru,{wv_tab:"Мои карты",wv_h:"Мои карты",wv_card:"Карта",wv_intro:"Храните номера карт, сроки действия, CVV и заметки в одном месте и копируйте касанием. Всё шифруется 6-значным PIN-кодом.",wv_create:"Создать хранилище",wv_set_h:"PIN хранилища",wv_set_p:"Выберите 6-значный PIN для доступа к картам. Если забудете его, карты не открыть.",wv_open_h:"Мои карты",wv_open_p:"Введите PIN, чтобы открыть хранилище.",wv_open:"Открыть",wv_locked:"Хранилище заблокировано",wv_locked_p:"Введите PIN, чтобы увидеть карты. Хранилище блокируется при выходе из приложения или через 3 минуты бездействия.",wv_lock:"Заблокировать",wv_autolock:"Хранилище заблокировано",wv_forgot:"Забыли PIN · удалить хранилище",wv_reset_h:"Удалить хранилище?",wv_reset_p:"Без PIN карты не открыть. Хранилище и все карты будут удалены с устройства.",wv_add:"Добавить карту",wv_edit:"Изменить",wv_name:"Название / банк",wv_name_ph:"Напр. Тинькофф Platinum",wv_numl:"Номер карты",wv_exp:"Срок",wv_holder:"Владелец",wv_note:"Заметка",wv_note_ph:"Напр. для покупок онлайн",wv_color:"Цвет",wv_save:"Сохранить",wv_saved:"Карта сохранена",wv_num:"Номер",wv_copied:p=>`${p.f}: скопировано`,wv_del_p:p=>`Удалить «${p.n}» из хранилища?`,wv_need:"Введите название или номер",wv_exp_bad:"Срок в формате ММ/ГГ (напр. 08/29)",wv_ok:"верный",wv_bad:"Номер может быть неверным",wv_empty:"Карт пока нет.",wv_copy_num:"Скопировать номер",wv_sec:"Карты хранятся зашифрованными только на этом устройстве и не попадают в облако, копии и Excel. Очистка данных браузера удалит их."});
+Object.assign(UX.ar,{wv_tab:"بطاقاتي",wv_h:"بطاقاتي",wv_card:"بطاقة",wv_intro:"احفظ أرقام البطاقات وتواريخ الانتهاء ورمز CVV والملاحظات في مكان واحد وانسخها باللمس. كل شيء مشفّر برمز PIN من 6 أرقام.",wv_create:"إنشاء الخزنة",wv_set_h:"رمز PIN للخزنة",wv_set_p:"اختر رمزًا من 6 أرقام لفتح بطاقاتك. إذا نسيته لا يمكن فتحها.",wv_open_h:"بطاقاتي",wv_open_p:"أدخل الرمز لفتح الخزنة.",wv_open:"فتح الخزنة",wv_locked:"الخزنة مقفلة",wv_locked_p:"أدخل الرمز لرؤية بطاقاتك. تُقفل الخزنة تلقائيًا عند الخروج أو بعد 3 دقائق دون نشاط.",wv_lock:"قفل",wv_autolock:"أُقفلت الخزنة للأمان",wv_forgot:"نسيت الرمز · حذف الخزنة",wv_reset_h:"حذف الخزنة؟",wv_reset_p:"لا يمكن فتح البطاقات دون الرمز. ستُحذف الخزنة وكل بطاقاتها من هذا الجهاز.",wv_add:"إضافة بطاقة",wv_edit:"تعديل",wv_name:"اسم البطاقة / البنك",wv_name_ph:"مثال: بطاقة البنك",wv_numl:"رقم البطاقة",wv_exp:"الانتهاء",wv_holder:"حامل البطاقة",wv_note:"ملاحظة",wv_note_ph:"مثال: للشراء عبر الإنترنت",wv_color:"اللون",wv_save:"حفظ",wv_saved:"حُفظت البطاقة",wv_num:"الرقم",wv_copied:p=>`نُسخ ${p.f}`,wv_del_p:p=>`حذف «${p.n}» من الخزنة؟`,wv_need:"أدخل اسم البطاقة أو رقمها",wv_exp_bad:"الانتهاء بصيغة MM/YY (مثل 08/29)",wv_ok:"صالح",wv_bad:"قد يكون الرقم خاطئًا",wv_empty:"لا بطاقات بعد.",wv_copy_num:"نسخ الرقم",wv_sec:"تُحفظ البطاقات مشفّرة على هذا الجهاز فقط ولا تدخل السحابة أو النسخ الاحتياطي أو Excel. مسح بيانات المتصفح يحذفها."});
 Object.assign(UX.ar,{bk_share:'مشاركة النسخة',bk_share_note:'ترسل النسخة إلى درايف أو البريد أو واتساب.',bk_share_no:'هذا المتصفح لا يدعم مشاركة الملفات، تم تنزيل النسخة.',where:p=>`بيانات هذه النسخة مرتبطة بالعنوان: ${p.u}. إذا فتحت الملف من مكان آخر ستكون البيانات منفصلة.`,rate_old:p=>`عمر السعر ${p.n}`,h:'س',d:'يوم'});
 const ux=(k,p)=>{let v=(UX[LANG]||UX.tr)[k];if(v===undefined)v=UX.tr[k];return typeof v==='function'?v(p||{}):v};
 const shortDay=iso=>{const [y,m,d]=String(iso).split('-').map(Number);return d+' '+MSHORT[LANG][m-1]};
@@ -3209,8 +3226,8 @@ async function repHtml(){
 
 /* ---- sekme ---- */
 function chipsHTML(){
-  const secs=[['cal','tl_cal'],['an','tl_an'],['sav','tl_sav'],['goal','tl_goal'],['loan','tl_loan'],['rec','tl_rec'],['rep','tl_rep'],['kur','tab_rates']];
-  return `<div class="chips" role="tablist">${secs.map(([k,l])=>`<button type="button" role="tab" class="chip" data-tsec="${k}" aria-selected="${toolSec===k}">${k==='sav'?ux(l):t(l)}</button>`).join('')}</div>`;
+  const secs=[['cal','tl_cal'],['an','tl_an'],['wal','wv_tab'],['sav','tl_sav'],['goal','tl_goal'],['loan','tl_loan'],['rec','tl_rec'],['rep','tl_rep'],['kur','tab_rates']];
+  return `<div class="chips" role="tablist">${secs.map(([k,l])=>`<button type="button" role="tab" class="chip" data-tsec="${k}" aria-selected="${toolSec===k}">${k==='sav'||k==='wal'?ux(l):t(l)}</button>`).join('')}</div>`;
 }
 /* ================= Birikim ================= */
 const RET_ASSETS=[['xau','fl_gold'],['xag','fl_silver'],['usd','USD'],['eur','EUR'],['btc','BTC']];
@@ -3278,6 +3295,7 @@ function renderTools(){
   else if(toolSec==='goal')body=goalsHTML();
   else if(toolSec==='loan')body=loanHTML();
   else if(toolSec==='rec')body=recHTML();
+  else if(toolSec==='wal')body=wvHTML();
   else body=`<section class="card"><div class="cardhead"><h2>${t('rp_title')}</h2></div><p class="hint">${t('rp_note')}</p><div class="actions"><button class="btn primary" type="button" data-rep="open">${t('rp_open')}</button></div>
    <div class="actions" style="align-items:center"><select id="yrSel" style="max-width:120px" aria-label="${esc(ux('yr_btn'))}">${[...new Set(plan.months.map(m=>m.ym.slice(0,4)))].map(y=>`<option ${y===ymToday().slice(0,4)?'selected':''}>${y}</option>`).join('')}</select><button class="btn" type="button" data-rep="year">${ic('calendar')}${ux('yr_btn')}</button></div></section>`;
   if(toolSec==='sav')body=savHTML();
@@ -3496,6 +3514,62 @@ function devCardHTML(){const d=DEV;
 function devPaint(){const c=document.getElementById('devCard');if(!c)return;const tmp=document.createElement('div');tmp.innerHTML=devCardHTML();const nb=tmp.querySelector('#devBody'),ob=c.querySelector('#devBody');if(nb&&ob)ob.replaceWith(nb)}
 document.addEventListener('click',async e=>{const b=e.target.closest&&e.target.closest('[data-dv]');if(!b)return;e.preventDefault();const v=b.dataset.dv;
   if(v==='ip')devIP();else if(v==='re'){DEV.ready=false;devCollect()}else if(v==='copy'){try{await navigator.clipboard.writeText(devText());toast(ux('sh_copied'))}catch(x){toast(ux('dv_copy_err'))}}});
+
+/* ================= Kartlarım (şifreli kasa; yalnızca bu cihazda, eşitleme/yedek dışı) ================= */
+const LS_VAULT='gg_vault';let WV={open:false,cards:[],pin:null,edit:null,show:{},tm:0};
+const wvHas=()=>{try{return !!localStorage.getItem(LS_VAULT)}catch(e){return false}};
+const WV_COL=[['#1e3a8a','#3b82f6'],['#7c2d12','#f97316'],['#065f46','#10b981'],['#581c87','#a855f7'],['#831843','#ec4899'],['#111827','#4b5563'],['#0e7490','#22d3ee'],['#713f12','#eab308']];
+function wvNet(n){n=String(n||'').replace(/\D/g,'');return /^4/.test(n)?'VISA':/^(5[1-5]|2[2-7])/.test(n)?'Mastercard':/^9792/.test(n)?'TROY':/^3[47]/.test(n)?'AMEX':''}
+function wvLuhn(n){n=String(n).replace(/\D/g,'');if(n.length<12)return false;let s=0;for(let i=0;i<n.length;i++){let d=+n[n.length-1-i];if(i%2){d*=2;if(d>9)d-=9}s+=d}return s%10===0}
+const wvFmt=n=>String(n||'').replace(/\D/g,'').replace(/(\d{4})(?=\d)/g,'$1 ');
+function wvTouch(){clearTimeout(WV.tm);if(WV.open)WV.tm=setTimeout(()=>{wvLock();toast(ux('wv_autolock'))},180000)}
+function wvLock(){WV={open:false,cards:[],pin:null,edit:null,show:{},tm:0};if(tab==='arac'&&toolSec==='wal')renderTools()}
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&WV.open)wvLock()});
+async function wvSave(){try{localStorage.setItem(LS_VAULT,await encryptBackup(JSON.stringify({v:1,cards:WV.cards}),WV.pin))}catch(e){toast(t('t_savefail'))}}
+async function wvCreate(){let pin=null,err='';
+  for(let k=0;k<3&&!pin;k++){const a=await pinAsk(ux('wv_set_h'),ux('wv_set_p'),'wvPinA',err,null,'lock');if(a===null)return;const b2=await pinAsk(ux('pn_rep_h'),ux('pn_rep_p'),'wvPinB','',ux('wv_create'),'lock');if(b2===null)return;if(a===b2&&a.length===6)pin=a;else err=ux('pn_mismatch')}
+  if(!pin)return;WV={open:true,cards:[],pin,edit:'new',show:{},tm:0};await wvSave();wvTouch();renderTools()}
+async function wvUnlock(){let err='';
+  for(let k=0;k<5;k++){const pin=await pinAsk(ux('wv_open_h'),ux('wv_open_p'),'wvPinU',err,ux('wv_open'),'lock');if(pin===null)return;
+    try{const o=JSON.parse(localStorage.getItem(LS_VAULT));const d=await decryptBackup(o,pin);WV={open:true,cards:Array.isArray(d.cards)?d.cards:[],pin,edit:null,show:{},tm:0};wvTouch();renderTools();return}catch(e){err=ux('pn_wrong')}}
+  toast(ux('qk_wrong'))}
+function wvCardHTML(c,i){const [c1,c2]=WV_COL[c.col||0]||WV_COL[0],net=wvNet(c.num),sh=WV.show[i];
+  return `<div class="wvi"><div class="wvc" style="--c1:${c1};--c2:${c2}"><div class="wvt"><b>${esc(c.name||ux('wv_card'))}</b><span class="wvn">${esc(net)}</span></div>
+   <button type="button" class="wvnum" data-wv="copy:${i}:num" aria-label="${esc(ux('wv_copy_num'))}">${esc(wvFmt(c.num)||'•••• •••• •••• ••••')}</button>
+   <div class="wvb"><button type="button" data-wv="copy:${i}:holder"><small>${ux('wv_holder')}</small>${esc(c.holder||'—')}</button><button type="button" data-wv="copy:${i}:exp"><small>${ux('wv_exp')}</small>${esc(c.exp||'—')}</button><button type="button" data-wv="${sh?'copy:'+i+':cvv':'eye:'+i}"><small>CVV</small>${c.cvv?(sh?esc(c.cvv):'•••'):'—'}</button></div></div>
+   ${c.note?`<p class="wvnote">${esc(c.note)}</p>`:''}
+   <div class="wva"><button type="button" class="btn mini" data-wv="copy:${i}:num">${ic('content-copy')}${ux('wv_num')}</button><button type="button" class="btn mini" data-wv="eye:${i}">${ic('eye')}CVV</button><button type="button" class="btn mini" data-wv="edit:${i}">${ux('wv_edit')}</button><button type="button" class="btn mini wvdel" data-wv="del:${i}" aria-label="${esc(ux('uc_del'))}">${ic('trash')}</button></div></div>`}
+function wvFormHTML(){const c=WV.edit==='new'?{col:WV.cards.length%WV_COL.length}:WV.cards[WV.edit]||{};
+  return `<div class="wvf"><h3>${WV.edit==='new'?ux('wv_add'):ux('wv_edit')}</h3>
+   <label class="f">${ux('wv_name')}<input id="wvName" maxlength="40" value="${esc(c.name||'')}" placeholder="${esc(ux('wv_name_ph'))}"></label>
+   <label class="f">${ux('wv_numl')}<input id="wvNum" inputmode="numeric" autocomplete="off" maxlength="23" value="${esc(wvFmt(c.num))}" placeholder="0000 0000 0000 0000"></label><p class="hint" id="wvNumH"></p>
+   <div class="wvrow"><label class="f">${ux('wv_exp')}<input id="wvExp" inputmode="numeric" maxlength="5" value="${esc(c.exp||'')}" placeholder="AA/YY"></label><label class="f">CVV<input id="wvCvv" inputmode="numeric" maxlength="4" value="${esc(c.cvv||'')}" placeholder="•••"></label></div>
+   <label class="f">${ux('wv_holder')}<input id="wvHolder" maxlength="40" autocapitalize="characters" value="${esc(c.holder||'')}"></label>
+   <label class="f">${ux('wv_note')}<input id="wvNote" maxlength="120" value="${esc(c.note||'')}" placeholder="${esc(ux('wv_note_ph'))}"></label>
+   <div class="wvcols" role="radiogroup" aria-label="${esc(ux('wv_color'))}">${WV_COL.map(([a,b],k)=>`<button type="button" role="radio" aria-checked="${(c.col||0)===k}" data-wvcol="${k}" style="background:linear-gradient(135deg,${a},${b})" aria-label="${k+1}"></button>`).join('')}</div>
+   <div class="actions"><button type="button" class="btn" data-wv="cancel">${ux('is_cancel')}</button><button type="button" class="btn primary" data-wv="save">${ux('wv_save')}</button></div></div>`}
+function wvHTML(){
+  if(!wvHas())return `<section class="card wvcard"><div class="wvhero">${ic('credit-card')}<b>${ux('wv_h')}</b><p>${ux('wv_intro')}</p><button type="button" class="btn primary wide" data-wv="create">${ic('lock')}${ux('wv_create')}</button></div><p class="hint">${ux('wv_sec')}</p></section>`;
+  if(!WV.open)return `<section class="card wvcard"><div class="wvhero">${ic('lock')}<b>${ux('wv_locked')}</b><p>${ux('wv_locked_p')}</p><button type="button" class="btn primary wide" data-wv="unlock">${ux('wv_open')}</button></div><p class="hint"><button type="button" class="tlink" data-wv="reset">${ux('wv_forgot')}</button></p></section>`;
+  return `<section class="card wvcard"><div class="cardhead"><h2>${ic('credit-card')}${ux('wv_h')}</h2><button type="button" class="btn mini" data-wv="lock">${ic('lock')}${ux('wv_lock')}</button></div>
+   ${WV.edit!==null?wvFormHTML():''}<div class="wvl">${WV.cards.map(wvCardHTML).join('')||(WV.edit===null?`<p class="hint">${ux('wv_empty')}</p>`:'')}</div>
+   ${WV.edit===null?`<button type="button" class="btn primary wide" data-wv="add">${ic('plus')}${ux('wv_add')}</button>`:''}<p class="hint">${ux('wv_sec')}</p></section>`}
+document.addEventListener('input',e=>{const x=e.target;if(x.id==='wvNum'){const p=x.selectionStart,old=x.value;x.value=wvFmt(x.value).slice(0,23);const h=document.getElementById('wvNumH');const d=x.value.replace(/\D/g,'');if(h)h.textContent=d.length>=13?(wvLuhn(d)?'✓ '+(wvNet(d)||ux('wv_ok')):'⚠ '+ux('wv_bad')):'';if(p===old.length)x.selectionStart=x.selectionEnd=x.value.length}
+  else if(x.id==='wvExp'){let d=x.value.replace(/\D/g,'').slice(0,4);x.value=d.length>2?d.slice(0,2)+'/'+d.slice(2):d}else if(x.id==='wvCvv')x.value=x.value.replace(/\D/g,'').slice(0,4);if(x.closest&&x.closest('.wvcard'))wvTouch()});
+document.addEventListener('click',async e=>{const cb=e.target.closest&&e.target.closest('[data-wvcol]');if(cb){cb.parentElement.querySelectorAll('[data-wvcol]').forEach(b=>b.setAttribute('aria-checked',String(b===cb)));return}
+  const b=e.target.closest&&e.target.closest('[data-wv]');if(!b)return;e.preventDefault();const [a,i,f]=b.dataset.wv.split(':');wvTouch();
+  if(a==='create')return wvCreate();if(a==='unlock')return wvUnlock();if(a==='lock'){wvLock();return}
+  if(a==='reset'){if(await uiConfirm({title:ux('wv_reset_h'),msg:ux('wv_reset_p'),kind:'danger',icon:'trash',ok:ux('uc_del')})){try{localStorage.removeItem(LS_VAULT)}catch(x){}wvLock()}return}
+  if(a==='add'){WV.edit='new';renderTools();return}if(a==='edit'){WV.edit=+i;renderTools();return}if(a==='cancel'){WV.edit=null;renderTools();return}
+  if(a==='eye'){WV.show[i]=!WV.show[i];renderTools();return}
+  if(a==='copy'){const c=WV.cards[+i];if(!c)return;const v=f==='num'?String(c.num||'').replace(/\D/g,''):c[f]||'';if(!v)return;try{await navigator.clipboard.writeText(v);toast(ux('wv_copied',{f:f==='num'?ux('wv_num'):f==='exp'?ux('wv_exp'):f==='cvv'?'CVV':ux('wv_holder')}))}catch(x){toast(ux('dv_copy_err'))}return}
+  if(a==='del'){const c=WV.cards[+i];if(c&&await uiConfirm({title:ux('uc_del_h'),msg:ux('wv_del_p',{n:c.name||ux('wv_card')}),kind:'danger',icon:'trash',ok:ux('uc_del')})){WV.cards.splice(+i,1);WV.show={};await wvSave();renderTools()}return}
+  if(a==='save'){const g=id=>(document.getElementById(id)||{}).value||'';const num=g('wvNum').replace(/\D/g,''),exp=g('wvExp');
+    if(!num&&!g('wvName').trim()){toast(ux('wv_need'));return}if(exp&&!/^(0[1-9]|1[0-2])\/\d{2}$/.test(exp)){toast(ux('wv_exp_bad'));return}
+    const col=+((document.querySelector('[data-wvcol][aria-checked=true]')||{}).dataset||{}).wvcol||0;
+    const c={name:g('wvName').trim(),num,exp,cvv:g('wvCvv'),holder:g('wvHolder').trim().toLocaleUpperCase(LANG==='tr'?'tr':'en'),note:g('wvNote').trim(),col};
+    if(WV.edit==='new')WV.cards.push(c);else WV.cards[WV.edit]=c;WV.edit=null;await wvSave();renderTools();toast(ux('wv_saved'));return}
+});
 /* ================= Bildirim merkezi ================= */
 const LS_NF='gg_nf';let nfOpenAt=0,nfTab='all',nfSnz=null,nfUndo=null;
 const dayAdd=(iso,n)=>{const [y,m,d]=iso.split('-').map(Number),x=new Date(y,m-1,d+n);return x.getFullYear()+'-'+pad(x.getMonth()+1)+'-'+pad(x.getDate())};
@@ -6044,7 +6118,7 @@ async function init(){
   $('#sbSave').addEventListener('click',flush);
   $('#sbDiscard').addEventListener('click',e=>arm(e.currentTarget,t('sure'),discard));
   try{const st=JSON.parse(localStorage.getItem('gg_tab')||'null');
-    if(st&&['plan','defter','ozet','kalem','kur','arac','ayar'].includes(st.tab)){tab=st.tab;if(['cal','an','goal','loan','rec','rep','kur'].includes(st.sec))toolSec=st.sec;else if(['fc','strat','sim'].includes(st.sec))toolSec='an';if(tab==='kur'){tab='arac';toolSec='kur'}}}catch(e){}
+    if(st&&['plan','defter','ozet','kalem','kur','arac','ayar'].includes(st.tab)){tab=st.tab;if(['cal','an','wal','sav','goal','loan','rec','rep','kur'].includes(st.sec))toolSec=st.sec;else if(['fc','strat','sim'].includes(st.sec))toolSec='an';if(tab==='kur'){tab='arac';toolSec='kur'}}}catch(e){}
   drawStatus();render();
   if(loadBad)setTimeout(()=>{toast(ux('lb_warn'));clearTimeout(toastT);toastT=setTimeout(()=>$('#toast').hidden=true,15000)},700);
   if(!db)recGenerate();
@@ -6518,8 +6592,8 @@ document.addEventListener('input',e=>{const t2=e.target;if(!t2.classList||!t2.cl
   const box=t2.parentElement;box.classList.remove('err');box.querySelectorAll('i').forEach((x,k)=>{x.classList.toggle('f',k<v.length);x.classList.toggle('on',k===Math.min(v.length,5))});
   const ok=document.querySelector('#ucz [data-uc="1"]');if(ok)ok.disabled=v.length<6;
   if(v.length===6&&ok){setTimeout(()=>{if(t2.value.length===6&&!ok.disabled)ucDone(true)},180)}},true);
-async function pinAsk(title,msg,id,err,okLabel){
-  const ok=await uiConfirm({title,kind:'info',icon:'cloud',body:`<p>${esc(msg)}</p>${qkPinHTML(id,err)}`,ok:okLabel||ux('pn_next'),okOff:true,focus:'#'+id});
+async function pinAsk(title,msg,id,err,okLabel,icon){
+  const ok=await uiConfirm({title,kind:'info',icon:icon||'cloud',body:`<p>${esc(msg)}</p>${qkPinHTML(id,err)}`,ok:okLabel||ux('pn_next'),okOff:true,focus:'#'+id});
   return ok?((document.getElementById(id)||{}).value||''):null;
 }
 async function qkMake(){
@@ -6636,7 +6710,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='193';
+const APP_VER='194';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
