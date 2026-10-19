@@ -1189,6 +1189,10 @@ body.kb .calcfab{display:none!important}
 .wvmask{-webkit-text-security:disc;text-security:disc;letter-spacing:.12em}
 .wvcv{margin-top:0}.wvcv input{height:44px}
 .wbbad{display:grid;grid-template-columns:auto 1fr;align-items:start}.wbbad>span{line-height:1.45}.wbbad .btn{grid-column:1/-1;justify-self:start;margin:4px 0 0}
+
+/* v201 otomatik kilit */
+.wval{display:flex;align-items:center;gap:8px;margin:2px 0 10px;padding:8px 10px;border-radius:12px;background:color-mix(in srgb,var(--accent) 6%,var(--surface));font-size:13px;color:var(--muted-tx)}
+.wval svg{width:16px;height:16px;fill:currentColor;flex:none}.wval span{flex:1;min-width:0}.wval select{width:auto;min-width:0;max-width:52%;height:34px;padding:0 28px 0 10px;font-size:13px}
 </style>
 
 <div class="app">
@@ -2173,6 +2177,10 @@ Object.assign(UX.tr,{"wv_cvv_show": "CVV'yi göster", "wv_cvv_hide": "CVV'yi giz
 Object.assign(UX.en,{"wv_cvv_show": "Show CVV", "wv_cvv_hide": "Hide CVV", "wv_unk": "Unrecognised card number. Payment cards start with 2, 3, 4, 5, 6 or 9792."});
 Object.assign(UX.ru,{"wv_cvv_show": "Показать CVV", "wv_cvv_hide": "Скрыть CVV", "wv_unk": "Номер карты не распознан. Платёжные карты начинаются с 2, 3, 4, 5, 6 или 9792."});
 Object.assign(UX.ar,{"wv_cvv_show": "إظهار CVV", "wv_cvv_hide": "إخفاء CVV", "wv_unk": "رقم بطاقة غير معروف. تبدأ بطاقات الدفع بـ 2 أو 3 أو 4 أو 5 أو 6 أو 9792."});
+Object.assign(UX.tr,{wv_al:"Otomatik kilit",wv_al_now:"Uygulamadan çıkınca hemen",wv_al_off:"Kapalı (yalnızca elle)",wv_al_min:p=>`${p.n} dakika sonra`,wv_al_set:p=>`Otomatik kilit: ${p.t}`,wv_locked_p2:p=>`Kartlarını görmek için PIN'ini gir. Otomatik kilit: ${p.t}. Kilitle düğmesiyle istediğin an kilitleyebilirsin.`,wv_draft:"Yarım kalan kart bilgileri geri getirildi"});
+Object.assign(UX.en,{wv_al:"Auto-lock",wv_al_now:"As soon as you leave the app",wv_al_off:"Off (manual only)",wv_al_min:p=>`After ${p.n} min`,wv_al_set:p=>`Auto-lock: ${p.t}`,wv_locked_p2:p=>`Enter your PIN to see your cards. Auto-lock: ${p.t}. You can lock it any time with the Lock button.`,wv_draft:"Your unfinished card details were restored"});
+Object.assign(UX.ru,{wv_al:"Автоблокировка",wv_al_now:"Сразу при выходе",wv_al_off:"Выкл. (только вручную)",wv_al_min:p=>`Через ${p.n} мин`,wv_al_set:p=>`Автоблокировка: ${p.t}`,wv_locked_p2:p=>`Введите PIN, чтобы увидеть карты. Автоблокировка: ${p.t}. Заблокировать можно в любой момент кнопкой.`,wv_draft:"Незавершённые данные карты восстановлены"});
+Object.assign(UX.ar,{wv_al:"القفل التلقائي",wv_al_now:"فور الخروج من التطبيق",wv_al_off:"إيقاف (يدويًا فقط)",wv_al_min:p=>`بعد ${p.n} دقيقة`,wv_al_set:p=>`القفل التلقائي: ${p.t}`,wv_locked_p2:p=>`أدخل الرمز لرؤية بطاقاتك. القفل التلقائي: ${p.t}. يمكنك القفل في أي وقت بزر القفل.`,wv_draft:"استُعيدت بيانات البطاقة غير المكتملة"});
 Object.assign(UX.ar,{bk_share:'مشاركة النسخة',bk_share_note:'ترسل النسخة إلى درايف أو البريد أو واتساب.',bk_share_no:'هذا المتصفح لا يدعم مشاركة الملفات، تم تنزيل النسخة.',where:p=>`بيانات هذه النسخة مرتبطة بالعنوان: ${p.u}. إذا فتحت الملف من مكان آخر ستكون البيانات منفصلة.`,rate_old:p=>`عمر السعر ${p.n}`,h:'س',d:'يوم'});
 const ux=(k,p)=>{let v=(UX[LANG]||UX.tr)[k];if(v===undefined)v=UX.tr[k];return typeof v==='function'?v(p||{}):v};
 const shortDay=iso=>{const [y,m,d]=String(iso).split('-').map(Number);return d+' '+MSHORT[LANG][m-1]};
@@ -3686,16 +3694,27 @@ function wvColFor(d){const k=(d&&(d.bank||d.scheme))||'';if(!k)return 0;let h=0;
 function wvExpState(e){const m=/^(\d{2})\/(\d{2})$/.exec(e||'');if(!m)return 'bad';const mo=+m[1],y=2000+ +m[2];if(mo<1||mo>12)return 'bad';const now=new Date(),cy=now.getFullYear(),cm=now.getMonth()+1;if(y>cy+20)return 'far';if(y<cy||(y===cy&&mo<cm))return 'old';return 'ok'}
 function wvLuhn(n){n=String(n).replace(/\D/g,'');if(n.length<12)return false;let s=0;for(let i=0;i<n.length;i++){let d=+n[n.length-1-i];if(i%2){d*=2;if(d>9)d-=9}s+=d}return s%10===0}
 const wvFmt=n=>{const d=String(n||'').replace(/\D/g,''),g=wvSpec(d).grp;if(!g)return d.replace(/(\d{4})(?=\d)/g,'$1 ');let o=[],k=0;for(const w of g){if(k>=d.length)break;o.push(d.slice(k,k+w));k+=w}if(k<d.length)o.push(d.slice(k));return o.join(' ')};
-function wvTouch(){clearTimeout(WV.tm);if(WV.open)WV.tm=setTimeout(()=>{wvLock();toast(ux('wv_autolock'))},180000)}
-function wvLock(){WV={open:false,cards:[],pin:null,edit:null,show:{},tm:0};if(tab==='arac'&&toolSec==='wal')renderTools()}
-document.addEventListener('visibilitychange',()=>{if(document.hidden&&WV.open)wvLock()});
+const WV_AL=[0,1,5,15,-1];
+function wvAL(){try{const v=+localStorage.getItem('gg_vlock');return WV_AL.includes(v)&&localStorage.getItem('gg_vlock')!==null?v:5}catch(e){return 5}}
+const wvIdleMs=()=>{const v=wvAL();return v<0?0:Math.max(v,3)*60000};
+function wvALText(v){return v===0?ux('wv_al_now'):v<0?ux('wv_al_off'):ux('wv_al_min',{n:v})}
+function wvTouch(){clearTimeout(WV.tm);const ms=wvIdleMs();if(WV.open&&ms)WV.tm=setTimeout(()=>{wvLock();toast(ux('wv_autolock'))},ms)}
+let wvDraft=null,wvHidAt=0,wvHidT=0;
+function wvGrab(){if(!WV.open||WV.edit===null||!document.getElementById('wvNum'))return null;const g=id=>(document.getElementById(id)||{}).value||'';return {edit:WV.edit,name:g('wvName'),num:g('wvNum'),exp:g('wvExp'),cvv:g('wvCvv'),holder:g('wvHolder'),note:g('wvNote')}}
+function wvLock(){const d=wvGrab();if(d)wvDraft=d;clearTimeout(WV.tm);WV={open:false,cards:[],pin:null,edit:null,show:{},tm:0};if(tab==='arac'&&toolSec==='wal')renderTools()}
+function wvRestore(){if(!wvDraft||!WV.open)return;const d=wvDraft;wvDraft=null;if(d.edit!=='new'&&!WV.cards[d.edit])return;WV.edit=d.edit;renderTools();
+  const set=(id,v)=>{const e=document.getElementById(id);if(e&&v){e.value=v;e.dispatchEvent(new Event('input',{bubbles:true}))}};set('wvName',d.name);set('wvNum',d.num);set('wvExp',d.exp);set('wvCvv',d.cvv);set('wvHolder',d.holder);set('wvNote',d.note);
+  const n=document.getElementById('wvName');if(n&&d.name)delete n.dataset.auto;toast(ux('wv_draft'))}
+document.addEventListener('visibilitychange',()=>{if(!WV.open)return;const v=wvAL();
+  if(document.hidden){if(v===0){wvLock();return}if(v>0){wvHidAt=Date.now();clearTimeout(wvHidT);wvHidT=setTimeout(()=>{if(document.hidden&&WV.open)wvLock()},v*60000)}}
+  else{clearTimeout(wvHidT);if(v>0&&wvHidAt&&Date.now()-wvHidAt>=v*60000){wvLock();toast(ux('wv_autolock'))}wvHidAt=0;wvTouch()}});
 async function wvSave(){try{localStorage.setItem(LS_VAULT,await encryptBackup(JSON.stringify({v:1,cards:WV.cards}),WV.pin))}catch(e){toast(t('t_savefail'))}}
 async function wvCreate(){let pin=null,err='';
   for(let k=0;k<3&&!pin;k++){const a=await pinAsk(ux('wv_set_h'),ux('wv_set_p'),'wvPinA',err,null,'lock');if(a===null)return;const b2=await pinAsk(ux('pn_rep_h'),ux('pn_rep_p'),'wvPinB','',ux('wv_create'),'lock');if(b2===null)return;if(a===b2&&a.length===6)pin=a;else err=ux('pn_mismatch')}
   if(!pin)return;WV={open:true,cards:[],pin,edit:'new',show:{},tm:0};await wvSave();wvTouch();renderTools()}
 async function wvUnlock(){let err='';
   for(let k=0;k<5;k++){const pin=await pinAsk(ux('wv_open_h'),ux('wv_open_p'),'wvPinU',err,ux('wv_open'),'lock');if(pin===null)return;
-    try{const o=JSON.parse(localStorage.getItem(LS_VAULT));const d=await decryptBackup(o,pin);WV={open:true,cards:Array.isArray(d.cards)?d.cards:[],pin,edit:null,show:{},tm:0};wvTouch();renderTools();return}catch(e){err=ux('pn_wrong')}}
+    try{const o=JSON.parse(localStorage.getItem(LS_VAULT));const d=await decryptBackup(o,pin);WV={open:true,cards:Array.isArray(d.cards)?d.cards:[],pin,edit:null,show:{},tm:0};wvTouch();renderTools();wvRestore();return}catch(e){err=ux('pn_wrong')}}
   toast(ux('qk_wrong'))}
 function wvCardHTML(c,i){const [c1,c2]=WV_COL[c.col||0]||WV_COL[0],net=wvNet(c.num),sh=WV.show[i];
   return `<div class="wvi"><div class="wvc" style="--c1:${c1};--c2:${c2}"><div class="wvt"><span class="wvtn"><b>${esc(c.name||ux('wv_card'))}</b>${c.bank?`<small class="wvbk">${wbFlag(c.bank.cc)} ${esc([wbType(c.bank),c.bank.cc&&c.bank.cc!=='TR'?ux('wb_foreign',{c:c.bank.cur||'?'}):''].filter(Boolean).join(' · '))}</small>`:''}</span><span class="wvn">${c.exp&&wvExpState(c.exp)==='old'?`<span class="wvexp">${ux('wv_expd')}</span>`:''}${esc(net)}</span></div>
@@ -3714,8 +3733,9 @@ function wvFormHTML(){const c=WV.edit==='new'?{col:WV.cards.length%WV_COL.length
    <div class="actions"><button type="button" class="btn" data-wv="cancel">${ux('is_cancel')}</button><button type="button" class="btn primary" data-wv="save">${ux('wv_save')}</button></div></div>`}
 function wvHTML(){
   if(!wvHas())return `<section class="card wvcard"><div class="wvhero">${ic('credit-card')}<b>${ux('wv_h')}</b><p>${ux('wv_intro')}</p><button type="button" class="btn primary wide" data-wv="create">${ic('lock')}${ux('wv_create')}</button></div><p class="hint">${ux('wv_sec')}</p></section>`;
-  if(!WV.open)return `<section class="card wvcard"><div class="wvhero">${ic('lock')}<b>${ux('wv_locked')}</b><p>${ux('wv_locked_p')}</p><button type="button" class="btn primary wide" data-wv="unlock">${ux('wv_open')}</button></div><p class="hint"><button type="button" class="tlink" data-wv="reset">${ux('wv_forgot')}</button></p></section>`;
+  if(!WV.open)return `<section class="card wvcard"><div class="wvhero">${ic('lock')}<b>${ux('wv_locked')}</b><p>${esc(ux('wv_locked_p2',{t:wvALText(wvAL())}))}</p><button type="button" class="btn primary wide" data-wv="unlock">${ux('wv_open')}</button></div><p class="hint"><button type="button" class="tlink" data-wv="reset">${ux('wv_forgot')}</button></p></section>`;
   return `<section class="card wvcard"><div class="cardhead"><h2>${ic('credit-card')}${ux('wv_h')}</h2><button type="button" class="btn mini" data-wv="lock">${ic('lock')}${ux('wv_lock')}</button></div>
+   <label class="wval">${ic('timer')}<span>${ux('wv_al')}</span><select id="wvAl" aria-label="${esc(ux('wv_al'))}">${WV_AL.map(v=>`<option value="${v}" ${wvAL()===v?'selected':''}>${esc(wvALText(v))}</option>`).join('')}</select></label>
    ${WV.edit!==null?wvFormHTML():''}<div class="wvl">${WV.cards.map(wvCardHTML).join('')||(WV.edit===null?`<p class="hint">${ux('wv_empty')}</p>`:'')}</div>
    ${WV.edit===null?`<button type="button" class="btn primary wide" data-wv="add">${ic('plus')}${ux('wv_add')}</button>`:''}<p class="hint">${ux('wv_sec')}</p></section>`}
 document.addEventListener('input',e=>{const x=e.target;if(x.id==='wvNum'){const p=x.selectionStart,old=x.value;let d=x.value.replace(/\D/g,'');const sp=wvSpec(d),mx=Math.max(...sp.len);d=d.slice(0,mx);x.value=wvFmt(d);
@@ -3730,6 +3750,7 @@ document.addEventListener('input',e=>{const x=e.target;if(x.id==='wvNum'){const 
   else if(x.id==='wvName'){delete x.dataset.auto}
   else if(x.id==='wvHolder'){const v=x.value.replace(/[^\p{L} .'-]/gu,'').replace(/\s{2,}/g,' ').slice(0,26);if(v!==x.value)x.value=v}
   if(x.closest&&x.closest('.wvcard'))wvTouch()});
+document.addEventListener('change',e=>{if(e.target&&e.target.id==='wvAl'){try{localStorage.setItem('gg_vlock',e.target.value)}catch(x){}wvTouch();toast(ux('wv_al_set',{t:wvALText(+e.target.value)}))}});
 document.addEventListener('click',async e=>{const cb=e.target.closest&&e.target.closest('[data-wvcol]');if(cb){cb.parentElement.querySelectorAll('[data-wvcol]').forEach(b=>b.setAttribute('aria-checked',String(b===cb)));return}
   const b=e.target.closest&&e.target.closest('[data-wv]');if(!b)return;e.preventDefault();const [a,i,f]=b.dataset.wv.split(':');wvTouch();
   if(a==='cvveye'){const f=document.getElementById('wvCvv');if(f){const sh=f.classList.toggle('wvmask')===false;b.setAttribute('aria-pressed',String(sh));b.innerHTML=ic(sh?'eye-off':'eye');b.setAttribute('aria-label',ux(sh?'wv_cvv_hide':'wv_cvv_show'))}return}
@@ -7006,7 +7027,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='200';
+const APP_VER='201';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
