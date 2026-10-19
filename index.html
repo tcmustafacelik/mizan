@@ -1236,6 +1236,28 @@ body.kb .calcfab{display:none!important}
 :root[data-theme="glass"] .mis{color:#8a3b0a!important}
 :root[data-theme="glass"] .pbtn{color:color-mix(in srgb,var(--accent) 80%,#000)!important}
 :root[data-theme="glass"] .strat span,:root[data-theme="glass"] .cvl,:root[data-theme="glass"] #cvout{color:color-mix(in srgb,var(--fg) 78%,transparent)!important}
+
+/* v205 Bu cihaz: sade görünüm */
+.dvip:not(.ok) b{font:500 14px var(--f-body)!important;color:var(--muted-tx)}
+.dvh{background:color-mix(in srgb,var(--accent) 8%,var(--surface))!important;color:var(--fg)!important;box-shadow:none!important;border:1px solid color-mix(in srgb,var(--accent) 18%,var(--line));padding:14px!important;border-radius:18px!important;gap:12px!important}
+.dvh small{color:var(--accent);font-size:11px!important;letter-spacing:.08em!important;font-weight:650!important}
+.dvh b{font-size:18px!important;font-weight:650!important;margin:1px 0}
+.dvh em{color:var(--muted-tx);font-size:13px!important}
+.dvi{width:44px!important;height:44px!important;border-radius:13px!important;background:color-mix(in srgb,var(--accent) 15%,transparent)!important;box-shadow:none!important}
+.dvi svg{width:24px!important;height:24px!important;fill:var(--accent)!important}
+.dvip{border:1px solid var(--line)!important;background:var(--surface)!important;padding:10px 12px!important;border-radius:16px!important;margin:10px 0!important}
+.dvip>span{width:32px!important;height:32px!important;border-radius:9px!important;background:color-mix(in srgb,#6366f1 15%,transparent)!important;color:#6366f1!important}
+.dvip>span svg{width:18px!important;height:18px!important}
+.dvip b{font:600 14px var(--f-num)!important}
+.dvip .btn{min-height:34px;padding:0 14px;font-size:13px}
+.dvg{grid-template-columns:minmax(0,1fr)!important;gap:0!important;border:1px solid var(--line);border-radius:16px;background:var(--surface);overflow:hidden}
+.dvt{background:none!important;border:0!important;border-radius:0!important;padding:10px 12px!important;align-items:center!important;position:relative}
+.dvt+.dvt::before{content:'';position:absolute;top:0;inset-inline-start:54px;inset-inline-end:0;height:1px;background:color-mix(in srgb,var(--line) 85%,transparent)}
+.dvti{width:30px!important;height:30px!important;border-radius:9px!important;background:color-mix(in srgb,var(--dc) 15%,transparent)!important;color:var(--dc)!important}
+.dvt>span:last-child{flex:1;flex-direction:row!important;align-items:baseline;justify-content:space-between;gap:12px}
+.dvt small{font-size:13.5px!important;font-weight:500!important;color:var(--fg)!important;flex:none;white-space:nowrap}
+.dvt b{font-size:13px!important;font-weight:500!important;color:var(--muted-tx);text-align:end!important;min-width:0}
+:root[data-theme="dark"] .dvti,:root[data-theme="glassd"] .dvti{background:color-mix(in srgb,var(--dc) 26%,transparent)!important;color:color-mix(in srgb,var(--dc) 70%,#fff)!important}
 </style>
 
 <div class="app">
@@ -7101,7 +7123,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='204';
+const APP_VER='205';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
