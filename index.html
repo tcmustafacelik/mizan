@@ -1547,6 +1547,20 @@ html.priv .mv,html.priv .tile b,html.priv .am,html.priv .nsbig b,html.priv .cfst
 .lock.lkout .lockbox>*{animation:none}
 @media (prefers-reduced-motion:reduce){.lkblob,.lkfp>i,.lkfp.scan .scanl,.lkfp.scan .fpa,.lock:not([hidden]) .lockbox>*{animation:none!important}.lkfp.scan .scanl{opacity:1;top:49%}}
 @media (max-height:640px){.lkfp{width:112px;height:112px}.lkfpin,.lkfpin svg{width:62px;height:62px}.lktop{margin-bottom:16px}.lkor{margin:14px 0 8px}}
+
+/* v225: parmak izi amblemi daha küçük ve zarif; logodan uzak */
+.lktop{margin-bottom:44px!important}
+.lkfp{width:96px!important;height:96px!important;margin-top:4px;background:color-mix(in srgb,var(--accent) 8%,var(--solid,var(--surface)))!important;box-shadow:0 10px 26px -18px color-mix(in srgb,var(--accent) 70%,transparent),inset 0 0 0 1px color-mix(in srgb,var(--accent) 20%,transparent)!important}
+:root[data-theme="dark"] .lkfp,:root[data-theme="glassd"] .lkfp{background:color-mix(in srgb,var(--accent) 14%,var(--solid,var(--surface)))!important}
+.lkfpin,.lkfpin svg{width:50px!important;height:50px!important}.lkfp.nobio .lkfpin svg{width:38px!important;height:38px!important}
+.lkfp>i{border-width:1px!important;animation-name:lkring2!important;animation-duration:3.2s!important}
+.lkfp>i+i{animation-delay:1.6s!important}
+@keyframes lkring2{0%{transform:scale(1);opacity:.45}100%{transform:scale(1.32);opacity:0}}
+.scanl{height:2px!important;left:26%!important;right:26%!important}
+.lkfp.ok{background:var(--good)!important;box-shadow:0 10px 26px -14px color-mix(in srgb,var(--good) 80%,transparent)!important}
+.lkcap{margin-top:16px!important;font-weight:500!important;font-size:13.5px!important;color:var(--muted-tx)!important}
+.lkor::before,.lkor::after{background:color-mix(in srgb,var(--muted-tx) 30%,transparent)!important}
+@media (max-height:640px){.lktop{margin-bottom:28px!important}.lkfp{width:84px!important;height:84px!important}.lkfpin,.lkfpin svg{width:44px!important;height:44px!important}}
 </style>
 
 <div class="app">
@@ -8485,7 +8499,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='224';
+const APP_VER='225';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
