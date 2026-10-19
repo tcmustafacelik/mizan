@@ -1168,6 +1168,10 @@ input[type=checkbox],input[type=radio]{border-radius:revert}
 /* v196 kart doğrulama */
 .wvexp{display:inline-block;margin-inline-start:6px;padding:1px 7px;border-radius:99px;background:#dc2626;color:#fff;font:700 10.5px var(--f-body);vertical-align:middle}
 #wvNumH.ok{color:#059669}.wvl{grid-template-columns:minmax(0,1fr)}.wvi{min-width:0}.wvexp{font-style:normal;margin-inline-end:6px;margin-inline-start:0}#wvNumH.bad{color:#dc2626}
+
+/* v197 klavye açıkken sade görünüm */
+body.kb .top,body.kb #selbar{position:relative!important;top:auto!important;transform:none!important}
+body.kb .calcfab{display:none!important}
 </style>
 
 <div class="app">
@@ -2307,9 +2311,16 @@ function setLang(l){
   try{applyLang()}catch(err){if(typeof TAP!=='undefined')tapLog('applyLang HATA: '+(err&&err.message)+' '+String(err&&err.stack||'').split('\n')[1]);throw err}
   if(typeof TAP!=='undefined')tapLog('LANG='+LANG+' sekme='+((document.querySelector('[data-tab=defter]')||{}).textContent||'').trim());
 }
+let kbMaxH=window.innerHeight,kbOn=false;
+function kbCheck(){const h=window.visualViewport?Math.min(window.innerHeight,visualViewport.height):window.innerHeight;if(h>kbMaxH||Math.abs(window.innerWidth-(kbCheck.w||0))>80){kbMaxH=Math.max(h,window.innerHeight);kbCheck.w=window.innerWidth}
+  const on=typingNow()&&h<kbMaxH-140;if(on!==kbOn){kbOn=on;document.body.classList.toggle('kb',on);drawSaveBar()}
+  if(on){const a=document.activeElement,r=a.getBoundingClientRect();if(r.bottom>h-12||r.top<8)a.scrollIntoView({block:'center'})}}
+kbCheck.w=window.innerWidth;
+window.addEventListener('resize',()=>setTimeout(kbCheck,60));if(window.visualViewport)visualViewport.addEventListener('resize',()=>setTimeout(kbCheck,60));
+document.addEventListener('focusin',()=>setTimeout(kbCheck,350));document.addEventListener('focusout',()=>setTimeout(kbCheck,120));
 function drawSaveBar(){
   const bar=$('#savebar');if(!bar)return;
-  bar.hidden=!dirty;document.body.classList.toggle('has-bar',dirty);
+  bar.hidden=!dirty||kbOn;document.body.classList.toggle('has-bar',dirty);
   const sv=$('#sbSave');if(sv){sv.disabled=saving;sv.textContent=saving?t('sb_saving'):t('sb_save')}
   if(dirty)setStatus('unsaved');else if(!saving&&stKind==='unsaved')setStatus(db?'saved':'local');
 }
@@ -2485,11 +2496,18 @@ function drawMonths(){
   }).join('');
   const m=plan.months.find(x=>x.ym===openYm);const cl=box.querySelector('[data-calc]');if(m&&cl)cl.innerHTML=calcLine(m);
 }
+function keepPos(fn){const a=document.activeElement,ok=a&&a!==document.body&&a.isConnected&&a.matches&&a.matches('input,textarea,select');const t0=ok?a.getBoundingClientRect().top:0;
+  const ca=document.documentElement.style.overflowAnchor;document.documentElement.style.overflowAnchor='none';
+  try{fn()}finally{if(ok&&a.isConnected){const d=a.getBoundingClientRect().top-t0;if(Math.abs(d)>.5)window.scrollBy(0,d)}document.documentElement.style.overflowAnchor=ca}}
+let liveT=0,liveM=null;
+function liveFlush(){clearTimeout(liveT);liveT=0;const m=liveM;liveM=null;if(!m)return;keepPos(()=>{drawTiles();drawPay();drawChart();drawSel()})}
 function live(m){
-  drawTiles();drawPay();drawChart();drawSel();
   const row=document.querySelector(`.mrow[data-ym="${m.ym}"]`);
-  if(row){row.querySelector('.mhead').innerHTML=headHTML(m);const cl=row.querySelector('[data-calc]');if(cl)cl.innerHTML=calcLine(m)}
+  keepPos(()=>{if(row){row.querySelector('.mhead').innerHTML=headHTML(m);const cl=row.querySelector('[data-calc]');if(cl)cl.innerHTML=calcLine(m)}});
+  liveM=m;clearTimeout(liveT);if(typingNow())liveT=setTimeout(liveFlush,600);else liveFlush();
 }
+function typingNow(){const a=document.activeElement;return !!(a&&a.matches&&a.matches('input:not([type=checkbox]):not([type=radio]):not([type=button]):not([type=file]),textarea'))}
+document.addEventListener('focusout',()=>{if(liveM)setTimeout(liveFlush,30)});
 function renderPlan(){
   $('#view').innerHTML=`
    <div id="closebox"></div>
@@ -6922,7 +6940,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='196';
+const APP_VER='197';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
