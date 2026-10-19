@@ -6828,7 +6828,8 @@ function spAlerts(by,ym){
       if(avg>0&&c.sum>avg*1.5&&c.sum-avg>Math.max(200,o.tot*0.05))out.push({w:(c.sum-avg),html:ux('sp_al_cat',{c:esc(c.name),x:(c.sum/avg).toLocaleString(LOC[LANG],{maximumFractionDigits:1}),v:moneyH(c.sum-avg)})})}
   }
   const byCat={};for(const e of ledger){if(e.type!=='gider')continue;const k=spKey((e.cat||'').trim()||t('cat_nocat'));(byCat[k]||(byCat[k]=[])).push(num(e.amount))}
-  for(const e of o.items){const k=spKey((e.cat||'').trim()||t('cat_nocat')),L=(byCat[k]||[]).slice().sort((a,b)=>a-b);if(L.length<5)continue;const med=L[L.length>>1],a=num(e.amount);
+  const MED={};for(const k in byCat){const L=byCat[k].sort((a,b)=>a-b);if(L.length>=5)MED[k]=L[L.length>>1]}
+  for(const e of o.items){const k=spKey((e.cat||'').trim()||t('cat_nocat'));if(MED[k]==null)continue;const med=MED[k],a=num(e.amount);
     if(a>med*3&&a>=500)out.push({w:a-med,html:ux('sp_al_big',{c:esc((e.cat||'').trim()||t('cat_nocat')),v:moneyH(a),d:`<bdi dir="ltr">${dmy(e.date).slice(0,5)}</bdi>`})})}
   return out.sort((a,b)=>b.w-a.w).slice(0,3);
 }
@@ -7374,7 +7375,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='208';
+const APP_VER='209';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
