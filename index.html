@@ -1305,6 +1305,10 @@ body.kb .calcfab{display:none!important}
 /* v212 Gider/Gelir seçici: başka .seg kuralıyla çakışmayı gider */
 #entryForm .seg,.seg:has(>label>input[type=radio]){display:grid!important;grid-template-columns:1fr 1fr;gap:4px;width:100%;padding:4px!important;border-radius:14px!important;box-sizing:border-box}
 #entryForm .seg span,.seg:has(>label>input[type=radio]) span{border-radius:10px!important;min-height:40px;padding:8px 10px}
+
+/* v213 kayıt silme onayı: satır içinde küçük hap */
+.erow .edel{align-self:center;height:40px;width:40px;margin-inline-end:6px;border-radius:12px!important}
+.erow .edel[data-armed],.erow .edel.armed{width:auto;min-width:56px;height:32px;padding:0 12px;margin-inline-end:10px;border-radius:99px!important;background:var(--bad)!important;color:#fff!important;font:650 12.5px var(--f-body);box-shadow:0 4px 12px -6px var(--bad)!important;animation:none!important;border:0!important}
 </style>
 
 <div class="app">
@@ -7557,7 +7561,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='212';
+const APP_VER='213';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
