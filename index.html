@@ -1467,11 +1467,35 @@ html:root #selbar.stuck,html:root[data-theme] #selbar.stuck{background:transpare
 html:root #selbar.stuck::before,html:root[data-theme] #selbar.stuck::before{display:none!important;content:none!important}
 html:root #selbar.stuck .selbar,html:root[data-theme] #selbar.stuck .selbar{background:color-mix(in srgb,var(--solid,var(--surface)) 94%,transparent)!important;-webkit-backdrop-filter:blur(22px) saturate(1.7);backdrop-filter:blur(22px) saturate(1.7);border:1px solid color-mix(in srgb,var(--line) 75%,transparent)!important;border-radius:22px!important;box-shadow:0 12px 30px -16px rgba(16,24,40,.38),0 1px 2px rgba(16,24,40,.06)!important}
 html:root[data-theme="glassd"] #selbar.stuck .selbar,html:root[data-theme="dark"] #selbar.stuck .selbar{background:color-mix(in srgb,var(--solid,var(--surface)) 90%,transparent)!important;box-shadow:0 14px 32px -16px rgba(0,0,0,.7)!important}
+
+/* v222 */
+html.priv .mv,html.priv .tile b,html.priv .am,html.priv .nsbig b,html.priv .cfst b,html.priv .hero b,html.priv .spv,html.priv .mfr b{filter:blur(7px);-webkit-user-select:none;user-select:none;transition:filter .2s}
+.mv{transition:filter .2s}
+.pvb{flex:none;width:26px;height:26px;padding:0;border:0;border-radius:8px;background:transparent;color:var(--muted-tx);display:grid;place-items:center;cursor:pointer}
+.pvb svg{width:17px;height:17px;fill:currentColor;margin:0}html.priv .pvb{color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent)}
+.kgbest{display:flex;align-items:center;gap:12px;padding:12px 14px;margin:4px 0 10px;border-radius:16px;background:color-mix(in srgb,var(--good) 10%,var(--surface));border:1px solid color-mix(in srgb,var(--good) 30%,var(--line))}
+.kgi{flex:none;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:color-mix(in srgb,var(--good) 18%,transparent);color:var(--good-tx)}.kgi svg{width:22px;height:22px;fill:currentColor;margin:0}
+.kgbest>div{display:grid;gap:1px;min-width:0}.kgbest small{font-size:12px;color:var(--muted-tx)}.kgbest b{font-size:16px;overflow-wrap:anywhere}.kgbest span{font-size:13px;color:var(--good-tx);font-weight:600}
+.kgd{font:600 13px var(--f-body)!important;color:var(--muted-tx)}
+.iki .yrd b{font-size:13px;white-space:nowrap}.iki .yrd b .ic{width:20px;height:20px;fill:var(--good-tx)}.iki.fin{opacity:.7}
+.ikcard{display:flex;gap:6px;align-items:flex-start;margin:2px 0 8px}.ikcard svg{width:15px;height:15px;fill:currentColor;flex:none;margin-top:2px}
+.krk{font-weight:650}.kract{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;margin-bottom:6px}.kract .btn{white-space:normal;line-height:1.3;min-height:44px}
+.krf{margin-bottom:6px}
+.cbv{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;margin:8px 0;border-radius:16px;border:1px solid var(--line)}
+.cbv.good{background:color-mix(in srgb,var(--good) 10%,var(--surface));border-color:color-mix(in srgb,var(--good) 35%,var(--line))}
+.cbv.warn{background:color-mix(in srgb,var(--warn) 12%,var(--surface));border-color:color-mix(in srgb,var(--warn) 45%,var(--line))}
+.cbv.bad{background:color-mix(in srgb,var(--bad) 9%,var(--surface));border-color:color-mix(in srgb,var(--bad) 40%,var(--line))}
+.cbi{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:#fff}.cbi svg{width:20px;height:20px;fill:currentColor;margin:0}
+.cbv.good .cbi{background:var(--good)}.cbv.warn .cbi{background:var(--warn)}.cbv.bad .cbi{background:var(--bad)}
+.cbv>div{min-width:0;display:grid;gap:4px}.cbv b{font-size:14.5px;line-height:1.4}.cbv p{margin:0;font-size:13px;color:var(--fg)}
+.cbx{margin:0 0 6px;padding-inline-start:20px;font-size:13px;color:var(--muted-tx);display:grid;gap:3px}
+.efseg{display:flex;gap:16px;margin:4px 0 8px}
+.gtt{margin:6px 0}.gtt .nsr b{font-size:13.5px}
 </style>
 
 <div class="app">
   <header class="top">
-    <div class="brand"><h1><span class="logo" id="logo"></span><span class="ttl"><span id="appTitle"></span><small id="appTag"></small></span></h1><span class="brr"><span class="brtop"><button type="button" id="ping" class="ping" hidden></button><button type="button" id="ghBadge" class="ghb" hidden aria-label="GitHub"></button><button type="button" id="nfBtn" class="hbtn nfb"></button><button type="button" id="helpBtn" class="hbtn"></button><button type="button" id="lkNow" class="hbtn lkn" hidden></button></span><span class="brbot"><span id="batt" class="batt" hidden></span><span id="status" class="status"></span></span></span></div>
+    <div class="brand"><h1><span class="logo" id="logo"></span><span class="ttl"><span id="appTitle"></span><small id="appTag"></small></span></h1><span class="brr"><span class="brtop"><button type="button" id="ping" class="ping" hidden></button><button type="button" id="ghBadge" class="ghb" hidden aria-label="GitHub"></button><button type="button" id="nfBtn" class="hbtn nfb"></button><button type="button" id="helpBtn" class="hbtn"></button><button type="button" id="lkNow" class="hbtn lkn" hidden></button></span><span class="brbot"><button type="button" id="pvBtn" class="pvb"></button><span id="batt" class="batt" hidden></span><span id="status" class="status"></span></span></span></div>
     <nav class="tabs" id="tabs" role="tablist"></nav>
   </header>
   <main id="view"><p class="hint" id="loading"></p></main>
@@ -1834,7 +1858,7 @@ const money=v=>{
   return LANG==='ar'?(SYMS[c]?SYMS[c]+fmt.format(r2(v)):fmt.format(r2(v))+' '+c):LANG==='ru'?fmt.format(r2(v))+'\u00A0'+(SYMS[c]||c):fmt.format(r2(v));
 };
 const viewSym=()=>{const c=viewCur();if(c===CUR)return curSym();if(LANG==='ar'||LANG==='ru')return SYMS[c]||c;try{const p=new Intl.NumberFormat(LOC[LANG],{style:'currency',currency:c,currencyDisplay:'narrowSymbol'}).formatToParts(0).find(x=>x.type==='currency');return p?p.value:c}catch(e){return c}};
-const moneyH=v=>`<bdi dir="ltr">${esc(money(v))}</bdi>`;
+const moneyH=v=>`<bdi class="mv" dir="ltr">${esc(money(v))}</bdi>`;
 const clone=o=>JSON.parse(JSON.stringify(o));
 const pad=n=>String(n).padStart(2,'0');
 const ymLabel=ym=>{const [y,m]=ym.split('-');return MONTHS[LANG][m-1]+' '+y};
@@ -2702,6 +2726,7 @@ async function removeEntry(id){
   try{const en=ledger.find(x=>x.id===id);if(en&&en.rid){const r=(plan.recurring||[]).find(z=>z.id===en.rid);if(r){r.skip=r.skip||[];const ym=en.date.slice(0,7);if(!r.skip.includes(ym)){r.skip.push(ym);queueSave()}}}}catch(e){}
   if(db){try{await ledgerCol.doc(id).delete();setStatus('saved')}catch(err){toast(t('t_delete_failed'))}}
   else{ledger=ledger.filter(x=>x.id!==id);try{await lsWrite(LS_LEDGER,ledger)}catch(err){}}
+  try{ruSync()}catch(err){}
   try{if(rcSet.has('e|'+id)){await rcOp('readwrite',st=>st.delete('e|'+id));rcSet.delete('e|'+id)}}catch(err){}
 }
 
@@ -3632,16 +3657,16 @@ async function repHtml(){
 
 /* ---- sekme ---- */
 const TOOLS=[
- ['g1',[['cal','calendar','#3b82f6','#6366f1'],['tk','bell-ring-outline','#2563eb','#38bdf8'],['rec','history','#0d9488','#22c55e'],['yr','calendar-range','#f97316','#f59e0b'],['ab','repeat','#8b5cf6','#c084fc'],['ft','zap','#eab308','#f59e0b']]],
+ ['g1',[['cal','calendar','#3b82f6','#6366f1'],['tk','bell-ring-outline','#2563eb','#38bdf8'],['rec','history','#0d9488','#22c55e'],['yr','calendar-range','#f97316','#f59e0b'],['ab','repeat','#8b5cf6','#c084fc'],['ft','zap','#eab308','#f59e0b'],['cb','shopping-cart','#16a34a','#4ade80']]],
  ['g2',[['ns','scale-balance','#4f46e5','#06b6d4'],['ay','trending-up','#0891b2','#22d3ee'],['yo','gift','#db2777','#f59e0b'],['an','chart-line','#4f46e5','#8b5cf6'],['rep','file-chart','#475569','#94a3b8'],['kur','currency-usd','#b45309','#facc15']]],
  ['g3',[['sav','piggy-bank','#059669','#34d399'],['goal','target','#db2777','#f472b6'],['pf','chart-pie','#2563eb','#818cf8'],['wi','heart','#e11d48','#fb7185'],['mo','trophy','#ca8a04','#facc15'],['kk','credit-card','#be123c','#f43f5e'],['loan','calculator','#0369a1','#38bdf8'],['ka','home','#b45309','#f59e0b'],['wal','key','#7c3aed','#c084fc']]],
- ['g4',[['ppl','account-group','#0284c7','#22d3ee'],['bo','swap-vertical','#0d9488','#2dd4bf'],['war','shield-check','#047857','#10b981'],['ia','undo','#0f766e','#5eead4']]]];
-const TOOL_L={ia:'ia_tab',wi:'wi_tab',mo:'mo_tab',pf:'pf_tab',tk:'tk_tab',ay:'ay_tab',yo:'yo_tab',ab:'ab_tab',ft:'ft_tab',ka:'ka_tab',ns:'ns_tab',kk:'kk_tab',bo:'bo_tab',cal:'tl_cal',an:'tl_an',wal:'wv_tab',ppl:'pp_tab',yr:'ya_tab',war:'wr_tab',sav:'tl_sav',goal:'tl_goal',loan:'tl_loan',rec:'tl_rec',rep:'tl_rep',kur:'tab_rates'};
-const toolName=k=>['sav','wal','ppl','yr','war','ab','ft','ka','ns','kk','bo','tk','ay','yo','ia','wi','mo','pf'].includes(k)?ux(TOOL_L[k]):t(TOOL_L[k]);
+ ['g4',[['ppl','account-group','#0284c7','#22d3ee'],['bo','swap-vertical','#0d9488','#2dd4bf'],['war','shield-check','#047857','#10b981'],['ia','undo','#0f766e','#5eead4'],['kr','tag','#9333ea','#c084fc']]]];
+const TOOL_L={cb:'cb_tab',kr:'kr_tab',ia:'ia_tab',wi:'wi_tab',mo:'mo_tab',pf:'pf_tab',tk:'tk_tab',ay:'ay_tab',yo:'yo_tab',ab:'ab_tab',ft:'ft_tab',ka:'ka_tab',ns:'ns_tab',kk:'kk_tab',bo:'bo_tab',cal:'tl_cal',an:'tl_an',wal:'wv_tab',ppl:'pp_tab',yr:'ya_tab',war:'wr_tab',sav:'tl_sav',goal:'tl_goal',loan:'tl_loan',rec:'tl_rec',rep:'tl_rep',kur:'tab_rates'};
+const toolName=k=>['sav','wal','ppl','yr','war','ab','ft','ka','ns','kk','bo','tk','ay','yo','ia','wi','mo','pf','cb','kr'].includes(k)?ux(TOOL_L[k]):t(TOOL_L[k]);
 const toolDef=k=>{for(const [,l] of TOOLS)for(const x of l)if(x[0]===k)return x;return null};
 function toolBadge(k){try{
   if(k==='wal')return wvHas()?(WV.open?String(WV.cards.length):ic('lock')):'';
-  const n=k==='ia'?(plan.refunds||[]).filter(x=>x.st!=='ok').length:k==='wi'?(plan.wish||[]).filter(x=>!x.st||x.st==='w').length:k==='pf'?(plan.inv||[]).length:k==='kk'?(plan.ccs||[]).length:k==='ab'?(plan.subs||[]).length:k==='bo'?Object.keys(boBal()).length:k==='ns'?(plan.assets||[]).length:k==='ppl'?(plan.people||[]).length:k==='yr'?(plan.yearly||[]).length:k==='war'?(plan.warr||[]).length:k==='goal'?(plan.goals||[]).length:k==='rec'?(plan.recurring||[]).length:0;
+  const n=k==='kr'?(plan.crules||[]).length:k==='ia'?(plan.refunds||[]).filter(x=>x.st!=='ok').length:k==='wi'?(plan.wish||[]).filter(x=>!x.st||x.st==='w').length:k==='pf'?(plan.inv||[]).length:k==='kk'?(plan.ccs||[]).length:k==='ab'?(plan.subs||[]).length:k==='bo'?Object.keys(boBal()).length:k==='ns'?(plan.assets||[]).length:k==='ppl'?(plan.people||[]).length:k==='yr'?(plan.yearly||[]).length:k==='war'?(plan.warr||[]).length:k==='goal'?(plan.goals||[]).length:k==='rec'?(plan.recurring||[]).length:0;
   return n?String(n):''}catch(e){return ''}}
 function hubHTML(){
   return `<div class="ahub"><div class="ahh"><span class="ahhi">${ic('wrench')}</span><div><h2>${t('tab_tools')}</h2><p>${ux('ah_p')}</p></div></div>
@@ -3717,15 +3742,17 @@ function renderTools(){
   let body='';
   if(toolSec==='cal')body=calHTML();
   else if(toolSec==='an')body=shiftHTML()+deferSumHTML()+fcHTML()+lateHTML()+endHTML()+sgHTML()+simHTML();
-  else if(toolSec==='goal')body=goalsHTML();
+  else if(toolSec==='goal')body=efHTML()+ruHTML()+goalsHTML();
   else if(toolSec==='loan')body=loanHTML();
   else if(toolSec==='rec')body=recHTML();
   else if(toolSec==='wal')body=wvHTML();
   else if(toolSec==='ppl')body=ppHTML();
   else if(toolSec==='yr')body=yrHTML();
   else if(toolSec==='war')body=wrHTML();
-  else if(toolSec==='kk')body=kkHTML();
-  else if(toolSec==='ns')body=nsHTML();
+  else if(toolSec==='kk')body=kgHTML()+kkHTML()+ikHTML();
+  else if(toolSec==='cb')body=cbHTML();
+  else if(toolSec==='kr')body=krHTML();
+  else if(toolSec==='ns')body=nsHTML()+gtHTML();
   else if(toolSec==='bo')body=boHTML();
   else if(toolSec==='ab')body=abHTML();
   else if(toolSec==='ft')body=ftHTML();
@@ -4265,7 +4292,7 @@ function boBal(){const B={};const add=(n,v)=>{if(!n)return;B[n]=r2((B[n]||0)+v)}
     if(!s.payer)w.forEach(n=>add(n,sh));else if(me)add(s.payer,-sh)});
   (plan.settles||[]).forEach(z=>add(z.n,-num(z.amt)));Object.keys(B).forEach(k=>{if(Math.abs(B[k])<0.005)delete B[k]});return B}
 function nsCalc(){const man=(plan.assets||[]).reduce((a,x)=>a+num(x.v),0),hv=hdValue(),rec=(plan.people||[]).reduce((a,x)=>a+num(x.rec),0)+Object.values(boBal()).filter(v=>v>0).reduce((a,v)=>a+v,0);
-  const debt=totalLeftDebt()+(plan.ccs||[]).reduce((a,x)=>a+num(x.debt),0)+Object.values(boBal()).filter(v=>v<0).reduce((a,v)=>a-v,0);
+  const debt=totalLeftDebt()+(plan.ccs||[]).reduce((a,x)=>a+num(x.debt),0)+(typeof ikLeft==='function'?ikLeft():0)+Object.values(boBal()).filter(v=>v<0).reduce((a,v)=>a-v,0);
   const pv=typeof pfValue==='function'?pfValue():0;const a=r2(man+hv+rec+pv);return {man:r2(man),hv,pv,rec:r2(rec),a,d:r2(debt),net:r2(a-debt)}}
 function nsSnap(){try{if(!plan||!(plan.assets||plan.ccs||plan.holdings||plan.inv))return;const c=nsCalc(),ym=ymToday();plan.nwh=plan.nwh||{};const o=plan.nwh[ym];if(!o||o[0]!==c.a||o[1]!==c.d)plan.nwh[ym]=[c.a,c.d]}catch(e){}}
 function nsFormHTML(){const x=xEdit.ns==='new'?{t:'bank'}:(plan.assets||[]).find(q=>q.id===xEdit.ns)||{};
@@ -4282,7 +4309,7 @@ function nsHTML(){const c=nsCalc();const H=plan.nwh||{};const ks=Object.keys(H).
    <h4 class="xh4">${ux('ns_assets')}</h4>
    ${xEdit.ns!==null?nsFormHTML():''}
    ${rows.length?`<div class="nsl">${rows.map(([i,n,v,a])=>`<div class="nsr"${a?` data-x="${a}" role="button" tabindex="0"`:''}><span class="nsi">${i}</span><span>${esc(n)}</span><b>${moneyH(v)}</b></div>`).join('')}</div>`:`<p class="hint nsempty">${ux('ns_intro')}</p>`}
-   <div class="nsl nsd"><div class="nsr"><span class="nsi">${ic('landmark')}</span><span>${ux('ns_loans')}</span><b>${moneyH(totalLeftDebt())}</b></div>${(plan.ccs||[]).length?`<div class="nsr"><span class="nsi">${ic('credit-card')}</span><span>${ux('kk_h')}</span><b>${moneyH((plan.ccs||[]).reduce((a,x)=>a+num(x.debt),0))}</b></div>`:''}</div>
+   <div class="nsl nsd"><div class="nsr"><span class="nsi">${ic('landmark')}</span><span>${ux('ns_loans')}</span><b>${moneyH(totalLeftDebt())}</b></div>${(plan.ccs||[]).length?`<div class="nsr"><span class="nsi">${ic('credit-card')}</span><span>${ux('kk_h')}</span><b>${moneyH((plan.ccs||[]).reduce((a,x)=>a+num(x.debt),0))}</b></div>`:''}${ikLeft()>0?`<div class="nsr"><span class="nsi">${ic('calendar-range')}</span><span>${ux('ik_left')}</span><b>${moneyH(ikLeft())}</b></div>`:''}</div>
    ${xEdit.ns===null?`<button type="button" class="btn primary wide" data-x="ns:add">${ic('plus')}${ux('ns_add')}</button>`:''}<p class="hint">${ux('ns_note')}</p></section>`}
 
 /* ---- 3. Bölüşüm ---- */
@@ -4983,6 +5010,255 @@ Object.assign(UX.tr,{"gb_aurora": "Kutup ışığı", "gb_rose": "Gül", "gb_dus
 Object.assign(UX.en,{"gb_aurora": "Aurora", "gb_rose": "Rose", "gb_dusk": "Dusk", "gb_sand": "Sand", "gb_ice": "Ice", "gb_mint": "Mint", "gb_mocha": "Mocha", "gb_graphite": "Graphite"});
 Object.assign(UX.ru,{"gb_aurora": "Сияние", "gb_rose": "Роза", "gb_dusk": "Сумерки", "gb_sand": "Песок", "gb_ice": "Лёд", "gb_mint": "Мята", "gb_mocha": "Мокко", "gb_graphite": "Графит"});
 Object.assign(UX.ar,{"gb_aurora": "الشفق القطبي", "gb_rose": "وردي", "gb_dusk": "غسق", "gb_sand": "رمال", "gb_ice": "جليد", "gb_mint": "نعناع", "gb_mocha": "موكا", "gb_graphite": "غرافيت"});
+Object.assign(UX.tr,{pv_hide:'Tutarları gizle',pv_show:'Tutarları göster',pv_on:'Gizlilik modu açık: tutarlar gizlendi',pv_off:'Tutarlar görünür',
+cb_tab:'Alabilir miyim?',kr_tab:'Kategori kuralları',
+ik_h:'Taksitli alışverişler',ik_intro:'Kartla yaptığın taksitli alışverişleri ekle; her ay ekstreye gelen taksit, kalan taksit borcu ve bloke limit burada görünür.',ik_add:'Taksit ekle',ik_name:'Ne aldın',ik_name_ph:'Örn. Telefon',ik_card:'Kart',ik_nocard:'Kart borçları bölümüne kart eklersen ekstre ayı hesap kesim gününe göre hesaplanır.',ik_amt:'Toplam tutar',ik_cnt:'Taksit',ik_n:p=>`${p.n} taksit`,ik_date:'Alışveriş tarihi',
+ik_prev:p=>`Ayda ${p.v} · ilk taksit ${p.f} ekstresinde, son taksit ${p.l}`,ik_this:'Bu ay ekstreye gelen',ik_left:'Gelecek taksitler',ik_block:p=>`${p.n}: ${p.v} taksit limitte bloke; gerçek boş limit ${p.f}`,ik_unit:'taksit',ik_pm:'/ ay',ik_last:p=>`son: ${p.m}`,ik_fin:'Bitti',ik_lastnow:'Son taksit bu ay',ik_rem:p=>`kalan ${p.v}`,
+ik_note:'Bu ayın taksiti kartın dönem borcuna dahildir; “Gelecek taksitler” henüz ekstreye gelmemiş olanlardır ve Net servet’te borç olarak sayılır.',ik_saved:p=>`Kaydedildi, ilk taksit ${p.m} ekstresinde`,
+kg_h:'Bugün hangi kartla alışveriş?',kg_today:'Bugün en uzun vadeli kart',kg_pay:p=>`Ödemesi ${p.d} · ${p.n} gün sonra`,kg_row:p=>`kesim ${p.c} · ödeme ${p.d}`,kg_free:p=>`boş ${p.v}`,kg_days:p=>`${p.n} gün`,kg_cutday:'Bugün bir kartın hesap kesim günü; bugünkü harcama bankaya göre bu ekstreye de girebilir.',kg_note:'Hesap kesiminden hemen sonra yapılan harcama bir sonraki ekstreye girer, böylece en geç ödenir. Faizsiz süre kart sözleşmesine göre değişebilir.',
+kr_h:'Kategori kuralları',kr_intro:'Açıklamasında belirli bir kelime geçen kayıtlar otomatik olarak seçtiğin kategoriye girer: elle girişte, SMS’ten, fişten ve ekstreden.',kr_k:'Açıklamada geçen',kr_k_ph:'Örn. Migros',kr_c:'Kategori',kr_c_ph:'Örn. Market',kr_t:'Kayıt türü',kr_t_all:'Gelir ve gider',kr_add:'Kural ekle',kr_list:p=>`Kurallar (${p.n})`,
+kr_sug:'Önerilen kurallar',kr_sug_n:p=>`${p.m} kaydın ${p.n} tanesi`,kr_take:'Ekle',kr_apply_h:'Eski kayıtlara uygula',kr_apply0:p=>`Kategorisiz ${p.n} kayda uygula`,kr_apply1:p=>`Eşleşen tüm kayıtlara uygula (${p.n})`,kr_apply_q:p=>`${p.n} kaydın kategorisi kurala göre değişecek. Devam edilsin mi?`,kr_apply_ok:'Uygula',kr_applied:p=>`${p.n} kaydın kategorisi güncellendi`,
+kr_note:'Birden fazla kural eşleşirse en uzun kelimeli kural geçerli olur. Büyük-küçük harf ve Türkçe karakter farkı önemsizdir.',kr_e_k:'Kelime yaz',kr_e_c:'Kategori yaz',kr_added:p=>`Kural eklendi: ${p.k} → ${p.c}`,
+cb_h:'Bunu alabilir miyim?',cb_intro:'Tutarı yaz; elindeki para, yaklaşan ödemeler ve beklenen gelirlerle önümüzdeki 35 gün hesaplanır.',cb_w:'Ne almak istiyorsun',cb_w_ph:'İsteğe bağlı',cb_a:'Tutar',cb_d:'Ne zaman',cb_n:'Ödeme',cb_cash1:'Peşin',
+cb_nocash:'Önce “Şu an elimdeki para” tutarını gir; hesap buna göre yapılır.',cb_hint:'Tutarı yazınca sonuç burada çıkar.',cb_far:'Bu tarih 35 günlük tahminin dışında.',cb_no:p=>`Alırsan ${p.d} günü ${p.v} eksiye düşersin.`,cb_later:p=>`${p.d} tarihinde alırsan eksiye düşmezsin.`,cb_inst:p=>`${p.n} taksitle (ayda ${p.v}) alırsan eksiye düşmezsin.`,cb_none:'Önümüzdeki 35 günde uygun bir gün yok; tutarı azaltmayı ya da ertelemeyi düşün.',
+cb_tight:p=>`Alabilirsin ama ${p.d} günü bakiyen ${p.v}’ye kadar iner.`,cb_ok:p=>`Rahat alırsın. En düşük bakiyen ${p.v} olur (${p.d}).`,cb_work:p=>`Bu tutar ${p.w}.`,cb_goal:p=>`“${p.g}” hedefinin %${p.p}’si kadar.`,cb_towish:'İstek listesine ekle',cb_wish_n:'Alışveriş',cb_wished:'İstek listesine eklendi, 7 gün sonra sorulacak',
+cb_note:'Tahmin; Plan’daki gelir ve ödemelerle ihtiyaç tutarına dayanır. Taksitler 30 günde bir düşülür.',
+ru_h:'Küsurat birikimi',ru_intro:'Her harcama yukarı yuvarlanır, aradaki fark seçtiğin hedefe birikim olarak eklenir. Örneğin 87,50 TL harcamada 2,50 TL biriktirirsin.',ru_s:'Yuvarla',ru_g:'Hedef',ru_start:'Başlat',ru_nogoal:'Önce aşağıdan bir birikim hedefi oluştur.',ru_month:'Bu ay biriken',ru_tot:'Başladığından beri',
+ru_ex:p=>`${p.a} harcama → ${p.b}: ${p.c} birikime.`,ru_to:p=>`“${p.g}” hedefine ekleniyor.`,ru_stop:'Durdur',ru_stop_q:'Küsurat birikimi durdurulsun mu? Hedefe eklenen tutarlar kalır.',ru_started:'Küsurat birikimi başladı',ru_note:'Yalnızca Defter’e girdiğin harcamalar sayılır; kalem ödemeleri ve tekrarlayan kayıtlar hariç. Kayıt silinirse ya da değişirse hedef de güncellenir. Bu sanal bir birikim; parayı ayrıca kenara koymayı unutma.',
+ef_h:'Acil durum fonu',ef_nodata:'Plan’a ya da Defter’e gider girdikçe önerilen tutar hesaplanır.',ef_base_p:p=>`Aylık zorunlu giderin ≈ ${p.v} (bu ayın ihtiyaç tutarı + borç ödemeleri).`,ef_base_l:p=>`Aylık giderin ≈ ${p.v} (son 3 ayın ortalaması).`,ef_m:p=>`${p.n} aylık`,ef_target:p=>`${p.n} aylık güvence için`,ef_cov:p=>`${p.m} aylık güvencen var`,
+ef_have:p=>`Biriken ${p.v} · %${p.p}`,ef_upd:p=>`Hedefi ${p.v} olarak güncelle`,ef_make:'Acil durum fonu hedefi oluştur',ef_made:'Acil durum fonu hedefi eklendi',ef_note:'İş kaybı, sağlık ya da büyük bir arıza gibi durumlar için ayrılan para. Uzmanlar en az 3, mümkünse 6 aylık zorunlu gideri önerir.',
+gt_h:'Gelecek tahmini',gt_intro:'Bugünkü net servetin ve Plan’daki gelir, borç ve ihtiyaç tutarlarıyla 5 yıl sonrası.',gt_now:'Şimdi',gt_y:p=>`${p.n} yıl`,gt_base:'Bu gidişle',gt_alt:'Daha fazla biriktirirsen',gt_x:'Ayda şu kadar daha biriktirsem',gt_x_ph:'Örn. 2000',
+gt_note:'Plan bittikten sonra son 3 ayın gelir ve ihtiyaç ortalaması kullanılır. Enflasyon, faiz ve yatırım getirisi hesaba katılmaz; kabaca bir yön gösterir.'});
+Object.assign(UX.en,{pv_hide:'Hide amounts',pv_show:'Show amounts',pv_on:'Privacy mode on: amounts hidden',pv_off:'Amounts visible',
+cb_tab:'Can I afford it?',kr_tab:'Category rules',
+ik_h:'Card installments',ik_intro:'Add purchases you split into card installments; the installment on each statement, the remaining balance and the blocked limit appear here.',ik_add:'Add installment plan',ik_name:'What did you buy',ik_name_ph:'e.g. Phone',ik_card:'Card',ik_nocard:'If you add cards under Card bills, the first statement month is worked out from the statement day.',ik_amt:'Total amount',ik_cnt:'Installments',ik_n:p=>`${p.n} installments`,ik_date:'Purchase date',
+ik_prev:p=>`${p.v} a month · first on the ${p.f} statement, last ${p.l}`,ik_this:'On this month’s statement',ik_left:'Future installments',ik_block:p=>`${p.n}: ${p.v} of installments block the limit; real available limit ${p.f}`,ik_unit:'paid',ik_pm:'/ mo',ik_last:p=>`last: ${p.m}`,ik_fin:'Done',ik_lastnow:'Last installment this month',ik_rem:p=>`${p.v} left`,
+ik_note:'This month’s installment is part of the card’s statement balance; “Future installments” are not on a statement yet and count as debt in Net worth.',ik_saved:p=>`Saved, first installment on the ${p.m} statement`,
+kg_h:'Which card to use today?',kg_today:'Longest time to pay today',kg_pay:p=>`Due ${p.d} · in ${p.n} days`,kg_row:p=>`statement ${p.c} · due ${p.d}`,kg_free:p=>`${p.v} free`,kg_days:p=>`${p.n} days`,kg_cutday:'Today is a statement day for one of your cards; today’s purchase may still land on this statement.',kg_note:'A purchase right after the statement date goes on the next statement, so you pay it last. Interest-free periods depend on your card agreement.',
+kr_h:'Category rules',kr_intro:'Entries whose description contains a word go into the category you choose automatically: manual entries, SMS, receipts and statements.',kr_k:'Description contains',kr_k_ph:'e.g. Tesco',kr_c:'Category',kr_c_ph:'e.g. Groceries',kr_t:'Entry type',kr_t_all:'Income and expense',kr_add:'Add rule',kr_list:p=>`Rules (${p.n})`,
+kr_sug:'Suggested rules',kr_sug_n:p=>`${p.n} of ${p.m} entries`,kr_take:'Add',kr_apply_h:'Apply to past entries',kr_apply0:p=>`Apply to ${p.n} uncategorised entries`,kr_apply1:p=>`Apply to all matching entries (${p.n})`,kr_apply_q:p=>`The category of ${p.n} entries will change to follow your rules. Continue?`,kr_apply_ok:'Apply',kr_applied:p=>`${p.n} entries recategorised`,
+kr_note:'If several rules match, the one with the longest word wins. Upper/lower case and Turkish letters don’t matter.',kr_e_k:'Type a word',kr_e_c:'Type a category',kr_added:p=>`Rule added: ${p.k} → ${p.c}`,
+cb_h:'Can I afford it?',cb_intro:'Enter an amount; the next 35 days are worked out from your cash, upcoming payments and expected income.',cb_w:'What do you want to buy',cb_w_ph:'Optional',cb_a:'Amount',cb_d:'When',cb_n:'Payment',cb_cash1:'Pay in full',
+cb_nocash:'First enter your “Cash on hand now”; the check is based on it.',cb_hint:'Enter an amount to see the result here.',cb_far:'This date is beyond the 35-day forecast.',cb_no:p=>`If you buy it you go ${p.v} below zero on ${p.d}.`,cb_later:p=>`Buy it on ${p.d} and you stay above zero.`,cb_inst:p=>`With ${p.n} installments (${p.v} a month) you stay above zero.`,cb_none:'No suitable day in the next 35 days; consider a smaller amount or waiting.',
+cb_tight:p=>`You can, but your balance drops to ${p.v} on ${p.d}.`,cb_ok:p=>`You can afford it. Your lowest balance will be ${p.v} (${p.d}).`,cb_work:p=>`This amount is ${p.w}.`,cb_goal:p=>`That’s ${p.p}% of your “${p.g}” goal.`,cb_towish:'Add to wish list',cb_wish_n:'Purchase',cb_wished:'Added to your wish list; you’ll be asked in 7 days',
+cb_note:'An estimate based on the income, payments and needs in your Plan. Installments are taken every 30 days.',
+ru_h:'Round-up savings',ru_intro:'Each expense is rounded up and the difference is added to the goal you choose. For example, spending 87.50 saves 2.50.',ru_s:'Round to',ru_g:'Goal',ru_start:'Start',ru_nogoal:'Create a savings goal below first.',ru_month:'This month',ru_tot:'Since you started',
+ru_ex:p=>`${p.a} spent → ${p.b}: ${p.c} saved.`,ru_to:p=>`Added to “${p.g}”.`,ru_stop:'Stop',ru_stop_q:'Stop round-up savings? Amounts already added to the goal stay.',ru_started:'Round-up savings started',ru_note:'Only expenses you enter in the Ledger count; item payments and recurring entries are excluded. If an entry changes or is deleted the goal is updated too. This is a virtual saving; remember to set the money aside.',
+ef_h:'Emergency fund',ef_nodata:'As you add expenses to your Plan or Ledger the suggested amount is calculated.',ef_base_p:p=>`Your essential monthly spending ≈ ${p.v} (this month’s needs + debt payments).`,ef_base_l:p=>`Your monthly spending ≈ ${p.v} (average of the last 3 months).`,ef_m:p=>`${p.n} months`,ef_target:p=>`For ${p.n} months of cover`,ef_cov:p=>`You have ${p.m} months of cover`,
+ef_have:p=>`Saved ${p.v} · ${p.p}%`,ef_upd:p=>`Update the goal to ${p.v}`,ef_make:'Create emergency fund goal',ef_made:'Emergency fund goal added',ef_note:'Money set aside for job loss, health or a big repair. Experts suggest at least 3, ideally 6 months of essential spending.',
+gt_h:'Future forecast',gt_intro:'Your net worth in 5 years, based on today’s net worth and the income, debt and needs in your Plan.',gt_now:'Now',gt_y:p=>`${p.n} yr`,gt_base:'On this path',gt_alt:'If you save more',gt_x:'If I saved this much more a month',gt_x_ph:'e.g. 200',
+gt_note:'After your Plan ends, the average income and needs of its last 3 months are used. Inflation, interest and investment returns are not included; it shows a rough direction.'});
+Object.assign(UX.ru,{pv_hide:'Скрыть суммы',pv_show:'Показать суммы',pv_on:'Режим конфиденциальности: суммы скрыты',pv_off:'Суммы видны',
+cb_tab:'Могу ли я купить?',kr_tab:'Правила категорий',
+ik_h:'Покупки в рассрочку',ik_intro:'Добавьте покупки в рассрочку по карте; здесь видны платёж в каждой выписке, остаток и заблокированный лимит.',ik_add:'Добавить рассрочку',ik_name:'Что купили',ik_name_ph:'Напр. Телефон',ik_card:'Карта',ik_nocard:'Если добавить карты в «Долги по картам», месяц первой выписки считается по дню выписки.',ik_amt:'Общая сумма',ik_cnt:'Платежей',ik_n:p=>`${p.n} платежей`,ik_date:'Дата покупки',
+ik_prev:p=>`${p.v} в месяц · первый в выписке за ${p.f}, последний ${p.l}`,ik_this:'В выписке этого месяца',ik_left:'Будущие платежи',ik_block:p=>`${p.n}: ${p.v} рассрочки блокируют лимит; реально доступно ${p.f}`,ik_unit:'оплачено',ik_pm:'/ мес',ik_last:p=>`последний: ${p.m}`,ik_fin:'Завершено',ik_lastnow:'Последний платёж в этом месяце',ik_rem:p=>`осталось ${p.v}`,
+ik_note:'Платёж этого месяца входит в долг по выписке; «Будущие платежи» ещё не попали в выписку и учитываются как долг в Капитале.',ik_saved:p=>`Сохранено, первый платёж в выписке за ${p.m}`,
+kg_h:'Какой картой платить сегодня?',kg_today:'Самый долгий срок оплаты сегодня',kg_pay:p=>`Оплата ${p.d} · через ${p.n} дн.`,kg_row:p=>`выписка ${p.c} · оплата ${p.d}`,kg_free:p=>`свободно ${p.v}`,kg_days:p=>`${p.n} дн.`,kg_cutday:'Сегодня день выписки одной из карт; сегодняшняя покупка может попасть в эту выписку.',kg_note:'Покупка сразу после даты выписки попадает в следующую выписку, поэтому оплачивается позже всего. Беспроцентный период зависит от договора карты.',
+kr_h:'Правила категорий',kr_intro:'Записи, в описании которых есть слово, автоматически попадают в выбранную категорию: ручной ввод, SMS, чеки и выписки.',kr_k:'Описание содержит',kr_k_ph:'Напр. Пятёрочка',kr_c:'Категория',kr_c_ph:'Напр. Продукты',kr_t:'Тип записи',kr_t_all:'Доход и расход',kr_add:'Добавить правило',kr_list:p=>`Правила (${p.n})`,
+kr_sug:'Предлагаемые правила',kr_sug_n:p=>`${p.n} из ${p.m} записей`,kr_take:'Добавить',kr_apply_h:'Применить к прошлым записям',kr_apply0:p=>`Применить к ${p.n} записям без категории`,kr_apply1:p=>`Применить ко всем совпадениям (${p.n})`,kr_apply_q:p=>`Категория ${p.n} записей изменится по правилам. Продолжить?`,kr_apply_ok:'Применить',kr_applied:p=>`Категория обновлена у ${p.n} записей`,
+kr_note:'Если подходит несколько правил, побеждает самое длинное слово. Регистр и турецкие буквы не важны.',kr_e_k:'Введите слово',kr_e_c:'Введите категорию',kr_added:p=>`Правило добавлено: ${p.k} → ${p.c}`,
+cb_h:'Могу ли я купить?',cb_intro:'Введите сумму; ближайшие 35 дней считаются по деньгам на руках, предстоящим платежам и ожидаемым доходам.',cb_w:'Что хотите купить',cb_w_ph:'Необязательно',cb_a:'Сумма',cb_d:'Когда',cb_n:'Оплата',cb_cash1:'Сразу',
+cb_nocash:'Сначала укажите «Деньги на руках сейчас»; расчёт строится от этой суммы.',cb_hint:'Введите сумму, и результат появится здесь.',cb_far:'Эта дата за пределами 35-дневного прогноза.',cb_no:p=>`Если купите, ${p.d} баланс уйдёт в минус на ${p.v}.`,cb_later:p=>`Купите ${p.d} — и не уйдёте в минус.`,cb_inst:p=>`В рассрочку на ${p.n} мес. (${p.v} в месяц) — без минуса.`,cb_none:'В ближайшие 35 дней подходящего дня нет; уменьшите сумму или отложите покупку.',
+cb_tight:p=>`Можно, но ${p.d} баланс опустится до ${p.v}.`,cb_ok:p=>`Можете спокойно купить. Минимальный баланс ${p.v} (${p.d}).`,cb_work:p=>`Эта сумма — ${p.w}.`,cb_goal:p=>`Это ${p.p}% цели «${p.g}».`,cb_towish:'В список желаний',cb_wish_n:'Покупка',cb_wished:'Добавлено в список желаний, спросим через 7 дней',
+cb_note:'Оценка по доходам, платежам и нуждам из Плана. Рассрочка списывается раз в 30 дней.',
+ru_h:'Накопление округлением',ru_intro:'Каждый расход округляется вверх, а разница добавляется к выбранной цели. Например, при трате 87,50 откладывается 2,50.',ru_s:'Округлять до',ru_g:'Цель',ru_start:'Начать',ru_nogoal:'Сначала создайте цель накопления ниже.',ru_month:'В этом месяце',ru_tot:'С начала',
+ru_ex:p=>`Трата ${p.a} → ${p.b}: ${p.c} в накопления.`,ru_to:p=>`Добавляется к цели «${p.g}».`,ru_stop:'Остановить',ru_stop_q:'Остановить накопление округлением? Добавленные к цели суммы останутся.',ru_started:'Накопление округлением запущено',ru_note:'Учитываются только расходы из Журнала; платежи по статьям и повторяющиеся записи не входят. При изменении или удалении записи цель тоже обновляется. Это виртуальное накопление — не забудьте отложить деньги.',
+ef_h:'Резервный фонд',ef_nodata:'Сумма рассчитается, когда в Плане или Журнале появятся расходы.',ef_base_p:p=>`Обязательные расходы в месяц ≈ ${p.v} (нужды + платежи по долгам этого месяца).`,ef_base_l:p=>`Расходы в месяц ≈ ${p.v} (среднее за 3 месяца).`,ef_m:p=>`${p.n} мес.`,ef_target:p=>`Запас на ${p.n} мес.`,ef_cov:p=>`Запас на ${p.m} мес.`,
+ef_have:p=>`Накоплено ${p.v} · ${p.p}%`,ef_upd:p=>`Обновить цель до ${p.v}`,ef_make:'Создать цель «Резервный фонд»',ef_made:'Цель «Резервный фонд» добавлена',ef_note:'Деньги на случай потери работы, болезни или крупной поломки. Обычно советуют запас минимум на 3, лучше на 6 месяцев обязательных расходов.',
+gt_h:'Прогноз на будущее',gt_intro:'Капитал через 5 лет по текущему капиталу и доходам, долгам и нуждам из Плана.',gt_now:'Сейчас',gt_y:p=>`${p.n} г.`,gt_base:'При текущем темпе',gt_alt:'Если откладывать больше',gt_x:'Если откладывать больше на',gt_x_ph:'Напр. 5000',
+gt_note:'После окончания Плана используются средние доход и нужды за последние 3 месяца. Инфляция, проценты и доходность не учитываются; это лишь общее направление.'});
+Object.assign(UX.ar,{pv_hide:'إخفاء المبالغ',pv_show:'إظهار المبالغ',pv_on:'وضع الخصوصية مفعّل: المبالغ مخفية',pv_off:'المبالغ ظاهرة',
+cb_tab:'هل أستطيع شراءه؟',kr_tab:'قواعد الفئات',
+ik_h:'مشتريات بالتقسيط',ik_intro:'أضف مشترياتك المقسّطة على البطاقة؛ يظهر هنا قسط كل كشف والمتبقي والحد المحجوز.',ik_add:'إضافة تقسيط',ik_name:'ماذا اشتريت',ik_name_ph:'مثال: هاتف',ik_card:'البطاقة',ik_nocard:'إذا أضفت بطاقات في «ديون البطاقات» يُحسب شهر أول كشف من يوم الكشف.',ik_amt:'المبلغ الإجمالي',ik_cnt:'الأقساط',ik_n:p=>`${p.n} أقساط`,ik_date:'تاريخ الشراء',
+ik_prev:p=>`${p.v} شهريًا · الأول في كشف ${p.f}، والأخير ${p.l}`,ik_this:'في كشف هذا الشهر',ik_left:'أقساط قادمة',ik_block:p=>`${p.n}: ${p.v} من الأقساط تحجز الحد؛ المتاح فعليًا ${p.f}`,ik_unit:'مدفوع',ik_pm:'/ شهر',ik_last:p=>`الأخير: ${p.m}`,ik_fin:'انتهى',ik_lastnow:'آخر قسط هذا الشهر',ik_rem:p=>`متبقٍ ${p.v}`,
+ik_note:'قسط هذا الشهر ضمن رصيد كشف البطاقة؛ «الأقساط القادمة» لم تدخل كشفًا بعد وتُحسب دينًا في صافي الثروة.',ik_saved:p=>`حُفظ، أول قسط في كشف ${p.m}`,
+kg_h:'بأي بطاقة أشتري اليوم؟',kg_today:'أطول مهلة دفع اليوم',kg_pay:p=>`الدفع ${p.d} · بعد ${p.n} يوم`,kg_row:p=>`الكشف ${p.c} · الدفع ${p.d}`,kg_free:p=>`متاح ${p.v}`,kg_days:p=>`${p.n} يوم`,kg_cutday:'اليوم يوم كشف إحدى بطاقاتك؛ قد تدخل مشتريات اليوم في هذا الكشف.',kg_note:'المشتريات بعد تاريخ الكشف مباشرة تدخل الكشف التالي فتُدفع في آخر موعد. فترة السماح بلا فائدة تعتمد على عقد البطاقة.',
+kr_h:'قواعد الفئات',kr_intro:'القيود التي يحتوي وصفها على كلمة معيّنة تدخل تلقائيًا في الفئة التي تختارها: الإدخال اليدوي والرسائل والفواتير والكشوف.',kr_k:'الوصف يحتوي على',kr_k_ph:'مثال: كارفور',kr_c:'الفئة',kr_c_ph:'مثال: بقالة',kr_t:'نوع القيد',kr_t_all:'دخل ومصروف',kr_add:'إضافة قاعدة',kr_list:p=>`القواعد (${p.n})`,
+kr_sug:'قواعد مقترحة',kr_sug_n:p=>`${p.n} من ${p.m} قيود`,kr_take:'إضافة',kr_apply_h:'تطبيق على القيود السابقة',kr_apply0:p=>`تطبيق على ${p.n} قيود بلا فئة`,kr_apply1:p=>`تطبيق على كل القيود المطابقة (${p.n})`,kr_apply_q:p=>`ستتغير فئة ${p.n} قيود حسب القواعد. هل تتابع؟`,kr_apply_ok:'تطبيق',kr_applied:p=>`حُدّثت فئة ${p.n} قيود`,
+kr_note:'إذا طابقت عدة قواعد تُطبَّق القاعدة ذات الكلمة الأطول. لا يهم حجم الأحرف ولا الأحرف التركية.',kr_e_k:'اكتب كلمة',kr_e_c:'اكتب فئة',kr_added:p=>`أُضيفت القاعدة: ${p.k} → ${p.c}`,
+cb_h:'هل أستطيع شراءه؟',cb_intro:'اكتب المبلغ؛ تُحسب الأيام الـ35 القادمة من المال المتوفر والدفعات القادمة والدخل المتوقع.',cb_w:'ماذا تريد أن تشتري',cb_w_ph:'اختياري',cb_a:'المبلغ',cb_d:'متى',cb_n:'الدفع',cb_cash1:'دفعة واحدة',
+cb_nocash:'أدخل أولًا «المال المتوفر الآن»؛ الحساب مبني عليه.',cb_hint:'اكتب المبلغ لتظهر النتيجة هنا.',cb_far:'هذا التاريخ خارج توقع الـ35 يومًا.',cb_no:p=>`إن اشتريته ينخفض رصيدك تحت الصفر بمقدار ${p.v} في ${p.d}.`,cb_later:p=>`اشترِه في ${p.d} ولن تنخفض تحت الصفر.`,cb_inst:p=>`بالتقسيط على ${p.n} (${p.v} شهريًا) لن تنخفض تحت الصفر.`,cb_none:'لا يوجد يوم مناسب خلال 35 يومًا؛ فكّر في مبلغ أقل أو التأجيل.',
+cb_tight:p=>`تستطيع، لكن رصيدك ينخفض إلى ${p.v} في ${p.d}.`,cb_ok:p=>`تستطيع شراءه براحة. أدنى رصيد سيكون ${p.v} (${p.d}).`,cb_work:p=>`هذا المبلغ ${p.w}.`,cb_goal:p=>`يعادل ${p.p}% من هدف «${p.g}».`,cb_towish:'أضف إلى قائمة الرغبات',cb_wish_n:'مشتريات',cb_wished:'أُضيف إلى قائمة الرغبات، ستُسأل بعد 7 أيام',
+cb_note:'تقدير مبني على الدخل والدفعات والاحتياجات في الخطة. تُخصم الأقساط كل 30 يومًا.',
+ru_h:'ادخار الكسور',ru_intro:'يُقرَّب كل مصروف إلى الأعلى ويُضاف الفرق إلى الهدف الذي تختاره. مثلًا مصروف 87.50 يدخر 2.50.',ru_s:'التقريب إلى',ru_g:'الهدف',ru_start:'ابدأ',ru_nogoal:'أنشئ أولًا هدف ادخار في الأسفل.',ru_month:'هذا الشهر',ru_tot:'منذ البدء',
+ru_ex:p=>`مصروف ${p.a} → ${p.b}: ${p.c} للادخار.`,ru_to:p=>`يُضاف إلى «${p.g}».`,ru_stop:'إيقاف',ru_stop_q:'إيقاف ادخار الكسور؟ تبقى المبالغ المضافة إلى الهدف.',ru_started:'بدأ ادخار الكسور',ru_note:'تُحسب فقط المصروفات التي تدخلها في الدفتر؛ دفعات البنود والقيود المتكررة مستثناة. إذا تغيّر قيد أو حُذف يتحدّث الهدف أيضًا. هذا ادخار افتراضي؛ لا تنسَ تجنيب المال فعلًا.',
+ef_h:'صندوق الطوارئ',ef_nodata:'يُحسب المبلغ المقترح كلما أدخلت مصروفات في الخطة أو الدفتر.',ef_base_p:p=>`مصروفك الشهري الضروري ≈ ${p.v} (احتياجات هذا الشهر + دفعات الديون).`,ef_base_l:p=>`مصروفك الشهري ≈ ${p.v} (متوسط آخر 3 أشهر).`,ef_m:p=>`${p.n} أشهر`,ef_target:p=>`لتغطية ${p.n} أشهر`,ef_cov:p=>`لديك تغطية ${p.m} شهر`,
+ef_have:p=>`المدخر ${p.v} · ${p.p}%`,ef_upd:p=>`حدّث الهدف إلى ${p.v}`,ef_make:'إنشاء هدف صندوق الطوارئ',ef_made:'أُضيف هدف صندوق الطوارئ',ef_note:'مال مخصص لفقدان العمل أو المرض أو عطل كبير. يُنصح بما لا يقل عن 3 أشهر من المصروفات الضرورية، ويفضّل 6.',
+gt_h:'توقع المستقبل',gt_intro:'صافي ثروتك بعد 5 سنوات حسب ثروتك اليوم والدخل والديون والاحتياجات في الخطة.',gt_now:'الآن',gt_y:p=>`${p.n} سنة`,gt_base:'بهذا المسار',gt_alt:'إن ادخرت أكثر',gt_x:'لو ادخرت شهريًا هذا المبلغ الإضافي',gt_x_ph:'مثال: 500',
+gt_note:'بعد انتهاء الخطة يُستخدم متوسط الدخل والاحتياجات لآخر 3 أشهر. لا يُحتسب التضخم والفائدة وعائد الاستثمار؛ إنه اتجاه تقريبي.'});
+
+/* ================= v222: Gizlilik modu, taksitler, kartla en iyi gün, kategori kuralları, alabilir miyim, küsurat, acil durum fonu, gelecek tahmini ================= */
+let ikEdit=null,cbS={a:'',d:'',n:1,w:''};
+
+/* ---- 1. Gizlilik modu ---- */
+function pvOn(){try{return localStorage.getItem('gg_priv')==='1'}catch(e){return false}}
+function pvApply(){const on=pvOn();document.documentElement.classList.toggle('priv',on);const b=document.getElementById('pvBtn');if(b){b.innerHTML=ic(on?'eye-off':'eye');b.setAttribute('aria-pressed',String(on));const l=ux(on?'pv_show':'pv_hide');b.setAttribute('aria-label',l);b.title=l}}
+function pvToggle(){try{localStorage.setItem('gg_priv',pvOn()?'0':'1')}catch(e){}pvApply();toast(ux(pvOn()?'pv_on':'pv_off'))}
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('#pvBtn');if(b){e.preventDefault();pvToggle()}});
+
+/* ---- 2. Kartlı taksitler ---- */
+function ikMon(x){return r2(num(x.amt)/Math.max(1,num(x.cnt)))}
+function ikState(x){const cnt=Math.max(1,num(x.cnt)),cur=ymDiff(x.first,ymToday())+1,done=Math.max(0,Math.min(cnt,cur-1)),now=cur>=1&&cur<=cnt?1:0,left=Math.max(0,cnt-done-now);
+  return {cnt,cur,done,now,left,mon:ikMon(x),leftAmt:r2(left*ikMon(x)),end:addYm(x.first,cnt-1),fin:done>=cnt}}
+function ikLeft(cc){return r2((plan.inst||[]).filter(x=>!cc||x.cc===cc).reduce((a,x)=>a+ikState(x).leftAmt,0))}
+function ikFirst(d,cc){const c=(plan.ccs||[]).find(q=>q.id===cc);if(!c||!c.cut)return addYm(d.slice(0,7),1);const [Y,M]=d.split('-').map(Number);let cut=mkDay(Y,M-1,c.cut);if(isoD(cut)<=d)cut=mkDay(Y,M,c.cut);return isoD(cut).slice(0,7)}
+function ikFormHTML(){const x=ikEdit==='new'?{cnt:6,d:todayStr(),cc:((plan.ccs||[])[0]||{}).id||''}:(plan.inst||[]).find(q=>q.id===ikEdit)||{};const C=plan.ccs||[];
+  return `<div class="xform"><h3>${ikEdit==='new'?ux('ik_add'):ux('wv_edit')}</h3>
+   <label class="f">${ux('ik_name')}<input id="ikN" maxlength="50" value="${esc(x.n||'')}" placeholder="${esc(ux('ik_name_ph'))}"></label>
+   ${C.length?`<label class="f">${ux('ik_card')}${xsel('ikC',C.map(c=>[c.id,c.n]),x.cc||C[0].id)}</label>`:`<p class="hint">${ux('ik_nocard')}</p>`}
+   <div class="wvrow"><label class="f">${ux('ik_amt')} (${esc(curSym())})<input id="ikA" type="number" step="0.01" min="0" inputmode="decimal" value="${x.amt||''}"></label><label class="f">${ux('ik_cnt')}${xsel('ikK',[2,3,4,5,6,8,9,10,12,15,18,24,36].map(n=>[n,ux('ik_n',{n})]),x.cnt||6)}</label></div>
+   <label class="f">${ux('ik_date')}<input id="ikD" type="date" value="${esc(x.d||todayStr())}"></label>
+   <p class="hint" id="ikPrev"></p>
+   <div class="actions"><button type="button" class="btn" data-z="ik:cancel">${ux('is_cancel')}</button><button type="button" class="btn primary" data-z="ik:save">${ux('wv_save')}</button></div></div>`}
+function ikPrev(){const o=document.getElementById('ikPrev');if(!o)return;const a=Number(fv('ikA')),n=Number(fv('ikK'))||1,d=fv('ikD')||todayStr();if(!(a>0)){o.textContent='';return}const f=ikFirst(d,fv('ikC'));o.textContent=ux('ik_prev',{v:money(r2(a/n)),f:ymLabel(f),l:ymLabel(addYm(f,n-1))})}
+function ikHTML(){const L=(plan.inst||[]).map(x=>({x,s:ikState(x)})).sort((a,b)=>(a.s.fin-b.s.fin)||(a.s.end<b.s.end?-1:1)),C=plan.ccs||[];
+  const nowSum=r2(L.reduce((a,q)=>a+(q.s.now?q.s.mon:0),0)),left=ikLeft();
+  return `<section class="card xcard"><div class="cardhead"><h2>${ic('calendar-range')}${ux('ik_h')}</h2></div>
+   ${L.length?`<div class="xsum"><div><small>${ux('ik_this')}</small><b>${moneyH(nowSum)}</b></div><div><small>${ux('ik_left')}</small><b class="neg">${moneyH(left)}</b></div></div>
+   ${C.filter(c=>ikLeft(c.id)>0&&num(c.lim)>0).map(c=>`<p class="hint ikcard">${ic('credit-card')}<span>${esc(ux('ik_block',{n:c.n,v:money(ikLeft(c.id)),f:money(Math.max(0,num(c.lim)-num(c.debt)-ikLeft(c.id)))}))}</span></p>`).join('')}`:`<p class="hint">${ux('ik_intro')}</p>`}
+   ${ikEdit!==null?ikFormHTML():''}
+   <div class="xlist">${L.map(({x,s})=>{const c=C.find(q=>q.id===x.cc),pc=Math.min(100,(s.done+s.now)/s.cnt*100);
+     return `<div class="yri iki${s.fin?' fin':''}"><span class="yrd"><b>${s.fin?ic('check'):Math.min(s.cnt,Math.max(0,s.done+s.now))+'/'+s.cnt}</b><small>${esc(ux('ik_unit'))}</small></span><span class="yrt"><b>${esc(x.n)}</b><small>${c?esc(c.n)+' · ':''}${moneyH(s.mon)} ${esc(ux('ik_pm'))}${s.fin?'':' · '+esc(ux('ik_last',{m:ymLabel(s.end)}))}</small></span><span class="yrs${s.fin?'':s.left===0&&s.now?' warn':''}">${esc(s.fin?ux('ik_fin'):s.left===0&&s.now?ux('ik_lastnow'):ux('ik_rem',{v:money(s.leftAmt)}))}</span>
+      <div class="kkbar"><div class="wrbar good"><i style="width:${pc.toFixed(0)}%"></i></div></div>
+      <div class="xact">${ydel2('ik',x.id)}<button type="button" class="btn mini wvdel" data-z="ik:edit:${x.id}" aria-label="${esc(ux('wv_edit'))}" title="${esc(ux('wv_edit'))}">${ic('pencil')}</button></div></div>`}).join('')}</div>
+   ${ikEdit===null?`<button type="button" class="btn primary wide" data-z="ik:add">${ic('plus')}${ux('ik_add')}</button>`:''}
+   <p class="hint">${ux('ik_note')}</p></section>`}
+function ydel2(k,id){return `<button type="button" class="btn mini wvdel" data-z="${k}:del:${id}" aria-label="${esc(ux('uc_del'))}">${ic('trash')}</button>`}
+
+/* ---- 3. Kartla alışverişte en iyi gün ---- */
+function kgStmt(c,d){const [Y,M]=d.split('-').map(Number);let cut=mkDay(Y,M-1,c.cut);if(isoD(cut)<=d)cut=mkDay(Y,M,c.cut);const due=mkDay(cut.getFullYear(),cut.getMonth()+(Number(c.due)>Number(c.cut)?0:1),c.due);return {cut:isoD(cut),due:isoD(due),days:dayDiff(isoD(due),d)}}
+function kgHTML(){const L=(plan.ccs||[]).filter(c=>Number(c.cut)>0&&Number(c.due)>0);if(!L.length)return '';const t=todayStr(),dd=new Date().getDate();
+  const R=L.map(c=>({c,s:kgStmt(c,t),free:num(c.lim)>0?num(c.lim)-num(c.debt)-ikLeft(c.id):null})).sort((a,b)=>b.s.days-a.s.days),B=R.find(r=>r.free==null||r.free>0)||R[0];
+  return `<section class="card xcard"><div class="cardhead"><h2>${ic('calendar')}${ux('kg_h')}</h2></div>
+   <div class="kgbest"><span class="kgi">${ic('credit-card')}</span><div><small>${ux('kg_today')}</small><b>${esc(B.c.n)}</b><span>${esc(ux('kg_pay',{d:shortDay(B.s.due),n:B.s.days}))}</span></div></div>
+   ${R.length>1?`<div class="nsl">${R.map(({c,s,free})=>`<div class="nsr"><span class="nsi">${ic('credit-card')}</span><span>${esc(c.n)}<small>${esc(ux('kg_row',{c:shortDay(s.cut),d:shortDay(s.due)}))}${free!=null?' · '+esc(ux('kg_free',{v:money(Math.max(0,free))})):''}</small></span><b class="kgd">${esc(ux('kg_days',{n:s.days}))}</b></div>`).join('')}</div>`:''}
+   ${L.some(c=>Number(c.cut)===dd)?`<p class="hint warnt">${ux('kg_cutday')}</p>`:''}<p class="hint">${ux('kg_note')}</p></section>`}
+
+/* ---- 4. Kategori kuralları ---- */
+const crFold=s=>String(s||'').replace(/İ/g,'i').replace(/I/g,'ı').toLocaleLowerCase('tr').replace(/ı/g,'i').replace(/ç/g,'c').replace(/ğ/g,'g').replace(/ö/g,'o').replace(/ş/g,'s').replace(/ü/g,'u').replace(/̇/g,'');
+function crMatch(desc,type){const R=plan&&plan.crules;if(!R||!R.length||!desc)return '';const s=crFold(desc);let best=null,bl=0;for(const r of R){if(r.t&&type&&r.t!==type)continue;const k=crFold(r.k).trim();if(k&&s.includes(k)&&k.length>bl){best=r;bl=k.length}}return best?best.c:''}
+function crSuggest(){const have=(plan.crules||[]).map(r=>crFold(r.k));const M={};
+  for(const e of ledger){if(!e.desc||!e.cat||e.payKey)continue;const w=crFold(e.desc).replace(/[^a-z0-9 ]/g,' ').split(/\s+/).find(x=>x.length>=3&&!/^\d+$/.test(x));if(!w||have.some(h=>w.includes(h)))continue;const o=M[w]||(M[w]={n:0,c:{},t:{}});o.n++;o.c[e.cat]=(o.c[e.cat]||0)+1;o.t[e.type]=(o.t[e.type]||0)+1}
+  return Object.entries(M).map(([w,o])=>{const [c,n]=Object.entries(o.c).sort((a,b)=>b[1]-a[1])[0];return {w,c,n,tot:o.n,t:Object.keys(o.t).length===1?Object.keys(o.t)[0]:''}}).filter(x=>x.tot>=3&&x.n/x.tot>=.8).sort((a,b)=>b.tot-a.tot).slice(0,6)}
+function crTargets(all){const out=[];for(const e of ledger){if(e.payKey)continue;const c=crMatch(e.desc,e.type);if(c&&(all?e.cat!==c:!e.cat))out.push([e,c])}return out}
+const crCap=w=>w.charAt(0).toLocaleUpperCase('tr')+w.slice(1);
+function krHTML(){const R=(plan.crules||[]).slice().sort((a,b)=>crFold(a.k).localeCompare(crFold(b.k))),S=crSuggest(),u=crTargets(false).length,al=crTargets(true).length;
+  const cats=[...new Set([...I18N[LANG].cats,...ledger.map(e=>e.cat).filter(Boolean)])];
+  return `<section class="card xcard"><div class="cardhead"><h2>${ic('tag')}${ux('kr_h')}</h2></div><p class="hint">${ux('kr_intro')}</p>
+   <div class="xform krf"><div class="wvrow"><label class="f">${ux('kr_k')}<input id="krK" maxlength="40" placeholder="${esc(ux('kr_k_ph'))}" autocomplete="off"></label><label class="f">${ux('kr_c')}<input id="krC" list="krcats" maxlength="40" placeholder="${esc(ux('kr_c_ph'))}" autocomplete="off"></label></div>
+    <datalist id="krcats">${cats.map(c=>`<option value="${esc(c)}">`).join('')}</datalist>
+    <label class="f">${ux('kr_t')}${xsel('krT',[['',ux('kr_t_all')],['gider',t('lg_expense')],['gelir',t('lg_income')]],'')}</label>
+    <div class="actions"><button type="button" class="btn primary" data-z="kr:add">${ic('plus')}${ux('kr_add')}</button></div></div>
+   ${R.length?`<h4 class="xh4">${ux('kr_list',{n:R.length})}</h4><div class="nsl">${R.map(r=>`<div class="nsr"><span class="nsi">${ic('tag')}</span><span><b class="krk">${esc(r.k)}</b><small>→ ${esc(r.c)}${r.t?' · '+esc(r.t==='gider'?t('lg_expense'):t('lg_income')):''}</small></span>${ydel2('kr',r.id)}</div>`).join('')}</div>`:''}
+   ${S.length?`<h4 class="xh4">${ux('kr_sug')}</h4><div class="nsl">${S.map((x,i)=>`<div class="nsr"><span class="nsi alt">${ic('help')}</span><span><b class="krk">${esc(crCap(x.w))}</b><small>→ ${esc(x.c)} · ${esc(ux('kr_sug_n',{n:x.n,m:x.tot}))}</small></span><button type="button" class="btn mini primary" data-z="kr:sug:${i}">${ux('kr_take')}</button></div>`).join('')}</div>`:''}
+   ${R.length?`<h4 class="xh4">${ux('kr_apply_h')}</h4><div class="kract"><button type="button" class="btn" data-z="kr:apply:0"${u?'':' disabled'}>${esc(ux('kr_apply0',{n:u}))}</button><button type="button" class="btn" data-z="kr:apply:1"${al>u?'':' disabled'}>${esc(ux('kr_apply1',{n:al}))}</button></div>`:''}
+   <p class="hint">${ux('kr_note')}</p></section>`}
+
+/* ---- 5. Bunu alabilir miyim? ---- */
+function cbEval(a,d,n){const D=cfData(),t=todayStr(),i0=Math.max(0,dayDiff(d,t));if(i0>D.H)return null;const cost=new Array(D.H+1).fill(0),per=a/n;
+  for(let k=0;k<n;k++){const day=i0+k*30;if(day<=D.H)cost[day]+=per}
+  let acc=0,min=Infinity,minI=i0,neg=-1,base=Infinity;for(let j=0;j<=D.H;j++){acc+=cost[j];if(j<i0)continue;const b=D.bal[j]-acc;if(b<min){min=b;minI=j}if(D.bal[j]<base)base=D.bal[j];if(neg<0&&b<-0.5)neg=j}
+  return {D,min,minI,neg,i0,base}}
+function cbOutHTML(){if(!plan.cash)return `<p class="hint warnt">${ux('cb_nocash')}</p>`;const a=Number(cbS.a);if(!(a>0))return `<p class="hint">${ux('cb_hint')}</p>`;
+  const n=Number(cbS.n)||1,d=cbS.d||todayStr(),r=cbEval(a,d,n);if(!r)return `<p class="hint">${ux('cb_far')}</p>`;const fd=i=>shortDay(isoD(r.D.dt(i)));
+  let cls,head,tips=[];
+  if(r.neg>=0){cls='bad';head=ux('cb_no',{d:fd(r.neg),v:money(-(r.min))});
+    for(let k=r.i0+1;k<=r.D.H;k++){const q=cbEval(a,isoD(r.D.dt(k)),n);if(q&&q.neg<0){tips.push(ux('cb_later',{d:fd(k)}));break}}
+    if(n===1)for(const m of [3,6,9,12]){const q=cbEval(a,d,m);if(q&&q.neg<0){tips.push(ux('cb_inst',{n:m,v:money(r2(a/m))}));break}}
+    if(!tips.length)tips.push(ux('cb_none'))}
+  else if(r.min<Math.max(a*.5,r.base*.25)){cls='warn';head=ux('cb_tight',{d:fd(r.minI),v:money(r.min)})}
+  else{cls='good';head=ux('cb_ok',{v:money(r.min),d:fd(r.minI)})}
+  const G=(plan.goals||[]).filter(g=>num(g.target)>num(g.saved)).sort((x,y)=>num(y.target)-num(x.target))[0],wk=typeof wiWork==='function'?wiWork(a):'';
+  const ex=[];if(wk)ex.push(ux('cb_work',{w:wk}));if(G)ex.push(ux('cb_goal',{p:Math.round(a/num(G.target)*100),g:G.name}));
+  return `<div class="cbv ${cls}"><span class="cbi">${ic(cls==='good'?'check':cls==='warn'?'alert-triangle':'close')}</span><div><b>${esc(head)}</b>${tips.map(x=>`<p>${esc(x)}</p>`).join('')}</div></div>
+   ${ex.length?`<ul class="cbx">${ex.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}
+   <div class="actions"><button type="button" class="btn" data-z="cb:wish">${ic('heart')}${ux('cb_towish')}</button></div>`}
+function cbHTML(){if(!cbS.d)cbS.d=todayStr();const mx=dayAdd(todayStr(),34);
+  return `<section class="card xcard"><div class="cardhead"><h2>${ic('shopping-cart')}${ux('cb_h')}</h2></div><p class="hint">${ux('cb_intro')}</p>
+   ${!plan.cash?`<label class="f">${ux('cf_cash')}<input type="number" step="0.01" inputmode="decimal" data-cash="1" placeholder="${esc(ux('cf_cash_ph'))}"></label>`:''}
+   <label class="f">${ux('cb_w')}<input id="cbW" maxlength="50" value="${esc(cbS.w)}" placeholder="${esc(ux('cb_w_ph'))}"></label>
+   <div class="wvrow"><label class="f">${ux('cb_a')} (${esc(curSym())})<input id="cbA" type="number" step="0.01" min="0" inputmode="decimal" value="${esc(String(cbS.a||''))}"></label><label class="f">${ux('cb_d')}<input id="cbD" type="date" min="${todayStr()}" max="${mx}" value="${esc(cbS.d)}"></label></div>
+   <label class="f">${ux('cb_n')}${xsel('cbN',[1,2,3,6,9,12].map(n=>[n,n===1?ux('cb_cash1'):ux('ik_n',{n})]),cbS.n||1)}</label>
+   <div id="cbOut" aria-live="polite">${cbOutHTML()}</div>
+   <p class="hint">${ux('cb_note')}</p></section>`}
+document.addEventListener('input',e=>{const x=e.target;if(!x||!x.id)return;
+  if(['cbA','cbD','cbW'].includes(x.id)||x.dataset&&x.dataset.cash&&document.getElementById('cbOut')){cbS.a=fv('cbA');cbS.d=fv('cbD')||todayStr();cbS.w=fv('cbW');setTimeout(()=>{const o=document.getElementById('cbOut');if(o)o.innerHTML=cbOutHTML()},0)}
+  if(['ikA','ikD'].includes(x.id))ikPrev();
+  if(x.id==='gtX'){const o=document.getElementById('gtOut');if(o)o.innerHTML=gtOutHTML(Number(x.value)||0)}});
+document.addEventListener('change',e=>{const x=e.target;if(!x||!x.id)return;
+  if(x.id==='cbN'){cbS.n=Number(x.value)||1;const o=document.getElementById('cbOut');if(o)o.innerHTML=cbOutHTML()}
+  if(['ikK','ikC'].includes(x.id))ikPrev();
+  if(['ruS','ruG'].includes(x.id)){const R=plan.ru;if(!R)return;if(x.id==='ruS')R.s=Number(x.value)||10;else R.g=x.value;R.since=todayStr();R.t0=Date.now();R.added=0;queueSave();renderTools()}});
+
+/* ---- 6. Küsurat birikimi ---- */
+function ruAmt(a,s){const r=Math.ceil(a/s-1e-9)*s-a;return r>1e-9?r2(r):0}
+function ruTotal(R){let t=0;const m={};for(const e of ledger){if(e.type!=='gider'||e.payKey||e.rid||(R.t0?!(num(e.ts)>=R.t0):e.date<R.since))continue;const v=ruAmt(num(e.amount),R.s);t+=v;const ym=e.date.slice(0,7);m[ym]=(m[ym]||0)+v}return {t:r2(t),m}}
+function ruSync(){try{const R=plan&&plan.ru;if(!R||!R.on||!R.g)return;const g=(plan.goals||[]).find(z=>z.id===R.g);if(!g)return;const T=ruTotal(R).t,d=r2(T-num(R.added));if(Math.abs(d)<0.005)return;
+  const was=dirty;g.saved=r2(Math.max(0,num(g.saved)+d));R.added=T;queueSave();if(!was&&!(typeof loadBad!=='undefined'&&loadBad))try{flush()}catch(e){}}catch(e){}}
+function ruHTML(){const R=plan.ru,G=plan.goals||[];
+  if(!R||!R.on)return `<section class="card xcard"><div class="cardhead"><h2>${ic('coins')}${ux('ru_h')}</h2></div><p class="hint">${ux('ru_intro')}</p>${G.length?`<div class="wvrow"><label class="f">${ux('ru_s')}${xsel('ruS0',[1,5,10,50,100].map(v=>[v,money(v)]),10)}</label><label class="f">${ux('ru_g')}${xsel('ruG0',G.map(g=>[g.id,g.name]),G[0].id)}</label></div><button type="button" class="btn primary wide" data-z="ru:on">${ic('coins')}${ux('ru_start')}</button>`:`<p class="hint warnt">${ux('ru_nogoal')}</p>`}</section>`;
+  const T=ruTotal(R),ym=ymToday(),g=G.find(z=>z.id===R.g),ex=87.5;
+  return `<section class="card xcard"><div class="cardhead"><h2>${ic('coins')}${ux('ru_h')}</h2></div>
+   <div class="xsum"><div><small>${ux('ru_month')}</small><b class="pos">${moneyH(r2(T.m[ym]||0))}</b></div><div><small>${ux('ru_tot')}</small><b>${moneyH(T.t)}</b></div></div>
+   <p class="hint">${esc(ux('ru_ex',{a:money(ex),b:money(Math.ceil(ex/R.s)*R.s),c:money(ruAmt(ex,R.s))}))}${g?' '+esc(ux('ru_to',{g:g.name})):''}</p>
+   <div class="wvrow"><label class="f">${ux('ru_s')}${xsel('ruS',[1,5,10,50,100].map(v=>[v,money(v)]),R.s)}</label><label class="f">${ux('ru_g')}${xsel('ruG',G.map(z=>[z.id,z.name]),R.g)}</label></div>
+   <div class="actions"><button type="button" class="btn mini" data-z="ru:off">${ux('ru_stop')}</button></div><p class="hint">${ux('ru_note')}</p></section>`}
+
+/* ---- 7. Acil durum fonu ---- */
+function efBase(){const m=plan.months.find(z=>z.ym===ymToday());if(m){const c=calc(m);if(c.need+c.debt>0)return {v:r2(c.need+c.debt),src:'plan'}}
+  const yms=[1,2,3].map(k=>addYm(ymToday(),-k));let s=0;for(const e of ledger)if(e.type==='gider'&&yms.includes(e.date.slice(0,7)))s+=num(e.amount);return {v:r2(s/3),src:'led'}}
+function efHTML(){const n=(plan.ef&&plan.ef.n)||3,B=efBase(),tg=r2(B.v*n),g=(plan.goals||[]).find(z=>z.ef);
+  const head=`<section class="card xcard efc"><div class="cardhead"><h2>${ic('shield-check')}${ux('ef_h')}</h2></div>`;
+  if(!(B.v>0))return head+`<p class="hint">${ux('ef_nodata')}</p></section>`;
+  const sv=g?num(g.saved):0,cov=B.v>0?sv/B.v:0,p=tg>0?Math.min(100,sv/tg*100):0;
+  return head+`<p class="hint">${esc(ux(B.src==='plan'?'ef_base_p':'ef_base_l',{v:money(B.v)}))}</p>
+   <div class="efseg" role="radiogroup">${[3,6].map(k=>`<label class="boc"><input type="radio" name="efN" id="${k===3?'efN':'efN6'}" value="${k}"${n===k?' checked':''}><span>${esc(ux('ef_m',{n:k}))}</span></label>`).join('')}</div>
+   <div class="nsbig"><small>${ux('ef_target',{n})}</small><b>${moneyH(tg)}</b>${g&&cov>=0.1?`<span>${esc(ux('ef_cov',{m:nfmt(Math.round(cov*10)/10,1)}))}</span>`:''}</div>
+   ${g?`<div class="wrbar ${p>=100?'good':p>=50?'warn':'bad'}"><i style="width:${p.toFixed(0)}%"></i></div><p class="hint">${esc(ux('ef_have',{v:money(sv),p:Math.round(p)}))}</p>
+     ${Math.abs(num(g.target)-tg)>tg*.1?`<button type="button" class="btn wide" data-z="ef:upd">${esc(ux('ef_upd',{v:money(tg)}))}</button>`:''}`
+   :`<button type="button" class="btn primary wide" data-z="ef:make">${ic('plus')}${ux('ef_make')}</button>`}
+   <p class="hint">${ux('ef_note')}</p></section>`}
+document.addEventListener('change',e=>{const x=e.target;if(x&&x.name==='efN'){plan.ef={n:Number(x.value)||3};queueSave();renderTools()}});
+
+/* ---- 8. Gelecek tahmini (Net servet) ---- */
+function gtCalc(extra){const now=ymToday(),PM=plan.months.slice().sort((a,b)=>a.ym<b.ym?-1:1),last=PM.slice(-3);
+  const avgI=last.length?last.reduce((a,m)=>a+calc(m).income,0)/last.length:0,avgN=last.length?last.reduce((a,m)=>a+calc(m).need,0)/last.length:0;
+  let nw;try{nw=nsCalc().net}catch(e){nw=0}const out=[nw];for(let k=1;k<=60;k++){const ym=addYm(now,k),m=PM.find(z=>z.ym===ym);nw+=(m?calc(m).net:avgI-avgN)+(extra||0);out.push(r2(nw))}return out}
+function gtOutHTML(extra){const A=gtCalc(0),Bx=extra>0?gtCalc(extra):null,pts=[12,36,60];
+  const lab=[...Array(61)].map((_,k)=>k===0?ux('gt_now'):k%12===0?ux('gt_y',{n:k/12}):ux('gt_y',{n:nfmt(k/12,1)}));
+  return `<div class="nsl gtt">${pts.map(k=>`<div class="nsr"><span class="nsi">${ic('calendar')}</span><span>${esc(ux('gt_y',{n:k/12}))}${Bx?`<small class="pos">${esc(ux('gt_alt'))}: ${moneyH(Bx[k])}</small>`:''}</span><b class="${A[k]<0?'neg':''}">${moneyH(A[k])}</b></div>`).join('')}</div>
+   <div class="xchart">${svgLine([{name:ux('gt_base'),color:'var(--accent)',vals:A},...(Bx?[{name:ux('gt_alt'),color:'var(--good)',vals:Bx,dash:'5 4'}]:[])],lab)}</div>`}
+function gtHTML(){if(!plan.months.length)return '';
+  return `<section class="card xcard"><div class="cardhead"><h2>${ic('trending-up')}${ux('gt_h')}</h2></div><p class="hint">${ux('gt_intro')}</p>
+   <div id="gtOut">${gtOutHTML(0)}</div>
+   <label class="f">${ux('gt_x')} (${esc(curSym())})<input id="gtX" type="number" step="100" min="0" inputmode="decimal" placeholder="${esc(ux('gt_x_ph'))}"></label>
+   <p class="hint">${ux('gt_note')}</p></section>`}
+
+/* ---- ortak: data-z tıklamaları ---- */
+document.addEventListener('click',async e=>{const el=e.target.closest&&e.target.closest('[data-z]');if(!el||!el.closest('#view'))return;e.preventDefault();if(el.disabled)return;
+  const [k,a,...rest]=el.dataset.z.split(':'),id=rest.join(':');
+  const fin=msg=>{try{nsSnap()}catch(z){}queueSave();renderTools();try{drawRemind()}catch(z){}if(msg)toast(msg)};
+  if(k==='ik'){plan.inst=plan.inst||[];
+    if(a==='add'){ikEdit='new';renderTools();const i=document.getElementById('ikN');if(i)try{i.scrollIntoView({block:'center'});i.focus({preventScroll:true})}catch(z){}return}
+    if(a==='edit'){ikEdit=id;renderTools();const f=document.querySelector('#view .xform');if(f)f.scrollIntoView({block:'center'});ikPrev();return}
+    if(a==='cancel'){ikEdit=null;if(!plan.inst.length)delete plan.inst;renderTools();return}
+    if(a==='del'){const x=plan.inst.find(q=>q.id===id);if(x&&await uiConfirm({title:ux('uc_del_h'),msg:ux('wv_del_p',{n:x.n}),kind:'danger',icon:'trash',ok:ux('uc_del')})){plan.inst=plan.inst.filter(q=>q.id!==id)}if(!plan.inst.length)delete plan.inst;fin();return}
+    if(a==='save'){const n=fv('ikN'),amt=Number(fv('ikA')),cnt=Number(fv('ikK'))||6,d=fv('ikD')||todayStr(),cc=fv('ikC');if(!n){toast(ux('is_e_name'));return}if(!(amt>0)){toast(ux('is_e_amt'));return}
+      const x={id:ikEdit==='new'?uid('i'):ikEdit,n,amt,cnt,d,first:ikFirst(d,cc)};if(cc)x.cc=cc;if(ikEdit==='new')plan.inst.push(x);else plan.inst=plan.inst.map(q=>q.id===x.id?x:q);ikEdit=null;fin(ux('ik_saved',{m:ymLabel(x.first)}));return}}
+  if(k==='kr'){plan.crules=plan.crules||[];
+    if(a==='add'){const kw=fv('krK'),c=fv('krC');if(!kw){toast(ux('kr_e_k'));return}if(!c){toast(ux('kr_e_c'));return}plan.crules=plan.crules.filter(r=>crFold(r.k)!==crFold(kw));const r={id:uid('c'),k:kw,c};const ty=fv('krT');if(ty)r.t=ty;plan.crules.push(r);fin(ux('kr_added',{k:kw,c}));return}
+    if(a==='del'){plan.crules=plan.crules.filter(r=>r.id!==id);if(!plan.crules.length)delete plan.crules;fin();return}
+    if(a==='sug'){const s=crSuggest()[Number(id)];if(!s)return;const r={id:uid('c'),k:crCap(s.w),c:s.c};if(s.t)r.t=s.t;plan.crules.push(r);fin(ux('kr_added',{k:r.k,c:r.c}));return}
+    if(a==='apply'){const T=crTargets(id==='1');if(!T.length)return;if(id==='1'&&!(await uiConfirm({title:ux('kr_apply_h'),msg:ux('kr_apply_q',{n:T.length}),icon:'tag',kind:'info',ok:ux('kr_apply_ok')})))return;
+      T.forEach(([e,c])=>{e.cat=c});if(db){for(const [e] of T)await saveEntry(e)}else{try{await lsWrite(LS_LEDGER,ledger)}catch(z){toast(t('t_savefail'));return}}renderTools();toast(ux('kr_applied',{n:T.length}));return}}
+  if(k==='cb'&&a==='wish'){const amt=Number(cbS.a);if(!(amt>0)){toast(ux('is_e_amt'));return}plan.wish=plan.wish||[];plan.wish.push({id:uid('w'),n:cbS.w||ux('cb_wish_n'),amt,wait:7,d:todayStr(),st:'w'});fin(ux('cb_wished'));return}
+  if(k==='ru'){if(a==='on'){const g=fv('ruG0');if(!g)return;plan.ru={on:1,s:Number(fv('ruS0'))||10,g,since:todayStr(),t0:Date.now(),added:0};fin(ux('ru_started'));return}
+    if(a==='off'){if(!(await uiConfirm({title:ux('ru_h'),msg:ux('ru_stop_q'),icon:'coins',kind:'info',ok:ux('ru_stop')})))return;delete plan.ru;fin();return}}
+  if(k==='ef'){const n=(plan.ef&&plan.ef.n)||3,tg=r2(efBase().v*n);plan.goals=plan.goals||[];
+    if(a==='make'){let i=plan.goals.length+1;while(plan.goals.some(g=>g.id==='g'+i))i++;plan.goals.unshift({id:'g'+i,name:ux('ef_h'),target:tg,saved:0,ef:1});fin(ux('ef_made'));return}
+    if(a==='upd'){const g=plan.goals.find(z=>z.ef);if(g){g.target=tg;fin(ux('x_saved'))}return}}
+});
+
 /* ================= Bildirim merkezi ================= */
 const LS_NF='gg_nf';let nfOpenAt=0,nfTab='all',nfSnz=null,nfUndo=null;
 const dayAdd=(iso,n)=>{const [y,m,d]=iso.split('-').map(Number),x=new Date(y,m-1,d+n);return x.getFullYear()+'-'+pad(x.getMonth()+1)+'-'+pad(x.getDate())};
@@ -5014,7 +5290,7 @@ function nfAll(){
 }
 function nfList(){const st=nfState(),t=todayStr();return nfAll().filter(x=>!(st.hide[x.k]&&st.hide[x.k]>t)).map(x=>({...x,rk:x.k+'#'+x.kind,read:!!st.read[x.k+'#'+x.kind]}))}
 function nfHiddenKeys(){const st=nfState(),t=todayStr();return Object.keys(st.hide).filter(k=>st.hide[k]>t)}
-function nfDraw(){try{lkNowDraw()}catch(e){}
+function nfDraw(){try{lkNowDraw()}catch(e){}try{pvApply()}catch(e){}
   const b=document.getElementById('nfBtn');if(!b)return;const L=nfList(),n=L.filter(x=>!x.read).length;
   b.innerHTML=ic('bell-ring-outline')+(n?`<i class="nfn">${n>9?'9+':n}</i>`:'');b.classList.toggle('has',!!n);
   const lab=ux('nf_h')+(n?' · '+ux('nf_unread',{n}):'');b.setAttribute('aria-label',lab);b.title=lab;
@@ -6827,6 +7103,7 @@ function saveTab(){try{localStorage.setItem('gg_tab',JSON.stringify({tab,sec:too
 function render(){
   document.querySelectorAll('.tabs button').forEach(b=>b.setAttribute('aria-selected',b.dataset.tab===tab));
   try{tabInd()}catch(e){}
+  try{ruSync()}catch(e){}
   requestAnimationFrame(setHead);
   if(!plan){return}
   ({plan:renderPlan,defter:renderDefter,ozet:renderOzet,kalem:renderKalem,kur:renderKur,arac:renderTools,ayar:renderAyar})[tab]();
@@ -7197,10 +7474,11 @@ view.addEventListener('submit',async e=>{
   if(e.target.id==='entryForm'){
     const amount=Number($('#eAmt').value);if(!(amount>0))return;
     const en={type:document.querySelector('input[name=etype]:checked').value,amount,date:$('#eDate').value,cat:$('#eCat').value.trim(),desc:$('#eDesc').value.trim(),ts:Date.now()};
+    if(!en.cat){try{const r=crMatch(en.desc,en.type);if(r)en.cat=r}catch(z){}}
     if(editingId)en.id=editingId;else en.id='l'+Date.now()+Math.random().toString(36).slice(2,6);
     try{atPrep(en)}catch(z){}
     const wasEdit=!!editingId;
-    if(await saveEntry(en)){try{await atCommit(en.id)}catch(z){}resetForm();if(!db)drawLedger();const ba=wasEdit?'':budAlert({...en,id:undefined});toast(ba||(wasEdit?t('t_entry_updated'):t('t_entry_added')))}
+    if(await saveEntry(en)){try{await atCommit(en.id)}catch(z){}try{ruSync()}catch(z){}resetForm();if(!db)drawLedger();const ba=wasEdit?'':budAlert({...en,id:undefined});toast(ba||(wasEdit?t('t_entry_updated'):t('t_entry_added')))}
   }
   if(e.target.id==='budForm'){
     const c=$('#budCat').value.trim(),a=Number($('#budAmt').value);
@@ -7549,7 +7827,7 @@ async function init(){
   $('#sbSave').addEventListener('click',flush);
   $('#sbDiscard').addEventListener('click',e=>arm(e.currentTarget,t('sure'),discard));
   try{const st=JSON.parse(localStorage.getItem('gg_tab')||'null');
-    if(st&&['plan','defter','ozet','kalem','kur','arac','ayar'].includes(st.tab)){tab=st.tab;if(['hub','cal','an','wal','ppl','yr','war','sav','goal','loan','rec','rep','kur','kk','ns','bo','ab','ft','ka','tk','ay','yo','ia','wi','mo','pf'].includes(st.sec))toolSec=st.sec;else if(['fc','strat','sim'].includes(st.sec))toolSec='an';if(tab==='kur'){tab='arac';toolSec='kur'}}}catch(e){}
+    if(st&&['plan','defter','ozet','kalem','kur','arac','ayar'].includes(st.tab)){tab=st.tab;if(['hub','cal','an','wal','ppl','yr','war','sav','goal','loan','rec','rep','kur','kk','ns','bo','ab','ft','ka','tk','ay','yo','ia','wi','mo','pf','cb','kr'].includes(st.sec))toolSec=st.sec;else if(['fc','strat','sim'].includes(st.sec))toolSec='an';if(tab==='kur'){tab='arac';toolSec='kur'}}}catch(e){}
   drawStatus();render();
   if(loadBad)setTimeout(()=>{toast(ux('lb_warn'));clearTimeout(toastT);toastT=setTimeout(()=>$('#toast').hidden=true,15000)},700);
   if(!db)recGenerate();
@@ -7746,7 +8024,7 @@ function stGuess(rows){
   let negShare=0;if(mode==='one'){let a=0,b=0;for(const r of data){const v=stNum(r[amt]);if(v==null||!stDate(r[date]))continue;b++;if(v<0)a++}negShare=b?a/b:0}
   return{hr,date,desc,amt,debit,credit,mode,flip:mode==='one'&&negShare<0.4,H,nc};
 }
-function stCatGuess(desc,type){
+function stCatGuess(desc,type){{const r=typeof crMatch==='function'?crMatch(desc,type):'';if(r)return r}
   const C=I18N[LANG].cats,s0=String(desc||'').toLocaleLowerCase('tr').replace(/ı/g,'i'),fold=x=>x.replace(/ç/g,'c').replace(/ğ/g,'g').replace(/ö/g,'o').replace(/ş/g,'s').replace(/ü/g,'u'),s=s0+' | '+fold(s0);
   const w=s.replace(/[^a-zçğıöşü0-9 ]/gi,' ').split(/\s+/).filter(x=>x.length>=3&&!/^\d+$/.test(x));
   const learned={};for(const e of ledger){if(!e.desc||!e.cat||e.type!==type)continue;const k=String(e.desc).toLocaleLowerCase('tr').replace(/ı/g,'i').replace(/[^a-zçğıöşü0-9 ]/gi,' ').split(/\s+/).find(x=>x.length>=3&&!/^\d+$/.test(x));if(k)(learned[k]||(learned[k]={}))[e.cat]=(learned[k][e.cat]||0)+1}
@@ -8143,7 +8421,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='221';
+const APP_VER='222';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
