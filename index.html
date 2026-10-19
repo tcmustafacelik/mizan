@@ -1491,6 +1491,62 @@ html.priv .mv,html.priv .tile b,html.priv .am,html.priv .nsbig b,html.priv .cfst
 .cbx{margin:0 0 6px;padding-inline-start:20px;font-size:13px;color:var(--muted-tx);display:grid;gap:3px}
 .efseg{display:flex;gap:16px;margin:4px 0 8px}
 .gtt{margin:6px 0}.gtt .nsr b{font-size:13.5px}
+
+/* v224: kilit ekranı — parmak izi amblemi, tarama animasyonu, hareketli arka plan */
+.lock{overflow:hidden;isolation:isolate}
+.lkblob{position:absolute;z-index:0;border-radius:50%;filter:blur(60px);opacity:.55;pointer-events:none;animation:lkfloat 16s ease-in-out infinite alternate}
+.lkblob.b1{width:340px;height:340px;left:-120px;top:-80px;background:color-mix(in srgb,var(--accent) 70%,#22d3ee)}
+.lkblob.b2{width:300px;height:300px;right:-110px;top:30%;background:color-mix(in srgb,var(--accent) 40%,#ec4899);animation-duration:19s;animation-delay:-6s}
+.lkblob.b3{width:280px;height:280px;left:10%;bottom:-120px;background:color-mix(in srgb,var(--accent) 50%,#a78bfa);animation-duration:22s;animation-delay:-11s}
+@keyframes lkfloat{0%{transform:translate(0,0) scale(1)}50%{transform:translate(40px,30px) scale(1.12)}100%{transform:translate(-30px,50px) scale(.95)}}
+:root[data-theme="dark"] .lkblob,:root[data-theme="glassd"] .lkblob{opacity:.35}
+.lockbox{position:relative;z-index:1}
+.lktop{display:flex;align-items:center;gap:10px;margin-bottom:36px}
+.lktop #lkLogo{width:38px!important;height:38px!important;border-radius:11px!important;box-shadow:0 8px 20px -10px rgba(15,40,60,.5)!important}
+.lktop b{font:700 22px var(--f-body);letter-spacing:-.02em;color:var(--fg)}
+.lkfp{position:relative;width:138px;height:138px;border-radius:50%;border:0;padding:0;cursor:pointer;display:grid;place-items:center;color:var(--accent);
+  background:radial-gradient(circle at 32% 26%,color-mix(in srgb,var(--accent) 22%,#fff),color-mix(in srgb,var(--accent) 10%,var(--solid,var(--surface))) 70%);
+  box-shadow:0 22px 44px -20px color-mix(in srgb,var(--accent) 75%,transparent),inset 0 0 0 1px color-mix(in srgb,var(--accent) 22%,transparent),inset 0 -10px 24px -14px color-mix(in srgb,var(--accent) 40%,transparent);
+  transition:transform .18s cubic-bezier(.3,1.5,.5,1),background .3s,color .3s;-webkit-tap-highlight-color:transparent}
+.lkfp:active{transform:scale(.94)}
+:root[data-theme="dark"] .lkfp,:root[data-theme="glassd"] .lkfp{background:radial-gradient(circle at 32% 26%,color-mix(in srgb,var(--accent) 34%,var(--solid,var(--surface))),color-mix(in srgb,var(--accent) 10%,var(--solid,var(--surface))) 72%)}
+.lkfp>i{position:absolute;inset:0;border-radius:50%;border:2px solid color-mix(in srgb,var(--accent) 40%,transparent);animation:lkring 2.8s ease-out infinite;pointer-events:none}
+.lkfp>i+i{animation-delay:1.4s}
+@keyframes lkring{0%{transform:scale(1);opacity:.75}100%{transform:scale(1.6);opacity:0}}
+.lkfpin{position:relative;width:78px;height:78px;display:grid;place-items:center}
+.lkfpin>span{position:absolute;inset:0;display:grid;place-items:center;transition:opacity .3s,transform .35s cubic-bezier(.3,1.5,.5,1)}
+.lkfpin svg{width:78px;height:78px;fill:currentColor;margin:0}
+.lkfp.nobio .lkfpin svg{width:58px;height:58px}
+.lkfpin .fpb{opacity:0;transform:scale(.4)}
+.scanl{position:absolute;left:24%;right:24%;top:24%;height:3px;border-radius:3px;background:linear-gradient(90deg,transparent,currentColor,transparent);box-shadow:0 0 14px currentColor;opacity:0;pointer-events:none}
+.lkfp.scan .scanl{opacity:1;animation:lkscan 1.05s ease-in-out infinite alternate}
+.lkfp.scan .fpa{animation:lkglow 1.05s ease-in-out infinite alternate}
+@keyframes lkscan{from{top:24%}to{top:74%}}
+@keyframes lkglow{from{filter:drop-shadow(0 0 0 transparent)}to{filter:drop-shadow(0 0 10px currentColor)}}
+.lkfp.ok{color:#fff;background:radial-gradient(circle at 32% 26%,color-mix(in srgb,var(--good) 70%,#fff),var(--good) 75%);box-shadow:0 22px 44px -18px color-mix(in srgb,var(--good) 80%,transparent)}
+.lkfp.ok>i{border-color:color-mix(in srgb,var(--good) 55%,transparent)}
+.lkfp.ok .fpa{opacity:0;transform:scale(.4)}.lkfp.ok .fpb{opacity:1;transform:scale(1)}
+.lkfp.fail{color:var(--bad);animation:lkshake .45s}
+.lkfp.tap{animation:lkpop .35s}
+@keyframes lkshake{0%,100%{transform:translateX(0)}20%{transform:translateX(-10px)}40%{transform:translateX(9px)}60%{transform:translateX(-6px)}80%{transform:translateX(4px)}}
+@keyframes lkpop{50%{transform:scale(1.07)}}
+.lkcap{margin:14px 0 0;font:600 14.5px var(--f-body);color:var(--fg);min-height:0}
+.lkcap:empty{display:none}
+.vh{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;white-space:nowrap!important;margin:0!important}
+.lksub{margin:6px 0 0!important;font:500 13.5px/1.4 var(--f-body)!important;color:var(--muted-tx)!important}
+.lkor{display:flex;align-items:center;gap:10px;width:100%;margin:20px 0 12px;color:var(--muted-tx);font-size:12px;text-transform:lowercase}
+.lkor::before,.lkor::after{content:"";flex:1;height:1px;background:color-mix(in srgb,var(--line) 90%,transparent)}
+.lkor[hidden]{display:none}.lkor[hidden]+.lkfield{margin-top:20px!important}
+.lkfield.shake{animation:lkshake .45s}
+.lock.lkout .lockbox{animation:lkzoom .5s cubic-bezier(.4,0,.2,1) both}.lock.lkout{animation:lkfade .5s ease both}
+@keyframes lkzoom{0%{transform:none;opacity:1}35%{transform:scale(1.02)}100%{transform:scale(1.08);opacity:0}}
+@keyframes lkfade{0%,40%{opacity:1}100%{opacity:0}}
+.lock:not([hidden]) .lockbox>*{animation:lkin .55s cubic-bezier(.2,.9,.3,1) both}
+.lock:not([hidden]) .lockbox>*:nth-child(2){animation-delay:.06s}.lock:not([hidden]) .lockbox>*:nth-child(3){animation-delay:.12s}.lock:not([hidden]) .lockbox>*:nth-child(n+4){animation-delay:.18s}
+@keyframes lkin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.lock.lkout .lockbox>*{animation:none}
+@media (prefers-reduced-motion:reduce){.lkblob,.lkfp>i,.lkfp.scan .scanl,.lkfp.scan .fpa,.lock:not([hidden]) .lockbox>*{animation:none!important}.lkfp.scan .scanl{opacity:1;top:49%}}
+@media (max-height:640px){.lkfp{width:112px;height:112px}.lkfpin,.lkfpin svg{width:62px;height:62px}.lktop{margin-bottom:16px}.lkor{margin:14px 0 8px}}
 </style>
 
 <div class="app">
@@ -1508,7 +1564,7 @@ html.priv .mv,html.priv .tile b,html.priv .am,html.priv .nsbig b,html.priv .cfst
 <div id="welcome" class="wel" hidden role="dialog" aria-modal="true" aria-labelledby="welH"></div>
 <button type="button" class="calcfab" id="calcFab" hidden></button>
 <div id="calc" class="calcov" hidden role="dialog" aria-modal="true" aria-labelledby="calcT"><div class="calcsheet"><div class="calchead"><h2 id="calcT"></h2><button type="button" class="chbtn" id="calcHB"></button><button type="button" class="btn mini" id="calcX"></button></div><div class="chpanel" id="calcHP" hidden></div><div class="calcdisp"><div class="calcexpr" id="calcE"></div><div class="calcres" id="calcR">0</div><div class="calcname" id="calcN"></div></div><div class="calchist" id="calcH"></div><div class="calcpad" id="calcP"></div><div class="calcact"><button type="button" class="btn wide" id="calcCopy"></button></div></div></div>
-<div id="lock" class="lock" hidden><div class="lockbox"><span class="logo" id="lkLogo"></span><div class="lkhd"><b id="lkApp">Mizan</b><h2 id="lkTitle"></h2></div><span class="pfield lkfield"><input id="lkPin" class="lkin" type="password" autocomplete="current-password" aria-labelledby="lkTitle"><button type="button" class="lkeye" id="lkEye" aria-pressed="false"></button></span><p id="lkErr" class="lkerr" aria-live="polite"></p><div class="lkrow"><button type="button" class="btn primary" id="lkGo"></button></div><button type="button" class="lklink" id="lkForgot"></button></div></div>
+<div id="lock" class="lock" hidden><span class="lkblob b1" aria-hidden="true"></span><span class="lkblob b2" aria-hidden="true"></span><span class="lkblob b3" aria-hidden="true"></span><div class="lockbox"><div class="lktop"><span class="logo" id="lkLogo"></span><b id="lkApp">Mizan</b></div><button type="button" class="lkfp" id="lkFp"><i aria-hidden="true"></i><i aria-hidden="true"></i><span class="lkfpin"></span><b class="scanl" aria-hidden="true"></b></button><p class="lkcap" id="lkCap"></p><h2 id="lkTitle" class="lksub"></h2><div class="lkor" id="lkOr"><span></span></div><span class="pfield lkfield"><input id="lkPin" class="lkin" type="password" autocomplete="current-password" aria-labelledby="lkTitle"><button type="button" class="lkeye" id="lkEye" aria-pressed="false"></button></span><p id="lkErr" class="lkerr" aria-live="polite"></p><div class="lkrow"><button type="button" class="btn primary" id="lkGo"></button></div><button type="button" class="lklink" id="lkForgot"></button></div></div>
 
 <script>
 /* ================= Diller / Languages / اللغات ================= */
@@ -4476,11 +4532,12 @@ async function bioEnable(kind,secret){try{await bioRegister();if(!(await bioVeri
 function bioDisable(kind){const b=bioGet();delete b[kind];if(!b.app&&!b.vault){bioSet(null)}else bioSet(b)}
 async function bioUse(kind){const b=bioGet();if(!b[kind])return null;if(!(await bioVerify()))return null;try{return await bioOpen(b[kind])}catch(e){return null}}
 /* kilit ekranı */
-function bioLockBtn(){const g=document.getElementById('lkGo');if(!g)return;let bt=document.getElementById('lkBio');
-  if(!bioGet().app){if(bt)bt.remove();return}
-  if(!bt){bt=document.createElement('button');bt.type='button';bt.id='lkBio';bt.className='btn lkbio';g.after(bt);bt.addEventListener('click',bioLockTry)}
-  bt.innerHTML=ic('fingerprint');bt.setAttribute('aria-label',ux('bi_unlock'));bt.title=ux('bi_unlock')}
-async function bioLockTry(auto){const pw=await bioUse('app');if(pw==null){if(auto!==true)toast(ux('bi_fail'));return}const i=document.getElementById('lkPin');if(i){i.value=pw;tryUnlock()}}
+function bioLockBtn(){const fp=document.getElementById('lkFp');if(!fp)return;const on=!!bioGet().app;fp.classList.toggle('nobio',!on);fp.classList.remove('ok','fail','scan');
+  fp.querySelector('.lkfpin').innerHTML=`<span class="fpa">${ic(on?'fingerprint':'lock')}</span><span class="fpb">${ic('check')}</span>`;fp.setAttribute('aria-label',on?ux('bi_unlock'):ux('lk_pw_focus'));fp.title=fp.getAttribute('aria-label');
+  const c=document.getElementById('lkCap');if(c)c.textContent=on?ux('lk_fp_tap'):'';const tl=document.getElementById('lkTitle');if(tl)tl.classList.toggle('vh',on);const o=document.getElementById('lkOr');if(o){o.hidden=!on;o.firstChild.textContent=ux('lk_or')}
+  if(!fp.dataset.b){fp.dataset.b='1';fp.addEventListener('click',()=>{if(fp.classList.contains('nobio')){const i=document.getElementById('lkPin');if(i)i.focus();fp.classList.remove('tap');void fp.offsetWidth;fp.classList.add('tap');return}bioLockTry()})}}
+async function bioLockTry(auto){const fp=document.getElementById('lkFp');if(fp){if(fp.classList.contains('scan'))return;fp.classList.remove('fail');fp.classList.add('scan')}let pw=null;try{pw=await bioUse('app')}catch(e){}if(fp)fp.classList.remove('scan');
+  if(pw==null){if(auto!==true){if(fp){void fp.offsetWidth;fp.classList.add('fail');setTimeout(()=>fp.classList.remove('fail'),700)}toast(ux('bi_fail'))}return}const i=document.getElementById('lkPin');if(i){i.value=pw;tryUnlock()}}
 /* ayarlar: kilit kartına satır */
 function bioRowHTML(){const b=bioGet();return `<div class="birow" id="bioRow" hidden><span class="nsi">${ic('fingerprint')}</span><span><b>${ux('bi_h')}</b><small>${b.app?ux('bi_on'):ux('bi_p')}</small></span><button type="button" class="btn mini ${b.app?'':'primary'}" data-act="${b.app?'bioOff':'bioOn'}">${b.app?ux('bi_off_b'):ux('bi_on_b')}</button></div>`}
 async function bioRowShow(){const r=document.getElementById('bioRow');if(!r)return;r.hidden=!(pinInfo()&&await bioAvail())}
@@ -5259,6 +5316,13 @@ document.addEventListener('click',async e=>{const el=e.target.closest&&e.target.
     if(a==='upd'){const g=plan.goals.find(z=>z.ef);if(g){g.target=tg;fin(ux('x_saved'))}return}}
 });
 
+/* ================= v224: kilit ekranı amblemi ================= */
+function lkDone(){const l=document.getElementById('lock'),fp=document.getElementById('lkFp');if(!l)return;if(matchMedia('(prefers-reduced-motion: reduce)').matches||l.hidden){l.hidden=true;return}
+  if(fp){fp.classList.remove('scan','fail');fp.classList.add('ok')}l.classList.add('lkout');clearTimeout(l._t);l._t=setTimeout(()=>{l.hidden=true;l.classList.remove('lkout');if(fp)fp.classList.remove('ok')},520)}
+Object.assign(UX.tr,{"lk_fp_tap": "Parmak izine dokun", "lk_or": "ya da şifrenle", "lk_pw_focus": "Şifreyi yaz"});
+Object.assign(UX.en,{"lk_fp_tap": "Touch to use your fingerprint", "lk_or": "or use your password", "lk_pw_focus": "Type your password"});
+Object.assign(UX.ru,{"lk_fp_tap": "Коснитесь для входа по отпечатку", "lk_or": "или паролем", "lk_pw_focus": "Введите пароль"});
+Object.assign(UX.ar,{"lk_fp_tap": "المس لاستخدام البصمة", "lk_or": "أو بكلمة المرور", "lk_pw_focus": "اكتب كلمة المرور"});
 /* ================= Bildirim merkezi ================= */
 const LS_NF='gg_nf';let nfOpenAt=0,nfTab='all',nfSnz=null,nfUndo=null;
 const dayAdd=(iso,n)=>{const [y,m,d]=iso.split('-').map(Number),x=new Date(y,m-1,d+n);return x.getFullYear()+'-'+pad(x.getMonth()+1)+'-'+pad(x.getDate())};
@@ -6920,11 +6984,11 @@ async function tryUnlock(){
   if(ok){
     clearFail();
     if(info.v===2){secKey=ok;secPw=v}
-    $('#lock').hidden=true;$('#lkPin').value='';$('#lkErr').textContent='';try{sessSave()}catch(e){}
+    lkDone();$('#lkPin').value='';$('#lkErr').textContent='';try{sessSave()}catch(e){}
     if(unlockResolve){unlockResolve();unlockResolve=null}
   }else{
     noteFail();$('#lkPin').value='';
-    if(lockWait()>0)tickWait();else{$('#lkErr').textContent=t('lk_wrong');$('#lkPin').focus()}
+    if(lockWait()>0)tickWait();else{$('#lkErr').textContent=t('lk_wrong');$('#lkPin').focus()}try{const f=document.querySelector('.lkfield');f.classList.remove('shake');void f.offsetWidth;f.classList.add('shake')}catch(z){}
   }
 }
 function unlockGate(){
@@ -8421,7 +8485,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='223';
+const APP_VER='224';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
