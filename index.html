@@ -1566,6 +1566,9 @@ html.priv .mv,html.priv .tile b,html.priv .am,html.priv .nsbig b,html.priv .cfst
 html:root #welcome .welact,html:root[data-theme] #welcome .welact{background:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;box-shadow:none!important;padding:12px 0 8px!important}
 html:root #welcome .welact .btn:not(.primary){background:color-mix(in srgb,var(--solid,var(--surface)) 96%,transparent)!important;border:1px solid color-mix(in srgb,var(--line) 80%,transparent)!important;box-shadow:0 10px 24px -16px rgba(16,24,40,.45)!important;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
 #welcome .welnever{padding:4px 6px 10px}
+
+/* v227 */
+.pvrow{display:flex;align-items:center;gap:10px;min-height:44px;font-size:14.5px}.pvrow input{width:20px;height:20px;accent-color:var(--accent);flex:none}
 </style>
 
 <div class="app">
@@ -5342,6 +5345,28 @@ Object.assign(UX.tr,{"lk_fp_tap": "Parmak izine dokun", "lk_or": "ya da şifrenl
 Object.assign(UX.en,{"lk_fp_tap": "Touch to use your fingerprint", "lk_or": "or use your password", "lk_pw_focus": "Type your password"});
 Object.assign(UX.ru,{"lk_fp_tap": "Коснитесь для входа по отпечатку", "lk_or": "или паролем", "lk_pw_focus": "Введите пароль"});
 Object.assign(UX.ar,{"lk_fp_tap": "المس لاستخدام البصمة", "lk_or": "أو بكلمة المرور", "lk_pw_focus": "اكتب كلمة المرور"});
+/* ================= v227: telefonu sallayınca gizlilik modu ================= */
+function pvShakeOn(){try{return localStorage.getItem('gg_pvshake')!=='0'}catch(e){return true}}
+const PVS={t:[],last:0,prev:null};
+function pvMotion(e){if(!pvShakeOn()||document.visibilityState!=='visible')return;const a=e.accelerationIncludingGravity||e.acceleration;if(!a||a.x==null)return;
+  const p=PVS.prev;PVS.prev={x:a.x,y:a.y,z:a.z};if(!p)return;const d=Math.abs(a.x-p.x)+Math.abs(a.y-p.y)+Math.abs(a.z-p.z),now=Date.now();if(d<28)return;
+  PVS.t=PVS.t.filter(x=>now-x<800);PVS.t.push(now);if(PVS.t.length<3||now-PVS.last<1500)return;PVS.last=now;PVS.t=[];
+  const l=document.getElementById('lock');if(l&&!l.hidden)return;pvToggle();try{if(navigator.vibrate)navigator.vibrate(pvOn()?[30,40,30]:40)}catch(z){}const c=document.getElementById('pvNow');if(c)c.checked=pvOn()}
+window.addEventListener('devicemotion',pvMotion);
+async function pvAskMotion(){try{if(window.DeviceMotionEvent&&typeof DeviceMotionEvent.requestPermission==='function'){const r=await DeviceMotionEvent.requestPermission();return r==='granted'}}catch(e){return false}return true}
+function pvCardInject(){const v=document.getElementById('view');if(!v||document.getElementById('pvCard'))return;const sec=document.createElement('section');sec.className='card';sec.id='pvCard';
+  sec.innerHTML=`<div class="cardhead"><h2>${ux('pv_h')}</h2></div><p class="hint" style="margin-top:0">${ux('pv_p')}</p>
+   <label class="chk pvrow"><input type="checkbox" id="pvNow"${pvOn()?' checked':''}><span>${ux('pv_now')}</span></label>
+   <label class="chk pvrow"><input type="checkbox" id="pvShake"${pvShakeOn()?' checked':''}><span>${ux('pv_shake')}</span></label>
+   <p class="hint">${ux('window' in globalThis&&'DeviceMotionEvent' in window?'pv_shake_n':'pv_noshake')}</p>`;
+  const lang=v.querySelector('.langseg'),after=lang&&lang.closest('section');if(after&&after.nextSibling)after.parentNode.insertBefore(sec,after.nextSibling);else v.appendChild(sec)}
+document.addEventListener('change',async e=>{const x=e.target;if(!x)return;
+  if(x.id==='pvNow'){if(x.checked!==pvOn())pvToggle();return}
+  if(x.id==='pvShake'){if(x.checked&&!(await pvAskMotion())){x.checked=false;toast(ux('pv_noperm'));return}try{localStorage.setItem('gg_pvshake',x.checked?'1':'0')}catch(z){}toast(ux(x.checked?'pv_shake_on':'pv_shake_off'))}});
+Object.assign(UX.tr,{"pv_h": "Gizlilik modu", "pv_p": "Açıkken ekrandaki tutarlar bulanıklaşır. Sağ üstteki göz simgesine dokunarak ya da telefonu sallayarak açıp kapatabilirsin.", "pv_now": "Tutarları şimdi gizle", "pv_shake": "Telefonu sallayınca aç / kapat", "pv_shake_n": "Kısa ve sert birkaç sallama yeterli; yürürken ya da cepteyken tetiklenmez. Kilit ekranında çalışmaz.", "pv_noshake": "Bu cihaz hareket algılamayı desteklemiyor.", "pv_noperm": "Hareket izni verilmedi", "pv_shake_on": "Sallayınca gizleme açık", "pv_shake_off": "Sallayınca gizleme kapalı"});
+Object.assign(UX.en,{"pv_h": "Privacy mode", "pv_p": "When on, amounts on screen are blurred. Turn it on or off with the eye icon at the top right or by shaking your phone.", "pv_now": "Hide amounts now", "pv_shake": "Shake the phone to turn on / off", "pv_shake_n": "A few short, firm shakes are enough; walking or a pocket won’t trigger it. It doesn’t work on the lock screen.", "pv_noshake": "This device doesn’t support motion detection.", "pv_noperm": "Motion permission was not granted", "pv_shake_on": "Shake to hide is on", "pv_shake_off": "Shake to hide is off"});
+Object.assign(UX.ru,{"pv_h": "Режим конфиденциальности", "pv_p": "Когда включён, суммы на экране размываются. Включайте и выключайте значком глаза справа вверху или встряхнув телефон.", "pv_now": "Скрыть суммы сейчас", "pv_shake": "Встряхнуть телефон — вкл / выкл", "pv_shake_n": "Достаточно нескольких коротких резких встряхиваний; при ходьбе или в кармане не срабатывает. На экране блокировки не работает.", "pv_noshake": "Устройство не поддерживает датчик движения.", "pv_noperm": "Нет разрешения на датчик движения", "pv_shake_on": "Скрытие встряхиванием включено", "pv_shake_off": "Скрытие встряхиванием выключено"});
+Object.assign(UX.ar,{"pv_h": "وضع الخصوصية", "pv_p": "عند تفعيله تصبح المبالغ على الشاشة ضبابية. فعّله أو أوقفه برمز العين في الأعلى أو بهزّ الهاتف.", "pv_now": "إخفاء المبالغ الآن", "pv_shake": "هزّ الهاتف للتفعيل / الإيقاف", "pv_shake_n": "تكفي بضع هزّات قصيرة وقوية؛ لا يعمل أثناء المشي أو في الجيب. لا يعمل على شاشة القفل.", "pv_noshake": "هذا الجهاز لا يدعم استشعار الحركة.", "pv_noperm": "لم يُمنح إذن الحركة", "pv_shake_on": "الإخفاء بالهز مفعّل", "pv_shake_off": "الإخفاء بالهز متوقف"});
 /* ================= Bildirim merkezi ================= */
 const LS_NF='gg_nf';let nfOpenAt=0,nfTab='all',nfSnz=null,nfUndo=null;
 const dayAdd=(iso,n)=>{const [y,m,d]=iso.split('-').map(Number),x=new Date(y,m-1,d+n);return x.getFullYear()+'-'+pad(x.getMonth()+1)+'-'+pad(x.getDate())};
@@ -7190,6 +7215,7 @@ function render(){
   requestAnimationFrame(setHead);
   if(!plan){return}
   ({plan:renderPlan,defter:renderDefter,ozet:renderOzet,kalem:renderKalem,kur:renderKur,arac:renderTools,ayar:renderAyar})[tab]();
+  if(tab==='ayar'){try{pvCardInject()}catch(e){}}
   if(tab==='ayar'){const v=document.createElement('p');v.className='verl';v.innerHTML=`<b>Mizan</b> · v${typeof APP_VER!=='undefined'?APP_VER:''}`;$('#view').append(v)}
   saveTab();
   makeCollapsible();
@@ -8504,7 +8530,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='226';
+const APP_VER='227';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
