@@ -39,8 +39,8 @@
     {
       "name": "Harcama ekle",
       "short_name": "Harcama",
-      "description": "Hızlı gelir/gider kaydı",
       "url": "./?go=quick",
+      "description": "Hızlı gelir/gider kaydı",
       "icons": [
         {
           "src": "icon-192.png",
@@ -49,9 +49,22 @@
       ]
     },
     {
-      "name": "Bildirimler",
-      "short_name": "Bildirimler",
-      "url": "./?go=nf",
+      "name": "Fiş tara",
+      "short_name": "Fiş tara",
+      "url": "./?go=ocr",
+      "description": "Fişin fotoğrafından kayıt",
+      "icons": [
+        {
+          "src": "icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "SMS'ten ekle",
+      "short_name": "SMS",
+      "url": "./?go=sms",
+      "description": "Banka SMS'inden kayıt",
       "icons": [
         {
           "src": "icon-192.png",
@@ -71,9 +84,20 @@
       ]
     },
     {
-      "name": "Kişiler ve IBAN",
-      "short_name": "Kişiler",
-      "url": "./?go=ppl",
+      "name": "İstek listesi",
+      "short_name": "İstek",
+      "url": "./?go=wish",
+      "icons": [
+        {
+          "src": "icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Bildirimler",
+      "short_name": "Bildirimler",
+      "url": "./?go=nf",
       "icons": [
         {
           "src": "icon-192.png",
@@ -81,5 +105,31 @@
         }
       ]
     }
-  ]
+  ],
+  "share_target": {
+    "action": "./share",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url",
+      "files": [
+        {
+          "name": "f",
+          "accept": [
+            "image/*",
+            "application/pdf",
+            ".pdf",
+            "text/csv",
+            ".csv",
+            ".xlsx",
+            ".xls",
+            ".txt",
+            "text/plain"
+          ]
+        }
+      ]
+    }
+  }
 }

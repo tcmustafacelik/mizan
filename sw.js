@@ -1,11 +1,18 @@
 /* Mizan service worker: çevrimdışı çalışma + ödeme günü bildirimleri */
-const V='mizan-v2';
+const V='mizan-v3';
 const SHELL=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(V).then(c=>c.addAll(SHELL)).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>/^mizan-v/.test(k)&&k!==V).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
 self.addEventListener('fetch',e=>{
-  const r=e.request;if(r.method!=='GET')return;
-  const u=new URL(r.url);
+  const r=e.request;const u=new URL(r.url);
+  // Paylaş menüsünden gelen dosya / metin: önbelleğe koy, uygulamayı aç
+  if(r.method==='POST'&&u.origin===location.origin&&/\/share$/.test(u.pathname)){e.respondWith((async()=>{const back=new URL('./?go=share',self.registration.scope).href;
+    try{const fd=await r.formData(),c=await caches.open('mizan-share');for(const k of await c.keys())await c.delete(k);const base=new URL('./share/',self.registration.scope).href;
+      const meta={title:String(fd.get('title')||''),text:String(fd.get('text')||''),url:String(fd.get('url')||''),files:[]};let i=0;
+      for(const f of fd.getAll('f')){if(!f||typeof f==='string')continue;const k=base+'f'+(i++);await c.put(k,new Response(f,{headers:{'content-type':f.type||'application/octet-stream'}}));meta.files.push({k,name:f.name||'dosya',type:f.type||''})}
+      await c.put(base+'meta',new Response(JSON.stringify(meta),{headers:{'content-type':'application/json'}}))}catch(err){}
+    return Response.redirect(back,303)})());return}
+  if(r.method!=='GET')return;
   if(u.origin===location.origin){
     if(r.mode==='navigate'){
       // önce ağ (güncelleme gelsin), yoksa önbellek
