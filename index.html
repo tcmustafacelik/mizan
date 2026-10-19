@@ -1561,6 +1561,11 @@ html.priv .mv,html.priv .tile b,html.priv .am,html.priv .nsbig b,html.priv .cfst
 .lkcap{margin-top:16px!important;font-weight:500!important;font-size:13.5px!important;color:var(--muted-tx)!important}
 .lkor::before,.lkor::after{background:color-mix(in srgb,var(--muted-tx) 30%,transparent)!important}
 @media (max-height:640px){.lktop{margin-bottom:28px!important}.lkfp{width:84px!important;height:84px!important}.lkfpin,.lkfpin svg{width:44px!important;height:44px!important}}
+
+/* v226: karşılama ekranında alttaki düğmelerin arkasındaki köşeli şerit kaldırıldı; düğmeler kendi zeminiyle yüzer */
+html:root #welcome .welact,html:root[data-theme] #welcome .welact{background:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;box-shadow:none!important;padding:12px 0 8px!important}
+html:root #welcome .welact .btn:not(.primary){background:color-mix(in srgb,var(--solid,var(--surface)) 96%,transparent)!important;border:1px solid color-mix(in srgb,var(--line) 80%,transparent)!important;box-shadow:0 10px 24px -16px rgba(16,24,40,.45)!important;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+#welcome .welnever{padding:4px 6px 10px}
 </style>
 
 <div class="app">
@@ -8499,7 +8504,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='225';
+const APP_VER='226';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
