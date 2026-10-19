@@ -1461,6 +1461,12 @@ html:root .brand>.brr{min-width:168px}@media (min-width:390px){html:root .brand>
 :root[data-theme="glassd"][data-gbg="graphite"] .wel,:root[data-theme="glassd"][data-gbg="graphite"] .lock{background:radial-gradient(900px 560px at 0% -5%,rgba(71,85,105,.50),transparent 60%),radial-gradient(760px 560px at 105% 22%,rgba(51,65,85,.50),transparent 60%),radial-gradient(820px 600px at 40% 105%,rgba(100,116,139,.35),transparent 60%),#0B0F15!important}
 .thbg{grid-template-columns:repeat(4,minmax(0,1fr))!important}
 .thbg button span{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 2px}
+
+/* v221: yapışkan yıl filtresi de yüzen kart — arkasında tam genişlik dikdörtgen yok */
+html:root #selbar.stuck,html:root[data-theme] #selbar.stuck{background:transparent!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;box-shadow:none!important;margin-inline:0!important;padding:4px 0 6px!important;margin-block:-4px -6px!important}
+html:root #selbar.stuck::before,html:root[data-theme] #selbar.stuck::before{display:none!important;content:none!important}
+html:root #selbar.stuck .selbar,html:root[data-theme] #selbar.stuck .selbar{background:color-mix(in srgb,var(--solid,var(--surface)) 94%,transparent)!important;-webkit-backdrop-filter:blur(22px) saturate(1.7);backdrop-filter:blur(22px) saturate(1.7);border:1px solid color-mix(in srgb,var(--line) 75%,transparent)!important;border-radius:22px!important;box-shadow:0 12px 30px -16px rgba(16,24,40,.38),0 1px 2px rgba(16,24,40,.06)!important}
+html:root[data-theme="glassd"] #selbar.stuck .selbar,html:root[data-theme="dark"] #selbar.stuck .selbar{background:color-mix(in srgb,var(--solid,var(--surface)) 90%,transparent)!important;box-shadow:0 14px 32px -16px rgba(0,0,0,.7)!important}
 </style>
 
 <div class="app">
@@ -8137,7 +8143,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='220';
+const APP_VER='221';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
