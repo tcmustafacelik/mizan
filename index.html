@@ -1406,6 +1406,25 @@ h1 #appTag{color:var(--accent);font-weight:600;letter-spacing:.01em}
 .sxnote{display:flex;align-items:center;justify-content:center;gap:6px;margin:0;font-size:12px;color:var(--muted-tx)}
 .sxnote svg{width:13px;height:13px;fill:currentColor;flex:none;margin:0}
 #ucz [data-uc="1"][disabled]{opacity:.5;cursor:default}
+
+/* v219: yüzen menü — arkasında dikdörtgen yok, kayan seçim göstergesi, canlı simgeler */
+html:root .top,html:root[data-theme] .top,html:root[data-theme] body.scrolled .top{background:transparent!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;-webkit-mask-image:none!important;mask-image:none!important;box-shadow:none!important;border:0!important}
+html:root .tabs,html:root[data-theme] .tabs{position:relative;isolation:isolate;gap:2px!important;padding:6px!important;border-radius:26px!important;background:color-mix(in srgb,var(--solid,var(--surface)) 90%,transparent)!important;-webkit-backdrop-filter:blur(24px) saturate(1.8);backdrop-filter:blur(24px) saturate(1.8);border:1px solid color-mix(in srgb,var(--line) 75%,transparent)!important;box-shadow:0 12px 32px -16px rgba(16,24,40,.38),0 1px 2px rgba(16,24,40,.06)!important}
+html:root[data-theme="glassd"] .tabs,html:root[data-theme="dark"] .tabs{background:color-mix(in srgb,var(--solid,var(--surface)) 88%,transparent)!important;box-shadow:0 14px 34px -16px rgba(0,0,0,.7)!important}
+.tabind{position:absolute;z-index:0;top:6px;bottom:6px;left:0;width:0;border-radius:20px;pointer-events:none;background:color-mix(in srgb,var(--accent) 13%,var(--surface));box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 22%,transparent) inset,0 4px 12px -4px color-mix(in srgb,var(--accent) 35%,transparent)}
+.tabs.indok .tabind{transition:transform .42s cubic-bezier(.3,1.35,.45,1),width .42s cubic-bezier(.3,1.35,.45,1),opacity .2s}
+:root[data-theme="glass"] .tabind{background:rgba(255,255,255,.9);box-shadow:0 4px 14px -4px rgba(40,60,140,.32)}
+:root[data-theme="glassd"] .tabind{background:rgba(255,255,255,.17);box-shadow:0 0 0 1px rgba(255,255,255,.22) inset}
+:root[data-theme="color"] .tabind{background:linear-gradient(135deg,#7C3AED,#B04CE6);box-shadow:0 6px 16px -6px rgba(124,58,237,.6)}
+:root[data-theme="gray"] .tabind{background:var(--surface);box-shadow:0 0 0 1px var(--line),0 2px 6px rgba(31,35,40,.10)}
+html:root .tabs button,html:root[data-theme] .tabs button{position:relative;z-index:1;background:transparent!important;box-shadow:none!important;border-radius:20px!important;transition:color .25s,transform .15s var(--ease,ease)}
+html:root .tabs button[aria-selected="true"],html:root[data-theme] .tabs button[aria-selected="true"]{background:transparent!important;box-shadow:none!important;font-weight:650}
+.tabs button .ic{transition:transform .3s cubic-bezier(.3,1.5,.5,1)!important}
+.tabs button[aria-selected="true"] .ic{animation:tabpop .5s cubic-bezier(.3,1.5,.5,1) both}
+.tabs button:active .ic{transform:scale(.82)!important}
+html:root .brand>.brr{min-width:168px}@media (min-width:390px){html:root .brand>.brr{min-width:200px}}
+@keyframes tabpop{0%{transform:scale(.72) translateY(3px)}55%{transform:scale(1.24) translateY(-3px)}100%{transform:scale(1.12) translateY(-1px)}}
+@media (prefers-reduced-motion:reduce){.tabs.indok .tabind{transition:none}.tabs button[aria-selected="true"] .ic{animation:none}}
 </style>
 
 <div class="app">
@@ -4913,6 +4932,11 @@ Object.assign(UX.tr,{"sx_p": "Bankanın harcama ya da “para geldi” SMS’ini
 Object.assign(UX.en,{"sx_p": "Paste your bank’s purchase or “money received” SMS; amount, date, merchant and card are filled in for you.", "sx_multi": "Several messages: leave a blank line between them", "sx_priv": "The text never leaves this device", "sx_paste": "Paste"});
 Object.assign(UX.ru,{"sx_p": "Вставьте SMS банка о покупке или поступлении — сумма, дата, магазин и карта заполнятся сами.", "sx_multi": "Несколько SMS: разделите пустой строкой", "sx_priv": "Текст не покидает устройство", "sx_paste": "Вставить"});
 Object.assign(UX.ar,{"sx_p": "الصق رسالة البنك عن عملية شراء أو وصول مال، وسيُملأ المبلغ والتاريخ والمتجر والبطاقة تلقائيًا.", "sx_multi": "عدة رسائل: اترك سطرًا فارغًا بينها", "sx_priv": "لا يغادر النص هذا الجهاز", "sx_paste": "لصق"});
+/* ================= v219: yüzen menü, kayan seçim göstergesi ================= */
+function tabInd(){const t=document.getElementById('tabs');if(!t)return;let i=t.querySelector('.tabind');if(!i){i=document.createElement('span');i.className='tabind';i.setAttribute('aria-hidden','true');t.prepend(i)}
+  const a=t.querySelector('button[aria-selected="true"]');if(!a||!a.offsetWidth){i.style.opacity='0';return}i.style.opacity='1';i.style.width=a.offsetWidth+'px';i.style.transform='translateX('+a.offsetLeft+'px)';
+  if(!t.classList.contains('indok'))requestAnimationFrame(()=>requestAnimationFrame(()=>t.classList.add('indok')))}
+try{const t=document.getElementById('tabs');if(t&&window.ResizeObserver)new ResizeObserver(()=>{try{tabInd()}catch(e){}}).observe(t)}catch(e){}
 /* ================= Bildirim merkezi ================= */
 const LS_NF='gg_nf';let nfOpenAt=0,nfTab='all',nfSnz=null,nfUndo=null;
 const dayAdd=(iso,n)=>{const [y,m,d]=iso.split('-').map(Number),x=new Date(y,m-1,d+n);return x.getFullYear()+'-'+pad(x.getMonth()+1)+'-'+pad(x.getDate())};
@@ -6705,7 +6729,7 @@ window.addEventListener('resize',setHead);
       stuckChk();
       document.body.classList.toggle('scrolled',y>12);
       if(y<60)document.body.classList.remove('hdr-hid');
-      else if(d>4)document.body.classList.add('hdr-hid');
+      else if(d>4||y>90)document.body.classList.add('hdr-hid');
       if(d>4&&y>60)document.body.classList.add('fab-hid');else if(d<-4)document.body.classList.remove('fab-hid');
       clearTimeout(window.__fabT);window.__fabT=setTimeout(()=>document.body.classList.remove('fab-hid'),1100);
       last=y;
@@ -6756,6 +6780,7 @@ function viewEnter(){
 function saveTab(){try{localStorage.setItem('gg_tab',JSON.stringify({tab,sec:toolSec}))}catch(e){}}
 function render(){
   document.querySelectorAll('.tabs button').forEach(b=>b.setAttribute('aria-selected',b.dataset.tab===tab));
+  try{tabInd()}catch(e){}
   requestAnimationFrame(setHead);
   if(!plan){return}
   ({plan:renderPlan,defter:renderDefter,ozet:renderOzet,kalem:renderKalem,kur:renderKur,arac:renderTools,ayar:renderAyar})[tab]();
@@ -8072,7 +8097,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='218';
+const APP_VER='219';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
