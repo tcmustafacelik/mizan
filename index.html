@@ -1391,6 +1391,21 @@ h1 #appTag{color:var(--accent);font-weight:600;letter-spacing:.01em}
 .hbtn.lkn .ic,.hbtn.lkn svg{fill:currentColor}
 .brtop{gap:4px!important}.brtop .ping{padding:0 6px!important;gap:4px!important}
 @media (max-width:380px){.brtop .hbtn{width:32px;min-width:32px;height:32px}.brand{gap:8px!important}h1 #appTag{font-size:11px}}
+
+/* v218: SMS penceresi */
+.ucb:has(#sxIn){overflow:visible;max-height:none;width:100%;gap:12px}
+.sxlead{margin:0;font-size:14px;line-height:1.5;color:var(--muted-tx);text-align:center}
+.sxbox{display:grid;width:100%;box-sizing:border-box;border:1.5px solid var(--line);border-radius:16px;background:var(--surface);overflow:hidden;text-align:start;transition:border-color .15s,box-shadow .15s}
+.sxbox:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 16%,transparent)}
+#sxIn{display:block;width:100%;box-sizing:border-box;min-height:124px;max-height:34vh;margin:0;padding:12px 14px;border:0!important;border-radius:0!important;outline:0;box-shadow:none!important;background:transparent!important;color:var(--fg);font:400 14.5px/1.5 var(--f-body);resize:none}
+#sxIn::placeholder{color:color-mix(in srgb,var(--muted-tx) 75%,transparent)}
+.sxbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:6px 6px 6px 14px;border-top:1px solid color-mix(in srgb,var(--line) 80%,transparent);background:color-mix(in srgb,var(--surface2) 60%,var(--surface))}
+.sxbar small{min-width:0;font-size:12px;line-height:1.35;color:var(--muted-tx)}
+.sxpaste{flex:none;display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:99px;border:1px solid color-mix(in srgb,var(--accent) 30%,var(--line));background:var(--surface);color:var(--accent);font:600 13px var(--f-body);cursor:pointer}
+.sxpaste svg{width:16px;height:16px;fill:currentColor;margin:0}.sxpaste:active{transform:scale(.96)}
+.sxnote{display:flex;align-items:center;justify-content:center;gap:6px;margin:0;font-size:12px;color:var(--muted-tx)}
+.sxnote svg{width:13px;height:13px;fill:currentColor;flex:none;margin:0}
+#ucz [data-uc="1"][disabled]{opacity:.5;cursor:default}
 </style>
 
 <div class="app">
@@ -4811,11 +4826,14 @@ function sxApply(txt,quiet){const L=sxSplit(txt).map(sxParse).filter(Boolean);if
     const f=document.getElementById('entryForm');if(f)try{f.scrollIntoView({block:'center'})}catch(e){}toast(ux('sx_ok',{v:money(en.amount)}));return true}
   const rows=[[ux('st_date'),ux('st_desc'),ux('st_amt')],...L.map(sxEntry).map(en=>[dmy(en.date),en.desc||'—',en.type==='gelir'?en.amount:-en.amount])];
   ST.rows=rows;ST.name=ux('sx_src');const g=stGuess(rows);ST.g={...g,hr:0,date:0,desc:1,amt:2,mode:'one',flip:false};stBuild();stOpen();return true}
-async function sxOpen(){const cb=navigator.clipboard&&navigator.clipboard.readText;
-  const ok=await uiConfirm({title:ux('sx_h'),icon:'message-text',kind:'info',ok:ux('sx_read'),focus:'#sxIn',body:`<p class="lead">${esc(ux('sx_p'))}</p><textarea id="sxIn" rows="6" placeholder="${esc(ux('sx_ph'))}" aria-label="${esc(ux('sx_h'))}"></textarea>${cb?`<button type="button" class="btn mini sxpaste" id="sxPaste">${ic('paste')}${ux('sx_paste')}</button>`:''}<p class="hint">${ux('sx_note')}</p>`});
+async function sxOpen(){const cb=!!(navigator.clipboard&&navigator.clipboard.readText);
+  setTimeout(()=>{sxOk();const i=document.getElementById('sxIn');if(i)try{i.focus({preventScroll:true})}catch(e){}},30);
+  const ok=await uiConfirm({title:ux('sx_h'),icon:'message-text',kind:'info',ok:ux('sx_read'),body:`<p class="sxlead">${esc(ux('sx_p'))}</p><div class="sxbox"><textarea id="sxIn" rows="5" placeholder="${esc(ux('sx_ph'))}" aria-label="${esc(ux('sx_h'))}" autocomplete="off" spellcheck="false"></textarea><div class="sxbar"><small>${esc(ux('sx_multi'))}</small>${cb?`<button type="button" class="sxpaste" id="sxPaste">${ic('paste')}${esc(ux('sx_paste'))}</button>`:''}</div></div><p class="sxnote">${ic('lock')}<span>${esc(ux('sx_priv'))}</span></p>`});
   if(!ok)return;sxApply((document.getElementById('sxIn')||{}).value||'')}
+function sxOk(){const i=document.getElementById('sxIn'),b=document.querySelector('#ucz [data-uc="1"]');if(i&&b)b.disabled=!i.value.trim()}
+document.addEventListener('input',e=>{if(e.target&&e.target.id==='sxIn')sxOk()});
 document.addEventListener('click',e=>{const t=e.target.closest&&e.target.closest('[data-sxopen],#sxPaste');if(!t)return;e.preventDefault();
-  if(t.id==='sxPaste'){navigator.clipboard.readText().then(v=>{const i=document.getElementById('sxIn');if(i){i.value=v||'';i.focus()}}).catch(()=>toast(ux('sx_nopaste')));return}sxOpen()});
+  if(t.id==='sxPaste'){navigator.clipboard.readText().then(v=>{const i=document.getElementById('sxIn');if(i){i.value=v||'';sxOk();i.focus()}}).catch(()=>toast(ux('sx_nopaste')));return}sxOpen()});
 document.addEventListener('paste',e=>{if(!e.target||e.target.id!=='qeIn')return;const v=e.clipboardData&&e.clipboardData.getData('text')||'';if(v.length>30&&sxSplit(v).some(sxParse)){e.preventDefault();sxApply(v)}});
 
 /* ---- 6. Kayıtlara fotoğraf ---- */
@@ -4891,6 +4909,10 @@ function lockNow(){if(!pinInfo())return;try{if(typeof wvLock==='function'&&WV&&W
 /* kilit ekranı göz düğmesi */
 document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('#lkEye');if(!b)return;e.preventDefault();const i=document.getElementById('lkPin');if(!i)return;const sh=i.type==='password';i.type=sh?'text':'password';b.innerHTML=ic(sh?'eye-off':'eye');b.setAttribute('aria-pressed',String(sh));b.setAttribute('aria-label',ux(sh?'pw_hide':'pw_show'));try{i.focus({preventScroll:true})}catch(z){}});
 
+Object.assign(UX.tr,{"sx_p": "Bankanın harcama ya da “para geldi” SMS’ini yapıştır; tutar, tarih, yer ve kart kendiliğinden doldurulur.", "sx_ph": "Örn. 1234 ile biten kartınızla 12.10.2026 tarihinde MIGROS işyerinde 245,90 TL harcama yapılmıştır.", "sx_multi": "Birden fazla SMS: aralarına boş satır bırak", "sx_priv": "Metin bu cihazdan dışarı çıkmaz", "sx_paste": "Yapıştır"});
+Object.assign(UX.en,{"sx_p": "Paste your bank’s purchase or “money received” SMS; amount, date, merchant and card are filled in for you.", "sx_multi": "Several messages: leave a blank line between them", "sx_priv": "The text never leaves this device", "sx_paste": "Paste"});
+Object.assign(UX.ru,{"sx_p": "Вставьте SMS банка о покупке или поступлении — сумма, дата, магазин и карта заполнятся сами.", "sx_multi": "Несколько SMS: разделите пустой строкой", "sx_priv": "Текст не покидает устройство", "sx_paste": "Вставить"});
+Object.assign(UX.ar,{"sx_p": "الصق رسالة البنك عن عملية شراء أو وصول مال، وسيُملأ المبلغ والتاريخ والمتجر والبطاقة تلقائيًا.", "sx_multi": "عدة رسائل: اترك سطرًا فارغًا بينها", "sx_priv": "لا يغادر النص هذا الجهاز", "sx_paste": "لصق"});
 /* ================= Bildirim merkezi ================= */
 const LS_NF='gg_nf';let nfOpenAt=0,nfTab='all',nfSnz=null,nfUndo=null;
 const dayAdd=(iso,n)=>{const [y,m,d]=iso.split('-').map(Number),x=new Date(y,m-1,d+n);return x.getFullYear()+'-'+pad(x.getMonth()+1)+'-'+pad(x.getDate())};
@@ -8050,7 +8072,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='217';
+const APP_VER='218';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
