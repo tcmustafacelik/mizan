@@ -2338,7 +2338,11 @@ async function doShare(o){
   try{await navigator.clipboard.writeText(tx);toast(ux('sh_copied'))}catch(e){}
   try{const a=document.createElement('a');a.href='https://wa.me/?text='+encodeURIComponent(tx);a.target='_blank';a.rel='noopener';document.body.appendChild(a);a.click();a.remove()}catch(e){}
 }
+let ledDedT=null;
+async function ledDedupe(){const seen=new Set(),dup=[];for(const e of ledger.slice().sort((a,b)=>(a.ts||0)-(b.ts||0)||String(a.id).localeCompare(String(b.id)))){if(!e.payKey)continue;if(seen.has(e.payKey))dup.push(e.id);else seen.add(e.payKey)}
+  for(const id of dup)await removeEntry(id);if(dup.length){try{if(tab==='defter')drawLedger();else if(tab==='ozet')renderOzet()}catch(e){}}return dup.length}
 async function syncPayLedger(){
+  try{await ledDedupe()}catch(e){}
   if(!plan.ledgerOnPay)return;
   const want=new Map();
   for(const ym in (plan.paid||{}))for(const id in plan.paid[ym]){
@@ -6922,6 +6926,7 @@ async function exportIcs(){
 })();
 
 /* ================= Açılış ================= */
+setTimeout(()=>{try{ledger&&ledDedupe()}catch(e){}},2500);
 async function init(){
   $('#lkLogo').innerHTML=logoSVG();$('#lkLogo').classList.add('brand');
   $('#lkGo').addEventListener('click',tryUnlock);
@@ -7338,6 +7343,7 @@ async function ghApply(d,sha){
   try{if(keep.tab!==tab||ledgerFilter!==keep.lf){tab=keep.tab;ledgerFilter=keep.lf;render()}requestAnimationFrame(()=>scrollTo(0,keep.y))}catch(e){}
   GH.sha=sha;GH.pending=false;GH.at=Date.now();ghErr='';ghSave();ghDraw();
   setTimeout(()=>toast('☁ '+ux('gh_pulled')),400);
+  setTimeout(()=>{ledDedupe().catch(()=>{})},800);
 }
 async function ghConnect(o){
   const v=id=>o?String((o[{ghRepo:'r',ghTok:'t',ghPw:'p'}[id]])||'').trim():((document.getElementById(id)||{}).value||'').trim();
@@ -7561,7 +7567,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='213';
+const APP_VER='214';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
