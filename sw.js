@@ -12,7 +12,7 @@ self.addEventListener('fetch',e=>{
       e.respondWith(fetch(r.url,{cache:'no-cache',credentials:'same-origin'}).then(res=>{if(res.ok){const c=res.clone();caches.open(V).then(x=>x.put('./index.html',c))}return res}).catch(()=>caches.match('./index.html')));
       return;
     }
-    if(/\/(ocr|bins)\//.test(u.pathname)){e.respondWith(caches.open('mizan-data').then(c=>c.match(r).then(m=>m||fetch(r).then(res=>{if(res.ok)c.put(r,res.clone());return res}))));return}
+    if(/\/(ocr|bins|pdf)\//.test(u.pathname)){e.respondWith(caches.open('mizan-data').then(c=>c.match(r).then(m=>m||fetch(r).then(res=>{if(res.ok)c.put(r,res.clone());return res}))));return}
     e.respondWith(caches.match(r).then(m=>m||fetch(r)));return;
   }
   if(u.host==='fonts.googleapis.com'||u.host==='fonts.gstatic.com'){
