@@ -3434,6 +3434,7 @@ function renderTools(){
    <div class="actions" style="align-items:center"><select id="yrSel" style="max-width:120px" aria-label="${esc(ux('yr_btn'))}">${[...new Set(plan.months.map(m=>m.ym.slice(0,4)))].map(y=>`<option ${y===ymToday().slice(0,4)?'selected':''}>${y}</option>`).join('')}</select><button class="btn" type="button" data-rep="year">${ic('calendar')}${ux('yr_btn')}</button></div></section>`;
   if(toolSec==='sav')body=savHTML();
   $('#view').innerHTML=chipsHTML()+body;
+  if(toolSec==='wal'&&WV.open&&WV.edit!==null&&WV.form&&WV.form.edit===WV.edit)wvFill(WV.form);
   if(toolSec==='sav')retLoad();
   if(toolSec==='an'){simUpdate();fcInflUpdate()}
   if(toolSec==='loan')loanUpdate();
@@ -3701,12 +3702,19 @@ function wvALText(v){return v===0?ux('wv_al_now'):v<0?ux('wv_al_off'):ux('wv_al_
 function wvTouch(){clearTimeout(WV.tm);const ms=wvIdleMs();if(WV.open&&ms)WV.tm=setTimeout(()=>{wvLock();toast(ux('wv_autolock'))},ms)}
 let wvDraft=null,wvHidAt=0,wvHidT=0;
 function wvGrab(){if(!WV.open||WV.edit===null||!document.getElementById('wvNum'))return null;const g=id=>(document.getElementById(id)||{}).value||'';return {edit:WV.edit,name:g('wvName'),num:g('wvNum'),exp:g('wvExp'),cvv:g('wvCvv'),holder:g('wvHolder'),note:g('wvNote')}}
-function wvLock(){const d=wvGrab();if(d)wvDraft=d;clearTimeout(WV.tm);WV={open:false,cards:[],pin:null,edit:null,show:{},tm:0};if(tab==='arac'&&toolSec==='wal')renderTools()}
-function wvRestore(){if(!wvDraft||!WV.open)return;const d=wvDraft;wvDraft=null;if(d.edit!=='new'&&!WV.cards[d.edit])return;WV.edit=d.edit;renderTools();
-  const set=(id,v)=>{const e=document.getElementById(id);if(e&&v){e.value=v;e.dispatchEvent(new Event('input',{bubbles:true}))}};set('wvName',d.name);set('wvNum',d.num);set('wvExp',d.exp);set('wvCvv',d.cvv);set('wvHolder',d.holder);set('wvNote',d.note);
-  const n=document.getElementById('wvName');if(n&&d.name)delete n.dataset.auto;toast(ux('wv_draft'))}
+function wvGrace(){const v=wvAL();return v===0?0:v<0?12*3600000:v*60000}
+function wvSess(){try{if(!WV.open||!wvGrace()){sessionStorage.removeItem('gg_vs');return}const d=wvGrab();sessionStorage.setItem('gg_vs',JSON.stringify({pin:WV.pin,until:Date.now()+wvGrace(),draft:d}))}catch(e){}}
+let wvResuming=false;
+async function wvResume(){if(WV.open||wvResuming)return;let o=null;try{o=JSON.parse(sessionStorage.getItem('gg_vs')||'null')}catch(e){}
+  if(!o||!o.pin||!(o.until>Date.now())||!wvHas()){try{sessionStorage.removeItem('gg_vs')}catch(e){}return}
+  wvResuming=true;try{const d=await decryptBackup(JSON.parse(localStorage.getItem(LS_VAULT)),o.pin);WV={open:true,cards:Array.isArray(d.cards)?d.cards:[],pin:o.pin,edit:null,show:{},tm:0};if(o.draft)wvDraft=o.draft;wvTouch();if(tab==='arac'&&toolSec==='wal'){renderTools();wvRestore()}}catch(e){try{sessionStorage.removeItem('gg_vs')}catch(x){}}finally{wvResuming=false}}
+function wvLock(){const d=wvGrab();if(d)wvDraft=d;clearTimeout(WV.tm);try{sessionStorage.removeItem('gg_vs')}catch(e){}WV={open:false,cards:[],pin:null,edit:null,show:{},tm:0};if(tab==='arac'&&toolSec==='wal')renderTools()}
+function wvFill(d){const set=(id,v)=>{const e=document.getElementById(id);if(e&&v&&e.value!==v){e.value=v;e.dispatchEvent(new Event('input',{bubbles:true}))}};set('wvName',d.name);set('wvNum',d.num);set('wvExp',d.exp);set('wvCvv',d.cvv);set('wvHolder',d.holder);set('wvNote',d.note);
+  const n=document.getElementById('wvName');if(n&&d.name)delete n.dataset.auto;WV.form={...d}}
+function wvRestore(){if(!wvDraft||!WV.open)return;const d=wvDraft;wvDraft=null;if(d.edit!=='new'&&!WV.cards[d.edit])return;WV.edit=d.edit;WV.form={...d};renderTools();toast(ux('wv_draft'))}
+window.addEventListener('pagehide',()=>{if(WV.open)wvSess()});
 document.addEventListener('visibilitychange',()=>{if(!WV.open)return;const v=wvAL();
-  if(document.hidden){if(v===0){wvLock();return}if(v>0){wvHidAt=Date.now();clearTimeout(wvHidT);wvHidT=setTimeout(()=>{if(document.hidden&&WV.open)wvLock()},v*60000)}}
+  if(document.hidden){if(v===0){wvLock();return}wvSess();if(v>0){wvHidAt=Date.now();clearTimeout(wvHidT);wvHidT=setTimeout(()=>{if(document.hidden&&WV.open)wvLock()},v*60000)}}
   else{clearTimeout(wvHidT);if(v>0&&wvHidAt&&Date.now()-wvHidAt>=v*60000){wvLock();toast(ux('wv_autolock'))}wvHidAt=0;wvTouch()}});
 async function wvSave(){try{localStorage.setItem(LS_VAULT,await encryptBackup(JSON.stringify({v:1,cards:WV.cards}),WV.pin))}catch(e){toast(t('t_savefail'))}}
 async function wvCreate(){let pin=null,err='';
@@ -3714,7 +3722,7 @@ async function wvCreate(){let pin=null,err='';
   if(!pin)return;WV={open:true,cards:[],pin,edit:'new',show:{},tm:0};await wvSave();wvTouch();renderTools()}
 async function wvUnlock(){let err='';
   for(let k=0;k<5;k++){const pin=await pinAsk(ux('wv_open_h'),ux('wv_open_p'),'wvPinU',err,ux('wv_open'),'lock');if(pin===null)return;
-    try{const o=JSON.parse(localStorage.getItem(LS_VAULT));const d=await decryptBackup(o,pin);WV={open:true,cards:Array.isArray(d.cards)?d.cards:[],pin,edit:null,show:{},tm:0};wvTouch();renderTools();wvRestore();return}catch(e){err=ux('pn_wrong')}}
+    try{const o=JSON.parse(localStorage.getItem(LS_VAULT));const d=await decryptBackup(o,pin);WV={open:true,cards:Array.isArray(d.cards)?d.cards:[],pin,edit:null,show:{},tm:0};wvTouch();renderTools();wvRestore();wvSess();return}catch(e){err=ux('pn_wrong')}}
   toast(ux('qk_wrong'))}
 function wvCardHTML(c,i){const [c1,c2]=WV_COL[c.col||0]||WV_COL[0],net=wvNet(c.num),sh=WV.show[i];
   return `<div class="wvi"><div class="wvc" style="--c1:${c1};--c2:${c2}"><div class="wvt"><span class="wvtn"><b>${esc(c.name||ux('wv_card'))}</b>${c.bank?`<small class="wvbk">${wbFlag(c.bank.cc)} ${esc([wbType(c.bank),c.bank.cc&&c.bank.cc!=='TR'?ux('wb_foreign',{c:c.bank.cur||'?'}):''].filter(Boolean).join(' · '))}</small>`:''}</span><span class="wvn">${c.exp&&wvExpState(c.exp)==='old'?`<span class="wvexp">${ux('wv_expd')}</span>`:''}${esc(net)}</span></div>
@@ -3733,7 +3741,7 @@ function wvFormHTML(){const c=WV.edit==='new'?{col:WV.cards.length%WV_COL.length
    <div class="actions"><button type="button" class="btn" data-wv="cancel">${ux('is_cancel')}</button><button type="button" class="btn primary" data-wv="save">${ux('wv_save')}</button></div></div>`}
 function wvHTML(){
   if(!wvHas())return `<section class="card wvcard"><div class="wvhero">${ic('credit-card')}<b>${ux('wv_h')}</b><p>${ux('wv_intro')}</p><button type="button" class="btn primary wide" data-wv="create">${ic('lock')}${ux('wv_create')}</button></div><p class="hint">${ux('wv_sec')}</p></section>`;
-  if(!WV.open)return `<section class="card wvcard"><div class="wvhero">${ic('lock')}<b>${ux('wv_locked')}</b><p>${esc(ux('wv_locked_p2',{t:wvALText(wvAL())}))}</p><button type="button" class="btn primary wide" data-wv="unlock">${ux('wv_open')}</button></div><p class="hint"><button type="button" class="tlink" data-wv="reset">${ux('wv_forgot')}</button></p></section>`;
+  if(!WV.open){setTimeout(wvResume,0);return `<section class="card wvcard"><div class="wvhero">${ic('lock')}<b>${ux('wv_locked')}</b><p>${esc(ux('wv_locked_p2',{t:wvALText(wvAL())}))}</p><button type="button" class="btn primary wide" data-wv="unlock">${ux('wv_open')}</button></div><p class="hint"><button type="button" class="tlink" data-wv="reset">${ux('wv_forgot')}</button></p></section>`;}
   return `<section class="card wvcard"><div class="cardhead"><h2>${ic('credit-card')}${ux('wv_h')}</h2><button type="button" class="btn mini" data-wv="lock">${ic('lock')}${ux('wv_lock')}</button></div>
    <label class="wval">${ic('timer')}<span>${ux('wv_al')}</span><select id="wvAl" aria-label="${esc(ux('wv_al'))}">${WV_AL.map(v=>`<option value="${v}" ${wvAL()===v?'selected':''}>${esc(wvALText(v))}</option>`).join('')}</select></label>
    ${WV.edit!==null?wvFormHTML():''}<div class="wvl">${WV.cards.map(wvCardHTML).join('')||(WV.edit===null?`<p class="hint">${ux('wv_empty')}</p>`:'')}</div>
@@ -3749,15 +3757,15 @@ document.addEventListener('input',e=>{const x=e.target;if(x.id==='wvNum'){const 
   else if(x.id==='wvCvv'){const sp=wvSpec((document.getElementById('wvNum')||{}).value);x.value=x.value.replace(/\D/g,'').slice(0,sp.cvv)}
   else if(x.id==='wvName'){delete x.dataset.auto}
   else if(x.id==='wvHolder'){const v=x.value.replace(/[^\p{L} .'-]/gu,'').replace(/\s{2,}/g,' ').slice(0,26);if(v!==x.value)x.value=v}
-  if(x.closest&&x.closest('.wvcard'))wvTouch()});
-document.addEventListener('change',e=>{if(e.target&&e.target.id==='wvAl'){try{localStorage.setItem('gg_vlock',e.target.value)}catch(x){}wvTouch();toast(ux('wv_al_set',{t:wvALText(+e.target.value)}))}});
+  if(x.closest&&x.closest('.wvf')&&WV.open)WV.form=wvGrab();if(x.closest&&x.closest('.wvcard'))wvTouch()});
+document.addEventListener('change',e=>{if(e.target&&e.target.id==='wvAl'){try{localStorage.setItem('gg_vlock',e.target.value)}catch(x){}wvTouch();wvSess();toast(ux('wv_al_set',{t:wvALText(+e.target.value)}))}});
 document.addEventListener('click',async e=>{const cb=e.target.closest&&e.target.closest('[data-wvcol]');if(cb){cb.parentElement.querySelectorAll('[data-wvcol]').forEach(b=>b.setAttribute('aria-checked',String(b===cb)));return}
   const b=e.target.closest&&e.target.closest('[data-wv]');if(!b)return;e.preventDefault();const [a,i,f]=b.dataset.wv.split(':');wvTouch();
   if(a==='cvveye'){const f=document.getElementById('wvCvv');if(f){const sh=f.classList.toggle('wvmask')===false;b.setAttribute('aria-pressed',String(sh));b.innerHTML=ic(sh?'eye-off':'eye');b.setAttribute('aria-label',ux(sh?'wv_cvv_hide':'wv_cvv_show'))}return}
   if(a==='bin'){const n=((document.getElementById('wvNum')||{}).value||'').replace(/\D/g,'');if(n.length>=6)wvBinLookup(n.slice(0,6),true);return}
   if(a==='create')return wvCreate();if(a==='unlock')return wvUnlock();if(a==='lock'){wvLock();return}
   if(a==='reset'){if(await uiConfirm({title:ux('wv_reset_h'),msg:ux('wv_reset_p'),kind:'danger',icon:'trash',ok:ux('uc_del')})){try{localStorage.removeItem(LS_VAULT)}catch(x){}wvLock()}return}
-  if(a==='add'){WV.edit='new';renderTools();return}if(a==='edit'){WV.edit=+i;renderTools();return}if(a==='cancel'){WV.edit=null;renderTools();return}
+  if(a==='add'){WV.edit='new';WV.form=null;renderTools();return}if(a==='edit'){WV.edit=+i;WV.form=null;renderTools();return}if(a==='cancel'){WV.edit=null;WV.form=null;renderTools();return}
   if(a==='eye'){WV.show[i]=!WV.show[i];renderTools();return}
   if(a==='copy'){const c=WV.cards[+i];if(!c)return;const v=f==='num'?String(c.num||'').replace(/\D/g,''):c[f]||'';if(!v)return;try{await navigator.clipboard.writeText(v);toast(ux('wv_copied',{f:f==='num'?ux('wv_num'):f==='exp'?ux('wv_exp'):f==='cvv'?cvvName((WV.cards[+i]||{}).num):ux('wv_holder')}))}catch(x){toast(ux('dv_copy_err'))}return}
   if(a==='del'){const c=WV.cards[+i];if(c&&await uiConfirm({title:ux('uc_del_h'),msg:ux('wv_del_p',{n:c.name||ux('wv_card')}),kind:'danger',icon:'trash',ok:ux('uc_del')})){WV.cards.splice(+i,1);WV.show={};await wvSave();renderTools()}return}
@@ -3770,7 +3778,7 @@ document.addEventListener('click',async e=>{const cb=e.target.closest&&e.target.
     const cvv=g('wvCvv');if(cvv&&cvv.length!==sp.cvv){toast(ux('wv_cvvb',{n:sp.cvv,c:cvvName(num)}));document.getElementById('wvCvv').focus();return}
     const bk=(wvBin.st==='ok'&&wvBin.d&&num.slice(0,6)===wvBin.k)?{...wvBin.d}:(WV.edit!=='new'&&WV.cards[WV.edit]&&String(WV.cards[WV.edit].num||'').slice(0,6)===num.slice(0,6)?WV.cards[WV.edit].bank:null);const col=bk?wvColFor(bk):(wvSpec(num).net?wvColFor({scheme:wvSpec(num).net}):0);
     const c={name:g('wvName').trim(),num,exp,cvv:g('wvCvv'),holder:g('wvHolder').trim().toLocaleUpperCase(LANG==='tr'?'tr':'en'),note:g('wvNote').trim(),col};if(bk)c.bank=bk;
-    if(WV.edit==='new')WV.cards.push(c);else WV.cards[WV.edit]=c;WV.edit=null;await wvSave();renderTools();toast(ux('wv_saved'));return}
+    if(WV.edit==='new')WV.cards.push(c);else WV.cards[WV.edit]=c;WV.edit=null;WV.form=null;await wvSave();renderTools();toast(ux('wv_saved'));return}
 });
 
 /* ================= Ortak: küçük form yardımcıları ================= */
@@ -7027,7 +7035,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='201';
+const APP_VER='202';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
