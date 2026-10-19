@@ -1,6 +1,6 @@
 <!doctype html><html lang="tr"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; manifest-src 'self'; worker-src 'self'; connect-src 'self' https://api.github.com https://api.ipify.org https://api64.ipify.org https://open.er-api.com https://api.kraken.com https://api.coinbase.com https://api.gold-api.com https://cdn.jsdelivr.net https://fonts.googleapis.com https://fonts.gstatic.com; base-uri 'self'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; manifest-src 'self'; worker-src 'self'; connect-src 'self' https://api.github.com https://api.ipify.org https://api64.ipify.org https://lookup.binlist.net https://open.er-api.com https://api.kraken.com https://api.coinbase.com https://api.gold-api.com https://cdn.jsdelivr.net https://fonts.googleapis.com https://fonts.gstatic.com; base-uri 'self'; form-action 'none'">
 <title>Mizan · Gelir, gider ve borç takibi</title>
 <meta name="description" content="Gelirini, giderini ve borç ödemelerini tek yerde planla. Ödeme takvimi, bütçeler, birikim hedefleri ve raporlar. Kayıt yok, veriler yalnızca senin cihazında kalır.">
 <meta name="application-name" content="Mizan">
@@ -1172,6 +1172,18 @@ input[type=checkbox],input[type=radio]{border-radius:revert}
 /* v197 klavye açıkken sade görünüm */
 body.kb .top,body.kb #selbar{position:relative!important;top:auto!important;transform:none!important}
 body.kb .calcfab{display:none!important}
+
+/* v198 banka bilgisi */
+.wbbox{margin:4px 0 12px;padding:12px;border-radius:16px;background:color-mix(in srgb,var(--accent) 6%,var(--surface));border:1px solid color-mix(in srgb,var(--accent) 18%,var(--line))}
+.wbbox h4{margin:0 0 8px;font:700 12px var(--f-body);letter-spacing:.06em;text-transform:uppercase;color:var(--muted-tx)}
+.wbh{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0;font-size:13px;color:var(--muted-tx);line-height:1.45}.wbh svg{width:18px;height:18px;fill:currentColor;flex:none}
+.wbh .btn{margin-inline-start:auto}.wbbad{color:#b45309}.wbload svg{animation:spin 1s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+.wbok{display:flex;align-items:center;gap:12px}.wbi{flex:none;display:grid;place-items:center;width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,var(--c1),var(--c2));color:#fff;font:700 15px var(--f-body)}
+.wbt{flex:1;min-width:0}.wbt b{display:block;font-size:15px;line-height:1.3;overflow-wrap:anywhere}.wbt small{display:flex;align-items:center;gap:4px;margin-top:4px;font-size:12px;color:var(--muted-tx)}.wbt small svg{width:13px;height:13px;fill:currentColor}
+.wbcs{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px}.wbc{padding:2px 8px;border-radius:99px;background:var(--surface);border:1px solid var(--line);font:600 11.5px var(--f-body)}.wbf{background:#fef3c7;border-color:#f59e0b;color:#92400e}
+.wbv{flex:none;display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:#10b981}.wbv svg{width:16px;height:16px;fill:#fff}
+.wbp{display:flex;gap:6px;align-items:flex-start;margin:10px 0 0;font-size:11.5px;color:var(--muted-tx);line-height:1.4}.wbp svg{width:13px;height:13px;fill:currentColor;flex:none;margin-top:2px}
+.wvtn{display:grid;min-width:0}.wvc:has(.wvbk)::after{top:66px}.wvc:has(.wvbk) .wvnum{margin-top:52px}.wvbk{font:600 11px var(--f-body);opacity:.85;margin-top:2px}
 </style>
 
 <div class="app">
@@ -2148,6 +2160,10 @@ Object.assign(UX.tr,{ah_p:"İhtiyacın olan aracı seç. Sayılar, içinde kaç 
 Object.assign(UX.en,{ah_p:"Pick the tool you need. Numbers show how many entries each one holds.",ah_g1:"Planning",ah_g2:"Analysis & money",ah_g3:"My records",wv_digs:p=>`${p.c} / ${p.n} digits`,wv_lenb:p=>`${p.b} numbers must be ${p.n} digits`,wv_luhnb:"Card number is invalid (check digit fails)",wv_cvvb:p=>`CVV must be ${p.n} digits`,wv_expf:"Expiry can be at most 20 years ahead",wv_expd:"Expired"});
 Object.assign(UX.ru,{ah_p:"Выберите нужный инструмент. Числа показывают, сколько в нём записей.",ah_g1:"Планирование",ah_g2:"Анализ и деньги",ah_g3:"Мои записи",wv_digs:p=>`${p.c} / ${p.n} цифр`,wv_lenb:p=>`Номер ${p.b} должен содержать ${p.n} цифр`,wv_luhnb:"Неверный номер карты (контрольная цифра)",wv_cvvb:p=>`CVV должен содержать ${p.n} цифры`,wv_expf:"Срок не может быть дальше чем через 20 лет",wv_expd:"Истёк"});
 Object.assign(UX.ar,{ah_p:"اختر الأداة التي تحتاجها. تُظهر الأرقام عدد السجلات في كل أداة.",ah_g1:"التخطيط",ah_g2:"التحليل والمال",ah_g3:"سجلاتي",wv_digs:p=>`${p.c} / ${p.n} رقمًا`,wv_lenb:p=>`يجب أن يتكون رقم ${p.b} من ${p.n} رقمًا`,wv_luhnb:"رقم البطاقة غير صالح (رقم التحقق خاطئ)",wv_cvvb:p=>`يجب أن يتكون CVV من ${p.n} أرقام`,wv_expf:"لا يمكن أن يتجاوز تاريخ الانتهاء 20 سنة",wv_expd:"منتهية"});
+Object.assign(UX.tr,{wb_h:"Banka bilgisi",wb_hint:"Kart numarasının ilk 6 hanesini yazınca banka, ülke ve kart türü otomatik gelir.",wb_load:"Banka bilgisi aranıyor…",wb_none:"Bu numara için banka kaydı bulunamadı. Kart adını elle yazabilirsin.",wb_limit:"Ücretsiz sorgu sınırı doldu (saatte 5 sorgu). Biraz sonra tekrar dene.",wb_fail:"Banka bilgisi alınamadı. İnternet bağlantını kontrol et.",wb_retry:"Tekrar dene",wb_credit:"Kredi kartı",wb_debit:"Banka kartı",wb_prepaid:"Ön ödemeli",wb_foreign:p=>`Yurt dışı kartı · ${p.c}`,wb_unknown:"Banka adı yok",wb_priv:"Sorguda yalnızca ilk 6 hane (banka kodu) gönderilir. Kart numarasının tamamı, SKT ve CVV hiçbir yere gönderilmez."});
+Object.assign(UX.en,{wb_h:"Bank details",wb_hint:"Type the first 6 digits of the card number and the bank, country and card type appear automatically.",wb_load:"Looking up the bank…",wb_none:"No bank record found for this number. You can type the card name yourself.",wb_limit:"Free lookup limit reached (5 per hour). Try again a bit later.",wb_fail:"Couldn't get bank details. Check your internet connection.",wb_retry:"Try again",wb_credit:"Credit card",wb_debit:"Debit card",wb_prepaid:"Prepaid",wb_foreign:p=>`Foreign card · ${p.c}`,wb_unknown:"No bank name",wb_priv:"Only the first 6 digits (bank code) are sent for the lookup. The full number, expiry and CVV are never sent anywhere."});
+Object.assign(UX.ru,{wb_h:"Данные банка",wb_hint:"Введите первые 6 цифр номера, и банк, страна и тип карты появятся автоматически.",wb_load:"Ищем банк…",wb_none:"Банк для этого номера не найден. Введите название карты вручную.",wb_limit:"Лимит бесплатных запросов исчерпан (5 в час). Попробуйте позже.",wb_fail:"Не удалось получить данные банка. Проверьте интернет.",wb_retry:"Повторить",wb_credit:"Кредитная карта",wb_debit:"Дебетовая карта",wb_prepaid:"Предоплаченная",wb_foreign:p=>`Иностранная карта · ${p.c}`,wb_unknown:"Банк не указан",wb_priv:"Для поиска отправляются только первые 6 цифр (код банка). Полный номер, срок и CVV никуда не отправляются."});
+Object.assign(UX.ar,{wb_h:"بيانات البنك",wb_hint:"اكتب أول 6 أرقام من رقم البطاقة لتظهر بيانات البنك والدولة ونوع البطاقة تلقائيًا.",wb_load:"جارٍ البحث عن البنك…",wb_none:"لا يوجد سجل بنك لهذا الرقم. يمكنك كتابة اسم البطاقة يدويًا.",wb_limit:"انتهى حد الاستعلام المجاني (5 في الساعة). حاول لاحقًا.",wb_fail:"تعذّر جلب بيانات البنك. تحقّق من الاتصال بالإنترنت.",wb_retry:"إعادة المحاولة",wb_credit:"بطاقة ائتمان",wb_debit:"بطاقة خصم",wb_prepaid:"مسبقة الدفع",wb_foreign:p=>`بطاقة أجنبية · ${p.c}`,wb_unknown:"لا يوجد اسم بنك",wb_priv:"يُرسل فقط أول 6 أرقام (رمز البنك) للاستعلام. لا يُرسل الرقم الكامل ولا تاريخ الانتهاء ولا CVV إلى أي مكان."});
 Object.assign(UX.ar,{bk_share:'مشاركة النسخة',bk_share_note:'ترسل النسخة إلى درايف أو البريد أو واتساب.',bk_share_no:'هذا المتصفح لا يدعم مشاركة الملفات، تم تنزيل النسخة.',where:p=>`بيانات هذه النسخة مرتبطة بالعنوان: ${p.u}. إذا فتحت الملف من مكان آخر ستكون البيانات منفصلة.`,rate_old:p=>`عمر السعر ${p.n}`,h:'س',d:'يوم'});
 const ux=(k,p)=>{let v=(UX[LANG]||UX.tr)[k];if(v===undefined)v=UX.tr[k];return typeof v==='function'?v(p||{}):v};
 const shortDay=iso=>{const [y,m,d]=String(iso).split('-').map(Number);return d+' '+MSHORT[LANG][m-1]};
@@ -3624,6 +3640,39 @@ const WV_COL=[['#1e3a8a','#3b82f6'],['#7c2d12','#f97316'],['#065f46','#10b981'],
 const WV_NETS=[['AMEX',/^3[47]/,[15],4,[4,6,5]],['TROY',/^(9792|65)/,[16],3],['Diners',/^(36|30[0-5]|3095|3[89])/,[14,15,16,17,18,19],3],['JCB',/^(352[89]|35[3-8])/,[16,17,18,19],3],['Mastercard',/^(5[1-5]|222[1-9]|22[3-9]|2[3-6]|27[01]|2720)/,[16],3],['VISA',/^4/,[13,16,19],3],['Discover',/^(6011|64[4-9]|65)/,[16,17,18,19],3],['UnionPay',/^62/,[16,17,18,19],3],['Maestro',/^(5[06-9]|6)/,[12,13,14,15,16,17,18,19],3]];
 function wvSpec(n){n=String(n||'').replace(/\D/g,'');for(const x of WV_NETS)if(x[1].test(n))return {net:x[0],len:x[2],cvv:x[3],grp:x[4]||null};return {net:'',len:[12,13,14,15,16,17,18,19],cvv:3,grp:null}}
 function wvNet(n){n=String(n||'').replace(/\D/g,'');return n.length>=2?wvSpec(n).net:''}
+const BIN_URL='https://lookup.binlist.net/';let wvBin={k:'',st:'',d:null},wvBinT=0;
+function binCache(){try{return JSON.parse(localStorage.getItem('gg_bin')||'{}')||{}}catch(e){return {}}}
+function binPut(k,v){try{const c=binCache();c[k]=v;const ks=Object.keys(c);if(ks.length>150)ks.slice(0,ks.length-150).forEach(x=>delete c[x]);localStorage.setItem('gg_bin',JSON.stringify(c))}catch(e){}}
+const tcase=v=>String(v||'').toLowerCase().replace(/(^|[\s.\-/(&])(\p{L})/gu,(m,a,b)=>a+b.toUpperCase()).replace(/(^|\s)((?:\p{L}\.){1,3}\p{L}?\.?)$/u,(m,a,b)=>a+b.toUpperCase());
+function wbCountry(cc){if(!cc)return '';try{return new Intl.DisplayNames([LOC[LANG]||LANG],{type:'region'}).of(cc)}catch(e){return cc}}
+function wbFlag(cc){return /^[A-Z]{2}$/.test(cc||'')?String.fromCodePoint(...[...cc].map(c=>127397+c.charCodeAt(0))):''}
+function wbType(d){return d.pre?ux('wb_prepaid'):d.type==='credit'?ux('wb_credit'):d.type==='debit'?ux('wb_debit'):''}
+async function wvBinLookup(bin,force){
+  if(!force&&bin===wvBin.k&&wvBin.st&&wvBin.st!=='fail')return;
+  wvBin={k:bin,st:'load',d:null};wvBinDraw();
+  const c=binCache()[bin];if(c&&!force){wvBin.st=c.none?'none':'ok';wvBin.d=c.none?null:c;wvBinDraw();return}
+  try{const ctl=new AbortController(),tm=setTimeout(()=>ctl.abort(),9000);
+    const r=await fetch(BIN_URL+bin,{headers:{'Accept-Version':'3'},signal:ctl.signal,cache:'no-store'});clearTimeout(tm);
+    if(wvBin.k!==bin)return;
+    if(r.status===404){binPut(bin,{none:1});wvBin.st='none'}
+    else if(r.status===429)wvBin.st='limit';
+    else if(r.ok){const j=await r.json(),bk=j.bank||{},co=j.country||{};
+      const d={bank:tcase(bk.name||''),url:bk.url||'',tel:bk.phone||'',cc:co.alpha2||'',cur:co.currency||'',type:j.type||'',brand:j.brand||'',scheme:j.scheme||'',pre:!!j.prepaid};
+      if(!d.bank&&!d.cc&&!d.type){binPut(bin,{none:1});wvBin.st='none'}else{binPut(bin,d);wvBin.st='ok';wvBin.d=d}}
+    else wvBin.st='fail'}catch(e){if(wvBin.k===bin)wvBin.st='fail'}
+  wvBinDraw()}
+function wbChips(d,full){const out=[];const cn=wbCountry(d.cc);if(cn)out.push(`<span class="wbc">${wbFlag(d.cc)} ${esc(cn)}</span>`);const ty=wbType(d);if(ty)out.push(`<span class="wbc">${esc(ty)}</span>`);
+  if(full&&d.brand)out.push(`<span class="wbc">${esc(tcase(d.brand))}</span>`);if(d.cc&&d.cc!=='TR')out.push(`<span class="wbc wbf">${esc(ux('wb_foreign',{c:d.cur||'?'}))}</span>`);return out.join('')}
+function wvBankHTML(){const b=wvBin;
+  if(!b.k)return `<p class="wbh">${ic('landmark')}${ux('wb_hint')}</p>`;
+  if(b.st==='load')return `<p class="wbh wbload">${ic('refresh')}${ux('wb_load')}</p>`;
+  if(b.st==='ok'&&b.d){const d=b.d,nm=d.bank||ux('wb_unknown');
+    return `<div class="wbok"><span class="wbi" style="--c1:${WV_COL[wvColFor(d)][0]};--c2:${WV_COL[wvColFor(d)][1]}">${esc(ppIni(nm))}</span><div class="wbt"><b>${esc(nm)}</b><div class="wbcs">${wbChips(d,true)}</div>${d.tel?`<small>${ic('smartphone')}${esc(d.tel)}</small>`:''}</div><span class="wbv">${ic('check')}</span></div>`}
+  const msg=b.st==='none'?ux('wb_none'):b.st==='limit'?ux('wb_limit'):ux('wb_fail');
+  return `<p class="wbh wbbad">${ic('alert-triangle')}<span>${msg}</span>${b.st!=='none'?`<button type="button" class="btn mini" data-wv="bin">${ic('refresh')}${ux('wb_retry')}</button>`:''}</p>`}
+function wvBinDraw(){const el=document.getElementById('wvBank');if(el)el.innerHTML=wvBankHTML();
+  if(wvBin.st==='ok'&&wvBin.d&&wvBin.d.bank){const n=document.getElementById('wvName');if(n&&(!n.value.trim()||n.dataset.auto===n.value)){n.value=wvBin.d.bank;n.dataset.auto=n.value}}}
+function wvColFor(d){const k=(d&&(d.bank||d.scheme))||'';if(!k)return 0;let h=0;for(const ch of k)h=(h*31+ch.charCodeAt(0))>>>0;return h%WV_COL.length}
 function wvExpState(e){const m=/^(\d{2})\/(\d{2})$/.exec(e||'');if(!m)return 'bad';const mo=+m[1],y=2000+ +m[2];if(mo<1||mo>12)return 'bad';const now=new Date(),cy=now.getFullYear(),cm=now.getMonth()+1;if(y>cy+20)return 'far';if(y<cy||(y===cy&&mo<cm))return 'old';return 'ok'}
 function wvLuhn(n){n=String(n).replace(/\D/g,'');if(n.length<12)return false;let s=0;for(let i=0;i<n.length;i++){let d=+n[n.length-1-i];if(i%2){d*=2;if(d>9)d-=9}s+=d}return s%10===0}
 const wvFmt=n=>{const d=String(n||'').replace(/\D/g,''),g=wvSpec(d).grp;if(!g)return d.replace(/(\d{4})(?=\d)/g,'$1 ');let o=[],k=0;for(const w of g){if(k>=d.length)break;o.push(d.slice(k,k+w));k+=w}if(k<d.length)o.push(d.slice(k));return o.join(' ')};
@@ -3639,19 +3688,19 @@ async function wvUnlock(){let err='';
     try{const o=JSON.parse(localStorage.getItem(LS_VAULT));const d=await decryptBackup(o,pin);WV={open:true,cards:Array.isArray(d.cards)?d.cards:[],pin,edit:null,show:{},tm:0};wvTouch();renderTools();return}catch(e){err=ux('pn_wrong')}}
   toast(ux('qk_wrong'))}
 function wvCardHTML(c,i){const [c1,c2]=WV_COL[c.col||0]||WV_COL[0],net=wvNet(c.num),sh=WV.show[i];
-  return `<div class="wvi"><div class="wvc" style="--c1:${c1};--c2:${c2}"><div class="wvt"><b>${esc(c.name||ux('wv_card'))}</b><span class="wvn">${c.exp&&wvExpState(c.exp)==='old'?`<span class="wvexp">${ux('wv_expd')}</span>`:''}${esc(net)}</span></div>
+  return `<div class="wvi"><div class="wvc" style="--c1:${c1};--c2:${c2}"><div class="wvt"><span class="wvtn"><b>${esc(c.name||ux('wv_card'))}</b>${c.bank?`<small class="wvbk">${wbFlag(c.bank.cc)} ${esc([wbType(c.bank),c.bank.cc&&c.bank.cc!=='TR'?ux('wb_foreign',{c:c.bank.cur||'?'}):''].filter(Boolean).join(' · '))}</small>`:''}</span><span class="wvn">${c.exp&&wvExpState(c.exp)==='old'?`<span class="wvexp">${ux('wv_expd')}</span>`:''}${esc(net)}</span></div>
    <button type="button" class="wvnum" data-wv="copy:${i}:num" aria-label="${esc(ux('wv_copy_num'))}">${esc(wvFmt(c.num)||'•••• •••• •••• ••••')}</button>
    <div class="wvb"><button type="button" data-wv="copy:${i}:holder"><small>${ux('wv_holder')}</small>${esc(c.holder||'—')}</button><button type="button" data-wv="copy:${i}:exp"><small>${ux('wv_exp')}</small>${esc(c.exp||'—')}</button><button type="button" data-wv="${sh?'copy:'+i+':cvv':'eye:'+i}"><small>CVV</small>${c.cvv?(sh?esc(c.cvv):'•••'):'—'}</button></div></div>
    ${c.note?`<p class="wvnote">${esc(c.note)}</p>`:''}
    <div class="wva"><button type="button" class="btn mini" data-wv="copy:${i}:num">${ic('content-copy')}${ux('wv_num')}</button><button type="button" class="btn mini" data-wv="eye:${i}">${ic('eye')}CVV</button><button type="button" class="btn mini" data-wv="edit:${i}">${ux('wv_edit')}</button><button type="button" class="btn mini wvdel" data-wv="del:${i}" aria-label="${esc(ux('uc_del'))}">${ic('trash')}</button></div></div>`}
-function wvFormHTML(){const c=WV.edit==='new'?{col:WV.cards.length%WV_COL.length}:WV.cards[WV.edit]||{};
+function wvFormHTML(){const c=WV.edit==='new'?{col:WV.cards.length%WV_COL.length}:WV.cards[WV.edit]||{};{const n=String(c.num||'').replace(/\D/g,'');wvBin=n.length>=6?(c.bank?{k:n.slice(0,6),st:'ok',d:c.bank}:{k:'',st:'',d:null}):{k:'',st:'',d:null};if(n.length>=6&&!c.bank)setTimeout(()=>wvBinLookup(n.slice(0,6)),0)}
   return `<div class="wvf"><h3>${WV.edit==='new'?ux('wv_add'):ux('wv_edit')}</h3>
    <label class="f">${ux('wv_name')}<input id="wvName" maxlength="40" value="${esc(c.name||'')}" placeholder="${esc(ux('wv_name_ph'))}"></label>
    <label class="f">${ux('wv_numl')}<input id="wvNum" inputmode="numeric" autocomplete="off" maxlength="23" enterkeyhint="next" value="${esc(wvFmt(c.num))}" placeholder="0000 0000 0000 0000"></label><p class="hint" id="wvNumH"></p>
    <div class="wvrow"><label class="f">${ux('wv_exp')}<input id="wvExp" inputmode="numeric" maxlength="5" autocomplete="off" value="${esc(c.exp||'')}" placeholder="AA/YY"></label><label class="f">CVV<input id="wvCvv" inputmode="numeric" maxlength="${wvSpec(c.num).cvv}" value="${esc(c.cvv||'')}" placeholder="${wvSpec(c.num).cvv===4?'••••':'•••'}"></label></div>
    <label class="f">${ux('wv_holder')}<input id="wvHolder" maxlength="26" autocapitalize="characters" autocomplete="off" value="${esc(c.holder||'')}"></label>
    <label class="f">${ux('wv_note')}<input id="wvNote" maxlength="120" value="${esc(c.note||'')}" placeholder="${esc(ux('wv_note_ph'))}"></label>
-   <div class="wvcols" role="radiogroup" aria-label="${esc(ux('wv_color'))}">${WV_COL.map(([a,b],k)=>`<button type="button" role="radio" aria-checked="${(c.col||0)===k}" data-wvcol="${k}" style="background:linear-gradient(135deg,${a},${b})" aria-label="${k+1}"></button>`).join('')}</div>
+   <div class="wbbox"><h4>${ux('wb_h')}</h4><div id="wvBank" aria-live="polite">${wvBankHTML()}</div><p class="wbp">${ic('lock')}${ux('wb_priv')}</p></div>
    <div class="actions"><button type="button" class="btn" data-wv="cancel">${ux('is_cancel')}</button><button type="button" class="btn primary" data-wv="save">${ux('wv_save')}</button></div></div>`}
 function wvHTML(){
   if(!wvHas())return `<section class="card wvcard"><div class="wvhero">${ic('credit-card')}<b>${ux('wv_h')}</b><p>${ux('wv_intro')}</p><button type="button" class="btn primary wide" data-wv="create">${ic('lock')}${ux('wv_create')}</button></div><p class="hint">${ux('wv_sec')}</p></section>`;
@@ -3661,14 +3710,17 @@ function wvHTML(){
    ${WV.edit===null?`<button type="button" class="btn primary wide" data-wv="add">${ic('plus')}${ux('wv_add')}</button>`:''}<p class="hint">${ux('wv_sec')}</p></section>`}
 document.addEventListener('input',e=>{const x=e.target;if(x.id==='wvNum'){const p=x.selectionStart,old=x.value;let d=x.value.replace(/\D/g,'');const sp=wvSpec(d),mx=Math.max(...sp.len);d=d.slice(0,mx);x.value=wvFmt(d);
     const h=document.getElementById('wvNumH');if(h){h.className='hint';if(!d)h.textContent='';else if(sp.len.includes(d.length)){const ok=wvLuhn(d);h.textContent=ok?'✓ '+(sp.net||ux('wv_ok'))+' · '+ux('wv_digs',{c:d.length,n:d.length}):'⚠ '+ux('wv_luhnb');h.classList.add(ok?'ok':'bad')}else h.textContent=(sp.net?sp.net+' · ':'')+ux('wv_digs',{c:d.length,n:sp.len.length>3?sp.len[0]+'–'+mx:sp.len.join('/')})}
+    clearTimeout(wvBinT);if(d.length>=6){const bn=d.slice(0,6);if(bn!==wvBin.k)wvBinT=setTimeout(()=>wvBinLookup(bn),350)}else if(wvBin.k){wvBin={k:'',st:'',d:null};wvBinDraw()}
     const cv=document.getElementById('wvCvv');if(cv){cv.maxLength=sp.cvv;cv.placeholder=sp.cvv===4?'••••':'•••';if(cv.value.length>sp.cvv)cv.value=cv.value.slice(0,sp.cvv)}
     if(p===old.length)x.selectionStart=x.selectionEnd=x.value.length}
   else if(x.id==='wvExp'){let d=x.value.replace(/\D/g,'').slice(0,4);if(d.length===1&&+d>1)d='0'+d;if(d.length>=2&&(+d.slice(0,2)>12||d.slice(0,2)==='00'))d=d.slice(0,1);x.value=d.length>2?d.slice(0,2)+'/'+d.slice(2):d}
   else if(x.id==='wvCvv'){const sp=wvSpec((document.getElementById('wvNum')||{}).value);x.value=x.value.replace(/\D/g,'').slice(0,sp.cvv)}
+  else if(x.id==='wvName'){delete x.dataset.auto}
   else if(x.id==='wvHolder'){const v=x.value.replace(/[^\p{L} .'-]/gu,'').replace(/\s{2,}/g,' ').slice(0,26);if(v!==x.value)x.value=v}
   if(x.closest&&x.closest('.wvcard'))wvTouch()});
 document.addEventListener('click',async e=>{const cb=e.target.closest&&e.target.closest('[data-wvcol]');if(cb){cb.parentElement.querySelectorAll('[data-wvcol]').forEach(b=>b.setAttribute('aria-checked',String(b===cb)));return}
   const b=e.target.closest&&e.target.closest('[data-wv]');if(!b)return;e.preventDefault();const [a,i,f]=b.dataset.wv.split(':');wvTouch();
+  if(a==='bin'){const n=((document.getElementById('wvNum')||{}).value||'').replace(/\D/g,'');if(n.length>=6)wvBinLookup(n.slice(0,6),true);return}
   if(a==='create')return wvCreate();if(a==='unlock')return wvUnlock();if(a==='lock'){wvLock();return}
   if(a==='reset'){if(await uiConfirm({title:ux('wv_reset_h'),msg:ux('wv_reset_p'),kind:'danger',icon:'trash',ok:ux('uc_del')})){try{localStorage.removeItem(LS_VAULT)}catch(x){}wvLock()}return}
   if(a==='add'){WV.edit='new';renderTools();return}if(a==='edit'){WV.edit=+i;renderTools();return}if(a==='cancel'){WV.edit=null;renderTools();return}
@@ -3681,8 +3733,8 @@ document.addEventListener('click',async e=>{const cb=e.target.closest&&e.target.
     if(num&&!wvLuhn(num)){toast(ux('wv_luhnb'));document.getElementById('wvNum').focus();return}
     if(exp){const es=wvExpState(exp);if(es==='bad'){toast(ux('wv_exp_bad'));return}if(es==='far'){toast(ux('wv_expf'));return}}
     const cvv=g('wvCvv');if(cvv&&cvv.length!==sp.cvv){toast(ux('wv_cvvb',{n:sp.cvv}));document.getElementById('wvCvv').focus();return}
-    const col=+((document.querySelector('[data-wvcol][aria-checked=true]')||{}).dataset||{}).wvcol||0;
-    const c={name:g('wvName').trim(),num,exp,cvv:g('wvCvv'),holder:g('wvHolder').trim().toLocaleUpperCase(LANG==='tr'?'tr':'en'),note:g('wvNote').trim(),col};
+    const bk=(wvBin.st==='ok'&&wvBin.d&&num.slice(0,6)===wvBin.k)?{...wvBin.d}:(WV.edit!=='new'&&WV.cards[WV.edit]&&String(WV.cards[WV.edit].num||'').slice(0,6)===num.slice(0,6)?WV.cards[WV.edit].bank:null);const col=bk?wvColFor(bk):(wvSpec(num).net?wvColFor({scheme:wvSpec(num).net}):0);
+    const c={name:g('wvName').trim(),num,exp,cvv:g('wvCvv'),holder:g('wvHolder').trim().toLocaleUpperCase(LANG==='tr'?'tr':'en'),note:g('wvNote').trim(),col};if(bk)c.bank=bk;
     if(WV.edit==='new')WV.cards.push(c);else WV.cards[WV.edit]=c;WV.edit=null;await wvSave();renderTools();toast(ux('wv_saved'));return}
 });
 
@@ -6940,7 +6992,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='197';
+const APP_VER='198';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
