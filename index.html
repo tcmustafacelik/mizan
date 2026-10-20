@@ -1668,14 +1668,13 @@ html:root[data-theme="dark"]{
 html:root[data-theme="dark"]{--line:#273361}
 html:root body{background:var(--bg)!important}
 /* üst bar ve menü: bulanıklık yok, düz zemin */
-html:root .top{background:var(--bg)!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;-webkit-mask-image:none!important;mask-image:none!important}
-html:root body.scrolled .top{box-shadow:0 1px 0 var(--line)}
+html:root .top,html:root body.scrolled .top{background:transparent!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;-webkit-mask-image:none!important;mask-image:none!important}
 html:root .tabs,html:root[data-theme] .tabs{background:var(--surface)!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;border:1px solid var(--line)!important;box-shadow:0 1px 2px rgba(20,26,46,.04),0 10px 24px -18px rgba(20,26,46,.35)!important}
 html:root .tabind{background:var(--accent-soft)!important;box-shadow:none!important}
 html:root .tabind::after{content:"";position:absolute;left:50%;bottom:4px;width:14px;height:2px;margin-left:-7px;border-radius:2px;background:var(--gold)}
 html:root .tabs button[aria-selected="true"]{color:var(--accent)!important;background:transparent!important;box-shadow:none!important}
 html:root #selbar.stuck,html:root #selbar.stuck .selbar{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
-html:root #selbar.stuck{background:var(--bg)!important}
+html:root #selbar.stuck{background:transparent!important;box-shadow:none!important}
 html:root #selbar.stuck .selbar{background:var(--surface)!important}
 /* kartlar */
 html:root .card,html:root .tile,html:root .selbar{background:var(--surface);border-color:var(--line)}
@@ -1741,9 +1740,8 @@ html[data-glass] body::before{content:"";position:fixed;inset:0;z-index:-1;backg
 html[data-glass] .wel{background:var(--glbg)!important}
 /* üst bar: en üstte saydam, kayınca düz */
 html[data-glass]:root .top{background:transparent!important}
-html[data-glass]:root body.scrolled .top{background:var(--glbar)!important;box-shadow:0 1px 0 var(--glbd)}
 html[data-glass]:root .tabs{background:var(--glbar)!important;border-color:var(--glbd)!important}
-html[data-glass]:root #selbar.stuck{background:var(--glbar)!important}
+html[data-glass]:root #selbar.stuck .selbar{background:var(--glbar)!important;border-color:var(--glbd)!important}
 /* buzlu kartlar (bulanıklık yok, yarı saydam yüzey + parlak kenar) */
 html[data-glass]:root #view .card:not(.hero),html[data-glass]:root #view .tile,html[data-glass]:root #view .aht,html[data-glass]:root .wel .card,html[data-glass]:root #welcome .wl2 .w3{background:var(--glcard)!important;border-color:var(--glbd)!important;box-shadow:var(--glhi),0 10px 28px -20px rgba(20,30,70,.35)!important}
 html[data-glass][data-theme="dark"]:root #view .card:not(.hero),html[data-glass][data-theme="dark"]:root #view .tile,html[data-glass][data-theme="dark"]:root #view .aht,html[data-glass][data-theme="dark"]:root .wel .card,html[data-glass][data-theme="dark"]:root #welcome .wl2 .w3{box-shadow:var(--glhi),0 10px 28px -20px rgba(0,0,0,.6)!important}
@@ -5793,10 +5791,10 @@ document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest
 function srBtnDraw(){const b=document.getElementById('srBtn');if(!b||b.dataset.b)return;b.dataset.b='1';b.innerHTML=ic('search');const l=ux('sr_h');b.setAttribute('aria-label',l);b.title=l}
 
 /* ================= v235: cam görünümü ================= */
-Object.assign(UX.tr,{gl_safir:'Safir',gl_sampanya:'Şampanya',gl_zumrut:'Zümrüt'});
-Object.assign(UX.en,{gl_safir:'Sapphire',gl_sampanya:'Champagne',gl_zumrut:'Emerald'});
-Object.assign(UX.ru,{gl_safir:'Сапфир',gl_sampanya:'Шампань',gl_zumrut:'Изумруд'});
-Object.assign(UX.ar,{gl_safir:'ياقوت أزرق',gl_sampanya:'شمباني',gl_zumrut:'زمرد'});
+Object.assign(UX.tr,{gl_safir:'Safir',gl_sampanya:'Kehribar',gl_zumrut:'Zümrüt'});
+Object.assign(UX.en,{gl_safir:'Sapphire',gl_sampanya:'Amber',gl_zumrut:'Emerald'});
+Object.assign(UX.ru,{gl_safir:'Сапфир',gl_sampanya:'Янтарь',gl_zumrut:'Изумруд'});
+Object.assign(UX.ar,{gl_safir:'ياقوت أزرق',gl_sampanya:'كهرمان',gl_zumrut:'زمرد'});
 document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-gl]');if(!b||!b.closest('#view'))return;e.preventDefault();const v=b.dataset.gl;
   try{if(v==='off')localStorage.removeItem('gg_glass');else{let g=v;if(v==='on'){g=localStorage.getItem('gg_glass_last')||'safir'}localStorage.setItem('gg_glass',g);localStorage.setItem('gg_glass_last',g)}}catch(z){}
   applyTheme();if(tab==='ayar')renderAyar()});
@@ -8962,7 +8960,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='235';
+const APP_VER='236';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
