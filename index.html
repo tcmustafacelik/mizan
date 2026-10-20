@@ -1772,29 +1772,40 @@ html[data-glass]:root .ahi{background:color-mix(in srgb,var(--accent) 12%,transp
 #view,#selbar,#selbar *{overflow-anchor:none}
 html:root #selph{overflow-anchor:none;display:block!important;height:0;margin:0;padding:0;pointer-events:none}
 
-/* v242: seçim kartı yapışmaz; özet menünün altına bitişik şerit */
+/* v242: seçim kartı yapışmaz */
 html:root #selbar,html:root[data-theme] #selbar{position:relative!important;top:auto!important;z-index:auto}
-#selmini{position:absolute;left:-1px;right:-1px;top:calc(100% - 1px);z-index:-1;display:flex;align-items:center;gap:6px;padding:9px 8px 9px 14px;
-  background:var(--glbar,var(--surface));border:1px solid var(--line);border-top:0;border-radius:0 0 22px 22px;box-shadow:0 12px 24px -18px rgba(20,26,46,.45);
-  opacity:0;transform:translateY(-10px);pointer-events:none;transition:opacity .2s,transform .25s cubic-bezier(.2,.8,.2,1)}
-#selmini.on{opacity:1;transform:none;pointer-events:auto}
-html:root .tabs.tjoin,html:root[data-theme] .tabs.tjoin{border-bottom-color:transparent!important;border-bottom-left-radius:0!important;border-bottom-right-radius:0!important;transition:border-radius .2s}
-#selmini::before{content:"";position:absolute;left:14px;right:14px;top:0;height:1px;background:var(--line);opacity:.7}
-.smn-go{flex:1 1 auto;min-width:0;width:100%;display:flex;flex-direction:column;align-items:stretch;gap:2px;text-align:start;background:none;border:0;padding:0;color:var(--fg);font:inherit;cursor:pointer}
-.smn-t{width:100%;display:flex;align-items:baseline;gap:10px;min-width:0;font-size:13px;white-space:nowrap}
-.smn-t>b{font-weight:600}
-.smn-t>span{color:var(--muted-tx,var(--muted));overflow:hidden;text-overflow:ellipsis}
-.smn-t>span b{font:600 14px var(--f-num);color:var(--fg)}
-.smn-t b.pos{color:var(--good-tx,var(--good))}.smn-t b.neg{color:var(--bad-tx,var(--bad))}
-.smn-x2{width:100%;display:flex;gap:12px;font-size:12px;color:var(--muted-tx,var(--muted));white-space:nowrap;overflow:hidden}
-.smn-x2>span{overflow:hidden;text-overflow:ellipsis}
-.smn-x2 b{font:600 12px var(--f-num)}.smn-x2 b.pos{color:var(--good-tx,var(--good))}.smn-x2 b.neg{color:var(--bad-tx,var(--bad))}
-.smn-c{flex:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
-.smn-c .ic{width:18px;height:18px}
 html[data-glass]{--glbar:#F7F8FC}html[data-glass][data-theme="dark"]{--glbar:#121B40}
-html:root .tabs #selmini button{flex:none!important;min-width:0!important;min-height:0!important;margin:0!important;box-shadow:none!important;border-radius:0;background:none!important;color:var(--fg)!important;font:inherit!important;letter-spacing:normal!important}
-html:root .tabs #selmini .smn-go{flex:1 1 auto!important;display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:center!important;padding:0!important;gap:2px!important}
-html:root .tabs #selmini .smn-c{width:36px!important;height:36px!important;padding:0!important;border-radius:50%!important;border:1px solid var(--line)!important;background:var(--surface)!important;display:grid!important;place-items:center!important}
+
+/* v244: ay seçimi özeti — altta renkli, simgeli kart */
+#selmini{position:fixed;left:12px;right:12px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:24;max-width:520px;margin:0 auto;display:flex;align-items:center;gap:8px;
+  padding:12px 10px 12px 14px;border-radius:22px;color:#fff;background:linear-gradient(150deg,#2A4FAE 0%,#1B3584 55%,#14286A 100%);
+  box-shadow:0 16px 34px -14px rgba(20,40,106,.65),0 0 0 1px rgba(227,195,90,.28) inset;
+  opacity:0;transform:translateY(24px) scale(.98);pointer-events:none;transition:opacity .22s,transform .3s cubic-bezier(.2,.8,.2,1)}
+html[data-theme="dark"] #selmini{background:linear-gradient(150deg,#2B4499 0%,#1C2E6E 55%,#152256 100%);box-shadow:0 16px 34px -14px rgba(0,0,0,.8),0 0 0 1px rgba(227,195,90,.3) inset}
+#selmini.on{opacity:1;transform:none;pointer-events:auto}
+body.has-bar #selmini{bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+body.smn-on .calcfab{bottom:calc(128px + env(safe-area-inset-bottom,0px))!important}
+body.smn-on.has-bar .calcfab{bottom:calc(196px + env(safe-area-inset-bottom,0px))!important}
+body.smn-on .app{padding-bottom:130px}
+#selmini .smn-go{flex:1;min-width:0;display:flex;flex-direction:column;gap:9px;background:none;border:0;padding:0;color:inherit;font:inherit;text-align:start;cursor:pointer}
+.smn-top{display:flex;align-items:center;justify-content:space-between;gap:10px;min-width:0}
+.smn-c1{display:flex;align-items:center;gap:8px;min-width:0;font-size:13.5px;white-space:nowrap}
+.smn-c1 i,.smn-k i{flex:none;width:28px;height:28px;border-radius:9px;display:grid;place-items:center;background:rgba(255,255,255,.14)}
+.smn-c1 i .ic,.smn-k i .ic{width:16px;height:16px;fill:currentColor}
+.smn-c1 i{color:#E8C766}
+.smn-net{display:flex;flex-direction:column;align-items:flex-end;min-width:0;line-height:1.15}
+.smn-net small{font-size:11px;color:rgba(226,232,250,.75)}
+.smn-net b{font:700 17px var(--f-num);color:#F1D77A;white-space:nowrap}
+.smn-net.neg b{color:#FFB3BB}
+.smn-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.smn-k{display:flex;align-items:center;gap:8px;min-width:0;padding:6px 8px;border-radius:12px;background:rgba(255,255,255,.08)}
+.smn-k>span{display:flex;flex-direction:column;min-width:0;line-height:1.15}
+.smn-k small{font-size:10.5px;color:rgba(226,232,250,.75);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.smn-k b{font:600 12.5px var(--f-num);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.smn-k.pos i{color:#7FE0B9;background:rgba(127,224,185,.16)}.smn-k.pos b{color:#9CEBCB}
+.smn-k.neg i{color:#FFB3BB;background:rgba(255,179,187,.16)}.smn-k.neg b{color:#FFC4CA}
+#selmini .smn-x{flex:none;align-self:flex-start;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;border:0;background:rgba(255,255,255,.14);color:#fff;cursor:pointer}
+#selmini .smn-x .ic{width:17px;height:17px;fill:currentColor}
 </style>
 
 <div class="app">
@@ -5922,22 +5933,27 @@ window.addEventListener('load',()=>setTimeout(nbInit,300));if(document.readyStat
 ['pointerdown','keydown','touchend'].forEach(t=>document.addEventListener(t,()=>{if(NB.ready&&!NB.armed){NB.exitT=0;setTimeout(nbArm,0)}},{capture:true,passive:true}));
 document.addEventListener('click',e=>{const h=e.target.closest&&e.target.closest('#view > section.card.colb > .cardhead');if(!h||e.target.closest('select,input,button,label'))return;setTimeout(()=>{const c=h.parentElement;if(c&&!c.classList.contains('col')&&c.dataset.ckey){NB.open=NB.open.filter(k=>k!==c.dataset.ckey);NB.open.push(c.dataset.ckey)}},0)},true);
 
-/* ================= v240–v242: ay seçimi özeti — sayfa zıplamaz, boşluk ve arkadan görünen yazı yok ================= */
-// Büyük seçim kartı artık yapışmaz, sayfayla birlikte akar. Kart yukarı çıkıp görünmez olunca seçim özeti
-// menü kartının altına bitişik ince bir şerit olarak açılır (menünün içinde, sayfa düzenini hiç etkilemez).
-function smnEl(){const tb=document.querySelector('.tabs');if(!tb)return null;let m=document.getElementById('selmini');
-  if(!m){m=document.createElement('div');m.id='selmini';m.setAttribute('role','region');tb.appendChild(m);
-    m.addEventListener('click',e=>{e.stopPropagation();const x=e.target.closest('[data-smn]');const sb=document.getElementById('selbar');if(!sb)return;
+/* ================= v240–v244: ay seçimi özeti — sayfa zıplamaz; kart görünmez olunca altta renkli özet kartı ================= */
+// Büyük seçim kartı yapışmaz, sayfayla birlikte akar. Kart yukarı çıkıp görünmez olunca ekranın altında
+// lacivert, simgeli bir özet kartı belirir (sabit katman; sayfa düzenini etkilemez, menüyle birleşmez).
+function smnEl(){let m=document.getElementById('selmini');
+  if(!m){m=document.createElement('div');m.id='selmini';m.setAttribute('role','region');document.body.appendChild(m);
+    m.addEventListener('click',e=>{const x=e.target.closest('[data-smn]');const sb=document.getElementById('selbar');if(!sb)return;
       if(x&&x.dataset.smn==='x'){const c=sb.querySelector('[data-act=selClear]');if(c)c.click();return}
-      const top=sb.getBoundingClientRect().top+scrollY-(document.querySelector('.tabs').getBoundingClientRect().bottom)-10;scrollTo({top:Math.max(0,top),behavior:'smooth'})})}
+      const tb=document.querySelector('.tabs');const top=sb.getBoundingClientRect().top+scrollY-(tb?tb.getBoundingClientRect().bottom:0)-10;scrollTo({top:Math.max(0,top),behavior:'smooth'})})}
   return m}
 stuckChk=function(){const sb=document.getElementById('selbar');const m=smnEl();if(sb){sb.classList.remove('stuck','fx');sb.style.removeProperty('margin-bottom')}
   const inner=sb&&sb.querySelector('.selbar.on'),tb=document.querySelector('.tabs');let show=false;
-  if(inner&&tb&&tab==='plan'){const r=sb.getBoundingClientRect(),t=tb.getBoundingClientRect();show=r.bottom<t.bottom+6}
-  if(m&&show){const cnt=(inner.querySelector('.selhead b')||{}).textContent||'',net=inner.querySelector('.shero b'),ex=inner.querySelector('.sextra');
-    const h=`<button type="button" class="smn-go" data-smn="go"><span class="smn-t"><b>${esc(cnt)}</b>${net?`<span>${esc((inner.querySelector('.shero span')||{}).textContent||'')} <b class="${net.className}">${net.innerHTML}</b></span>`:''}</span>${ex?`<span class="smn-x2">${ex.innerHTML}</span>`:''}</button><button type="button" class="smn-c" data-smn="x" aria-label="${esc((inner.querySelector('[data-act=selClear]')||{}).getAttribute?inner.querySelector('[data-act=selClear]').getAttribute('aria-label')||'':'')}">${ic('close')}</button>`;
+  const lk=document.getElementById('lock'),wl=document.getElementById('welcome');
+  if(inner&&tb&&tab==='plan'&&!(lk&&!lk.hidden)&&!(wl&&!wl.hidden)){const r=sb.getBoundingClientRect(),t=tb.getBoundingClientRect();show=r.bottom<t.bottom+6}
+  if(m&&show){const q=s=>inner.querySelector(s),cnt=(q('.selhead b')||{}).textContent||'',net=q('.shero b'),nl=(q('.shero span')||{}).textContent||'';
+    const ex=[...inner.querySelectorAll('.sextra > span')].map((sp,i)=>{const b=sp.querySelector('b');const lab=[...sp.childNodes].filter(n=>n.nodeType===3).map(n=>n.textContent).join('').trim();
+      return b?`<span class="smn-k ${b.classList.contains('neg')?'neg':'pos'}"><i>${ic(b.classList.contains('neg')?'alert-triangle':'wallet')}</i><span><small>${esc(lab)}</small><b>${b.innerHTML}</b></span></span>`:''}).join('');
+    const clr=q('[data-act=selClear]');
+    const h=`<button type="button" class="smn-go" data-smn="go"><span class="smn-top"><span class="smn-c1"><i>${ic('calendar-range')}</i><b>${esc(cnt)}</b></span>${net?`<span class="smn-net ${net.classList.contains('neg')?'neg':''}"><small>${esc(nl)}</small><b>${net.innerHTML}</b></span>`:''}</span>${ex?`<span class="smn-row">${ex}</span>`:''}</button><button type="button" class="smn-x" data-smn="x" aria-label="${esc(clr&&clr.getAttribute('aria-label')||'')}">${ic('close')}</button>`;
     if(m.dataset.h!==h){m.innerHTML=h;m.dataset.h=h}}
-  if(m&&m.classList.contains('on')!==show){m.classList.toggle('on',show);tb.classList.toggle('tjoin',show)}};
+  if(m&&m.classList.contains('on')!==show){m.classList.toggle('on',show);document.body.classList.toggle('smn-on',show)}
+  if(tb)tb.classList.remove('tjoin')};
 
 /* ================= Bildirim merkezi ================= */
 const LS_NF='gg_nf';let nfOpenAt=0,nfTab='all',nfSnz=null,nfUndo=null;
@@ -9101,7 +9117,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='243';
+const APP_VER='244';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
