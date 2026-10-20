@@ -2001,6 +2001,17 @@ html:root .tabs button[aria-selected="true"]{font-size:11.5px!important;font-wei
 .brtop .hbtn::after,.brtop .pvb::after,.brtop .srb::after,.stdot::after{content:"";position:absolute;inset:-4px}
 /* 8. Koyu modda soluk yazılar daha okunur */
 html:root[data-theme="dark"]{--muted:#AEB6CA;--muted-tx:#BDC4D6}
+
+/* v252: Sık kullandıkların — yatay hap düğmeler (1–4 araçta da düzgün) */
+html:root .ahub,html:root .ahub>.ahs.ahrec{min-width:0;max-width:100%}
+html:root .ahub>.ahs.ahrec{overflow:hidden}
+html:root .ahrecg{width:100%;min-width:0;box-sizing:border-box;display:flex!important;flex-wrap:nowrap;gap:8px;overflow-x:auto;scrollbar-width:none;padding:2px 2px 6px;margin:0 -2px;grid-template-columns:none!important}
+html:root .ahrecg::-webkit-scrollbar{display:none}
+html:root .ahrecg .aht{flex:none!important;display:inline-flex!important;flex-direction:row!important;align-items:center!important;justify-content:flex-start!important;gap:8px!important;width:auto!important;min-width:0!important;max-width:220px;min-height:46px!important;padding:6px 14px 6px 6px!important;border-radius:999px!important;grid-column:auto!important;position:relative}
+html:root .ahrecg .ahi{width:34px!important;height:34px!important;border-radius:50%!important;flex:none;margin:0!important}
+html:root .ahrecg .ahi svg{width:18px!important;height:18px!important}
+html:root .ahrecg .ahl{font-size:13.5px!important;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:start!important;line-height:1.2;margin:0!important}
+html:root .ahrecg .ahb{position:static!important;margin-inline-start:2px;transform:none!important}
 </style>
 
 <div class="app">
@@ -9438,7 +9449,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='251';
+const APP_VER='252';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
