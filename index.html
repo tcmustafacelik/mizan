@@ -1617,6 +1617,53 @@ b.good,.fhtx b.good{color:var(--good,#16a34a)}b.warn{color:#d97706}b.bad{color:v
 .fhrh{display:flex;justify-content:space-between;gap:10px;font-size:14px}.fhrh b{font-variant-numeric:tabular-nums}
 .fhr .wrbar{margin-top:6px}.fhtip{margin:6px 0 0;font-size:12.5px}.fhtip .tlink{display:inline;margin:0;padding:0;font-size:12.5px}
 .hvacts{flex-wrap:wrap}.hvsel select{width:100%}
+
+/* v232: sade karşılama ekranı */
+#welcome .wl2{gap:12px;padding-bottom:4px}
+#welcome .wl2>*{animation:w3in .5s cubic-bezier(.2,.8,.2,1) both}
+#welcome .wl2>*:nth-child(2){animation-delay:.05s}#welcome .wl2>*:nth-child(3){animation-delay:.1s}#welcome .wl2>*:nth-child(4){animation-delay:.15s}#welcome .wl2>*:nth-child(n+5){animation-delay:.2s}
+@keyframes w3in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){#welcome .wl2>*{animation:none}}
+#welcome .wl2 .welhead{gap:12px;padding:8px 2px 4px}
+#welcome .wl2 .welhead .logo{width:38px;height:38px;border-radius:12px;box-shadow:none}
+#welcome .wl2 .welhead h2{font:600 21px/1.2 var(--f-display);letter-spacing:-.015em}
+#welcome .wl2 .welhead p{font-size:12.5px;margin-top:1px}
+html:root #welcome .wl2 .w3{position:relative;border-radius:22px;padding:16px 18px 16px;background:var(--solid,var(--surface));color:var(--fg);border:1px solid color-mix(in srgb,var(--line) 75%,transparent);box-shadow:0 1px 2px rgba(16,24,40,.04),0 12px 28px -22px rgba(16,24,40,.35);overflow:hidden}
+#welcome .w3::before{content:"";position:absolute;inset:0 0 auto 0;height:90px;background:linear-gradient(180deg,color-mix(in srgb,var(--accent) 9%,transparent),transparent);pointer-events:none}
+#welcome .w3>*{position:relative}
+#welcome .w3top{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:44px}
+#welcome .w3m{font:600 13px var(--f-body);color:var(--muted-tx);letter-spacing:.01em}
+#welcome .w3r{position:relative;width:44px;height:44px;display:grid;place-items:center;flex:none}
+#welcome .w3r svg{position:absolute;inset:0;width:44px;height:44px;transform:rotate(-90deg)}
+#welcome .w3r circle{fill:none;stroke-width:3.5}#welcome .w3r .bgc{stroke:color-mix(in srgb,var(--line) 90%,transparent)}
+#welcome .w3r .fgc{stroke:var(--accent);stroke-linecap:round;transition:stroke-dashoffset 1s cubic-bezier(.2,.8,.2,1) .2s}
+html[dir=rtl] #welcome .w3r svg{transform:rotate(-90deg) scaleY(-1)}
+#welcome .w3r b{font:600 11px var(--f-num);color:var(--fg)}
+#welcome .w3l{display:block;margin-top:6px;font-size:12.5px;color:var(--muted-tx);font-weight:500}
+#welcome .w3big{display:block;margin-top:2px;font:600 clamp(28px,8.6vw,36px)/1.15 var(--f-display);letter-spacing:-.025em;color:var(--fg);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#welcome .w3big.neg{color:var(--bad,#dc2626)}
+#welcome .w3io{display:grid;grid-template-columns:1fr 1fr;margin-top:14px;padding-top:12px;border-top:1px solid color-mix(in srgb,var(--line) 70%,transparent)}
+#welcome .w3io>div{display:flex;flex-direction:column;gap:2px;min-width:0}
+#welcome .w3io>div+div{padding-inline-start:14px;border-inline-start:1px solid color-mix(in srgb,var(--line) 70%,transparent)}
+#welcome .w3io small{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted-tx);font-weight:500}
+#welcome .w3d{width:6px;height:6px;border-radius:50%;flex:none}#welcome .w3d.g{background:var(--good,#16a34a)}#welcome .w3d.r{background:var(--bad,#dc2626)}
+#welcome .w3io b{font:600 15px var(--f-num);color:var(--fg);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#welcome .w3pay{margin-top:14px}
+#welcome .w3bar{height:4px;border-radius:99px;background:color-mix(in srgb,var(--line) 85%,transparent);overflow:hidden}
+#welcome .w3bar i{display:block;height:100%;border-radius:99px;background:var(--accent);transition:width .8s ease}
+#welcome .w3pt{display:flex;justify-content:space-between;gap:8px;margin-top:7px;font-size:12px;color:var(--muted-tx);flex-wrap:wrap}#welcome .w3pt span:last-child{font-family:var(--f-num)}
+#welcome .w3none{margin:12px 0 0;font-size:12.5px;color:var(--muted-tx)}
+html:root #welcome .wl2>section.card{border-radius:18px!important;box-shadow:0 1px 2px rgba(16,24,40,.04)!important;border:1px solid color-mix(in srgb,var(--line) 75%,transparent)!important;padding:14px 16px!important}
+#welcome .wl2>section.card .cardhead h2{font-size:15px;font-weight:600}
+#welcome .wl2 .welchips span{font-size:12px;padding:5px 11px;border-color:color-mix(in srgb,var(--line) 70%,transparent)}
+html:root #welcome .welin.wl2 .welact{gap:6px;padding:12px 0 6px!important}
+html:root #welcome .welin.wl2 .welact .btn{min-height:50px;font-size:15.5px;font-weight:600;border-radius:999px!important}
+html:root #welcome .welin.wl2 .welact .btn.primary{background:color-mix(in srgb,var(--accent) 56%,#0b1026)!important;color:#fff!important;border:0!important;box-shadow:0 8px 20px -12px color-mix(in srgb,var(--accent) 56%,#0b1026)!important;gap:10px}
+html:root #welcome .welin.wl2 .welact .btn.primary .wgo{width:18px;height:18px;margin-inline-start:6px;transform:rotate(180deg);transition:transform .2s}
+html[dir=rtl] #welcome .welin.wl2 .welact .btn.primary .wgo{transform:none}
+html:root #welcome .welin.wl2 .welact .btn.primary:active{transform:scale(.985)}
+html:root #welcome .welin.wl2 .welact .btn:not(.primary){background:transparent!important;border:0!important;box-shadow:none!important;color:var(--accent)!important;min-height:44px}
+#welcome .wl2 .welnever{font-size:12.5px;padding:2px 6px 12px}#welcome .wl2 .welnever input{width:18px;height:18px}
 </style>
 
 <div class="app">
@@ -6008,7 +6055,7 @@ function welcomeShow(){
   if(m)items=plan.debts.map(d=>({d,amt:paidOf(ym,d.id)?dv(m,d.id):dvLeft(m,d.id),paid:paidOf(ym,d.id),due:Number(d.due)||0})).filter(x=>x.amt>0);
   const tot=items.reduce((a,x)=>a+x.amt,0),pd=items.filter(x=>x.paid).reduce((a,x)=>a+x.amt,0);
   const pct=tot?Math.round(pd/tot*100):0,np=items.filter(x=>x.paid).length;
-  const C=2*Math.PI*46;
+  const C=2*Math.PI*20;
   let inc=0,exp=0,net=0,aG=0,aX=0,hasAct=false;
   if(m){const c=calc(m);inc=c.income;exp=c.debt+c.need;net=c.net}
   ledger.forEach(e=>{if(String(e.date).slice(0,7)===ym){hasAct=true;if(e.type==='gelir')aG+=num(e.amount);else aX+=num(e.amount)}});
@@ -6024,19 +6071,19 @@ function welcomeShow(){
     if(rates.xau)ch.push(`${t('wl_gold')} ${rateFmt(rates.xau/31.1034768*k)}`);
     chips=ch.map(x=>`<span>${x}</span>`).join('');
   }
-  w.innerHTML=`<div class="welin">
+  w.innerHTML=`<div class="welin wl2">
    <div class="welhead"><span class="logo brand">${logoSVG()}</span><div><h2 id="welH">${esc(greet)}</h2><p>${esc(dateStr)}</p></div><span class="welr"><span class="batt welbatt" hidden></span><button type="button" class="ping welping" hidden></button></span></div>
-   <section class="welhero2"><i class="wa1" aria-hidden="true"></i><i class="wa2" aria-hidden="true"></i><i class="wa3" aria-hidden="true"></i>
-    <div class="w2top"><span class="w2m">${ic('calendar')}${esc(ymLabel(ym))}</span><div class="ringw"><svg viewBox="0 0 112 112" aria-hidden="true"><circle class="bgc" cx="56" cy="56" r="46"/><circle class="fgc" id="welArc" cx="56" cy="56" r="46" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${C.toFixed(1)}"/></svg><b><bdi dir="ltr">${pct}%</bdi></b></div></div>
-    <small class="w2l">${hasAct?t('wl_net_actual'):t('wl_net')}</small><b class="w2big${left<0?' neg':''}">${moneyH(left)}</b>
-    <div class="w2io"><div><span class="w2ic up">${ic('arrow-down-left')}</span><span><small>${t('wl_income')}</small><b>${moneyH(inc)}</b></span></div><div><span class="w2ic dn">${ic('arrow-up-right')}</span><span><small>${t('wl_expense')}</small><b>${moneyH(exp)}</b></span></div></div>
-    ${tot?`<div class="w2pay"><div class="w2bar"><i style="width:${pct}%"></i></div><div class="w2pt"><span>${esc(t('wl_ring_sub',{a:np,b:items.length}))}</span><span>${moneyH(pd)} / ${moneyH(tot)}</span></div></div>`:`<p class="w2none">${esc(t('wl_nopay'))}</p>`}</section>
+   <section class="w3">
+    <div class="w3top"><span class="w3m">${esc(ymLabel(ym))}</span>${tot?`<span class="w3r"><svg viewBox="0 0 48 48" aria-hidden="true"><circle class="bgc" cx="24" cy="24" r="20"/><circle class="fgc" id="welArc" cx="24" cy="24" r="20" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${C.toFixed(1)}"/></svg><b><bdi dir="ltr">${pct}%</bdi></b></span>`:''}</div>
+    <small class="w3l">${hasAct?t('wl_net_actual'):t('wl_net')}</small><b class="w3big${left<0?' neg':''}">${moneyH(left)}</b>
+    <div class="w3io"><div><small><i class="w3d g"></i>${t('wl_income')}</small><b>${moneyH(inc)}</b></div><div><small><i class="w3d r"></i>${t('wl_expense')}</small><b>${moneyH(exp)}</b></div></div>
+    ${tot?`<div class="w3pay"><div class="w3bar"><i style="width:${pct}%"></i></div><div class="w3pt"><span>${esc(t('wl_ring_sub',{a:np,b:items.length}))}</span><span>${moneyH(pd)} / ${moneyH(tot)}</span></div></div>`:`<p class="w3none">${esc(t('wl_nopay'))}</p>`}</section>
    ${todoHTML()}
    ${freeHTML('welfree')}
    ${weekItems().length?weekHTML('welweek'):`<section class="card"><div class="cardhead"><h2>${t('wl_upcoming')}</h2></div>${up.length?up.map(x=>`<div class="payrow" style="grid-template-columns:1fr auto auto;cursor:default"><span class="dn">${ic(debtIcon(x.d))}<span class="pn">${esc(x.d.name)}</span></span>${pill(x)||'<span></span>'}<b>${moneyH(x.amt)}</b></div>`).join(''):`<p class="hint">${t('wl_none_up')}</p>`}
     </section>`}
    ${chips?`<div class="welchips">${chips}</div>`:''}
-   <div class="welact"><button type="button" class="btn primary" data-wel="go">${t('wl_go')}${ic('arrow-up-right','wgo')}</button><button type="button" class="btn" data-wel="quick">${ic('plus')}${t('wl_quick')}</button></div>
+   <div class="welact"><button type="button" class="btn primary" data-wel="go"><span>${t('wl_go')}</span>${ic('arrow-left','wgo')}</button><button type="button" class="btn" data-wel="quick">${ic('plus')}${t('wl_quick')}</button></div>
    <label class="welnever"><input type="checkbox" id="welNever"><span>${t('wl_never')}</span></label></div>`;
   w.hidden=false;w.scrollTop=0;
   try{sessionStorage.setItem('gg_wel_open','1')}catch(e){}
@@ -8817,7 +8864,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='231';
+const APP_VER='232';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
