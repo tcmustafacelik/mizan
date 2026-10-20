@@ -1581,6 +1581,13 @@ html{scroll-padding-top:calc(var(--headh,110px) - var(--hideh,0px) + 12px);scrol
 .bri b{font:700 calc(var(--bs)*.55)/1 var(--f-body);color:#fff}
 .bri img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#fff;padding:3px;box-sizing:border-box;opacity:0;transition:opacity .2s}.bri img.ok{opacity:1}
 .abn{display:flex;align-items:center;gap:8px;min-width:0}.abn .bri{--bs:20px;border-radius:6px}
+
+/* v229: abonelik etiketlerinde gölge kalıntıları — kaydırma kutusunun kestiği gölge ve simgenin beyaz kutusu */
+html:root .abgs .chip,html:root[data-theme] .abgs .chip{box-shadow:none!important}
+.abgs{padding:2px 2px 4px!important;-webkit-mask-image:none!important;mask-image:none!important}
+html:root .abchip,html:root[data-theme] .abchip{box-shadow:none!important}
+.bri:has(img.ok){background:transparent!important}
+.bri img{background:transparent!important;padding:1px!important}
 </style>
 
 <div class="app">
@@ -8573,7 +8580,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='228';
+const APP_VER='229';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
