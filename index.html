@@ -5415,6 +5415,19 @@ Object.assign(I18N.tr,{"lk_new": "Yeni PIN (4 rakam)", "lk_new2": "PIN tekrar", 
 Object.assign(I18N.en,{"lk_new": "New PIN (4 digits)", "lk_new2": "Repeat PIN", "lk_short": "The PIN must be 4 digits", "lk_set": "Set PIN", "lk_change": "Change PIN", "lk_cur": "Current PIN / password"});
 Object.assign(I18N.ru,{"lk_new": "Новый PIN (4 цифры)", "lk_new2": "Повторите PIN", "lk_short": "PIN должен состоять из 4 цифр", "lk_set": "Задать PIN", "lk_change": "Сменить PIN", "lk_cur": "Текущий PIN / пароль"});
 Object.assign(I18N.ar,{"lk_new": "رمز PIN جديد (4 أرقام)", "lk_new2": "أعد رمز PIN", "lk_short": "يجب أن يتكون رمز PIN من 4 أرقام", "lk_set": "تعيين PIN", "lk_change": "تغيير PIN", "lk_cur": "رمز PIN / كلمة المرور الحالية"});
+/* ================= v230: Ayarlar yeniden çizilince ekran yerinde kalsın ================= */
+let ayLastEl=null;document.addEventListener('pointerdown',e=>{ayLastEl=e.target},true);
+const ayCardKey=c=>{const h=c&&c.querySelector(':scope > .cardhead h2');return c?(c.id||(h?h.textContent.trim().slice(0,24):'')):''};
+function ayAnchor(){const v=document.getElementById('view');if(!v||!v.querySelector('.langseg'))return null;
+  let c=null;for(const el of [document.activeElement,ayLastEl]){if(el&&el.closest&&v.contains(el)){c=el.closest('#view > section.card');if(c)break}}
+  if(!c){const hb=(document.querySelector('.tabs')||{getBoundingClientRect:()=>({bottom:0})}).getBoundingClientRect().bottom;c=[...v.querySelectorAll(':scope > section.card')].find(x=>x.getBoundingClientRect().bottom>hb+10)}
+  return c?{k:ayCardKey(c),top:c.getBoundingClientRect().top,open:!c.classList.contains('col')}:null}
+const _renderAyar=renderAyar;
+renderAyar=function(){const A=ayAnchor();_renderAyar.apply(this,arguments);if(!A)return;
+  try{pvCardInject()}catch(e){}try{makeCollapsible()}catch(e){}
+  const c=[...document.querySelectorAll('#view > section.card')].find(x=>ayCardKey(x)===A.k);if(!c)return;
+  if(A.open&&c.classList.contains('col')){c.classList.remove('col');if(c.dataset.ckey)colState[c.dataset.ckey]=false}
+  const fix=()=>{const d=c.getBoundingClientRect().top-A.top;if(Math.abs(d)>1)window.scrollBy(0,d)};fix();requestAnimationFrame(fix)};
 /* ================= Bildirim merkezi ================= */
 const LS_NF='gg_nf';let nfOpenAt=0,nfTab='all',nfSnz=null,nfUndo=null;
 const dayAdd=(iso,n)=>{const [y,m,d]=iso.split('-').map(Number),x=new Date(y,m-1,d+n);return x.getFullYear()+'-'+pad(x.getMonth()+1)+'-'+pad(x.getDate())};
@@ -8580,7 +8593,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='229';
+const APP_VER='230';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
