@@ -5846,17 +5846,17 @@ Object.assign(UX.en,{pv_p:'When on, amounts on screen are blurred. Toggle it wit
 Object.assign(UX.ru,{pv_p:'Когда режим включён, суммы на экране размываются. Включайте и выключайте его значком глаза справа вверху, встряхиванием телефона или двойным стуком по задней панели.'});
 Object.assign(UX.ar,{pv_p:'عند تفعيله تصبح المبالغ على الشاشة ضبابية. يمكنك تشغيله وإيقافه من أيقونة العين في الأعلى، أو بهز الهاتف، أو بالنقر مرتين على ظهره.'});
 
-/* ================= v238: telefonun geri tuşu uygulama içinde geri gider ================= */
+/* ================= v238/v239: telefonun geri tuşu uygulama içinde geri gider ================= */
 Object.assign(UX.tr,{nb_exit:'Çıkmak için tekrar geri bas'});
 Object.assign(UX.en,{nb_exit:'Press back again to exit'});
 Object.assign(UX.ru,{nb_exit:'Нажмите «назад» ещё раз, чтобы выйти'});
 Object.assign(UX.ar,{nb_exit:'اضغط رجوع مرة أخرى للخروج'});
-const NB={stack:[],cur:null,backing:false,armed:false,exitT:0,ready:false};
+const NB={stack:[],cur:null,backing:false,armed:false,exitT:0,ready:false,open:[]};
 function nbKey(){return tab+'|'+(tab==='arac'?toolSec:'')}
 function nbTrack(){const k=nbKey();if(NB.cur===null){NB.cur={k,tab,sec:toolSec,y:0};return}
   if(k===NB.cur.k)return;
   if(!NB.backing){NB.cur.y=scrollY;NB.stack.push(NB.cur);if(NB.stack.length>40)NB.stack.shift()}
-  NB.cur={k,tab,sec:toolSec,y:0}}
+  NB.cur={k,tab,sec:toolSec,y:0};NB.open=[]}
 const _nbRender=render;render=function(){const r=_nbRender.apply(this,arguments);try{nbTrack()}catch(e){}return r};
 const _nbRT=renderTools;renderTools=function(){const r=_nbRT.apply(this,arguments);try{nbTrack()}catch(e){}return r};
 function nbVisible(el){return !!el&&!el.hidden&&getComputedStyle(el).display!=='none'}
@@ -5873,6 +5873,8 @@ function nbBack(){
   const lk=document.getElementById('lock');if(lk&&!lk.hidden)return 'exit';
   if(nbCloseTop())return 'done';
   if(document.body.classList.contains('kb')&&document.activeElement&&document.activeElement.blur){document.activeElement.blur();return 'done'}
+  const xf=document.querySelector('#view .xform');if(xf){const cn=[...document.querySelectorAll('#view [data-h$=":cancel"],#view [data-x$=":cancel"],#view [data-y$=":cancel"],#view [data-z$=":cancel"],#view [data-h$=":xcancel"]')].find(b=>b.offsetParent)||[...xf.querySelectorAll('button')].find(b=>b.textContent.trim()===ux('is_cancel'));if(cn){cn.click();return 'done'}}
+  while(NB.open.length){const k=NB.open.pop();const c=document.querySelector('#view > section.card.colb[data-ckey="'+k+'"]');if(c&&!c.classList.contains('col')){c.classList.add('col');colState[k]=true;try{c.scrollIntoView({block:'nearest'})}catch(e){}return 'done'}}
   if(tab==='ayar'){const open=[...document.querySelectorAll('#view > section.card.sxc:not(.col)')].filter(c=>c.dataset.ckey&&+c.dataset.ckey.split(':')[1]>1);if(open.length){open.forEach(c=>{c.classList.add('col');if(c.dataset.ckey)colState[c.dataset.ckey]=true});return 'done'}}
   const prev=NB.stack.pop();
   if(prev){NB.backing=true;tab=prev.tab;if(prev.tab==='arac')toolSec=prev.sec;try{render()}finally{NB.backing=false}requestAnimationFrame(()=>scrollTo(0,prev.y||0));return 'done'}
@@ -5886,9 +5888,11 @@ window.addEventListener('popstate',()=>{if(!NB.ready)return;NB.armed=false;let r
     NB.exitT=now;toast(ux('nb_exit'));setTimeout(()=>{if(!NB.armed&&Date.now()-NB.exitT>=1900)nbArm()},2000);return}
   NB.exitT=0;nbArm()});
 // kilit açılınca ya da ilk açılışta geri tuşunu yakala
-function nbInit(){if(NB.ready)return;NB.ready=true;try{history.replaceState({mz:0},'',location.href)}catch(e){}nbArm();try{nbTrack()}catch(e){}}
+function nbActive(){try{return !navigator.userActivation||navigator.userActivation.hasBeenActive}catch(e){return true}}
+function nbInit(){if(NB.ready)return;NB.ready=true;try{history.replaceState({mz:0},'',location.href)}catch(e){}if(nbActive()&&navigator.userActivation)nbArm();try{nbTrack()}catch(e){}}
 window.addEventListener('load',()=>setTimeout(nbInit,300));if(document.readyState==='complete')setTimeout(nbInit,300);
-document.addEventListener('pointerdown',()=>{if(NB.ready&&!NB.armed&&!NB.exitT)nbArm()},{capture:true,passive:true});
+['pointerdown','keydown','touchend'].forEach(t=>document.addEventListener(t,()=>{if(NB.ready&&!NB.armed){NB.exitT=0;setTimeout(nbArm,0)}},{capture:true,passive:true}));
+document.addEventListener('click',e=>{const h=e.target.closest&&e.target.closest('#view > section.card.colb > .cardhead');if(!h||e.target.closest('select,input,button,label'))return;setTimeout(()=>{const c=h.parentElement;if(c&&!c.classList.contains('col')&&c.dataset.ckey){NB.open=NB.open.filter(k=>k!==c.dataset.ckey);NB.open.push(c.dataset.ckey)}},0)},true);
 
 /* ================= Bildirim merkezi ================= */
 const LS_NF='gg_nf';let nfOpenAt=0,nfTab='all',nfSnz=null,nfUndo=null;
@@ -9052,7 +9056,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='238';
+const APP_VER='239';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
