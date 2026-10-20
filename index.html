@@ -1662,7 +1662,8 @@ html:root #welcome .welin.wl2 .welact .btn.primary{background:color-mix(in srgb,
 html:root #welcome .welin.wl2 .welact .btn.primary .wgo{width:18px;height:18px;margin-inline-start:6px;transform:rotate(180deg);transition:transform .2s}
 html[dir=rtl] #welcome .welin.wl2 .welact .btn.primary .wgo{transform:none}
 html:root #welcome .welin.wl2 .welact .btn.primary:active{transform:scale(.985)}
-html:root #welcome .welin.wl2 .welact .btn:not(.primary){background:transparent!important;border:0!important;box-shadow:none!important;color:var(--accent)!important;min-height:44px}
+html:root #welcome .welin.wl2 .welact .btn:not(.primary){background:var(--solid,var(--surface))!important;border:1px solid color-mix(in srgb,var(--line) 80%,transparent)!important;box-shadow:0 6px 18px -12px rgba(16,24,40,.35)!important;color:var(--accent)!important;min-height:46px;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+html:root #welcome .wl2 .freec .bar{height:4px!important;background:color-mix(in srgb,var(--line) 85%,transparent)!important;border-radius:99px;overflow:hidden}html:root #welcome .wl2 .freec .bar i{min-width:4px;border-radius:99px}
 #welcome .wl2 .welnever{font-size:12.5px;padding:2px 6px 12px}#welcome .wl2 .welnever input{width:18px;height:18px}
 </style>
 
@@ -8864,7 +8865,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='232';
+const APP_VER='233';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
