@@ -1767,6 +1767,11 @@ html[data-glass]:root .ahi{background:color-mix(in srgb,var(--accent) 12%,transp
 #btDot{width:12px;height:12px;border-radius:50%;background:var(--line);flex:none}
 #btDot.hit{animation:bthit .7s ease-out}
 @keyframes bthit{0%{background:var(--gold,#C9A227);box-shadow:0 0 0 7px color-mix(in srgb,var(--gold,#C9A227) 30%,transparent)}100%{background:var(--line);box-shadow:0 0 0 0 transparent}}
+
+/* v240: yapışkan ay seçici sabit katman + yer tutucu */
+#view,#selbar,#selbar *{overflow-anchor:none}
+html:root #selph{overflow-anchor:none;display:block!important;height:0;margin:0;padding:0;pointer-events:none}
+html:root #selbar.stuck.fx,html:root[data-theme] #selbar.stuck.fx{position:fixed!important;top:calc(env(safe-area-inset-top,0px) + var(--headh,104px) - var(--hideh,0px))!important;margin:0!important;z-index:6}
 </style>
 
 <div class="app">
@@ -5894,6 +5899,20 @@ window.addEventListener('load',()=>setTimeout(nbInit,300));if(document.readyStat
 ['pointerdown','keydown','touchend'].forEach(t=>document.addEventListener(t,()=>{if(NB.ready&&!NB.armed){NB.exitT=0;setTimeout(nbArm,0)}},{capture:true,passive:true}));
 document.addEventListener('click',e=>{const h=e.target.closest&&e.target.closest('#view > section.card.colb > .cardhead');if(!h||e.target.closest('select,input,button,label'))return;setTimeout(()=>{const c=h.parentElement;if(c&&!c.classList.contains('col')&&c.dataset.ckey){NB.open=NB.open.filter(k=>k!==c.dataset.ckey);NB.open.push(c.dataset.ckey)}},0)},true);
 
+/* ================= v240: yapışkan ay seçici yer tutucuyla — yukarı kaydırırken sayfa zıplamaz ================= */
+// Eskiden yapışınca seçici küçülüyor, bırakınca büyüyordu; altındaki aylar ~170 px aşağı-yukarı zıplıyordu.
+// Artık yapışınca seçici sabit (fixed) olur, yerinde aynı yükseklikte boş bir yer tutucu kalır: sayfa düzeni hiç değişmez.
+function stuckPh(el){let ph=document.getElementById('selph');if(!ph||ph.nextElementSibling!==el){if(ph)ph.remove();ph=document.createElement('div');ph.id='selph';ph.setAttribute('aria-hidden','true');el.parentNode.insertBefore(ph,el);ph.style.marginBottom=stuckGap(ph)}return ph}
+function stuckGap(ph){const g=parseFloat(getComputedStyle(ph.parentNode).rowGap)||0;return (-g)+'px'}
+function stuckPos(el,ph){const r=ph.getBoundingClientRect();el.style.left=r.left+'px';el.style.width=r.width+'px'}
+stuckChk=function(){const el=document.getElementById('selbar');if(!el)return;const ph=stuckPh(el),is=el.classList.contains('stuck');
+  const top=(()=>{const t=document.createElement('div');t.style.cssText='position:absolute;visibility:hidden;height:calc(env(safe-area-inset-top,0px) + var(--headh,104px) - var(--hideh,0px))';document.body.appendChild(t);const h=t.offsetHeight;t.remove();return h})();
+  const on=window.scrollY>40&&ph.getBoundingClientRect().top<=top+1;
+  if(on===is){if(on)stuckPos(el,ph);return}
+  if(on){const cs=getComputedStyle(el),h=el.offsetHeight+(parseFloat(cs.marginTop)||0)+(parseFloat(cs.marginBottom)||0);ph.style.height=Math.max(0,h)+'px';ph.style.marginBottom='0px';stuckPos(el,ph);el.classList.add('stuck','fx')}
+  else{el.classList.remove('stuck','fx');el.style.left='';el.style.width='';ph.style.height='0px';ph.style.marginBottom=stuckGap(ph)}};
+window.addEventListener('resize',()=>{try{stuckChk()}catch(e){}});
+
 /* ================= Bildirim merkezi ================= */
 const LS_NF='gg_nf';let nfOpenAt=0,nfTab='all',nfSnz=null,nfUndo=null;
 const dayAdd=(iso,n)=>{const [y,m,d]=iso.split('-').map(Number),x=new Date(y,m-1,d+n);return x.getFullYear()+'-'+pad(x.getMonth()+1)+'-'+pad(x.getDate())};
@@ -9056,7 +9075,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='239';
+const APP_VER='240';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
