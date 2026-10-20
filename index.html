@@ -2034,6 +2034,53 @@ html:root #view .ahub .ahrecg .aht .ahl{color:#fff!important;opacity:1!important
 html:root .ahrec>h3{color:rgba(255,255,255,.85)!important}
 html:root #view .ahub .ahrecg>.aht:nth-child(n):nth-child(n):nth-child(n){gap:6px!important;flex-direction:column!important;align-items:center!important;height:auto!important;min-height:0!important;aspect-ratio:auto!important;padding:4px 2px!important;margin:0!important;justify-content:flex-start!important;align-self:start!important;grid-column:auto!important}
 html:root #view .ahub .ahrecg>.aht .ahl{margin:0!important;padding:0!important}
+
+/* ================= v255 ================= */
+/* 1. Kalem logoları */
+.kci.bklogo{background:none!important;padding:0}
+.kci.bklogo .bri{width:34px;height:34px}
+.bkini{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--bc);color:#fff;font:700 15px var(--f-body)}
+/* 2. Defter: kaydırma */
+#view .erow{position:relative;overflow:hidden;border-radius:12px}
+#view .erow .entry{position:relative;z-index:1;background:var(--surface);touch-action:pan-y}
+#view .erow.swiping .entry{transition:none}
+#view .erow::before{content:"";position:absolute;inset:0;border-radius:inherit;opacity:0;transition:opacity .12s}
+#view .erow.sw-del::before{opacity:1;background:linear-gradient(90deg,transparent 30%,color-mix(in srgb,var(--bad) 22%,var(--surface)))}
+#view .erow.sw-edit::before{opacity:1;background:linear-gradient(270deg,transparent 30%,color-mix(in srgb,var(--accent) 18%,var(--surface)))}
+html[dir=rtl] #view .erow.sw-del::before{background:linear-gradient(270deg,transparent 30%,color-mix(in srgb,var(--bad) 22%,var(--surface)))}
+html[dir=rtl] #view .erow.sw-edit::before{background:linear-gradient(90deg,transparent 30%,color-mix(in srgb,var(--accent) 18%,var(--surface)))}
+#view .erow.sw-arm.sw-del::before{background:color-mix(in srgb,var(--bad) 30%,var(--surface))}
+#view .erow.sw-arm.sw-edit::before{background:color-mix(in srgb,var(--accent) 24%,var(--surface))}
+/* 3. Ayarlar satırları */
+.rmbox{border-top:1px solid var(--line);margin-top:12px;padding-top:6px}
+.rmtime{max-width:160px}
+/* 4. Bu ay bir bakışta */
+.glc{padding:14px 16px!important}
+.glh{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.glh b{display:flex;align-items:center;gap:8px;font-size:15px}.glh b .ic{width:18px;height:18px;color:var(--accent)}
+.glh span{font-size:12px;color:var(--muted-tx,var(--muted))}
+.glg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.glg>div{display:flex;flex-direction:column;gap:2px;min-width:0;padding:10px;border-radius:14px;background:var(--surface2)}
+.glg small{font-size:11.5px;color:var(--muted-tx,var(--muted))}
+.glg b{font:600 14.5px var(--f-num);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.glg b.pos{color:var(--good-tx,var(--good))}.glg b.neg{color:var(--bad-tx,var(--bad))}
+.gld{font-size:11px!important;font-weight:600}.gld.pos{color:var(--good-tx,var(--good))!important}.gld.neg{color:var(--bad-tx,var(--bad))!important}
+.glv{margin:8px 2px 0;font-size:11.5px;color:var(--muted-tx,var(--muted))}
+/* 5. PDF düğmesi */
+.rppdf{gap:8px}.rppdf .ic{width:18px;height:18px}
+.pdftip{font-style:italic}
+@media print{.pdftip{display:none}}
+/* 8. Yaklaşan ödeme */
+#paycard label.payrow.du-soon{box-shadow:inset 3px 0 0 var(--warn)}
+#paycard label.payrow.du-today{box-shadow:inset 3px 0 0 var(--accent);background:color-mix(in srgb,var(--accent) 6%,transparent)}
+#paycard label.payrow.du-late{box-shadow:inset 3px 0 0 var(--bad);background:color-mix(in srgb,var(--bad) 6%,transparent)}
+html[dir=rtl] #paycard label.payrow.du-soon{box-shadow:inset -3px 0 0 var(--warn)}html[dir=rtl] #paycard label.payrow.du-today{box-shadow:inset -3px 0 0 var(--accent)}html[dir=rtl] #paycard label.payrow.du-late{box-shadow:inset -3px 0 0 var(--bad)}
+.dupill{display:inline-block;margin-inline-start:8px;padding:1px 8px;border-radius:99px;font-size:11px;font-weight:600;vertical-align:1px}
+.du-soon .dupill{background:color-mix(in srgb,var(--warn) 16%,transparent);color:var(--warn-tx,var(--warn))}
+.du-today .dupill{background:var(--accent-soft);color:var(--accent)}
+.du-late .dupill{background:color-mix(in srgb,var(--bad) 14%,transparent);color:var(--bad-tx,var(--bad))}
+
+#rmCard .rmbox{border-top:0;margin-top:0;padding-top:0}
 </style>
 
 <div class="app">
@@ -6306,6 +6353,103 @@ try{const _emDL=drawLedger;drawLedger=function(){const r=_emDL.apply(this,argume
 /* ---- 6. Sekme geçişi: kısa, yumuşak ---- */
 let tvLast='';const _tvR=render;render=function(){const k=tab+'|'+(tab==='arac'?toolSec:'');const r=_tvR.apply(this,arguments);try{if(tvLast&&k!==tvLast){const v=document.getElementById('view');if(v){v.classList.remove('tvin');void v.offsetWidth;v.classList.add('tvin')}}tvLast=k}catch(e){}return r};
 
+/* ================= v255: banka logoları, kaydırarak düzenle/sil, titreşim, "bu ay bir bakışta", aylık PDF, günlük hatırlatma, yaklaşan ödeme ================= */
+Object.assign(UX.tr,{rm_chk:'Her gün hatırlat',pdf_amt:'Tutar',pdf_st:'Durum',pdf_item:'Kalem',pdf_due:'Gün',gl_h:'Bu ay bir bakışta',gl_inc:'Gelir',gl_exp:'Gider',gl_net:'Kalan',gl_vs:'geçen aya göre',gl_src_l:'Defter kayıtlarından',gl_src_p:'Plandan',hap_h:'Dokunuşta titreşim',hap_n:'Kayıt eklerken, ödendi işaretlerken ve silerken kısa bir titreşim.',rm_h:'Günlük kayıt hatırlatması',rm_t:'Saat',rm_n:'O gün hiç kayıt girmediysen seçtiğin saatte bir kez hatırlatır. Uygulama kapalıyken telefonun izin verdiği zamanlarda gelir; uygulamayı açtığında da gösterilir.',rm_msg:'Bugünün harcamalarını girdin mi?',rm_on:'Hatırlatma açık',rm_off:'Hatırlatma kapalı',pdf_btn:'Ayrıntılı rapor (PDF)',pdf_h:p=>`${p.m} raporu`,pdf_sum:'Özet',pdf_pay:'Ödemeler',pdf_led:'Defter kayıtları',pdf_cat:'Kategorilere göre gider',pdf_paid:'Ödendi',pdf_open:'Ödenmedi',pdf_nod:'Bu ay Defter kaydı yok.',pdf_tip:'Kaydetmek için üstteki “Yazdır / PDF” düğmesine dokun ve “PDF olarak kaydet”i seç.',du_soon:p=>`${p.n} gün kaldı`,du_today:'Bugün',du_late:p=>`${p.n} gün gecikti`,sw_del:'Sil',sw_edit:'Düzenle'});
+Object.assign(UX.en,{rm_chk:'Remind me every day',pdf_amt:'Amount',pdf_st:'Status',pdf_item:'Item',pdf_due:'Day',gl_h:'This month at a glance',gl_inc:'Income',gl_exp:'Spending',gl_net:'Left',gl_vs:'vs last month',gl_src_l:'From ledger entries',gl_src_p:'From the plan',hap_h:'Vibrate on touch',hap_n:'A short vibration when you add an entry, mark a payment as paid or delete.',rm_h:'Daily entry reminder',rm_t:'Time',rm_n:'Reminds you once at the chosen time if you haven’t added any entry that day. While the app is closed it arrives when your phone allows; it is also shown when you open the app.',rm_msg:'Did you log today’s spending?',rm_on:'Reminder on',rm_off:'Reminder off',pdf_btn:'Detailed report (PDF)',pdf_h:p=>`${p.m} report`,pdf_sum:'Summary',pdf_pay:'Payments',pdf_led:'Ledger entries',pdf_cat:'Spending by category',pdf_paid:'Paid',pdf_open:'Not paid',pdf_nod:'No ledger entries this month.',pdf_tip:'To save, tap “Print / PDF” above and choose “Save as PDF”.',du_soon:p=>`${p.n} days left`,du_today:'Today',du_late:p=>`${p.n} days late`,sw_del:'Delete',sw_edit:'Edit'});
+Object.assign(UX.ru,{rm_chk:'Напоминать каждый день',pdf_amt:'Сумма',pdf_st:'Статус',pdf_item:'Статья',pdf_due:'День',gl_h:'Этот месяц кратко',gl_inc:'Доход',gl_exp:'Расходы',gl_net:'Остаток',gl_vs:'к прошлому месяцу',gl_src_l:'По записям журнала',gl_src_p:'По плану',hap_h:'Вибрация при касании',hap_n:'Короткая вибрация при добавлении записи, отметке оплаты и удалении.',rm_h:'Ежедневное напоминание',rm_t:'Время',rm_n:'Один раз напомнит в выбранное время, если за день не было записей. Когда приложение закрыто — когда позволит телефон; также показывается при открытии.',rm_msg:'Вы записали сегодняшние расходы?',rm_on:'Напоминание включено',rm_off:'Напоминание выключено',pdf_btn:'Подробный отчёт (PDF)',pdf_h:p=>`Отчёт: ${p.m}`,pdf_sum:'Итоги',pdf_pay:'Платежи',pdf_led:'Записи журнала',pdf_cat:'Расходы по категориям',pdf_paid:'Оплачено',pdf_open:'Не оплачено',pdf_nod:'В этом месяце записей нет.',pdf_tip:'Чтобы сохранить, нажмите «Печать / PDF» вверху и выберите «Сохранить как PDF».',du_soon:p=>`осталось ${p.n} дн.`,du_today:'Сегодня',du_late:p=>`просрочено на ${p.n} дн.`,sw_del:'Удалить',sw_edit:'Изменить'});
+Object.assign(UX.ar,{rm_chk:'ذكّرني كل يوم',pdf_amt:'المبلغ',pdf_st:'الحالة',pdf_item:'البند',pdf_due:'اليوم',gl_h:'هذا الشهر باختصار',gl_inc:'الدخل',gl_exp:'المصروف',gl_net:'المتبقي',gl_vs:'مقارنة بالشهر الماضي',gl_src_l:'من قيود الدفتر',gl_src_p:'من الخطة',hap_h:'اهتزاز عند اللمس',hap_n:'اهتزاز قصير عند إضافة قيد أو تعليم دفعة كمدفوعة أو الحذف.',rm_h:'تذكير يومي بالتسجيل',rm_t:'الوقت',rm_n:'يذكّرك مرة واحدة في الوقت المختار إذا لم تسجّل أي قيد في ذلك اليوم. عندما يكون التطبيق مغلقًا يصل حين يسمح الهاتف، ويظهر أيضًا عند فتح التطبيق.',rm_msg:'هل سجّلت مصروفات اليوم؟',rm_on:'التذكير مفعّل',rm_off:'التذكير متوقف',pdf_btn:'تقرير مفصّل (PDF)',pdf_h:p=>`تقرير ${p.m}`,pdf_sum:'الملخص',pdf_pay:'الدفعات',pdf_led:'قيود الدفتر',pdf_cat:'المصروف حسب الفئة',pdf_paid:'مدفوع',pdf_open:'غير مدفوع',pdf_nod:'لا قيود في هذا الشهر.',pdf_tip:'للحفظ اضغط «طباعة / PDF» في الأعلى واختر «حفظ بتنسيق PDF».',du_soon:p=>`باقٍ ${p.n} أيام`,du_today:'اليوم',du_late:p=>`متأخر ${p.n} أيام`,sw_del:'حذف',sw_edit:'تعديل'});
+/* ---- 3. Titreşim ---- */
+function hapOn(){try{return localStorage.getItem('gg_hap')!=='0'}catch(e){return true}}
+function hap(ms){if(!hapOn())return;try{if(navigator.vibrate)navigator.vibrate(ms||12)}catch(e){}}
+const _hpSave=saveEntry;saveEntry=async function(){const r=await _hpSave.apply(this,arguments);if(r){hap(12);try{ntSync()}catch(e){}}return r};
+const _hpRem=removeEntry;removeEntry=async function(){const r=await _hpRem.apply(this,arguments);hap(22);return r};
+document.addEventListener('change',e=>{const x=e.target;if(x&&x.matches&&x.matches('input[data-paid],input[data-recv]')){hap(x.checked?14:8);setTimeout(duMark,0)}});
+/* ---- 1. Kalemler: banka logosu / renkli baş harf ---- */
+const BK=[[/vakif ?katilim/,'Vakıf Katılım','vakifkatilim.com.tr','#E2A400'],[/ziraat ?katilim/,'Ziraat Katılım','ziraatkatilim.com.tr','#C8102E'],[/emlak ?katilim/,'Emlak Katılım','emlakkatilim.com.tr','#00843D'],
+ [/vakif/,'VakıfBank','vakifbank.com.tr','#E2A400'],[/ziraat/,'Ziraat Bankası','ziraatbank.com.tr','#E30613'],[/halk ?bank/,'Halkbank','halkbank.com.tr','#0F4C81'],[/garanti/,'Garanti BBVA','garantibbva.com.tr','#1A7F64'],
+ [/\bis ?bank|isbank|is bankasi/,'İş Bankası','isbank.com.tr','#0E4194'],[/akbank/,'Akbank','akbank.com','#E30613'],[/yapi ?kredi|world card/,'Yapı Kredi','yapikredi.com.tr','#004B9A'],[/\bqnb\b|finansbank|cardfinans/,'QNB','qnb.com.tr','#6A1B5C'],
+ [/\bteb\b|bonus/,'TEB','teb.com.tr','#00A651'],[/denizbank|\bdeniz\b/,'DenizBank','denizbank.com','#005BAA'],[/\bing\b/,'ING','ing.com.tr','#FF6200'],[/enpara/,'Enpara','enpara.com','#6E2C91'],[/kuveyt/,'Kuveyt Türk','kuveytturk.com.tr','#00A19A'],
+ [/n ?kolay/,'N Kolay','nkolay.com','#1D2B7F'],[/fiba/,'Fibabanka','fibabanka.com.tr','#E4002B'],[/odea/,'Odeabank','odeabank.com.tr','#6F2C91'],[/seker ?bank|sekerbank/,'Şekerbank','sekerbank.com.tr','#ED1C24'],[/hsbc/,'HSBC','hsbc.com.tr','#DB0011'],
+ [/papara/,'Papara','papara.com','#111111'],[/turkcell/,'Turkcell','turkcell.com.tr','#F5B800'],[/albaraka/,'Albaraka','albaraka.com.tr','#00704A'],[/turkiye finans/,'Türkiye Finans','turkiyefinans.com.tr','#00A94F'],[/alternatif/,'Alternatif Bank','alternatifbank.com.tr','#D7182A'],
+ [/anadolubank/,'Anadolubank','anadolubank.com.tr','#004990'],[/burgan/,'Burgan Bank','burgan.com.tr','#0067B1'],[/fair ?finans/,'Fair','fairfinans.com.tr','#2E5AAC']];
+function bkFind(n){const f=crFold(String(n||'')).toLowerCase();for(const b of BK)if(b[0].test(f))return [b[1],b[1],b[2],b[3]];return null}
+function bkInitial(n){const s=String(n||'').replace(/^.*?-\s*/,'').trim()||String(n||'');return (s.charAt(0)||'?').toLocaleUpperCase(LOC[LANG]||'tr')}
+function bkColor(n){let h=0;for(const ch of String(n||''))h=(h*31+ch.charCodeAt(0))>>>0;const P=['#7A1F2B','#1E5A43','#6B4A2E','#3A404C','#1F3A6E','#8C5A86','#2E7A6A','#A3793F'];return P[h%P.length]}
+function bkDecorate(){document.querySelectorAll('#view .krow[data-id] .kci:not(.bkd)').forEach(sp=>{const id=sp.closest('.krow').dataset.id,d=plan.debts.find(x=>x.id===id);if(!d)return;sp.classList.add('bkd');
+  const b=bkFind(d.name);if(b){sp.innerHTML=brIcon(b,34);sp.classList.add('bklogo')}else{const own=!/kredi|kart|\bkk\b|finans|bank|taksit|loan|card|credit/i.test(crFold(d.name));if(own){sp.innerHTML=`<span class="bkini" style="--bc:${bkColor(d.name)}">${esc(bkInitial(d.name))}</span>`;sp.classList.add('bklogo')}}})}
+const _bkRK=renderKalem;renderKalem=function(){const r=_bkRK.apply(this,arguments);try{bkDecorate()}catch(e){}return r};
+/* ---- 8. Bu ayın ödemeleri: yaklaşan / bugün / geciken ---- */
+function duMark(){const today=new Date(),ym=ymToday(),day=today.getDate();document.querySelectorAll('#paycard label.payrow input[data-paid]').forEach(inp=>{const row=inp.closest('label.payrow');row.classList.remove('du-soon','du-today','du-late');const old=row.querySelector('.dupill');if(old)old.remove();
+  if(inp.checked||inp.dataset.pym!==ym)return;const d=plan.debts.find(x=>x.id===inp.dataset.paid);const due=d&&Number(d.due);if(!(due>0))return;const k=due-day;let cls='',txt='';
+  if(k<0){cls='du-late';txt=ux('du_late',{n:-k})}else if(k===0){cls='du-today';txt=ux('du_today')}else if(k<=3){cls='du-soon';txt=ux('du_soon',{n:k})}
+  if(!cls)return;row.classList.add(cls);const pn=row.querySelector('.pn');if(pn&&!pn.querySelector('.pill'))pn.insertAdjacentHTML('beforeend',`<span class="dupill">${esc(txt)}</span>`)})}
+/* ---- 4. Özet: bu ay bir bakışta ---- */
+function glData(ym){let g=0,x=0,n=0;for(const e of ledger){if(String(e.date).slice(0,7)!==ym)continue;n++;if(e.type==='gelir')g+=num(e.amount);else x+=num(e.amount)}
+  if(n)return {src:'l',g:r2(g),x:r2(x),net:r2(g-x)};const m=plan.months.find(z=>z.ym===ym);if(!m)return null;const c=calc(m);return {src:'p',g:r2(c.income),x:r2(num(c.debt)+num(c.need||0)),net:r2(c.net)}}
+const glM=v=>`<bdi class="mv" dir="ltr">${esc(money(Math.round(v)).replace(/[.,]\d\d(?!\d)(?=\D*$)/,''))}</bdi>`;
+function glHTML(){const cur=ymToday(),D=glData(cur);if(!D)return '';const P=glData(addYm(cur,-1));const same=P&&P.src===D.src;
+  const dl=(a,b,good)=>{if(!same||!b)return '';const p=Math.round((a-b)/Math.abs(b)*100);if(!isFinite(p)||p===0)return `<small class="gld">±0%</small>`;const up=p>0,ok=good?up:!up;return `<small class="gld ${ok?'pos':'neg'}">${up?'▲':'▼'} %${Math.abs(p)}</small>`};
+  return `<section class="card glc"><div class="glh"><b>${ic('calendar')}${esc(ux('gl_h'))}</b><span>${esc(ymLabel(cur))} · ${esc(ux(D.src==='l'?'gl_src_l':'gl_src_p'))}</span></div>
+   <div class="glg"><div><small>${ux('gl_inc')}</small><b>${glM(D.g)}</b>${dl(D.g,P&&P.g,true)}</div><div><small>${ux('gl_exp')}</small><b>${glM(D.x)}</b>${dl(D.x,P&&P.x,false)}</div><div><small>${ux('gl_net')}</small><b class="${D.net<0?'neg':'pos'}">${glM(D.net)}</b>${dl(D.net,P&&P.net,true)}</div></div>
+   ${same?`<p class="glv">${esc(ux('gl_vs'))}</p>`:''}</section>`}
+const _glRO=renderOzet;renderOzet=function(){const r=_glRO.apply(this,arguments);try{const v=document.getElementById('view');if(v&&!v.querySelector('.glc')){const h=glHTML();if(h){const f=v.firstElementChild;const after=f&&!f.matches('section.card')?f:null;(after||v).insertAdjacentHTML(after?'afterend':'afterbegin',h)}}}catch(e){}return r};
+/* ---- 5. Aylık ayrıntılı rapor (PDF) ---- */
+function monthHTML(ym){const m=plan.months.find(z=>z.ym===ym);const c=m?calc(m):null;const row=(a,b,cl)=>`<tr><td>${esc(a)}</td><td class="${cl||''}">${b}</td></tr>`;
+  const L=ledger.filter(e=>String(e.date).slice(0,7)===ym).sort((a,b)=>a.date<b.date?-1:a.date>b.date?1:0);let g=0,x=0;const cats={};L.forEach(e=>{const a=num(e.amount);if(e.type==='gelir')g+=a;else{x+=a;const k=(e.cat||'').trim()||t('cat_nocat');cats[k]=(cats[k]||0)+a}});
+  const pays=m?plan.debts.map(d=>({d,a:dv(m,d.id)})).filter(q=>q.a>0):[];
+  return `<h1>${esc(t('appTitle'))} · ${esc(ux('pdf_h',{m:ymLabel(ym)}))}</h1><p class="rsub">${t('rp_date')}: <bdi dir="ltr">${esc(new Date().toLocaleDateString(LOC[LANG],{dateStyle:'long'}))}</bdi></p><p class="rsub pdftip">${esc(ux('pdf_tip'))}</p>
+   ${c?`<h2>${ux('pdf_sum')}</h2><table><tbody>${row(ux('yr_inc'),moneyH(c.income))}${row(ux('yr_debt'),moneyH(c.debt))}${row(ux('yr_need'),moneyH(num(c.need||0)))}${row(ux('yr_net'),moneyH(c.net),c.net<0?'neg':'')}${L.length?row(ux('gl_inc')+' · '+t('tab_ledger'),moneyH(g))+row(ux('gl_exp')+' · '+t('tab_ledger'),moneyH(x)):''}</tbody></table>`:''}
+   ${pays.length?`<h2>${ux('pdf_pay')}</h2><table><thead><tr><th>${esc(ux('pdf_item'))}</th><th>${esc(ux('pdf_due'))}</th><th>${esc(ux('pdf_amt'))}</th><th>${esc(ux('pdf_st'))}</th></tr></thead><tbody>${pays.map(q=>`<tr><td>${esc(q.d.name)}</td><td>${Number(q.d.due)>0?esc(String(q.d.due)):'—'}</td><td>${moneyH(q.a)}</td><td>${paidOf(ym,q.d.id)?esc(ux('pdf_paid')):esc(ux('pdf_open'))}</td></tr>`).join('')}</tbody></table>`:''}
+   <h2>${ux('pdf_led')}</h2>${L.length?`<table><thead><tr><th>${esc(t('lg_date'))}</th><th>${esc(t('lg_cat')||'')}</th><th>${esc(t('lg_desc'))}</th><th>${esc(ux('st_amt')||'')}</th></tr></thead><tbody>${L.map(e=>`<tr><td><bdi dir="ltr">${esc(dmy(e.date))}</bdi></td><td>${esc(e.cat||'')}</td><td>${esc(e.desc||'')}</td><td class="${e.type==='gelir'?'pos':'neg'}">${e.type==='gelir'?'+':'−'}${moneyH(num(e.amount))}</td></tr>`).join('')}</tbody></table>`:`<p class="rsub">${esc(ux('pdf_nod'))}</p>`}
+   ${Object.keys(cats).length?`<h2>${ux('pdf_cat')}</h2><table><tbody>${Object.entries(cats).sort((a,b)=>b[1]-a[1]).map(([k,v])=>row(k,moneyH(v))).join('')}</tbody></table>`:''}`}
+const _pdRO=rpOpen;rpOpen=function(){const r=_pdRO.apply(this,arguments);try{const o=document.getElementById('rpz');const sh=o&&o.querySelector('[data-rpsh]');if(sh&&!o.querySelector('[data-rppdf]'))sh.insertAdjacentHTML('afterend',`<button type="button" class="btn rppdf" data-rppdf="1">${ic('file-chart')}${esc(ux('pdf_btn'))}</button>`)}catch(e){}return r};
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-rppdf]');if(!b)return;e.preventDefault();const o=document.getElementById('rpz');if(o)o.hidden=true;const ym=rpYm||ymToday();repOpen(()=>monthHTML(ym))});
+/* ---- 6. Günlük kayıt hatırlatması ---- */
+function rmGet(){let o={};try{o=JSON.parse(localStorage.getItem('gg_rem')||'{}')||{}}catch(e){}return {on:!!o.on,t:/^\d\d:\d\d$/.test(o.t||'')?o.t:'21:00'}}
+function rmSet(o){try{localStorage.setItem('gg_rem',JSON.stringify(o))}catch(e){}try{ntSync()}catch(e){}}
+function rmLast(){let l='';for(const e of ledger){const d=String(e.date||'');if(d>l)l=d}return l}
+function remCfg(){const R=rmGet();let sh='';try{sh=localStorage.getItem('gg_rem_shown')||''}catch(e){}return {on:R.on,t:R.t,last:rmLast(),shown:sh,tx:ux('rm_msg')}}
+function rmDue(){const R=rmGet();if(!R.on)return false;const n=new Date(),hm=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0'),td=todayStr();let sh='';try{sh=localStorage.getItem('gg_rem_shown')||''}catch(e){}
+  return hm>=R.t&&sh!==td&&!ledger.some(e=>String(e.date)===td)}
+async function rmCheck(){if(!rmDue())return;const td=todayStr();try{localStorage.setItem('gg_rem_shown',td)}catch(e){}
+  let ok=false;try{if(typeof Notification!=='undefined'&&Notification.permission==='granted'&&swReg){await swReg.showNotification('Mizan',{body:ux('rm_msg'),icon:'icon-192.png',badge:'icon-192.png',tag:'mizan-rem-'+td,data:{url:'./'}});ok=true}}catch(e){}
+  try{toast(ux('rm_msg'),{label:t('tab_ledger'),fn:()=>{tab='defter';render();scrollTo(0,0)}})}catch(e){}hap(30);try{ntSync()}catch(e){}return ok}
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')setTimeout(rmCheck,800)});setInterval(()=>{if(document.visibilityState==='visible')rmCheck()},60000);setTimeout(rmCheck,2500);
+async function rmEnable(){if(typeof Notification!=='undefined'&&Notification.permission==='default'){try{await Notification.requestPermission()}catch(e){}}try{await ntBg()}catch(e){}}
+/* ---- Ayarlar: titreşim ve hatırlatma ---- */
+function setInject(){const v=document.getElementById('view');if(!v||!v.querySelector('.langseg'))return;
+  const th=v.querySelector('.thmode2');const thc=th&&th.closest('section');if(thc&&!thc.querySelector('#hapChk')){const fs=thc.querySelector('.fsrow');const h=`<label class="chk pvrow hapr"><input type="checkbox" id="hapChk"${hapOn()?' checked':''}><span>${ux('hap_h')}</span></label><p class="hint" style="margin-top:0">${ux('hap_n')}</p>`;if(fs)fs.insertAdjacentHTML('afterend',h);else thc.insertAdjacentHTML('beforeend',h)}
+  if(!v.querySelector('#rmCard')){const cards=[...v.querySelectorAll(':scope > section.card')];const tt=c=>{const h=c.querySelector(':scope > .cardhead h2');return h?(h.dataset.t||h.textContent).trim():''};
+    const ref=cards.find(c=>tt(c)===ux('led_h'))||cards.find(c=>tt(c)===ux('dv_h'));const R=rmGet();const K='ayar:90';if(!(K in colState))colState[K]=true;
+    const h=`<section class="card colb sxc${colState[K]?' col':''}" id="rmCard" data-ckey="${K}" style="--sc:#e11d48"><div class="cardhead"><h2 data-t="${esc(ux('rm_h'))}"><span class="sxi">${ic('bell-ring-outline')}</span><span class="sxt"><b>${esc(ux('rm_h'))}</b><small id="rmSub">${esc(rmSub())}</small></span></h2></div><div class="rmbox"><label class="chk pvrow"><input type="checkbox" id="rmChk"${R.on?' checked':''}><span>${ux('rm_chk')}</span></label><label class="f rmtime">${ux('rm_t')}<input type="time" id="rmTime" value="${R.t}"${R.on?'':' disabled'}></label><p class="hint">${ux('rm_n')}</p></div></section>`;
+    if(ref)ref.insertAdjacentHTML('afterend',h);else v.insertAdjacentHTML('beforeend',h)}}
+function rmSub(){const R=rmGet();return R.on?ux('ss_on')+' · '+R.t:ux('ss_off')}
+function rmSubUpd(){const h=document.querySelector('#rmCard .sxt');if(!h)return;let e=h.querySelector('small');if(!e){e=document.createElement('small');h.append(e)}e.textContent=rmSub()}
+try{const _ss=setSpecs;setSpecs=function(){const a=_ss.apply(this,arguments);a.push([ux('rm_h'),'bell-ring-outline','#e11d48',rmSub]);return a}}catch(e){}
+const _siRA=renderAyar;renderAyar=function(){const r=_siRA.apply(this,arguments);try{setInject()}catch(e){}return r};
+document.addEventListener('change',async e=>{const x=e.target;if(!x)return;
+  if(x.id==='hapChk'){try{localStorage.setItem('gg_hap',x.checked?'1':'0')}catch(z){}if(x.checked)hap(15)}
+  if(x.id==='rmChk'){const R=rmGet();R.on=x.checked;rmSet(R);const ti=document.getElementById('rmTime');if(ti)ti.disabled=!x.checked;if(x.checked)await rmEnable();toast(ux(x.checked?'rm_on':'rm_off'));rmSubUpd()}
+  if(x.id==='rmTime'&&/^\d\d:\d\d$/.test(x.value)){const R=rmGet();R.t=x.value;rmSet(R);rmSubUpd()}});
+/* ---- 2. Defter: kaydırarak düzenle (sağa) / sil (sola) ---- */
+(function(){let S=null,swallow=0;const TH=84;
+  document.addEventListener('pointerdown',e=>{const row=e.target.closest&&e.target.closest('#view .erow');if(!row||e.target.closest('.edel')||e.button>0)return;S={row,x:e.clientX,y:e.clientY,on:false,dx:0,id:e.pointerId}},{passive:true});
+  document.addEventListener('pointermove',e=>{if(!S||e.pointerId!==S.id)return;const dx=e.clientX-S.x,dy=e.clientY-S.y;
+    if(!S.on){if(Math.abs(dy)>10&&Math.abs(dy)>Math.abs(dx)){S=null;return}if(Math.abs(dx)>12&&Math.abs(dx)>Math.abs(dy)*1.5){S.on=true;S.row.classList.add('swiping');try{S.row.setPointerCapture(e.pointerId)}catch(z){}}else return}
+    const rtl=document.documentElement.dir==='rtl',d=Math.max(-150,Math.min(150,dx));S.dx=d;const en=S.row.querySelector('.entry');if(en)en.style.transform=`translateX(${d}px)`;
+    const del=rtl?d>0:d<0;S.row.classList.toggle('sw-del',del&&Math.abs(d)>8);S.row.classList.toggle('sw-edit',!del&&Math.abs(d)>8);S.row.classList.toggle('sw-arm',Math.abs(d)>=TH)},{passive:true});
+  const end=e=>{if(!S||(e&&e.pointerId!==S.id))return;const {row,dx,on}=S;S=null;if(!on)return;swallow=Date.now();const en=row.querySelector('.entry');
+    const rtl=document.documentElement.dir==='rtl',del=rtl?dx>0:dx<0,go=Math.abs(dx)>=TH;
+    if(en){en.style.transition='transform .18s ease';en.style.transform='';setTimeout(()=>{en.style.transition=''},200)}row.classList.remove('swiping','sw-del','sw-edit','sw-arm');
+    if(!go)return;hap(15);const id=en&&en.dataset.edit;if(!id)return;
+    if(!del){swallow=0;en.click();swallow=Date.now();return}
+    const entry=ledger.find(z=>z.id===id);(async()=>{await removeEntry(id);if(editingId===id)resetForm();if(tab==='defter')drawLedger();
+      if(entry)toast(t('t_entry_deleted'),{label:t('sb_discard'),fn:async()=>{if(await saveEntry({type:entry.type,amount:entry.amount,date:entry.date,cat:entry.cat||'',desc:entry.desc||'',ts:entry.ts||Date.now(),...(entry.acc?{acc:entry.acc}:{})})){if(tab==='defter')drawLedger();toast(t('t_entry_restored'))}}})})()};
+  document.addEventListener('pointerup',end,{passive:true});document.addEventListener('pointercancel',end,{passive:true});
+  document.addEventListener('click',e=>{if(Date.now()-swallow<350&&e.target.closest&&e.target.closest('#view .erow')){e.stopPropagation();e.preventDefault()}},true)})();
+/* yeniden çizimlerde işaretler */
+const _duRP=renderPlan;renderPlan=function(){const r=_duRP.apply(this,arguments);try{duMark()}catch(e){}return r};
+
 /* ================= Bildirim merkezi ================= */
 const LS_NF='gg_nf';let nfOpenAt=0,nfTab='all',nfSnz=null,nfUndo=null;
 const dayAdd=(iso,n)=>{const [y,m,d]=iso.split('-').map(Number),x=new Date(y,m-1,d+n);return x.getFullYear()+'-'+pad(x.getMonth()+1)+'-'+pad(x.getDate())};
@@ -8661,7 +8805,7 @@ function ntItems(){
 }
 async function ntSync(){
   if(!WEB||!('caches' in window))return;
-  try{const c=await caches.open('mizan-nt');await c.put('/nt.json',new Response(JSON.stringify({on:ntOn(),tx:{today:ux('nt_today'),tom:ux('nt_tom'),more:ux('nt_more',{n:'{n}'})},items:ntItems()}),{headers:{'content-type':'application/json'}}))}catch(e){}
+  try{const c=await caches.open('mizan-nt');await c.put('/nt.json',new Response(JSON.stringify({on:ntOn(),tx:{today:ux('nt_today'),tom:ux('nt_tom'),more:ux('nt_more',{n:'{n}'})},items:ntItems(),rem:typeof remCfg==='function'?remCfg():null}),{headers:{'content-type':'application/json'}}))}catch(e){}
 }
 async function ntBg(){try{if(swReg&&swReg.periodicSync){const st=await navigator.permissions.query({name:'periodic-background-sync'});if(st.state==='granted')await swReg.periodicSync.register('mizan-due',{minInterval:6*3600*1000})}}catch(e){}}
 async function ntEnable(){
@@ -9471,7 +9615,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='254';
+const APP_VER='255';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';

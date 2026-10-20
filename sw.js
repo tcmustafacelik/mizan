@@ -1,5 +1,5 @@
 /* Mizan service worker: çevrimdışı çalışma + ödeme günü bildirimleri */
-const V='mizan-v3';
+const V='mizan-v4';
 const SHELL=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(V).then(c=>c.addAll(SHELL)).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>/^mizan-v/.test(k)&&k!==V).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
@@ -31,7 +31,11 @@ const ds=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
 async function readJSON(c,k,def){try{const r=await c.match(k);return r?await r.json():def}catch(e){return def}}
 async function check(){
   const c=await caches.open('mizan-nt');
-  const cfg=await readJSON(c,'/nt.json',null);if(!cfg||!cfg.on||!cfg.items)return;
+  const cfg=await readJSON(c,'/nt.json',null);if(!cfg)return;
+  // günlük kayıt hatırlatması (v255)
+  try{const R=cfg.rem,n=new Date(),td=ds(n),hm=pad(n.getHours())+':'+pad(n.getMinutes());
+    if(R&&R.on&&hm>=R.t&&R.last!==td&&R.shown!==td){const sh=await readJSON(c,'/nt-shown.json',{});if(!sh['rem|'+td]){await self.registration.showNotification('Mizan',{body:R.tx||'',icon:'icon-192.png',badge:'icon-192.png',tag:'mizan-rem-'+td,data:{url:'./'}});sh['rem|'+td]=td;await c.put('/nt-shown.json',new Response(JSON.stringify(sh),{headers:{'content-type':'application/json'}}))}}}catch(e){}
+  if(!cfg.on||!cfg.items)return;
   const now=new Date(),today=ds(now),tom=ds(new Date(now.getFullYear(),now.getMonth(),now.getDate()+1));
   const shown=await readJSON(c,'/nt-shown.json',{});
   // eski kayıtları temizle
