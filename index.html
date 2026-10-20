@@ -1760,6 +1760,13 @@ html[data-glass]:root .ahi{background:color-mix(in srgb,var(--accent) 12%,transp
 .glsw .sw.zumrut{background:radial-gradient(50px 34px at 0 0,rgba(16,150,120,.55),transparent),radial-gradient(50px 40px at 100% 70%,rgba(42,79,174,.45),transparent),#ECF4F1}
 .thlab2{font:600 12.5px var(--f-body);color:var(--muted-tx);margin:12px 2px 6px}
 .thlab2:first-child{margin-top:0}
+
+/* v237: arkaya vurma */
+.btrow{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0 2px;font-size:14.5px}
+.bttry{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted-tx,var(--muted));margin:10px 0 0}
+#btDot{width:12px;height:12px;border-radius:50%;background:var(--line);flex:none}
+#btDot.hit{animation:bthit .7s ease-out}
+@keyframes bthit{0%{background:var(--gold,#C9A227);box-shadow:0 0 0 7px color-mix(in srgb,var(--gold,#C9A227) 30%,transparent)}100%{background:var(--line);box-shadow:0 0 0 0 transparent}}
 </style>
 
 <div class="app">
@@ -5798,6 +5805,91 @@ Object.assign(UX.ar,{gl_safir:'ياقوت أزرق',gl_sampanya:'كهرمان',g
 document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-gl]');if(!b||!b.closest('#view'))return;e.preventDefault();const v=b.dataset.gl;
   try{if(v==='off')localStorage.removeItem('gg_glass');else{let g=v;if(v==='on'){g=localStorage.getItem('gg_glass_last')||'safir'}localStorage.setItem('gg_glass',g);localStorage.setItem('gg_glass_last',g)}}catch(z){}
   applyTheme();if(tab==='ayar')renderAyar()});
+/* ================= v237: telefonun arkasına iki kez vurunca gizlilik modu ================= */
+Object.assign(UX.tr,{bt_tap:'Arkasına iki kez vurunca aç / kapat',bt_n:'Telefonun arkasına parmağınla iki kez hızlıca, kısa ve net vur. Ekrana dokunurken, yürürken ya da sallarken çalışmaz.',bt_sens:'Hassasiyet',bt_l:'Düşük',bt_m:'Orta',bt_h:'Yüksek',bt_try:'Dene: arkaya vur, her vuruşta bu nokta yanar',bt_on:'Arkaya vurunca gizleme açık',bt_off:'Arkaya vurunca gizleme kapalı',bt_tip:'Kendiliğinden tetikleniyorsa hassasiyeti düşür, vuruşları algılamıyorsa yükselt.'});
+Object.assign(UX.en,{bt_tap:'Double-tap the back to toggle',bt_n:'Tap the back of your phone twice, quickly and firmly. It does not react while you touch the screen, walk or shake the phone.',bt_sens:'Sensitivity',bt_l:'Low',bt_m:'Medium',bt_h:'High',bt_try:'Try it: tap the back, the dot lights up on each tap',bt_on:'Back-tap hiding on',bt_off:'Back-tap hiding off',bt_tip:'If it triggers by itself, lower the sensitivity; if it misses taps, raise it.'});
+Object.assign(UX.ru,{bt_tap:'Двойной стук по задней панели',bt_n:'Дважды быстро и чётко постучите пальцем по задней панели. Не срабатывает, когда вы касаетесь экрана, идёте или трясёте телефон.',bt_sens:'Чувствительность',bt_l:'Низкая',bt_m:'Средняя',bt_h:'Высокая',bt_try:'Проверка: стучите по задней панели — точка мигает при каждом стуке',bt_on:'Скрытие стуком включено',bt_off:'Скрытие стуком выключено',bt_tip:'Если срабатывает само, уменьшите чувствительность; если не замечает стук — увеличьте.'});
+Object.assign(UX.ar,{bt_tap:'النقر مرتين على ظهر الهاتف للتبديل',bt_n:'انقر بإصبعك على ظهر الهاتف مرتين بسرعة وبوضوح. لا يعمل أثناء لمس الشاشة أو المشي أو هز الهاتف.',bt_sens:'الحساسية',bt_l:'منخفضة',bt_m:'متوسطة',bt_h:'عالية',bt_try:'جرّب: انقر على الظهر، تضيء النقطة مع كل نقرة',bt_on:'الإخفاء بالنقر على الظهر مفعّل',bt_off:'الإخفاء بالنقر على الظهر متوقف',bt_tip:'إذا كان يعمل من تلقاء نفسه فاخفض الحساسية، وإذا لم يلتقط النقرات فارفعها.'});
+function btOn(){try{return localStorage.getItem('gg_pvtap')!=='0'}catch(e){return true}}
+function btSens(){let s='m';try{s=localStorage.getItem('gg_pvtaps')||'m'}catch(e){}return ['l','m','h'].includes(s)?s:'m'}
+const BT_T={l:4.5,m:3,h:2},BT={g:null,hist:[],k:0,lastK:0,last:0,touch:0};
+['touchstart','pointerdown','keydown','wheel'].forEach(t=>window.addEventListener(t,()=>{BT.touch=Date.now()},{passive:true,capture:true}));
+function btFlash(){const d=document.getElementById('btDot');if(!d)return;d.classList.remove('hit');void d.offsetWidth;d.classList.add('hit')}
+function btMotion(e){if(!btOn()||document.visibilityState!=='visible')return;const now=Date.now();let ax,ay,az;const a=e.acceleration;
+  if(a&&a.z!=null){ax=a.x||0;ay=a.y||0;az=a.z}else{const g=e.accelerationIncludingGravity;if(!g||g.z==null)return;if(!BT.g)BT.g={x:g.x,y:g.y,z:g.z};const k=.85;BT.g={x:k*BT.g.x+(1-k)*g.x,y:k*BT.g.y+(1-k)*g.y,z:k*BT.g.z+(1-k)*g.z};ax=g.x-BT.g.x;ay=g.y-BT.g.y;az=g.z-BT.g.z}
+  const m=Math.abs(ax)+Math.abs(ay)+Math.abs(az),T=BT_T[btSens()];
+  const pre=BT.hist.filter(h=>now-h[0]>110&&now-h[0]<600);BT.hist.push([now,m]);BT.hist=BT.hist.filter(h=>now-h[0]<600);
+  if(Math.abs(az)<T||Math.abs(az)<1.4*Math.max(Math.abs(ax),Math.abs(ay)))return;   // kısa, ekrana dik bir darbe değil
+  if(now-BT.lastK<90)return;                                                           // aynı vuruşun titreşimi
+  BT.lastK=now;
+  if(now-BT.touch<400){BT.k=0;return}                                                  // ekrana dokunuş da aynı sarsıntıyı yapar
+  btFlash();
+  const second=BT.k&&now-BT.k>=110&&now-BT.k<=550;
+  if(second){BT.k=0;if(now-BT.last<1200)return;const l=document.getElementById('lock');if(l&&!l.hidden)return;BT.last=now;
+    pvToggle();try{if(navigator.vibrate)navigator.vibrate(pvOn()?[30,40,30]:40)}catch(z){}const c=document.getElementById('pvNow');if(c)c.checked=pvOn();return}
+  const noisy=pre.length>2&&pre.reduce((s,h)=>s+h[1],0)/pre.length>T*.45;              // öncesinde sakin değilse (yürüme, sallama)
+  BT.k=noisy?0:now}
+window.addEventListener('devicemotion',btMotion);
+function btInject(){const c=document.getElementById('pvCard');if(!c||document.getElementById('pvTap'))return;const s=btSens();
+  c.insertAdjacentHTML('beforeend',`<label class="chk pvrow"><input type="checkbox" id="pvTap"${btOn()?' checked':''}><span>${ux('bt_tap')}</span></label>
+   <p class="hint">${ux('bt_n')}</p>
+   <div class="btrow"><span>${ux('bt_sens')}</span><div class="seg" role="radiogroup" aria-label="${esc(ux('bt_sens'))}">${['l','m','h'].map(k=>`<button type="button" class="segb" data-bts="${k}" aria-pressed="${s===k}">${ux('bt_'+k)}</button>`).join('')}</div></div>
+   <p class="bttry"><i id="btDot" aria-hidden="true"></i><span>${ux('bt_try')}</span></p><p class="hint">${ux('bt_tip')}</p>`)}
+const _pvCardInject=pvCardInject;pvCardInject=function(){_pvCardInject.apply(this,arguments);try{btInject()}catch(e){}};
+document.addEventListener('change',async e=>{const x=e.target;if(!x||x.id!=='pvTap')return;
+  if(x.checked&&!(await pvAskMotion())){x.checked=false;toast(ux('pv_noperm'));return}
+  try{localStorage.setItem('gg_pvtap',x.checked?'1':'0')}catch(z){}toast(ux(x.checked?'bt_on':'bt_off'))});
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-bts]');if(!b)return;e.preventDefault();try{localStorage.setItem('gg_pvtaps',b.dataset.bts)}catch(z){}
+  document.querySelectorAll('[data-bts]').forEach(q=>q.setAttribute('aria-pressed',String(q===b)))});
+Object.assign(UX.tr,{pv_p:'Açıkken ekrandaki tutarlar bulanıklaşır. Sağ üstteki göz simgesine dokunarak, telefonu sallayarak ya da arkasına iki kez vurarak açıp kapatabilirsin.'});
+Object.assign(UX.en,{pv_p:'When on, amounts on screen are blurred. Toggle it with the eye icon at the top right, by shaking the phone or by tapping its back twice.'});
+Object.assign(UX.ru,{pv_p:'Когда режим включён, суммы на экране размываются. Включайте и выключайте его значком глаза справа вверху, встряхиванием телефона или двойным стуком по задней панели.'});
+Object.assign(UX.ar,{pv_p:'عند تفعيله تصبح المبالغ على الشاشة ضبابية. يمكنك تشغيله وإيقافه من أيقونة العين في الأعلى، أو بهز الهاتف، أو بالنقر مرتين على ظهره.'});
+
+/* ================= v238: telefonun geri tuşu uygulama içinde geri gider ================= */
+Object.assign(UX.tr,{nb_exit:'Çıkmak için tekrar geri bas'});
+Object.assign(UX.en,{nb_exit:'Press back again to exit'});
+Object.assign(UX.ru,{nb_exit:'Нажмите «назад» ещё раз, чтобы выйти'});
+Object.assign(UX.ar,{nb_exit:'اضغط رجوع مرة أخرى للخروج'});
+const NB={stack:[],cur:null,backing:false,armed:false,exitT:0,ready:false};
+function nbKey(){return tab+'|'+(tab==='arac'?toolSec:'')}
+function nbTrack(){const k=nbKey();if(NB.cur===null){NB.cur={k,tab,sec:toolSec,y:0};return}
+  if(k===NB.cur.k)return;
+  if(!NB.backing){NB.cur.y=scrollY;NB.stack.push(NB.cur);if(NB.stack.length>40)NB.stack.shift()}
+  NB.cur={k,tab,sec:toolSec,y:0}}
+const _nbRender=render;render=function(){const r=_nbRender.apply(this,arguments);try{nbTrack()}catch(e){}return r};
+const _nbRT=renderTools;renderTools=function(){const r=_nbRT.apply(this,arguments);try{nbTrack()}catch(e){}return r};
+function nbVisible(el){return !!el&&!el.hidden&&getComputedStyle(el).display!=='none'}
+function nbOverlays(){const L=[...document.querySelectorAll('.rcv,.calcov')].filter(nbVisible);const w=document.getElementById('welcome');if(nbVisible(w))L.push(w);return L}
+function nbCloseTop(){const L=nbOverlays();if(!L.length)return false;
+  const o=L.sort((a,b)=>(+getComputedStyle(b).zIndex||0)-(+getComputedStyle(a).zIndex||0))[0];
+  if(o.id==='welcome'){welcomeClose(false);return true}
+  if(o.classList.contains('calcov')){try{calcClose()}catch(e){o.hidden=true}return true}
+  document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true}));if(!nbVisible(o))return true;
+  o.dispatchEvent(new MouseEvent('click',{bubbles:true}));if(!nbVisible(o))return true;
+  const c=o.querySelector('[data-srclose],[data-close],[data-uc="no"],.rcclose,[aria-label="'+(ux('rc_close')||'')+'"]');if(c){c.click();if(!nbVisible(o))return true}
+  o.hidden=true;return true}
+function nbBack(){
+  const lk=document.getElementById('lock');if(lk&&!lk.hidden)return 'exit';
+  if(nbCloseTop())return 'done';
+  if(document.body.classList.contains('kb')&&document.activeElement&&document.activeElement.blur){document.activeElement.blur();return 'done'}
+  if(tab==='ayar'){const open=[...document.querySelectorAll('#view > section.card.sxc:not(.col)')].filter(c=>c.dataset.ckey&&+c.dataset.ckey.split(':')[1]>1);if(open.length){open.forEach(c=>{c.classList.add('col');if(c.dataset.ckey)colState[c.dataset.ckey]=true});return 'done'}}
+  const prev=NB.stack.pop();
+  if(prev){NB.backing=true;tab=prev.tab;if(prev.tab==='arac')toolSec=prev.sec;try{render()}finally{NB.backing=false}requestAnimationFrame(()=>scrollTo(0,prev.y||0));return 'done'}
+  if(tab==='arac'&&toolSec!=='hub'){NB.backing=true;toolSec='hub';try{render()}finally{NB.backing=false}scrollTo(0,0);return 'done'}
+  if(tab!=='plan'){NB.backing=true;tab='plan';try{render()}finally{NB.backing=false}scrollTo(0,0);return 'done'}
+  return 'root'}
+function nbArm(){if(NB.armed)return;try{history.pushState({mz:1},'',location.href);NB.armed=true}catch(e){}}
+window.addEventListener('popstate',()=>{if(!NB.ready)return;NB.armed=false;let r='done';try{r=nbBack()}catch(e){}
+  if(r==='exit')return;                                                     // kilit ekranında: bir sonraki geri uygulamadan çıkar
+  if(r==='root'){const now=Date.now();if(now-NB.exitT<2000){NB.exitT=0;try{history.back()}catch(e){}return}
+    NB.exitT=now;toast(ux('nb_exit'));setTimeout(()=>{if(!NB.armed&&Date.now()-NB.exitT>=1900)nbArm()},2000);return}
+  NB.exitT=0;nbArm()});
+// kilit açılınca ya da ilk açılışta geri tuşunu yakala
+function nbInit(){if(NB.ready)return;NB.ready=true;try{history.replaceState({mz:0},'',location.href)}catch(e){}nbArm();try{nbTrack()}catch(e){}}
+window.addEventListener('load',()=>setTimeout(nbInit,300));if(document.readyState==='complete')setTimeout(nbInit,300);
+document.addEventListener('pointerdown',()=>{if(NB.ready&&!NB.armed&&!NB.exitT)nbArm()},{capture:true,passive:true});
+
 /* ================= Bildirim merkezi ================= */
 const LS_NF='gg_nf';let nfOpenAt=0,nfTab='all',nfSnz=null,nfUndo=null;
 const dayAdd=(iso,n)=>{const [y,m,d]=iso.split('-').map(Number),x=new Date(y,m-1,d+n);return x.getFullYear()+'-'+pad(x.getMonth()+1)+'-'+pad(x.getDate())};
@@ -8960,7 +9052,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='236';
+const APP_VER='238';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
