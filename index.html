@@ -1832,6 +1832,45 @@ html[data-glass="zumrut"][data-theme="dark"]{--bg:#111223;--glbg:radial-gradient
 .thpv2.glass{background:radial-gradient(60px 40px at 0 0,rgba(110,150,205,.55),transparent),radial-gradient(60px 50px at 100% 60%,rgba(31,58,110,.3),transparent),radial-gradient(60px 40px at 30% 110%,rgba(175,198,226,.6),transparent),#EDF1F6}
 .thpv2 i:nth-child(1){background:linear-gradient(155deg,#2B4C8C,#13264B)!important}
 .thpv2 i:nth-child(3){background:#8A94A6!important}
+
+/* ================= v246: renk paletleri — Bordo · Orman · Toprak · Grafit · Lacivert ================= */
+html[data-pal="lacivert"]{--h1:#2B4C8C;--h2:#1A3263;--h3:#13264B;--acc-rgb:31,58,110}
+html[data-pal="bordo"]{--h1:#962F3D;--h2:#73202C;--h3:#521720;--acc-rgb:122,31,43}
+html[data-pal="orman"]{--h1:#2C735A;--h2:#1E5643;--h3:#153D30;--acc-rgb:30,90,67}
+html[data-pal="toprak"]{--h1:#875E3C;--h2:#67472B;--h3:#48321F;--acc-rgb:107,74,46}
+html[data-pal="grafit"]{--h1:#4A515E;--h2:#333944;--h3:#21252D;--acc-rgb:47,53,64}
+/* açık mod vurgu */
+html:root[data-pal="bordo"]{--accent:#7A1F2B;--btn:#7A1F2B;--accent-soft:#F5E6E8}
+html:root[data-pal="orman"]{--accent:#1E5A43;--btn:#1E5A43;--accent-soft:#E2F0EA}
+html:root[data-pal="toprak"]{--accent:#6B4A2E;--btn:#6B4A2E;--accent-soft:#F1E9E1}
+html:root[data-pal="grafit"]{--accent:#2F3540;--btn:#2F3540;--accent-soft:#E8EAEE}
+/* koyu mod: zemin ve vurgu palete göre */
+html:root[data-pal="bordo"][data-theme="dark"]{--bg:#171012;--surface:#231719;--surface2:#2D1E21;--solid:#231719;--line:#3B282C;--soft-bd:#3B282C;--accent:#F0A3AC;--accent-fg:#2A0D12;--accent-soft:#3A2126;--btn:#A33A48}
+html:root[data-pal="orman"][data-theme="dark"]{--bg:#0C1713;--surface:#13221D;--surface2:#1A2D26;--solid:#13221D;--line:#25392F;--soft-bd:#25392F;--accent:#8FD6B4;--accent-fg:#0B1F17;--accent-soft:#1D3A30;--btn:#2E7A5E}
+html:root[data-pal="toprak"][data-theme="dark"]{--bg:#16110C;--surface:#211912;--surface2:#2B2118;--solid:#211912;--line:#3A2D21;--soft-bd:#3A2D21;--accent:#E3C2A0;--accent-fg:#24180D;--accent-soft:#3A2B1E;--btn:#8E6440}
+html:root[data-pal="grafit"][data-theme="dark"]{--bg:#111317;--surface:#1A1D23;--surface2:#22262D;--solid:#1A1D23;--line:#2F343D;--soft-bd:#2F343D;--accent:#C7CEDA;--accent-fg:#14171C;--accent-soft:#2A2F38;--btn:#4F5766}
+/* imza öğeler palet degradesiyle */
+html:root[data-pal] .card.hero,html:root[data-pal][data-theme] .card.hero{background:linear-gradient(155deg,var(--h1) 0%,var(--h2) 55%,var(--h3) 100%)!important;box-shadow:0 14px 30px -20px var(--h3)!important}
+html:root[data-pal] .lock{background:radial-gradient(120% 70% at 50% 0%,var(--h1) 0%,var(--h2) 45%,var(--h3) 100%)!important}
+html:root[data-pal] .lock .btn.primary,html:root[data-pal] .lock #lkGo{color:var(--h2)!important}
+html[data-pal] #selmini,html[data-pal][data-theme="dark"] #selmini{background:linear-gradient(150deg,var(--h1) 0%,var(--h2) 55%,var(--h3) 100%)}
+.thpv2 i:nth-child(1){background:linear-gradient(155deg,var(--h1,#2B4C8C),var(--h3,#13264B))!important}
+/* cam zeminleri paletin tonunu alır */
+html[data-pal][data-glass="safir"]{--glbg:radial-gradient(70vmax 55vmax at 0% 0%,rgba(var(--acc-rgb),.22),transparent 62%),radial-gradient(60vmax 50vmax at 100% 35%,rgba(150,175,210,.30),transparent 60%),radial-gradient(60vmax 45vmax at 30% 100%,rgba(var(--acc-rgb),.12),transparent 60%),#EDF1F6}
+html[data-pal][data-glass="safir"][data-theme="dark"]{--glbg:radial-gradient(70vmax 55vmax at 0% 0%,rgba(var(--acc-rgb),.45),transparent 62%),radial-gradient(60vmax 50vmax at 100% 35%,rgba(70,95,140,.30),transparent 60%),radial-gradient(60vmax 45vmax at 30% 100%,rgba(var(--acc-rgb),.25),transparent 60%),var(--bg)}
+html[data-pal][data-glass="sampanya"]{--glbg:radial-gradient(70vmax 55vmax at 0% 0%,rgba(92,100,116,.22),transparent 62%),radial-gradient(60vmax 50vmax at 100% 35%,rgba(160,167,180,.30),transparent 60%),radial-gradient(60vmax 45vmax at 30% 100%,rgba(var(--acc-rgb),.14),transparent 60%),#EDEEF1}
+html[data-pal][data-glass="sampanya"][data-theme="dark"]{--glbg:radial-gradient(70vmax 55vmax at 0% 0%,rgba(84,92,108,.35),transparent 62%),radial-gradient(60vmax 50vmax at 100% 35%,rgba(44,50,64,.60),transparent 60%),radial-gradient(60vmax 45vmax at 30% 100%,rgba(var(--acc-rgb),.30),transparent 60%),var(--bg)}
+html[data-pal][data-glass="zumrut"]{--glbg:radial-gradient(70vmax 55vmax at 0% 0%,rgba(146,138,186,.24),transparent 62%),radial-gradient(60vmax 50vmax at 100% 35%,rgba(var(--acc-rgb),.16),transparent 60%),radial-gradient(60vmax 45vmax at 30% 100%,rgba(170,182,206,.30),transparent 60%),#EFEEF4}
+html[data-pal][data-glass="zumrut"][data-theme="dark"]{--glbg:radial-gradient(70vmax 55vmax at 0% 0%,rgba(108,100,158,.30),transparent 62%),radial-gradient(60vmax 50vmax at 100% 35%,rgba(var(--acc-rgb),.40),transparent 60%),radial-gradient(60vmax 45vmax at 30% 100%,rgba(58,68,108,.25),transparent 60%),var(--bg)}
+html[data-pal][data-glass][data-theme="dark"]{--glbar:color-mix(in srgb,var(--surface) 92%,#000)}
+/* yıl filtresinin arkasındaki düz zemin (kalıntı) */
+html:root #selbar,html:root[data-theme] #selbar{background:transparent!important}
+/* Ayarlar: renk seçimi */
+.palsw{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.palsw button{display:grid;justify-items:center;gap:6px;padding:8px 2px 9px;border:1px solid var(--line);border-radius:16px;background:var(--surface);color:var(--fg);font:600 12px var(--f-body);cursor:pointer;-webkit-tap-highlight-color:transparent;min-width:0}
+.palsw button[aria-checked="true"]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.palsw i{display:block;width:34px;height:34px;border-radius:50%;box-shadow:inset 0 0 0 2px rgba(255,255,255,.35)}
+.palsw b{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 </style>
 
 <div class="app">
@@ -2151,7 +2190,8 @@ const THS=['light','dark'];
 function autoPair(){return {d:'light',n:'dark'}}
 function effTheme(){if(THEME!=='auto')return THEME;let dk=false;try{dk=matchMedia('(prefers-color-scheme: dark)').matches}catch(e){}const p=autoPair();return dk?p.n:p.d}
 try{if(!navigator.webdriver||window.__cvTest)document.documentElement.classList.add('cv')}catch(e){}
-function applyTheme(){document.documentElement.setAttribute('data-theme',effTheme());delete document.documentElement.dataset.gbg;try{const g=localStorage.getItem('gg_glass');if(['safir','sampanya','zumrut'].includes(g))document.documentElement.dataset.glass=g;else delete document.documentElement.dataset.glass}catch(e){}try{const m=document.querySelector('meta[name=theme-color]');if(m)m.setAttribute('content',effTheme()==='dark'?'#0E1530':'#F6F5F1')}catch(e){}try{const f=localStorage.getItem('gg_fs');if(f==='s'||f==='l')document.documentElement.dataset.fs=f;else delete document.documentElement.dataset.fs}catch(e){}}
+const PALS=[['bordo','#7A1F2B','#171012'],['orman','#1E5A43','#0C1713'],['toprak','#6B4A2E','#16110C'],['grafit','#2F3540','#111317'],['lacivert','#1F3A6E','#0E1530']];
+function applyTheme(){document.documentElement.setAttribute('data-theme',effTheme());delete document.documentElement.dataset.gbg;try{let pl=localStorage.getItem('gg_pal');if(!PALS.some(x=>x[0]===pl))pl='bordo';document.documentElement.dataset.pal=pl}catch(e){document.documentElement.dataset.pal='bordo'}try{const g=localStorage.getItem('gg_glass');if(['safir','sampanya','zumrut'].includes(g))document.documentElement.dataset.glass=g;else delete document.documentElement.dataset.glass}catch(e){}try{const m=document.querySelector('meta[name=theme-color]');if(m){const pc=(PALS.find(x=>x[0]===document.documentElement.dataset.pal)||PALS[0]);m.setAttribute('content',effTheme()==='dark'?pc[2]:'#F6F5F1')}}catch(e){}try{const f=localStorage.getItem('gg_fs');if(f==='s'||f==='l')document.documentElement.dataset.fs=f;else delete document.documentElement.dataset.fs}catch(e){}}
 try{matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{if(THEME==='auto')applyTheme()})}catch(e){}
 function setTheme(x){THEME=x;try{localStorage.setItem(LS_THEME,x)}catch(e){}applyTheme();if(tab==='ayar')renderAyar()}
 /* Sade/Cam + Açık/Koyu/Otomatik: eski THEME değerine çevrilir, böylece kalan kod aynı kalır */
@@ -5981,6 +6021,12 @@ stuckChk=function(){const sb=document.getElementById('selbar');const m=smnEl();i
   if(m&&m.classList.contains('on')!==show){m.classList.toggle('on',show);document.body.classList.toggle('smn-on',show)}
   if(tb)tb.classList.remove('tjoin')};
 
+/* ================= v246: renk paleti ================= */
+Object.assign(UX.tr,{pl_h:'Renk',pl_bordo:'Bordo',pl_orman:'Orman',pl_toprak:'Toprak',pl_grafit:'Grafit',pl_lacivert:'Lacivert'});
+Object.assign(UX.en,{pl_h:'Colour',pl_bordo:'Burgundy',pl_orman:'Forest',pl_toprak:'Earth',pl_grafit:'Graphite',pl_lacivert:'Navy'});
+Object.assign(UX.ru,{pl_h:'Цвет',pl_bordo:'Бордо',pl_orman:'Лес',pl_toprak:'Земля',pl_grafit:'Графит',pl_lacivert:'Тёмно-синий'});
+Object.assign(UX.ar,{pl_h:'اللون',pl_bordo:'عنابي',pl_orman:'غابة',pl_toprak:'ترابي',pl_grafit:'غرافيت',pl_lacivert:'كحلي'});
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('button[data-pal]');if(!b||!b.closest('#view'))return;e.preventDefault();try{localStorage.setItem('gg_pal',b.dataset.pal)}catch(z){}applyTheme();if(tab==='ayar')renderAyar()});
 /* ================= Bildirim merkezi ================= */
 const LS_NF='gg_nf';let nfOpenAt=0,nfTab='all',nfSnz=null,nfUndo=null;
 const dayAdd=(iso,n)=>{const [y,m,d]=iso.split('-').map(Number),x=new Date(y,m-1,d+n);return x.getFullYear()+'-'+pad(x.getMonth()+1)+'-'+pad(x.getDate())};
@@ -6289,7 +6335,7 @@ function setSpecs(){const on=v=>v?ux('ss_on'):ux('ss_off');let bk='';try{const i
   return [
    [ux('gh_h'),'cloud','#6366f1',()=>ghOn()?ux('ss_gh_on',{f:ux('gh_fq_'+ghFq())}):ux('ss_gh_off')],
    [t('st_lang'),'globe','#0ea5e9',()=>({tr:'Türkçe',en:'English',ru:'Русский',ar:'العربية'})[LANG]],
-   [t('st_theme'),'palette','#ec4899',()=>{const g=document.documentElement.dataset.glass;return (g?ux('ts_glass')+' '+ux('gl_'+g)+' · ':'')+ux('ts_'+thMode())}],
+   [t('st_theme'),'palette','#ec4899',()=>{const g=document.documentElement.dataset.glass;return ux('pl_'+(document.documentElement.dataset.pal||'bordo'))+' · '+(g?ux('ts_glass')+' '+ux('gl_'+g)+' · ':'')+ux('ts_'+thMode())}],
    [ux('view_h'),'currency-usd','#10b981',()=>(VIEW||CUR)+' · '+((CURNAMES[VIEW||CUR]||{})[LANG]||'')],
    [t('wl_set'),'home','#f59e0b',()=>on(welOn())],
    [ux('pg_h'),'wifi','#14b8a6',()=>on(pingOn())],
@@ -7721,7 +7767,9 @@ function renderAyar(){
     <p class="hint" style="margin-top:10px">${t('st_lang_note')}</p></section>
    <section class="card"><div class="cardhead"><h2>${t('st_theme')}</h2></div>
     ${(()=>{const md=thMode(),gl=document.documentElement.dataset.glass||'';
-      return `<div class="thlab2">${ux('ts_look')}</div><div class="thstyle2" role="radiogroup" aria-label="${esc(ux('ts_look'))}">${[['off','light','ts_classic'],['on','glass','ts_glass']].map(([k,pv,l])=>`<button type="button" data-gl="${k}" role="radio" aria-checked="${(k==='on')===!!gl}" aria-pressed="${(k==='on')===!!gl}"><span class="thpv2 ${pv}" aria-hidden="true"><i></i><i></i><i></i></span><b>${ux(l)}</b></button>`).join('')}</div>
+      const pl=document.documentElement.dataset.pal||'bordo';
+      return `<div class="thlab2">${ux('pl_h')}</div><div class="palsw" role="radiogroup" aria-label="${esc(ux('pl_h'))}">${PALS.map(([k,c])=>`<button type="button" data-pal="${k}" role="radio" aria-checked="${pl===k}" aria-pressed="${pl===k}"><i style="background:linear-gradient(145deg,${c},color-mix(in srgb,${c} 60%,#000))"></i><b>${ux('pl_'+k)}</b></button>`).join('')}</div>
+      <div class="thlab2">${ux('ts_look')}</div><div class="thstyle2" role="radiogroup" aria-label="${esc(ux('ts_look'))}">${[['off','light','ts_classic'],['on','glass','ts_glass']].map(([k,pv,l])=>`<button type="button" data-gl="${k}" role="radio" aria-checked="${(k==='on')===!!gl}" aria-pressed="${(k==='on')===!!gl}"><span class="thpv2 ${pv}" aria-hidden="true"><i></i><i></i><i></i></span><b>${ux(l)}</b></button>`).join('')}</div>
       ${gl?`<div class="thlab2">${ux('ts_bg')}</div><div class="glsw" role="radiogroup" aria-label="${esc(ux('ts_bg'))}">${['safir','sampanya','zumrut'].map(k=>`<button type="button" data-gl="${k}" role="radio" aria-checked="${gl===k}" aria-pressed="${gl===k}"><span class="sw ${k}" aria-hidden="true"></span><b>${ux('gl_'+k)}</b></button>`).join('')}</div>`:''}
       <div class="thlab2">${ux('ts_mode')}</div><div class="thmode2" role="radiogroup" aria-label="${esc(ux('ts_mode'))}">${['light','dark','auto'].map(k=>`<button type="button" data-th-mode="${k}" role="radio" aria-checked="${md===k}" aria-pressed="${md===k}"><span class="thpv2 ${k}" aria-hidden="true"><i></i><i></i><i></i></span><b>${ux('ts_'+k)}</b></button>`).join('')}</div>
       ${md==='auto'?`<p class="hint" style="margin:8px 0 0">${ux('ts_auto_n')}</p>`:''}`})()}
@@ -9143,7 +9191,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='245';
+const APP_VER='246';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
