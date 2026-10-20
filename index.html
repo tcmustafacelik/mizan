@@ -1944,6 +1944,63 @@ html:root{--rad-card:18px}
 html:root .card,html:root .months,html:root .tile,html:root .aht,html:root #selbar .selbar{border-radius:18px!important}
 html:root .card .card,html:root .xform,html:root .pfi,html:root .nsl{border-radius:14px!important}
 html:root .card,html:root .tile,html:root .aht,html:root .months{box-shadow:var(--soft-sh)!important}
+
+/* ================= v251 ================= */
+/* 1. Plan kartları */
+#view > .pk-hid,#view > .pk-empty{display:none!important}
+.pkbar{display:flex;justify-content:center;margin:-2px 0 2px}
+.pkbtn{gap:6px;font-size:12.5px;color:var(--muted-tx,var(--muted));background:transparent!important;border:1px dashed var(--line)!important;border-radius:999px!important;padding:6px 14px!important;min-height:34px}
+.pkbtn .ic{width:15px;height:15px}
+.pkin{max-width:440px;gap:12px}
+.pkl{display:grid;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.pkr{display:grid;grid-template-columns:minmax(0,1fr) 36px 36px 48px;align-items:center;gap:6px;padding:8px 10px;min-height:52px}
+.pkr+.pkr{border-top:1px solid var(--line)}
+.pkr.off .pkn{opacity:.45}
+.pkr .pkn{flex:1 1 auto;min-width:0;font-weight:500;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pka{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--fg);display:grid;place-items:center;cursor:pointer;padding:0}
+.pka:disabled{opacity:.3;cursor:default}.pka .ic{width:18px;height:18px}.ic.up{transform:rotate(180deg)}
+html:root .pksw{position:relative;display:inline-block!important;width:44px!important;min-width:44px;height:26px;flex:0 0 44px!important;cursor:pointer;margin:0 0 0 4px;padding:0}
+.pksw input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer}
+.pksw i{position:absolute;inset:0;display:block;width:auto;height:auto;border-radius:99px;background:var(--line);transition:background .2s}
+.pksw i::after{content:"";position:absolute;top:3px;inset-inline-start:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .2s}
+.pksw input:checked+i{background:var(--accent)}
+.pksw input:checked+i::after{transform:translateX(18px)}
+html[dir=rtl] .pksw input:checked+i::after{transform:translateX(-18px)}
+/* 2. Hızlı kayıt formu */
+html:root #eAmt{font:600 22px var(--f-num);height:54px;letter-spacing:-.01em}
+#entryForm .formgrid label.f:has(#eAmt){grid-column:1/-1}
+#entryForm .formgrid label.f:has(#eCat),#entryForm .formgrid label.f:has(#eDesc){grid-column:1/-1}
+.echips{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px;margin:-2px 0 2px}
+.echip{display:inline-flex;align-items:center;gap:6px;min-height:34px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);font:500 13px var(--f-body);cursor:pointer}
+.echip .ic{width:15px;height:15px;color:var(--accent)}
+.echip.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.emore{grid-column:1/-1;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.emore>summary{display:flex;align-items:center;gap:8px;padding:10px 12px;cursor:pointer;list-style:none;font-size:14px;color:var(--muted-tx,var(--muted));min-height:44px}
+.emore>summary::-webkit-details-marker{display:none}
+.emore>summary .ic{width:17px;height:17px;color:var(--accent)}
+.emore>summary b{margin-inline-start:auto;color:var(--fg);font-weight:600}
+.emore[open]>summary{border-bottom:1px solid var(--line)}
+.emore>label.f{padding:10px 12px;margin:0;font-size:0!important;gap:0}
+.emore>label.f input{font-size:16px}
+html:root #eAmt{-moz-appearance:textfield;appearance:textfield}html:root #eAmt::-webkit-inner-spin-button,html:root #eAmt::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+/* 4. Boş durumlar */
+.emst{display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center!important;padding:18px 12px!important;color:var(--muted-tx,var(--muted))}
+.emi{display:grid;place-items:center;width:42px;height:42px;border-radius:14px;background:var(--accent-soft);color:var(--accent)}
+.emi .ic{width:22px;height:22px}
+/* 5. Alt menü: yazı yalnızca seçili sekmede, simgeler biraz büyük */
+html:root .tabs button .ic{width:23px;height:23px}
+html:root .tabs button:not([aria-selected="true"]){font-size:0!important;gap:0!important}
+html:root .tabs button:not([aria-selected="true"]) .ic{width:24px;height:24px}
+html:root .tabs button[aria-selected="true"]{font-size:11.5px!important;font-weight:600}
+/* 6. Sekme geçişi */
+@keyframes tvin{from{opacity:.35;transform:translateY(6px)}to{opacity:1;transform:none}}
+#view.tvin{animation:tvin .18s ease-out}
+@media (prefers-reduced-motion:reduce){#view.tvin{animation:none}}
+/* 7. Dokunma alanı en az 44 px (görünüm aynı) */
+.brtop .hbtn,.brtop .pvb,.brtop .srb,.stdot{position:relative}
+.brtop .hbtn::after,.brtop .pvb::after,.brtop .srb::after,.stdot::after{content:"";position:absolute;inset:-4px}
+/* 8. Koyu modda soluk yazılar daha okunur */
+html:root[data-theme="dark"]{--muted:#AEB6CA;--muted-tx:#BDC4D6}
 </style>
 
 <div class="app">
@@ -6150,6 +6207,72 @@ const _mbDraw=drawMonths;drawMonths=function(){const r=_mbDraw.apply(this,argume
   const end=y+innerHeight>=document.documentElement.scrollHeight-40;
   if(y<60||end||d<-6)document.body.classList.remove('fab-hid');else if(d>4)document.body.classList.add('fab-hid')},{passive:true})})();
 
+/* ================= v251: Plan düzeni, hızlı kayıt formu, tema uyumlu grafikler, boş durumlar, geçişler ================= */
+Object.assign(UX.tr,{pk_edit:'Kartları düzenle',pk_h:'Plan kartları',pk_p:'Sırayı oklarla değiştir, istemediğini gizle.',pk_hero:'Borç özeti',pk_tiles:'Özet kutuları',pk_reset:'Varsayılana dön',pk_done:'Tamam',pk_show:'Göster',ef_more:'Tarih',ef_today:'Bugün',ef_yday:'Dün',ef_recent:'Son kategoriler',em_add:'Ekle',rp_none:'Kayıt yok'});
+Object.assign(UX.en,{pk_edit:'Edit cards',pk_h:'Plan cards',pk_p:'Reorder with the arrows, hide what you don’t need.',pk_hero:'Debt summary',pk_tiles:'Summary tiles',pk_reset:'Reset to default',pk_done:'Done',pk_show:'Show',ef_more:'Date',ef_today:'Today',ef_yday:'Yesterday',ef_recent:'Recent categories',em_add:'Add',rp_none:'No entries'});
+Object.assign(UX.ru,{pk_edit:'Настроить карточки',pk_h:'Карточки плана',pk_p:'Меняйте порядок стрелками, скрывайте ненужное.',pk_hero:'Сводка долга',pk_tiles:'Итоговые плитки',pk_reset:'Как было',pk_done:'Готово',pk_show:'Показать',ef_more:'Дата',ef_today:'Сегодня',ef_yday:'Вчера',ef_recent:'Последние категории',em_add:'Добавить',rp_none:'Нет записей'});
+Object.assign(UX.ar,{pk_edit:'تعديل البطاقات',pk_h:'بطاقات الخطة',pk_p:'غيّر الترتيب بالأسهم وأخفِ ما لا تحتاجه.',pk_hero:'ملخص الدين',pk_tiles:'مربعات الملخص',pk_reset:'الوضع الافتراضي',pk_done:'تم',pk_show:'إظهار',ef_more:'التاريخ',ef_today:'اليوم',ef_yday:'أمس',ef_recent:'الفئات الأخيرة',em_add:'إضافة',rp_none:'لا قيود'});
+/* ---- 1. Plan kartları: boş olan gizlenir, sıra ve görünürlük kişiselleştirilir ---- */
+const PK_DEF=['weekbox','herobox','tiles','paycard','cfbox','chart'];
+function pkGet(){let o={};try{o=JSON.parse(localStorage.getItem('gg_planord')||'{}')||{}}catch(e){}const ord=(o.o||[]).filter(k=>PK_DEF.includes(k));PK_DEF.forEach(k=>{if(!ord.includes(k))ord.push(k)});return {o:ord,h:(o.h||[]).filter(k=>PK_DEF.includes(k))}}
+function pkSet(s){try{localStorage.setItem('gg_planord',JSON.stringify(s))}catch(e){}}
+function pkNodes(){const v=document.getElementById('view');if(!v)return {};const N={};PK_DEF.forEach(k=>{if(k!=='chart'){const e=document.getElementById(k);if(e&&e.parentElement===v)N[k]=e}});
+  const lh=v.querySelector(':scope > .listhead');let ch=null;for(const e of v.children){if(e===lh)break;if(e.tagName==='SECTION'&&e.classList.contains('card')&&!e.id)ch=e}if(ch){ch.dataset.pk='chart';N.chart=ch}return N}
+function pkName(k,e){if(k==='herobox')return ux('pk_hero');if(k==='tiles')return ux('pk_tiles');const h=e&&e.querySelector('h2');return h?h.textContent.trim():k}
+function pkApply(){if(tab!=='plan')return;const v=document.getElementById('view');const N=pkNodes();if(!v||!Object.keys(N).length)return;const S=pkGet();
+  const lh=v.querySelector(':scope > .listhead');let anchor=lh;
+  S.o.slice().reverse().forEach(k=>{const e=N[k];if(!e)return;v.insertBefore(e,anchor);anchor=e});
+  PK_DEF.forEach(k=>{const e=N[k];if(e)e.classList.toggle('pk-hid',S.h.includes(k))});
+  try{const wb=N.weekbox;if(wb&&typeof weekItems==='function')wb.classList.toggle('pk-empty',!weekItems().length)}catch(e){}
+  if(lh&&!v.querySelector(':scope > .pkbar')){const d=document.createElement('div');d.className='pkbar';d.innerHTML=`<button type="button" class="btn mini pkbtn" data-pk-open>${ic('swap-vertical')}${esc(ux('pk_edit'))}</button>`;v.insertBefore(d,lh)}}
+const _pkRP=renderPlan;renderPlan=function(){const r=_pkRP.apply(this,arguments);try{pkApply()}catch(e){}return r};
+function pkSheet(){const N=pkNodes(),S=pkGet();let o=document.getElementById('pkz');if(!o){o=document.createElement('div');o.id='pkz';o.className='rcv pkz';document.body.appendChild(o);
+    o.addEventListener('click',e=>{if(e.target===o||e.target.closest('[data-pk-done]')){o.hidden=true;return}const b=e.target.closest('[data-pk]');if(!b)return;const S=pkGet(),[a,k]=b.dataset.pk.split(':');const i=S.o.indexOf(k);
+      if(a==='up'&&i>0){S.o.splice(i,1);S.o.splice(i-1,0,k)}else if(a==='dn'&&i<S.o.length-1){S.o.splice(i,1);S.o.splice(i+1,0,k)}else if(a==='vis'){S.h=S.h.includes(k)?S.h.filter(x=>x!==k):[...S.h,k]}else if(a==='reset'){S.o=PK_DEF.slice();S.h=[]}
+      pkSet(S);pkApply();pkSheet()});
+    o.addEventListener('keydown',e=>{if(e.key==='Escape')o.hidden=true})}
+  o.innerHTML=`<div class="rcvin pkin" role="dialog" aria-modal="true" aria-label="${esc(ux('pk_h'))}"><div class="rcvh"><b>${esc(ux('pk_h'))}</b><button type="button" class="tbtn" data-pk-done>${esc(ux('pk_done'))}</button></div><p class="hint" style="margin:0">${esc(ux('pk_p'))}</p>
+   <div class="pkl">${S.o.map((k,i)=>{const hid=S.h.includes(k);return `<div class="pkr${hid?' off':''}"><span class="pkn">${esc(pkName(k,N[k]))}</span><button type="button" class="pka" data-pk="up:${k}" aria-label="↑" ${i===0?'disabled':''}>${ic('chev-down','up')}</button><button type="button" class="pka" data-pk="dn:${k}" aria-label="↓" ${i===S.o.length-1?'disabled':''}>${ic('chev-down')}</button><label class="pksw"><input type="checkbox" data-pk="vis:${k}" ${hid?'':'checked'} aria-label="${esc(ux('pk_show'))}"><i></i></label></div>`}).join('')}</div>
+   <button type="button" class="btn" data-pk="reset:x">${esc(ux('pk_reset'))}</button></div>`;
+  o.hidden=false}
+document.addEventListener('click',e=>{if(e.target.closest&&e.target.closest('[data-pk-open]')){e.preventDefault();pkSheet()}});
+/* ---- 2. Hızlı kayıt formu: büyük tutar, son kategori çipleri, tarih tek dokunuşta ---- */
+function efCats(type){const seen=[];for(let i=ledger.length-1;i>=0&&seen.length<6;i--){const e=ledger[i];if(e.type===type&&e.cat&&!seen.includes(e.cat))seen.push(e.cat)}
+  if(seen.length<4){const def=type==='gelir'?['Maaş','Tazminat','Diğer']:['Market','Fatura','Yemek','Ulaşım','Ev / Kira'];def.forEach(c=>{if(seen.length<6&&!seen.includes(c))seen.push(c)})}return seen}
+function efDateLab(){const d=document.getElementById('eDate');if(!d)return '';const v=d.value,td=todayStr();const y=new Date();y.setDate(y.getDate()-1);const yd=y.toISOString().slice(0,10);return v===td?ux('ef_today'):v===yd?ux('ef_yday'):dmy(v)}
+function efDraw(){const f=document.getElementById('entryForm');if(!f)return;const type=(f.querySelector('input[name=etype]:checked')||{}).value||'gider';
+  let ch=document.getElementById('eChips');const cat=document.getElementById('eCat');
+  if(!ch&&cat){ch=document.createElement('div');ch.id='eChips';ch.className='echips';ch.setAttribute('aria-label',ux('ef_recent'));const lab=cat.closest('label');(lab||cat).insertAdjacentElement('afterend',ch)}
+  if(ch){const cur=cat?cat.value.trim():'';ch.innerHTML=efCats(type).map(c=>`<button type="button" class="echip${c===cur?' on':''}" data-ecat="${esc(c)}">${ic(catIcon({cat:c,type}))}<span>${esc(c)}</span></button>`).join('')}
+  const am=document.getElementById('eAmt');if(am&&!am.placeholder)am.placeholder=money(0).replace(/[^\d.,]/g,'')||'0,00';
+  const dl=document.getElementById('eDate');let more=document.getElementById('eMore');
+  if(dl&&!more){const lab=dl.closest('label');more=document.createElement('details');more.id='eMore';more.className='emore';more.innerHTML=`<summary>${ic('calendar')}<span class="eml"></span><b class="emv"></b></summary>`;if(lab){lab.insertAdjacentElement('beforebegin',more);more.appendChild(lab)}}
+  if(more){const l=more.querySelector('.eml'),v=more.querySelector('.emv');if(l)l.textContent=ux('ef_more');if(v)v.textContent=efDateLab()}}
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-ecat]');if(!b)return;e.preventDefault();const c=document.getElementById('eCat');if(c){c.value=b.dataset.ecat;c.dispatchEvent(new Event('input',{bubbles:true}))}efDraw();const a=document.getElementById('eAmt');if(a&&!a.value)a.focus()});
+document.addEventListener('change',e=>{if(e.target&&(e.target.name==='etype'||e.target.id==='eDate'))efDraw()});
+document.addEventListener('input',e=>{if(e.target&&(e.target.id==='eCat'||e.target.id==='eDate'))efDraw()});
+const _efRD=renderDefter;renderDefter=function(){const r=_efRD.apply(this,arguments);try{efDraw()}catch(e){}return r};
+const _efRF=resetForm;resetForm=function(){const r=_efRF.apply(this,arguments);try{efDraw();const m=document.getElementById('eMore');if(m)m.open=false}catch(e){}return r};
+/* ---- 3. Grafik renkleri seçilen renge uyumlu ---- */
+const CH_PAL={bordo:['#7A1F2B','#C2505D','#D99A6C','#5E6B7A','#2E6F62','#A3793F','#8C5A86','#9EA3A8','#3F4A5C','#E2B4A0'],
+  orman:['#1E5A43','#4E9C7C','#A7C9A0','#5E6B7A','#C08A3E','#7A5C9E','#2F6F8F','#9EA3A8','#8E3B46','#D8C79A'],
+  toprak:['#6B4A2E','#A9784E','#D9B48A','#5E6B7A','#3F6F5E','#8E3B46','#C9A56A','#9EA3A8','#4F5D7A','#E3CDB4'],
+  grafit:['#2F3540','#5E6878','#94A0B2','#3F6F8F','#8E5B5B','#6F7F5F','#A68E6A','#7A6A9E','#C7CEDA','#B07A5A'],
+  lacivert:['#1F3A6E','#4D74B8','#9DB6E8','#5E6B7A','#2E7A6A','#C27C3E','#8C5A86','#9EA3A8','#B04A54','#D8C79A']};
+function chLight(h,a){const n=parseInt(h.slice(1),16),r=n>>16,g=n>>8&255,b=n&255,m=x=>Math.round(x+(255-x)*a);return '#'+[m(r),m(g),m(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}
+function chApply(){const pal=document.documentElement.dataset.pal||'bordo',dk=document.documentElement.dataset.theme==='dark';const P=(CH_PAL[pal]||CH_PAL.bordo).map((c,i)=>dk&&i<4?chLight(c,i===0?.38:.22):c);
+  try{DCOL.splice(0,DCOL.length,...P)}catch(e){}try{HCOL.splice(0,HCOL.length,...P.slice(0,8))}catch(e){}}
+const _chAT=applyTheme;applyTheme=function(){const r=_chAT.apply(this,arguments);try{chApply()}catch(e){}return r};chApply();
+/* ---- 4. Boş durumlar: simgeli, daha belirgin ---- */
+function emSet(){const S=new Set();[UX[LANG]||{},(typeof I18N!=='undefined'&&I18N[LANG])||{}].forEach(D=>{for(const k in D){if(/_(none|empty)(_[a-z])?$/.test(k)&&typeof D[k]==='string'&&D[k].length>3)S.add(D[k].trim())}});return S}
+let EM_S=null,EM_L='';
+function emScan(){const v=document.getElementById('view');if(!v)return;if(EM_L!==LANG){EM_S=emSet();EM_L=LANG}
+  v.querySelectorAll('p.hint:not(.emst),div.hint:not(.emst),.nsempty:not(.emst)').forEach(p=>{const tx=p.textContent.trim();if(!tx||!EM_S.has(tx))return;p.classList.add('emst');p.insertAdjacentHTML('afterbegin',`<span class="emi" aria-hidden="true">${ic('list-checks')}</span>`)})}
+['render','renderTools'].forEach(fn=>{const o=window[fn];if(typeof o!=='function')return;window[fn]=function(){const r=o.apply(this,arguments);try{emScan()}catch(e){}return r}});
+try{const _emDL=drawLedger;drawLedger=function(){const r=_emDL.apply(this,arguments);try{emScan()}catch(e){}return r}}catch(e){}
+/* ---- 6. Sekme geçişi: kısa, yumuşak ---- */
+let tvLast='';const _tvR=render;render=function(){const k=tab+'|'+(tab==='arac'?toolSec:'');const r=_tvR.apply(this,arguments);try{if(tvLast&&k!==tvLast){const v=document.getElementById('view');if(v){v.classList.remove('tvin');void v.offsetWidth;v.classList.add('tvin')}}tvLast=k}catch(e){}return r};
+
 /* ================= Bildirim merkezi ================= */
 const LS_NF='gg_nf';let nfOpenAt=0,nfTab='all',nfSnz=null,nfUndo=null;
 const dayAdd=(iso,n)=>{const [y,m,d]=iso.split('-').map(Number),x=new Date(y,m-1,d+n);return x.getFullYear()+'-'+pad(x.getMonth()+1)+'-'+pad(x.getDate())};
@@ -9315,7 +9438,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='250';
+const APP_VER='251';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
