@@ -1771,6 +1771,28 @@ html[data-glass]:root .ahi{background:color-mix(in srgb,var(--accent) 12%,transp
 /* v240: yapışkan ay seçici sabit katman + yer tutucu */
 #view,#selbar,#selbar *{overflow-anchor:none}
 html:root #selph{overflow-anchor:none;display:block!important;height:0;margin:0;padding:0;pointer-events:none}
+
+/* v242: seçim kartı yapışmaz; özet menünün altına bitişik şerit */
+html:root #selbar,html:root[data-theme] #selbar{position:relative!important;top:auto!important;z-index:auto}
+#selmini{position:absolute;left:-1px;right:-1px;top:calc(100% - 14px);z-index:-1;display:flex;align-items:center;gap:6px;padding:20px 8px 8px 14px;
+  background:var(--glbar,var(--surface));border:1px solid var(--line);border-top:0;border-radius:0 0 22px 22px;box-shadow:0 12px 24px -18px rgba(20,26,46,.45);
+  opacity:0;transform:translateY(-10px);pointer-events:none;transition:opacity .2s,transform .25s cubic-bezier(.2,.8,.2,1)}
+#selmini.on{opacity:1;transform:none;pointer-events:auto}
+.tabs.tjoin{border-bottom-color:transparent!important}
+.smn-go{flex:1 1 auto;min-width:0;width:100%;display:flex;flex-direction:column;align-items:stretch;gap:2px;text-align:start;background:none;border:0;padding:0;color:var(--fg);font:inherit;cursor:pointer}
+.smn-t{width:100%;display:flex;align-items:baseline;gap:10px;min-width:0;font-size:13px;white-space:nowrap}
+.smn-t>b{font-weight:600}
+.smn-t>span{color:var(--muted-tx,var(--muted));overflow:hidden;text-overflow:ellipsis}
+.smn-t>span b{font:600 14px var(--f-num);color:var(--fg)}
+.smn-t b.pos{color:var(--good-tx,var(--good))}.smn-t b.neg{color:var(--bad-tx,var(--bad))}
+.smn-x2{width:100%;display:flex;gap:12px;font-size:12px;color:var(--muted-tx,var(--muted));white-space:nowrap;overflow:hidden}
+.smn-x2>span{overflow:hidden;text-overflow:ellipsis}
+.smn-x2 b{font:600 12px var(--f-num)}.smn-x2 b.pos{color:var(--good-tx,var(--good))}.smn-x2 b.neg{color:var(--bad-tx,var(--bad))}
+.smn-c{flex:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
+.smn-c .ic{width:18px;height:18px}
+html:root .tabs #selmini button{flex:none!important;min-width:0!important;min-height:0!important;margin:0!important;box-shadow:none!important;border-radius:0;background:none!important;color:var(--fg)!important;font:inherit!important;letter-spacing:normal!important}
+html:root .tabs #selmini .smn-go{flex:1 1 auto!important;display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:center!important;padding:0!important;gap:2px!important}
+html:root .tabs #selmini .smn-c{width:36px!important;height:36px!important;padding:0!important;border-radius:50%!important;border:1px solid var(--line)!important;background:var(--surface)!important;display:grid!important;place-items:center!important}
 </style>
 
 <div class="app">
@@ -5898,19 +5920,22 @@ window.addEventListener('load',()=>setTimeout(nbInit,300));if(document.readyStat
 ['pointerdown','keydown','touchend'].forEach(t=>document.addEventListener(t,()=>{if(NB.ready&&!NB.armed){NB.exitT=0;setTimeout(nbArm,0)}},{capture:true,passive:true}));
 document.addEventListener('click',e=>{const h=e.target.closest&&e.target.closest('#view > section.card.colb > .cardhead');if(!h||e.target.closest('select,input,button,label'))return;setTimeout(()=>{const c=h.parentElement;if(c&&!c.classList.contains('col')&&c.dataset.ckey){NB.open=NB.open.filter(k=>k!==c.dataset.ckey);NB.open.push(c.dataset.ckey)}},0)},true);
 
-/* ================= v240/v241: yapışkan ay seçici — yapışırken/bırakırken aylar listesi zıplamaz ================= */
-// Yapışınca seçici küçülür; aradaki fark kadar alt boşluk (margin-bottom) verilir, böylece akıştaki toplam yükseklik hiç değişmez.
-// Karar, seçicinin hemen önündeki sıfır yükseklikli işarete (#selph) göre verilir; ikisi de aynı koordinatta ölçüldüğü için yazı boyutu (zoom) etkilemez.
-function stuckGap(ph){const g=parseFloat(getComputedStyle(ph.parentNode).rowGap)||0;return (-g)+'px'}
-function stuckPh(el){let ph=document.getElementById('selph');if(!ph||ph.nextElementSibling!==el){if(ph)ph.remove();ph=document.createElement('div');ph.id='selph';ph.setAttribute('aria-hidden','true');el.parentNode.insertBefore(ph,el);ph.style.marginBottom=stuckGap(ph)}return ph}
-function stuckTot(el){const cs=getComputedStyle(el);return (parseFloat(cs.marginTop)||0)+el.offsetHeight+(parseFloat(cs.marginBottom)||0)}
-stuckChk=function(){const el=document.getElementById('selbar');if(!el)return;const ph=stuckPh(el),is=el.classList.contains('stuck');
-  const d=el.getBoundingClientRect().top-ph.getBoundingClientRect().top;
-  const on=window.scrollY>40&&d>2;
-  if(on===is)return;
-  if(on){el.style.removeProperty('margin-bottom');const tn=stuckTot(el);el.classList.add('stuck');const cs=getComputedStyle(el),ts=stuckTot(el);
-    el.style.setProperty('margin-bottom',((parseFloat(cs.marginBottom)||0)+tn-ts)+'px','important')}
-  else{el.classList.remove('stuck');el.style.removeProperty('margin-bottom')}};
+/* ================= v240–v242: ay seçimi özeti — sayfa zıplamaz, boşluk ve arkadan görünen yazı yok ================= */
+// Büyük seçim kartı artık yapışmaz, sayfayla birlikte akar. Kart yukarı çıkıp görünmez olunca seçim özeti
+// menü kartının altına bitişik ince bir şerit olarak açılır (menünün içinde, sayfa düzenini hiç etkilemez).
+function smnEl(){const tb=document.querySelector('.tabs');if(!tb)return null;let m=document.getElementById('selmini');
+  if(!m){m=document.createElement('div');m.id='selmini';m.setAttribute('role','region');tb.appendChild(m);
+    m.addEventListener('click',e=>{e.stopPropagation();const x=e.target.closest('[data-smn]');const sb=document.getElementById('selbar');if(!sb)return;
+      if(x&&x.dataset.smn==='x'){const c=sb.querySelector('[data-act=selClear]');if(c)c.click();return}
+      const top=sb.getBoundingClientRect().top+scrollY-(document.querySelector('.tabs').getBoundingClientRect().bottom)-10;scrollTo({top:Math.max(0,top),behavior:'smooth'})})}
+  return m}
+stuckChk=function(){const sb=document.getElementById('selbar');const m=smnEl();if(sb){sb.classList.remove('stuck','fx');sb.style.removeProperty('margin-bottom')}
+  const inner=sb&&sb.querySelector('.selbar.on'),tb=document.querySelector('.tabs');let show=false;
+  if(inner&&tb&&tab==='plan'){const r=sb.getBoundingClientRect(),t=tb.getBoundingClientRect();show=r.bottom<t.bottom+6}
+  if(m&&show){const cnt=(inner.querySelector('.selhead b')||{}).textContent||'',net=inner.querySelector('.shero b'),ex=inner.querySelector('.sextra');
+    const h=`<button type="button" class="smn-go" data-smn="go"><span class="smn-t"><b>${esc(cnt)}</b>${net?`<span>${esc((inner.querySelector('.shero span')||{}).textContent||'')} <b class="${net.className}">${net.innerHTML}</b></span>`:''}</span>${ex?`<span class="smn-x2">${ex.innerHTML}</span>`:''}</button><button type="button" class="smn-c" data-smn="x" aria-label="${esc((inner.querySelector('[data-act=selClear]')||{}).getAttribute?inner.querySelector('[data-act=selClear]').getAttribute('aria-label')||'':'')}">${ic('close')}</button>`;
+    if(m.dataset.h!==h){m.innerHTML=h;m.dataset.h=h}}
+  if(m&&m.classList.contains('on')!==show){m.classList.toggle('on',show);tb.classList.toggle('tjoin',show)}};
 
 /* ================= Bildirim merkezi ================= */
 const LS_NF='gg_nf';let nfOpenAt=0,nfTab='all',nfSnz=null,nfUndo=null;
@@ -9074,7 +9099,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='241';
+const APP_VER='242';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
