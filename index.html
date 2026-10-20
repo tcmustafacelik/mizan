@@ -2024,6 +2024,16 @@ html:root .ahrecg .ahi svg{width:24px!important;height:24px!important;fill:#fff!
 html:root .ahrecg .ahl{font-size:11.5px!important;font-weight:500!important;color:rgba(255,255,255,.92)!important;white-space:normal!important;text-align:center!important;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;max-width:100%;word-break:normal;overflow-wrap:normal;hyphens:none}
 html:root .ahrecg .ahb{position:absolute!important;top:0;inset-inline-end:10%;background:#fff!important;color:var(--h2,#1A3263)!important;transform:none!important}
 html:root .ahrecg .aht{position:relative}
+
+/* v254: Sık kullandıkların — cam temanın yarı saydam kutu stili bu kartı soluklaştırıyordu */
+html:root #view .ahub .ahs.ahrec,html[data-glass]:root #view .ahub .ahs.ahrec{background:linear-gradient(150deg,var(--h1,#2B4C8C),var(--h3,#13264B))!important;border:0!important;box-shadow:0 14px 28px -20px var(--h3,#13264B)!important}
+html:root #view .ahub .ahrecg .aht,html[data-glass]:root #view .ahub .ahrecg .aht,html[data-glass][data-theme="dark"]:root #view .ahub .ahrecg .aht{background:transparent!important;border:0!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;color:#fff!important}
+html:root #view .ahub .ahrecg .aht .ahi,html[data-glass]:root #view .ahub .ahrecg .aht .ahi{background:rgba(255,255,255,.16)!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)!important}
+html:root #view .ahub .ahrecg .aht .ahi svg{fill:#fff!important}
+html:root #view .ahub .ahrecg .aht .ahl{color:#fff!important;opacity:1!important;text-shadow:0 1px 2px rgba(0,0,0,.18)}
+html:root .ahrec>h3{color:rgba(255,255,255,.85)!important}
+html:root #view .ahub .ahrecg>.aht:nth-child(n):nth-child(n):nth-child(n){gap:6px!important;flex-direction:column!important;align-items:center!important;height:auto!important;min-height:0!important;aspect-ratio:auto!important;padding:4px 2px!important;margin:0!important;justify-content:flex-start!important;align-self:start!important;grid-column:auto!important}
+html:root #view .ahub .ahrecg>.aht .ahl{margin:0!important;padding:0!important}
 </style>
 
 <div class="app">
@@ -9461,7 +9471,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='253';
+const APP_VER='254';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
