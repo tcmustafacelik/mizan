@@ -4740,7 +4740,7 @@ function devRows(){const d=DEV,yes=ux('dv_yes'),no=ux('dv_no');if(!d.ready)retur
    ['sto','#14b8a6','download',ux('dv_sto'),d.stQ?devBytes(d.stU)+' / '+devBytes(d.stQ):'–'],
    ['loc','#f97316','globe',ux('dv_loc'),d.lang+(d.tz?' · '+d.tz:'')],
    ['tch','#64748b','smartphone',ux('dv_touch'),d.touch?ux('dv_tp',{n:d.touch}):no],
-   ['app','#3b82f6','cog',ux('dv_app'),'Mizan v'+APP_VER+' · '+(d.inst?ux('dv_inst'):ux('dv_web'))+(d.persist?' · '+ux('dv_persist'):'')]]}
+   ['app','#3b82f6','cog',ux('dv_app'),'Mizan v'+APP_VER_UI+' · '+(d.inst?ux('dv_inst'):ux('dv_web'))+(d.persist?' · '+ux('dv_persist'):'')]]}
 function devText(){const d=DEV;return [ux('dv_h'),(d.model?d.model+' · ':'')+d.os,d.br,...devRows().map(r=>r[3]+': '+r[4]),d.ip?'IP: '+[d.ip.v4,d.ip.v6].filter(Boolean).join(' · '):''].filter(Boolean).join('\n')}
 function devCardHTML(){const d=DEV;
   const hero=d.ready?`<div class="dvh"><span class="dvi">${ic(d.type==='pc'?'monitor':'smartphone')}</span><span><small>${ux(d.type==='pc'?'dv_t_pc':d.type==='tablet'?'dv_t_tab':'dv_t_ph')}</small><b>${esc(d.model||d.os)}</b><em>${esc(d.model?d.os+' · '+d.br:d.br)}</em></span></div>`:`<div class="dvh"><span class="dvi">${ic('smartphone')}</span><span><b>…</b></span></div>`;
@@ -9002,7 +9002,7 @@ function render(){
   if(!plan){return}
   ({plan:renderPlan,defter:renderDefter,ozet:renderOzet,kalem:renderKalem,kur:renderKur,arac:renderTools,ayar:renderAyar})[tab]();
   if(tab==='ayar'){try{pvCardInject()}catch(e){}}
-  if(tab==='ayar'){const v=document.createElement('p');v.className='verl';v.innerHTML=`<b>Mizan</b> · v${typeof APP_VER!=='undefined'?APP_VER:''}`;$('#view').append(v)}
+  if(tab==='ayar'){const v=document.createElement('p');v.className='verl';v.innerHTML=`<b>Mizan</b> · v${typeof APP_VER_UI!=='undefined'?APP_VER_UI:''}`;$('#view').append(v)}
   saveTab();
   makeCollapsible();
   viewEnter();
@@ -10317,7 +10317,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='263';
+const APP_VER='264';const APP_VER_UI='1.0';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
@@ -10350,7 +10350,7 @@ function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFix
   ['pointerdown','pointerup','pointercancel','click'].forEach(k=>document.addEventListener(k,e=>{if(TAP.on&&(k!=='click'||e.isTrusted||true))tapLog(k+(k==='click'?(e.isTrusted?' native ':' synth '):' ')+nm(e.target))},true));
   /* teşhis paneli: başlıktaki durum yazısına ("Bu cihazda saklanıyor") art arda 5 kez dokun */
   let lt=[];document.addEventListener('touchstart',e=>{if(!e.target.closest||!e.target.closest('#status'))return;const n=Date.now();lt=lt.filter(x=>n-x<2500);lt.push(n);if(lt.length>=5){lt=[];TAP.on=!TAP.on;let p=document.getElementById('tapdbg');
-    if(TAP.on){if(!p){p=document.createElement('div');p.id='tapdbg';p.innerHTML='<b>Dokunuş teşhisi · durum yazısına 5 kez dokun = kapat</b><pre></pre>';document.body.appendChild(p)}p.hidden=false;TAP.log=['Mizan v'+APP_VER+' · UA '+navigator.userAgent.replace(/.*(Chrome\/[\d.]+).*/,'$1')+' · dpr '+devicePixelRatio+' · '+innerWidth+'×'+innerHeight];tapLog('açık')}else if(p)p.hidden=true}},{capture:true,passive:true});
+    if(TAP.on){if(!p){p=document.createElement('div');p.id='tapdbg';p.innerHTML='<b>Dokunuş teşhisi · durum yazısına 5 kez dokun = kapat</b><pre></pre>';document.body.appendChild(p)}p.hidden=false;TAP.log=['Mizan v'+APP_VER_UI+' ('+APP_VER+') · UA '+navigator.userAgent.replace(/.*(Chrome\/[\d.]+).*/,'$1')+' · dpr '+devicePixelRatio+' · '+innerWidth+'×'+innerHeight];tapLog('açık')}else if(p)p.hidden=true}},{capture:true,passive:true});
   window.addEventListener('error',e=>tapLog('ERR '+(e.message||'')+' @'+(e.lineno||'')));
   window.addEventListener('unhandledrejection',e=>{const r=e.reason;tapLog('REJ '+(r&&r.message||String(r))+' '+String(r&&r.stack||'').split('\n')[1])});
 })();
