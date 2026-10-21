@@ -1951,8 +1951,8 @@ html:root .card,html:root .tile,html:root .aht,html:root .months{box-shadow:var(
 .pkbar{display:flex;justify-content:center;margin:-2px 0 2px}
 .pkbtn{gap:6px;font-size:12.5px;color:var(--muted-tx,var(--muted));background:transparent!important;border:1px dashed var(--line)!important;border-radius:999px!important;padding:6px 14px!important;min-height:34px}
 .pkbtn .ic{width:15px;height:15px}
-.pkin{max-width:440px;gap:12px}
-.pkl{display:grid;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.pcz .pkin{max-width:440px;gap:12px}
+.pcz .pkl{display:grid;border:1px solid var(--line);border-radius:14px;overflow:hidden}
 .pkr{display:grid;grid-template-columns:minmax(0,1fr) 36px 36px 48px;align-items:center;gap:6px;padding:8px 10px;min-height:52px}
 .pkr+.pkr{border-top:1px solid var(--line)}
 .pkr.off .pkn{opacity:.45}
@@ -6429,7 +6429,7 @@ function pkApply(){if(tab!=='plan')return;const v=document.getElementById('view'
   try{const wb=N.weekbox;if(wb&&typeof weekItems==='function')wb.classList.toggle('pk-empty',!weekItems().length)}catch(e){}
   if(lh&&!v.querySelector(':scope > .pkbar')){const d=document.createElement('div');d.className='pkbar';d.innerHTML=`<button type="button" class="btn mini pkbtn" data-pk-open>${ic('swap-vertical')}${esc(ux('pk_edit'))}</button>`;v.insertBefore(d,lh)}}
 const _pkRP=renderPlan;renderPlan=function(){const r=_pkRP.apply(this,arguments);try{pkApply()}catch(e){}return r};
-function pkSheet(){const N=pkNodes(),S=pkGet();let o=document.getElementById('pkz');if(!o){o=document.createElement('div');o.id='pkz';o.className='rcv pkz';document.body.appendChild(o);
+function pkSheet(){const N=pkNodes(),S=pkGet();let o=document.getElementById('pcz');if(!o){o=document.createElement('div');o.id='pcz';o.className='rcv pcz';document.body.appendChild(o);
     o.addEventListener('click',e=>{if(e.target===o||e.target.closest('[data-pk-done]')){o.hidden=true;return}const b=e.target.closest('[data-pk]');if(!b)return;const S=pkGet(),[a,k]=b.dataset.pk.split(':');const i=S.o.indexOf(k);
       if(a==='up'&&i>0){S.o.splice(i,1);S.o.splice(i-1,0,k)}else if(a==='dn'&&i<S.o.length-1){S.o.splice(i,1);S.o.splice(i+1,0,k)}else if(a==='vis'){S.h=S.h.includes(k)?S.h.filter(x=>x!==k):[...S.h,k]}else if(a==='reset'){S.o=PK_DEF.slice();S.h=[]}
       pkSet(S);pkApply();pkSheet()});
@@ -10018,7 +10018,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='258';
+const APP_VER='259';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
