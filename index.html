@@ -2127,6 +2127,80 @@ html[dir=rtl] #paycard label.payrow.du-soon{box-shadow:inset -3px 0 0 var(--warn
 .hcclr{margin-top:10px}
 .hcn{margin:8px 0 0!important}
 .pjrow .pjp{display:block;font-style:normal;font-size:11px;color:var(--muted-tx,var(--muted));margin-top:2px}
+/* v257: filtre çubuğu ve etiketler */
+#qfWrap{margin:8px 0 4px}
+.qfbar{display:flex;align-items:center;gap:6px;min-width:0}
+.qfbar>.btn{flex:0 0 auto;gap:6px}.qfbar>.btn .ic{width:16px;height:16px}
+.qfb.on{border-color:var(--accent);color:var(--accent)}
+.qfn{display:inline-grid;place-items:center;min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:var(--accent);color:var(--accent-fg,#fff);font:600 11px/1 var(--f-num);font-style:normal}
+.tgrow{display:flex;gap:6px;overflow-x:auto;min-width:0;flex:1 1 auto;scrollbar-width:none;padding:2px 0;-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent)}
+[dir=rtl] .tgrow{-webkit-mask-image:linear-gradient(270deg,#000 88%,transparent);mask-image:linear-gradient(270deg,#000 88%,transparent)}
+.tgrow::-webkit-scrollbar{display:none}
+.tgc{flex:0 0 auto;display:inline-flex;align-items:baseline;gap:6px;padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:var(--surface2);color:var(--text);font:inherit;font-size:12.5px;cursor:pointer;white-space:nowrap}
+.tgc b{font-weight:600;color:var(--accent)}.tgc small{font:500 11.5px var(--f-num);color:var(--muted-tx,var(--muted))}
+.tgc.on{background:var(--accent);border-color:var(--accent)}.tgc.on b,.tgc.on small{color:var(--accent-fg,#fff)}
+.tgc.sm{padding:4px 9px;font-size:12px;color:var(--accent);font-weight:600}
+.tgc.sm.on{color:var(--accent-fg,#fff)}
+.tgform{display:flex;flex-wrap:wrap;gap:6px;grid-column:1/-1;margin-top:-2px}
+.tagc{color:var(--accent);font-weight:600;padding:0 1px;border-radius:4px;cursor:pointer}
+.lx-on .tagc{cursor:inherit}
+.qfp{margin:8px 0 0!important;padding:12px!important}
+.qfseg{display:flex;gap:4px;padding:3px;border-radius:12px;background:var(--surface2);margin-bottom:10px}
+.qfseg button{flex:1;min-height:34px;border:0;border-radius:9px;background:none;color:var(--text);font:inherit;font-size:13px;cursor:pointer}
+.qfseg button.on{background:var(--surface);box-shadow:0 1px 3px rgba(0,0,0,.15);font-weight:600;color:var(--accent)}
+.qfg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:8px}
+.qfg label.f{min-width:0}.qfg select,.qfg input{width:100%;min-width:0}
+.tgcard{margin:8px 0 0!important;padding:12px 14px!important;border:1px solid rgba(var(--acc-rgb),.35)!important}
+.tgh{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.tgh b{font-size:16px;color:var(--accent)}.tgh .btn{min-height:30px;padding:0 8px}
+.tgs{display:flex;gap:16px;flex-wrap:wrap;margin:6px 0 4px}
+.tgs>div{display:flex;flex-direction:column;gap:1px;min-width:0}
+.tgs small{font-size:11px;color:var(--muted-tx,var(--muted))}.tgs b{font:600 16px var(--f-num)}.tgs b.pos{color:var(--good-tx,var(--good))}
+.tgs span{font-size:12px;color:var(--muted-tx,var(--muted));padding-top:3px}
+.tgbar{height:8px;border-radius:5px;background:var(--surface2);overflow:hidden;margin-top:8px}
+.tgbar i{display:block;height:100%;border-radius:5px;background:var(--good,#16a34a)}
+.tgbar.warn i{background:var(--warn,#d97706)}.tgbar.over i{background:var(--bad,#dc2626)}
+.tgbl{display:flex;justify-content:space-between;gap:8px;margin:5px 0 0;font-size:12px;color:var(--muted-tx,var(--muted))}
+.tgbl b{color:var(--good-tx,var(--good))}.tgbl b.neg{color:var(--bad-tx,var(--bad))}
+.tgbud{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;align-items:center}
+.tgbud input{flex:1 1 120px;min-width:0;max-width:200px}
+/* içgörüler */
+.igc{padding:14px 16px!important}
+.igl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.igl li{display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.45}
+.igi{flex:0 0 28px;height:28px;border-radius:9px;display:grid;place-items:center;background:rgba(var(--acc-rgb),.12);color:var(--accent)}
+.igi .ic{width:15px;height:15px}
+.ig-up .igi{background:rgba(220,38,38,.12);color:var(--bad-tx,var(--bad))}
+.ig-dn .igi{background:rgba(22,163,74,.13);color:var(--good-tx,var(--good))}
+.igl li>span:last-child{padding-top:4px;min-width:0}
+/* toplu seçim */
+.lx-on #lList .erow{cursor:pointer;position:relative}
+.lx-on #lList .erow .entry{padding-inline-start:44px!important;pointer-events:none}
+.lx-on #lList .erow .edel{visibility:hidden}
+.lx-on #lList .erow::after{content:'';position:absolute;inset-inline-start:12px;top:50%;width:20px;height:20px;margin-top:-10px;border-radius:50%;border:2px solid var(--muted-tx,var(--muted));box-sizing:border-box;z-index:1}
+.lx-on #lList .erow.lxs{background:rgba(var(--acc-rgb),.1)}
+.lx-on #lList .erow.lxs::after{border-color:var(--accent);background:var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center/14px no-repeat}
+.lx-on .lxb{background:var(--accent);color:var(--accent-fg,#fff);border-color:var(--accent)}
+.lxbar{position:fixed;left:12px;right:12px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:31;max-width:560px;margin:0 auto;padding:10px 12px;border-radius:18px;background:var(--surface);border:1px solid var(--line);box-shadow:0 14px 36px -10px rgba(0,0,0,.45);display:flex;flex-direction:column;gap:8px;animation:barup .25s var(--ease,ease)}
+body.has-bar .lxbar{bottom:calc(92px + env(safe-area-inset-bottom,0px))}
+.lxt{display:flex;align-items:center;gap:8px}.lxt b{flex:1;font-size:14px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lxx{width:34px;height:34px;border-radius:50%;border:0;background:var(--surface2);color:var(--text);display:grid;place-items:center;cursor:pointer}.lxx .ic{width:16px;height:16px}
+.lxa{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.lxa .btn{justify-content:center;gap:6px;min-width:0}.lxa .btn .ic{width:15px;height:15px;flex:0 0 auto}
+.lxa .btn:disabled{opacity:.45}
+.lxin{display:flex;gap:6px}.lxin input{flex:1;min-width:0}
+.lx-on .calcfab{opacity:0;pointer-events:none}
+.lx-on .app{padding-bottom:150px}
+/* kategoriler */
+.cml{display:flex;flex-direction:column}
+.cmr{display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid var(--line)}
+.cmr:first-child{border-top:0}
+.cmi{flex:0 0 32px;height:32px;border-radius:10px;display:grid;place-items:center;background:rgba(234,88,12,.12);color:#ea580c}.cmi .ic{width:16px;height:16px}
+.cmt{flex:1;min-width:0;display:flex;flex-direction:column}.cmt b{font-size:14px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.cmt small{font-size:11.5px;color:var(--muted-tx,var(--muted))}
+.cmr .btn{flex:0 0 auto;min-height:32px;padding:0 9px}.cmr .btn .ic{width:15px;height:15px}
+.cmr.ed input{flex:1;min-width:0}
+.cmsim{margin:4px 0 10px;padding:10px 12px;border-radius:12px;background:rgba(217,119,6,.1);display:flex;flex-direction:column;gap:6px}
+.cmsim>b{display:flex;align-items:center;gap:6px;font-size:13px}.cmsim>b .ic{width:15px;height:15px;color:var(--warn,#d97706)}
+.cmsr{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:13px}.cmsr span{min-width:0;overflow-wrap:anywhere}.cmsr i{font-style:normal;font-weight:600}
 </style>
 
 <div class="app">
@@ -6479,7 +6553,7 @@ document.addEventListener('change',async e=>{const x=e.target;if(!x)return;
   if(x.id==='rmTime'&&/^\d\d:\d\d$/.test(x.value)){const R=rmGet();R.t=x.value;rmSet(R);rmSubUpd()}});
 /* ---- 2. Defter: kaydırarak düzenle (sağa) / sil (sola) ---- */
 (function(){let S=null,swallow=0;const TH=84;
-  document.addEventListener('pointerdown',e=>{const row=e.target.closest&&e.target.closest('#view .erow');if(!row||e.target.closest('.edel')||e.button>0)return;S={row,x:e.clientX,y:e.clientY,on:false,dx:0,id:e.pointerId}},{passive:true});
+  document.addEventListener('pointerdown',e=>{const row=e.target.closest&&e.target.closest('#view .erow');if(!row||document.body.classList.contains('lx-on')||e.target.closest('.edel')||e.button>0)return;S={row,x:e.clientX,y:e.clientY,on:false,dx:0,id:e.pointerId}},{passive:true});
   document.addEventListener('pointermove',e=>{if(!S||e.pointerId!==S.id)return;const dx=e.clientX-S.x,dy=e.clientY-S.y;
     if(!S.on){if(Math.abs(dy)>10&&Math.abs(dy)>Math.abs(dx)){S=null;return}if(Math.abs(dx)>12&&Math.abs(dx)>Math.abs(dy)*1.5){S.on=true;S.row.classList.add('swiping');try{S.row.setPointerCapture(e.pointerId)}catch(z){}}else return}
     const rtl=document.documentElement.dir==='rtl',d=Math.max(-150,Math.min(150,dx));S.dx=d;const en=S.row.querySelector('.entry');if(en)en.style.transform=`translateX(${d}px)`;
@@ -6593,6 +6667,187 @@ function wsInject(){const v=document.getElementById('view');if(!v||!v.querySelec
 const _wsRA=renderAyar;renderAyar=function(){const r=_wsRA.apply(this,arguments);try{wsInject()}catch(e){}return r};
 document.addEventListener('change',async e=>{const x=e.target;if(!x||x.id!=='wsChk')return;wsSet({on:x.checked});if(x.checked){try{await rmEnable()}catch(z){}}toast(ux(x.checked?'ws_on':'ws_off'));
   const h=document.querySelector('#wsCard .sxt');if(h){let s=h.querySelector('small');if(!s){s=document.createElement('small');h.append(s)}s.textContent=wsSub()}});
+
+/* ================= v257: etiketler, içgörüler, çift kayıt uyarısı, toplu işlem, kategori yönetimi, gelişmiş filtre ================= */
+Object.assign(UX.tr,{tg_h:'Etiketler',tg_hint:'Açıklamaya #tatil gibi etiket yaz; burada toplamı görünür.',tg_tot:p=>`${p.n} kayıt · ${p.d}`,tg_bud:'Etiket bütçesi',tg_bud_set:'Bütçe koy',tg_bud_ch:'Bütçeyi değiştir',tg_bud_rm:'Bütçeyi kaldır',tg_left:p=>`${p.v} kaldı`,tg_over:p=>`${p.v} aşıldı`,tg_add:'Etiket ekle',tg_spent:'Harcanan',tg_inc:'Gelen',
+ ig_h:'Bu ayın içgörüleri',ig_up:p=>`${p.c} harcaman geçen ayın aynı dönemine göre %${p.p} arttı (${p.v}).`,ig_dn:p=>`${p.c} harcaman geçen ayın aynı dönemine göre %${p.p} azaldı.`,ig_wd:p=>`En çok ${p.d} günleri harcıyorsun (ortalama ${p.v}).`,ig_avg:p=>`Bu ay günde ortalama ${p.v} harcıyorsun.`,ig_big:p=>`Ayın en büyük harcaması: ${p.v} · ${p.c} (${p.d}).`,ig_top:p=>`Bu ayki giderinin %${p.p}’i ${p.c}.`,
+ dq_h:'Bu kayıt zaten var',dq_p:p=>`${p.d} tarihinde ${p.c} için ${p.v} tutarında bir kayıt zaten girilmiş. Yine de eklensin mi?`,dq_ok:'Yine de ekle',
+ lx_sel:'Seç',lx_n:p=>`${p.n} seçili`,lx_all:'Tümü',lx_cat:'Kategori',lx_date:'Tarih',lx_del:'Sil',lx_apply:'Uygula',lx_done:p=>`${p.n} kayıt güncellendi`,lx_deleted:p=>`${p.n} kayıt silindi`,lx_del_p:p=>`${p.n} kayıt silinsin mi?`,lx_cancel:'Seçimi bitir',lx_pick:'Kayıtlara dokunarak seç',
+ qf_btn:'Filtre',qf_type:'Tür',qf_all:'Hepsi',qf_cat:'Kategori',qf_acc:'Hesap',qf_min:'En az',qf_max:'En çok',qf_clear:'Filtreyi temizle',qf_any:'Hepsi',qf_on:p=>`${p.n} filtre açık`,
+ cm_h:'Kategoriler',cm_n:'Kategorileri yeniden adlandır ya da birleştir. Değişiklik eski kayıtlara, bütçelere ve otomatik kategori kurallarına da uygulanır.',cm_cnt:p=>`${p.n} kayıt · ${p.v}`,cm_ren:'Yeniden adlandır',cm_save:'Kaydet',cm_sim:'Benzer görünenler',cm_merge:'Birleştir',cm_merge_h:'Kategoriler birleşsin mi?',cm_merge_p:p=>`“${p.a}” kayıtları “${p.b}” kategorisine taşınacak.`,cm_done:p=>`${p.n} kayıt güncellendi`,cm_none:'Henüz kategorili kayıt yok.',cm_sub:p=>`${p.n} kategori`});
+Object.assign(UX.en,{tg_h:'Tags',tg_hint:'Write a tag like #holiday in the description; its total shows here.',tg_tot:p=>`${p.n} entries · ${p.d}`,tg_bud:'Tag budget',tg_bud_set:'Set budget',tg_bud_ch:'Change budget',tg_bud_rm:'Remove budget',tg_left:p=>`${p.v} left`,tg_over:p=>`${p.v} over`,tg_add:'Add tag',tg_spent:'Spent',tg_inc:'Received',
+ ig_h:'This month’s insights',ig_up:p=>`Your ${p.c} spending is up ${p.p}% vs the same period last month (${p.v}).`,ig_dn:p=>`Your ${p.c} spending is down ${p.p}% vs the same period last month.`,ig_wd:p=>`You spend the most on ${p.d}s (average ${p.v}).`,ig_avg:p=>`This month you spend ${p.v} a day on average.`,ig_big:p=>`Biggest expense this month: ${p.v} · ${p.c} (${p.d}).`,ig_top:p=>`${p.p}% of this month’s spending is ${p.c}.`,
+ dq_h:'This entry already exists',dq_p:p=>`An entry of ${p.v} for ${p.c} on ${p.d} is already there. Add it anyway?`,dq_ok:'Add anyway',
+ lx_sel:'Select',lx_n:p=>`${p.n} selected`,lx_all:'All',lx_cat:'Category',lx_date:'Date',lx_del:'Delete',lx_apply:'Apply',lx_done:p=>`${p.n} entries updated`,lx_deleted:p=>`${p.n} entries deleted`,lx_del_p:p=>`Delete ${p.n} entries?`,lx_cancel:'Finish selecting',lx_pick:'Tap entries to select them',
+ qf_btn:'Filter',qf_type:'Type',qf_all:'All',qf_cat:'Category',qf_acc:'Account',qf_min:'Min',qf_max:'Max',qf_clear:'Clear filter',qf_any:'All',qf_on:p=>`${p.n} filters on`,
+ cm_h:'Categories',cm_n:'Rename or merge categories. Changes also apply to old entries, budgets and auto-category rules.',cm_cnt:p=>`${p.n} entries · ${p.v}`,cm_ren:'Rename',cm_save:'Save',cm_sim:'Look alike',cm_merge:'Merge',cm_merge_h:'Merge categories?',cm_merge_p:p=>`Entries in “${p.a}” will move to “${p.b}”.`,cm_done:p=>`${p.n} entries updated`,cm_none:'No categorized entries yet.',cm_sub:p=>`${p.n} categories`});
+Object.assign(UX.ru,{tg_h:'Метки',tg_hint:'Напишите в описании метку, например #отпуск; здесь появится её итог.',tg_tot:p=>`${p.n} зап. · ${p.d}`,tg_bud:'Бюджет метки',tg_bud_set:'Задать бюджет',tg_bud_ch:'Изменить бюджет',tg_bud_rm:'Убрать бюджет',tg_left:p=>`осталось ${p.v}`,tg_over:p=>`превышено на ${p.v}`,tg_add:'Добавить метку',tg_spent:'Потрачено',tg_inc:'Получено',
+ ig_h:'Наблюдения за месяц',ig_up:p=>`Расходы на ${p.c} выросли на ${p.p}% к тому же периоду прошлого месяца (${p.v}).`,ig_dn:p=>`Расходы на ${p.c} снизились на ${p.p}% к тому же периоду прошлого месяца.`,ig_wd:p=>`Больше всего вы тратите по дням: ${p.d} (в среднем ${p.v}).`,ig_avg:p=>`В этом месяце вы тратите в среднем ${p.v} в день.`,ig_big:p=>`Самая крупная трата месяца: ${p.v} · ${p.c} (${p.d}).`,ig_top:p=>`${p.p}% расходов месяца — ${p.c}.`,
+ dq_h:'Такая запись уже есть',dq_p:p=>`${p.d} уже есть запись ${p.v} в категории ${p.c}. Всё равно добавить?`,dq_ok:'Всё равно добавить',
+ lx_sel:'Выбрать',lx_n:p=>`Выбрано: ${p.n}`,lx_all:'Все',lx_cat:'Категория',lx_date:'Дата',lx_del:'Удалить',lx_apply:'Применить',lx_done:p=>`Обновлено записей: ${p.n}`,lx_deleted:p=>`Удалено записей: ${p.n}`,lx_del_p:p=>`Удалить записи (${p.n})?`,lx_cancel:'Завершить выбор',lx_pick:'Нажимайте на записи, чтобы выбрать',
+ qf_btn:'Фильтр',qf_type:'Тип',qf_all:'Все',qf_cat:'Категория',qf_acc:'Счёт',qf_min:'От',qf_max:'До',qf_clear:'Сбросить фильтр',qf_any:'Все',qf_on:p=>`Фильтров: ${p.n}`,
+ cm_h:'Категории',cm_n:'Переименуйте или объедините категории. Изменения применятся к старым записям, бюджетам и правилам автокатегорий.',cm_cnt:p=>`${p.n} зап. · ${p.v}`,cm_ren:'Переименовать',cm_save:'Сохранить',cm_sim:'Похожие',cm_merge:'Объединить',cm_merge_h:'Объединить категории?',cm_merge_p:p=>`Записи «${p.a}» перейдут в «${p.b}».`,cm_done:p=>`Обновлено записей: ${p.n}`,cm_none:'Пока нет записей с категориями.',cm_sub:p=>`Категорий: ${p.n}`});
+Object.assign(UX.ar,{tg_h:'الوسوم',tg_hint:'اكتب وسمًا مثل #سفر في الوصف؛ سيظهر مجموعه هنا.',tg_tot:p=>`${p.n} قيود · ${p.d}`,tg_bud:'ميزانية الوسم',tg_bud_set:'حدّد ميزانية',tg_bud_ch:'غيّر الميزانية',tg_bud_rm:'أزل الميزانية',tg_left:p=>`متبقي ${p.v}`,tg_over:p=>`تجاوز بمقدار ${p.v}`,tg_add:'أضف وسمًا',tg_spent:'المصروف',tg_inc:'الوارد',
+ ig_h:'ملاحظات هذا الشهر',ig_up:p=>`زاد إنفاقك على ${p.c} بنسبة ${p.p}% مقارنة بالفترة نفسها من الشهر الماضي (${p.v}).`,ig_dn:p=>`انخفض إنفاقك على ${p.c} بنسبة ${p.p}% مقارنة بالفترة نفسها من الشهر الماضي.`,ig_wd:p=>`أكثر يوم تنفق فيه هو ${p.d} (بمتوسط ${p.v}).`,ig_avg:p=>`تنفق هذا الشهر ${p.v} يوميًا في المتوسط.`,ig_big:p=>`أكبر مصروف هذا الشهر: ${p.v} · ${p.c} (${p.d}).`,ig_top:p=>`${p.p}% من مصروف هذا الشهر على ${p.c}.`,
+ dq_h:'هذا القيد موجود',dq_p:p=>`يوجد قيد بقيمة ${p.v} لفئة ${p.c} بتاريخ ${p.d}. هل تضيفه على أي حال؟`,dq_ok:'أضفه على أي حال',
+ lx_sel:'تحديد',lx_n:p=>`${p.n} محدد`,lx_all:'الكل',lx_cat:'الفئة',lx_date:'التاريخ',lx_del:'حذف',lx_apply:'تطبيق',lx_done:p=>`تم تحديث ${p.n} قيود`,lx_deleted:p=>`تم حذف ${p.n} قيود`,lx_del_p:p=>`حذف ${p.n} قيود؟`,lx_cancel:'إنهاء التحديد',lx_pick:'اضغط على القيود لتحديدها',
+ qf_btn:'تصفية',qf_type:'النوع',qf_all:'الكل',qf_cat:'الفئة',qf_acc:'الحساب',qf_min:'من',qf_max:'إلى',qf_clear:'مسح التصفية',qf_any:'الكل',qf_on:p=>`${p.n} مرشحات مفعلة`,
+ cm_h:'الفئات',cm_n:'أعد تسمية الفئات أو ادمجها. يُطبَّق التغيير على القيود القديمة والميزانيات وقواعد التصنيف التلقائي.',cm_cnt:p=>`${p.n} قيود · ${p.v}`,cm_ren:'إعادة تسمية',cm_save:'حفظ',cm_sim:'متشابهة',cm_merge:'دمج',cm_merge_h:'دمج الفئات؟',cm_merge_p:p=>`ستنتقل قيود «${p.a}» إلى «${p.b}».`,cm_done:p=>`تم تحديث ${p.n} قيود`,cm_none:'لا قيود مصنّفة بعد.',cm_sub:p=>`${p.n} فئات`});
+const v7M=v=>`<bdi class="mv" dir="ltr">${esc(money(Math.round(v)).replace(/[.,]\d\d(?!\d)(?=\D*$)/,''))}</bdi>`;
+const v7m=v=>money(Math.round(v)).replace(/[.,]\d\d(?!\d)(?=\D*$)/,'');
+const v7lo=s=>String(s||'').toLocaleLowerCase(LOC[LANG]||'tr-TR');
+/* ---- etiket ayrıştırma ---- */
+const TG_RE=/(^|[^\p{L}\p{N}_&])#([\p{L}\p{N}_-]{1,32})/gu;
+function tgOf(e){const out=[];const s=String(e&&e.desc||'');let m;TG_RE.lastIndex=0;while((m=TG_RE.exec(s)))out.push(m[2]);return out}
+function tgAll(){const M=new Map();for(const e of ledger)for(const t0 of tgOf(e)){const k=v7lo(t0);let o=M.get(k);if(!o){o={k,t:t0,x:0,g:0,n:0,a:'9999',b:'0000',last:''};M.set(k,o)}o.n++;if(e.type==='gelir')o.g+=num(e.amount);else o.x+=num(e.amount);const d=String(e.date);if(d<o.a)o.a=d;if(d>o.b)o.b=d;if(d>=o.last){o.last=d;o.t=t0}}
+  return [...M.values()].sort((a,b)=>a.last<b.last?1:a.last>b.last?-1:b.n-a.n)}
+function tgBud(){return plan.tagBud||{}}
+
+/* ---- gelişmiş filtre durumu ---- */
+let QF={type:'',cat:'',acc:'',min:'',max:'',tag:''},qfOpen=false;
+function qfCount(){return ['type','cat','acc','min','max'].filter(k=>QF[k]!=='').length}
+function qfPass(e){if(QF.type&&e.type!==QF.type)return false;if(QF.cat&&v7lo(e.cat||'')!==v7lo(QF.cat))return false;if(QF.acc&&(e.acc||'')!==QF.acc)return false;
+  const a=num(e.amount);if(QF.min!==''&&a<num(QF.min))return false;if(QF.max!==''&&a>num(QF.max))return false;if(QF.tag&&!tgOf(e).some(x=>v7lo(x)===QF.tag))return false;return true}
+function qfAny(){return qfCount()>0||!!QF.tag}
+function qfCats(){const S=new Map();for(const e of ledger){const c=(e.cat||'').trim();if(!c)continue;const k=v7lo(c);if(!S.has(k))S.set(k,c)}return [...S.values()].sort((a,b)=>a.localeCompare(b,LOC[LANG]))}
+function qfBarHTML(){const T=tgAll(),n=qfCount();
+  return `<div id="qfBar" class="qfbar"><button type="button" class="btn mini qfb${n?' on':''}" data-qf="tog" aria-expanded="${qfOpen}">${ic('swap-vertical')}${esc(ux('qf_btn'))}${n?`<i class="qfn">${n}</i>`:''}</button><button type="button" class="btn mini lxb" data-lx="on">${ic('list-checks')}${esc(ux('lx_sel'))}</button>
+   ${T.length?`<div class="tgrow" role="list">${T.slice(0,20).map(o=>`<button type="button" role="listitem" class="tgc${QF.tag===o.k?' on':''}" data-tgf="${esc(o.k)}"><b><bdi>#${esc(o.t)}</bdi></b><small>${v7M(o.x||o.g)}</small></button>`).join('')}</div>`:''}</div>
+   ${qfOpen?qfPanelHTML():''}${QF.tag?tgCardHTML():''}`}
+function qfPanelHTML(){const cats=qfCats();let A=[];try{A=hvList()}catch(e){}
+  const seg=[['',ux('qf_all')],['gider',t('lg_expense')],['gelir',t('lg_income')]];
+  return `<div id="qfPanel" class="card qfp"><div class="qfseg" role="radiogroup" aria-label="${esc(ux('qf_type'))}">${seg.map(([v,l])=>`<button type="button" role="radio" aria-checked="${QF.type===v}" class="${QF.type===v?'on':''}" data-qft="${v}">${esc(l)}</button>`).join('')}</div>
+   <div class="qfg"><label class="f">${esc(ux('qf_cat'))}<select id="qfCat"><option value="">${esc(ux('qf_any'))}</option>${cats.map(c=>`<option value="${esc(c)}"${v7lo(c)===v7lo(QF.cat)?' selected':''}>${esc(c)}</option>`).join('')}</select></label>
+   ${A.length?`<label class="f">${esc(ux('qf_acc'))}<select id="qfAcc"><option value="">${esc(ux('qf_any'))}</option>${A.map(a=>`<option value="${esc(a.id)}"${QF.acc===a.id?' selected':''}>${esc(a.n)}</option>`).join('')}</select></label>`:''}
+   <label class="f">${esc(ux('qf_min'))} (${esc(curSym())})<input id="qfMin" type="number" inputmode="decimal" min="0" step="0.01" value="${esc(QF.min)}"></label><label class="f">${esc(ux('qf_max'))} (${esc(curSym())})<input id="qfMax" type="number" inputmode="decimal" min="0" step="0.01" value="${esc(QF.max)}"></label></div>
+   ${qfCount()?`<button type="button" class="btn mini" data-qf="clear">${ic('close')}${esc(ux('qf_clear'))}</button>`:''}</div>`}
+function tgCardHTML(){const o=tgAll().find(z=>z.k===QF.tag);if(!o)return '';const B=num(tgBud()[o.k]);const pct=B>0?Math.min(100,o.x/B*100):0,over=B>0&&o.x>B;
+  return `<div id="tgCard" class="card tgcard"><div class="tgh"><b><bdi>#${esc(o.t)}</bdi></b><button type="button" class="btn mini" data-tgf="${esc(o.k)}" aria-label="${esc(ux('qf_clear'))}">${ic('close')}</button></div>
+   <div class="tgs"><div><small>${esc(ux('tg_spent'))}</small><b>${v7M(o.x)}</b></div>${o.g?`<div><small>${esc(ux('tg_inc'))}</small><b class="pos">${v7M(o.g)}</b></div>`:''}<div><small>&nbsp;</small><span>${esc(ux('tg_tot',{n:o.n,d:o.a===o.b?dmy(o.a):dmy(o.a)+' – '+dmy(o.b)}))}</span></div></div>
+   ${B>0?`<div class="tgbar${over?' over':pct>=80?' warn':''}"><i style="width:${pct.toFixed(1)}%"></i></div><p class="tgbl"><span>${esc(ux('tg_bud'))}: ${v7M(B)}</span><b class="${over?'neg':''}">${esc(over?ux('tg_over',{v:v7m(o.x-B)}):ux('tg_left',{v:v7m(B-o.x)}))}</b></p>`:''}
+   <div class="tgbud" id="tgBudRow"><button type="button" class="btn mini" data-tgb="edit">${ic('target')}${esc(ux(B>0?'tg_bud_ch':'tg_bud_set'))}</button>${B>0?`<button type="button" class="btn mini" data-tgb="rm">${esc(ux('tg_bud_rm'))}</button>`:''}</div></div>`}
+function qfDraw(){const s=document.getElementById('lSearch');if(!s)return;const old=document.getElementById('qfWrap');const h=`<div id="qfWrap">${qfBarHTML()}</div>`;if(old)old.outerHTML=h;else s.insertAdjacentHTML('afterend',h)}
+/* drawLedger: filtreyi uygula (ledger geçici olarak süzülür) */
+const _qfDL=drawLedger;drawLedger=function(){const all=ledger;let r;if(qfAny()){ledger=all.filter(qfPass);try{r=_qfDL.apply(this,arguments)}finally{ledger=all}}else r=_qfDL.apply(this,arguments);
+  try{if(typeof hcDraw==='function')hcDraw();if(typeof fvDraw==='function')fvDraw()}catch(e){}try{qfDraw();tgDecorate();lxApply()}catch(e){}return r};
+const _qfRD=renderDefter;renderDefter=function(){const r=_qfRD.apply(this,arguments);try{qfDraw();tgFormChips()}catch(e){}return r};
+document.addEventListener('click',async ev=>{const T=ev.target.closest&&ev.target.closest('#qfWrap [data-qf],#qfWrap [data-qft],#qfWrap [data-tgf],#qfWrap [data-tgb],#qfWrap [data-tgbok]');if(!T)return;ev.preventDefault();
+  if(T.dataset.qf==='tog'){qfOpen=!qfOpen;qfDraw();return}
+  if(T.dataset.qf==='clear'){QF={...QF,type:'',cat:'',acc:'',min:'',max:''};drawLedger();return}
+  if(T.dataset.qft!==undefined){QF.type=T.dataset.qft;drawLedger();return}
+  if(T.dataset.tgf!==undefined){QF.tag=QF.tag===T.dataset.tgf?'':T.dataset.tgf;drawLedger();try{hap(10)}catch(e){}return}
+  if(T.dataset.tgb==='edit'){const row=document.getElementById('tgBudRow');const B=num(tgBud()[QF.tag]);row.innerHTML=`<input id="tgBudIn" type="number" inputmode="decimal" min="0" step="0.01" value="${B>0?B:''}" aria-label="${esc(ux('tg_bud'))}" placeholder="${esc(ux('tg_bud'))}"><button type="button" class="btn mini primary" data-tgbok>${esc(ux('cm_save'))}</button>`;const i=document.getElementById('tgBudIn');if(i)i.focus();return}
+  if(T.dataset.tgbok!==undefined){const v=num(document.getElementById('tgBudIn').value);plan.tagBud=plan.tagBud||{};if(v>0)plan.tagBud[QF.tag]=r2(v);else delete plan.tagBud[QF.tag];queueSave();drawLedger();return}
+  if(T.dataset.tgb==='rm'){if(plan.tagBud){delete plan.tagBud[QF.tag];queueSave()}drawLedger();return}});
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target&&e.target.id==='tgBudIn'){e.preventDefault();const b=document.querySelector('#qfWrap [data-tgbok]');if(b)b.click()}});
+document.addEventListener('change',e=>{const x=e.target;if(!x||!x.closest||!x.closest('#qfPanel'))return;if(x.id==='qfCat')QF.cat=x.value;else if(x.id==='qfAcc')QF.acc=x.value;else if(x.id==='qfMin')QF.min=x.value;else if(x.id==='qfMax')QF.max=x.value;else return;drawLedger()});
+/* liste satırlarında etiketleri dokunulabilir yap */
+function tgDecorate(){document.querySelectorAll('#lList .erow .entry .tx small').forEach(sm=>{if(sm.dataset.tg)return;sm.dataset.tg='1';const w=document.createTreeWalker(sm,NodeFilter.SHOW_TEXT);const nodes=[];while(w.nextNode())nodes.push(w.currentNode);
+  for(const n of nodes){const s=n.nodeValue;TG_RE.lastIndex=0;if(!TG_RE.test(s))continue;TG_RE.lastIndex=0;const f=document.createDocumentFragment();let last=0,m;while((m=TG_RE.exec(s))){const st=m.index+m[1].length;f.append(s.slice(last,st));const sp=document.createElement('span');sp.className='tagc';sp.dir='auto';sp.dataset.tg=v7lo(m[2]);sp.textContent='#'+m[2];f.append(sp);last=st+1+m[2].length}f.append(s.slice(last));n.replaceWith(f)}})}
+document.addEventListener('click',e=>{const s=e.target.closest&&e.target.closest('#lList .tagc');if(!s||document.body.classList.contains('lx-on'))return;e.preventDefault();e.stopPropagation();QF.tag=s.dataset.tg;drawLedger();const w=document.getElementById('qfWrap');if(w)w.scrollIntoView({block:'start',behavior:'smooth'})},true);
+/* formda son etiketler */
+function tgFormChips(){const d=document.getElementById('eDesc');if(!d)return;const lab=d.closest('label');const T=tgAll().slice(0,8);const old=document.getElementById('tgForm');if(old)old.remove();if(!T.length||!lab)return;
+  lab.insertAdjacentHTML('afterend',`<div id="tgForm" class="tgform" aria-label="${esc(ux('tg_add'))}">${T.map(o=>`<button type="button" class="tgc sm" data-tgadd="${esc(o.t)}"><bdi>#${esc(o.t)}</bdi></button>`).join('')}</div>`)}
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-tgadd]');if(!b)return;e.preventDefault();const d=document.getElementById('eDesc');if(!d)return;const tg='#'+b.dataset.tgadd;
+  if(tgOf({desc:d.value}).some(x=>v7lo(x)===v7lo(b.dataset.tgadd))){d.value=d.value.replace(new RegExp('\\s?#'+b.dataset.tgadd.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'(?![\\p{L}\\p{N}_-])','iu'),'').trim();b.classList.remove('on')}else{d.value=(d.value.trim()+' '+tg).trim();b.classList.add('on')}});
+document.addEventListener('input',e=>{if(e.target&&e.target.id==='eDesc'){const L=tgOf({desc:e.target.value}).map(v7lo);document.querySelectorAll('#tgForm [data-tgadd]').forEach(b=>b.classList.toggle('on',L.includes(v7lo(b.dataset.tgadd))))}});
+
+/* ---- 2. İçgörüler (Özet) ---- */
+function igList(){const n=new Date(),ym=ymToday(),d=n.getDate(),pym=addYm(ym,-1);const out=[];
+  const cur=ledger.filter(e=>e.type!=='gelir'&&String(e.date).slice(0,7)===ym);if(!cur.length)return out;
+  const prev=ledger.filter(e=>e.type!=='gelir'&&String(e.date).slice(0,7)===pym&&+String(e.date).slice(8,10)<=d);
+  const byC=L=>{const M={};for(const e of L){const c=(e.cat||'').trim()||t('cat_nocat')||'—';const k=v7lo(c);M[k]=M[k]||{c,v:0};M[k].v+=num(e.amount)}return M};
+  const C=byC(cur),P=byC(prev);const tot=cur.reduce((s,e)=>s+num(e.amount),0);
+  let up=null,dn=null;for(const k in C){const a=C[k].v,b=P[k]?P[k].v:0;if(b>0){const p=Math.round((a-b)/b*100);if(p>=20&&a-b>=Math.max(50,tot*0.03)&&(!up||a-b>up.d))up={c:C[k].c,p,d:a-b};if(p<=-20&&b-a>=Math.max(50,tot*0.03)&&(!dn||b-a>dn.d))dn={c:C[k].c,p:-p,d:b-a}}}
+  for(const k in P){if(!C[k]&&P[k].v>=Math.max(50,tot*0.03)&&(!dn||P[k].v>dn.d))dn={c:P[k].c,p:100,d:P[k].v}}
+  if(up)out.push(['up',ux('ig_up',{c:up.c,p:up.p,v:'+'+v7m(up.d)})]);
+  if(dn)out.push(['dn',ux('ig_dn',{c:dn.c,p:dn.p})]);
+  const top=Object.values(C).sort((a,b)=>b.v-a.v)[0];if(top&&tot>0&&Object.keys(C).length>1){const p=Math.round(top.v/tot*100);if(p>=30)out.push(['top',ux('ig_top',{c:top.c,p})])}
+  out.push(['avg',ux('ig_avg',{v:v7m(tot/d)})]);
+  const big=cur.reduce((m,e)=>!m||num(e.amount)>num(m.amount)?e:m,null);if(big&&cur.length>=3)out.push(['big',ux('ig_big',{v:v7m(num(big.amount)),c:(big.cat||big.desc||'—'),d:dmy(big.date)})]);
+  const from=v6add(todayStr(),-90),W=[0,0,0,0,0,0,0],days={};for(const e of ledger){if(e.type==='gelir'||String(e.date)<from)continue;const [y,m,dd]=String(e.date).split('-').map(Number);const wd=new Date(y,m-1,dd).getDay();W[wd]+=num(e.amount);days[e.date]=wd}
+  const cnt=[0,0,0,0,0,0,0];{const s=new Date();for(let i=0;i<91;i++){const x=new Date(s.getFullYear(),s.getMonth(),s.getDate()-i);cnt[x.getDay()]++}}
+  if(Object.keys(days).length>=14){const avg=W.map((v,i)=>v/cnt[i]);let bi=0;for(let i=1;i<7;i++)if(avg[i]>avg[bi])bi=i;const mean=avg.reduce((a,b)=>a+b,0)/7;if(avg[bi]>mean*1.25){let wn='';try{wn=new Intl.DateTimeFormat(LOC[LANG],{weekday:'long'}).format(new Date(2024,0,7+bi))}catch(e){}if(wn)out.push(['wd',ux('ig_wd',{d:wn,v:v7m(avg[bi])})])}}
+  return out.slice(0,4)}
+function igHTML(){const L=igList();if(!L.length)return '';const I={up:'arrow-up-right',dn:'arrow-down-left',top:'chart-pie',avg:'calendar',big:'receipt',wd:'history'};
+  return `<section class="card igc" id="igCard"><div class="glh"><b>${ic('zap')}${esc(ux('ig_h'))}</b></div><ul class="igl">${L.map(([k,s])=>`<li class="ig-${k}"><span class="igi">${ic(I[k]||'tag')}</span><span>${esc(s)}</span></li>`).join('')}</ul></section>`}
+const _igRO=renderOzet;renderOzet=function(){const r=_igRO.apply(this,arguments);try{const v=document.getElementById('view');if(v&&!v.querySelector('#igCard')){const h=igHTML();if(h){const g=v.querySelector('.glc');if(g)g.insertAdjacentHTML('afterend',h);else{const f=v.firstElementChild;const after=f&&!f.matches('section.card')?f:null;(after||v).insertAdjacentHTML(after?'afterend':'afterbegin',h)}}}}catch(e){}return r};
+
+/* ---- 3. Çift kayıt uyarısı (elle giriş) ---- */
+let dqArm=0;
+document.addEventListener('submit',e=>{if(e.target&&e.target.id==='entryForm'&&!editingId)dqArm=Date.now()},true);
+document.addEventListener('click',e=>{if(e.target.closest&&e.target.closest('[data-qe="add"]'))dqArm=Date.now()},true);
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target&&e.target.id==='qeIn')dqArm=Date.now()},true);
+function dqFind(en){const c=v7lo((en.cat||'').trim()),a=r2(num(en.amount));return ledger.find(z=>z.id!==en.id&&z.type===en.type&&String(z.date)===String(en.date)&&r2(num(z.amount))===a&&v7lo((z.cat||'').trim())===c)}
+const _dqSE=saveEntry;saveEntry=async function(en){try{if(dqArm&&Date.now()-dqArm<2500&&en&&!ledger.some(z=>z.id===en.id)){dqArm=0;const d=dqFind(en);
+  if(d){const ok=await uiConfirm({title:ux('dq_h'),msg:ux('dq_p',{d:dmy(d.date),c:d.cat||d.desc||(d.type==='gelir'?t('lg_income'):t('lg_expense')),v:money(num(d.amount))}),ok:ux('dq_ok'),icon:'repeat'});if(!ok)return false}}}catch(e){}
+  return _dqSE.apply(this,arguments)};
+
+/* ---- 4. Defter'de toplu işlem ---- */
+const LX=new Set();let lxMode='';
+function lxOn(){return document.body.classList.contains('lx-on')}
+function lxStart(){document.body.classList.add('lx-on');LX.clear();lxMode='';lxBar();lxApply();try{hap(10)}catch(e){}}
+function lxEnd(){document.body.classList.remove('lx-on');LX.clear();lxMode='';const b=document.getElementById('lxBar');if(b)b.remove();document.querySelectorAll('#lList .erow.lxs').forEach(r=>r.classList.remove('lxs'))}
+function lxApply(){if(!lxOn())return;const ids=new Set([...document.querySelectorAll('#lList .entry[data-edit]')].map(b=>b.dataset.edit));for(const id of [...LX])if(!ledger.some(e=>e.id===id))LX.delete(id);
+  document.querySelectorAll('#lList .erow').forEach(r=>{const b=r.querySelector('.entry');r.classList.toggle('lxs',!!b&&LX.has(b.dataset.edit))});lxBar()}
+function lxBar(){if(!lxOn())return;let b=document.getElementById('lxBar');if(!b){b=document.createElement('div');b.id='lxBar';b.className='lxbar';b.setAttribute('role','toolbar');document.body.append(b)}
+  const n=LX.size,cats=qfCats();
+  b.innerHTML=`<div class="lxt"><b>${esc(n?ux('lx_n',{n}):ux('lx_pick'))}</b><button type="button" class="btn mini" data-lxa="all">${esc(ux('lx_all'))}</button><button type="button" class="lxx" data-lxa="end" aria-label="${esc(ux('lx_cancel'))}">${ic('close')}</button></div>
+   ${lxMode==='cat'?`<div class="lxin"><input id="lxCat" list="lxCats" placeholder="${esc(ux('lx_cat'))}" autocomplete="off"><datalist id="lxCats">${cats.map(c=>`<option value="${esc(c)}">`).join('')}</datalist><button type="button" class="btn mini primary" data-lxa="catok">${esc(ux('lx_apply'))}</button></div>`:''}
+   ${lxMode==='date'?`<div class="lxin"><input id="lxDate" type="date" value="${todayStr()}"><button type="button" class="btn mini primary" data-lxa="dateok">${esc(ux('lx_apply'))}</button></div>`:''}
+   <div class="lxa"><button type="button" class="btn mini" data-lxa="cat"${n?'':' disabled'}>${ic('tag')}${esc(ux('lx_cat'))}</button><button type="button" class="btn mini" data-lxa="date"${n?'':' disabled'}>${ic('calendar')}${esc(ux('lx_date'))}</button><button type="button" class="btn mini danger" data-lxa="del"${n?'':' disabled'}>${ic('trash')}${esc(ux('lx_del'))}</button></div>`;
+  const i=b.querySelector('#lxCat,#lxDate');if(i&&lxMode&&document.activeElement!==i)setTimeout(()=>{try{i.focus()}catch(e){}},30)}
+async function lxUpdate(fn){let n=0;const ids=[...LX];for(const id of ids){const e=ledger.find(z=>z.id===id);if(!e)continue;const ne={...e};fn(ne);if(db){await saveEntry(ne)}else{const i=ledger.findIndex(z=>z.id===id);if(i>=0)ledger[i]=ne}n++}
+  if(!db){try{await lsWrite(LS_LEDGER,ledger)}catch(e){}try{ruSync()}catch(e){}}try{ntSync()}catch(e){}return n}
+document.addEventListener('click',async e=>{const s=e.target.closest&&e.target.closest('[data-lx="on"]');if(s){e.preventDefault();if(lxOn())lxEnd();else lxStart();return}
+  if(lxOn()){const row=e.target.closest&&e.target.closest('#lList .erow');if(row){e.preventDefault();e.stopPropagation();const b=row.querySelector('.entry');if(!b)return;const id=b.dataset.edit;if(LX.has(id))LX.delete(id);else LX.add(id);row.classList.toggle('lxs',LX.has(id));try{hap(8)}catch(z){}lxMode='';lxBar();return}}
+  const a=e.target.closest&&e.target.closest('#lxBar [data-lxa]');if(!a)return;e.preventDefault();const k=a.dataset.lxa;
+  if(k==='end'){lxEnd();return}
+  if(k==='all'){const ids=[...document.querySelectorAll('#lList .entry[data-edit]')].map(b=>b.dataset.edit);const allOn=ids.every(i=>LX.has(i));ids.forEach(i=>allOn?LX.delete(i):LX.add(i));lxApply();return}
+  if(k==='cat'||k==='date'){lxMode=lxMode===k?'':k;lxBar();return}
+  if(k==='catok'){const v=(document.getElementById('lxCat').value||'').trim();if(!v)return;const n=await lxUpdate(x=>{x.cat=v});lxEnd();drawLedger();toast(ux('lx_done',{n}));return}
+  if(k==='dateok'){const v=document.getElementById('lxDate').value;if(!/^\d{4}-\d\d-\d\d$/.test(v))return;const n=await lxUpdate(x=>{x.date=v});lxEnd();drawLedger();toast(ux('lx_done',{n}));return}
+  if(k==='del'){const n=LX.size;if(!n)return;const ok=await uiConfirm({title:ux('uc_del_h'),msg:ux('lx_del_p',{n}),kind:'danger',icon:'trash',ok:ux('uc_del')});if(!ok)return;
+    const gone=[...LX].map(id=>ledger.find(z=>z.id===id)).filter(Boolean);for(const x of gone)await removeEntry(x.id);lxEnd();drawLedger();try{hap(20)}catch(z){}
+    toast(ux('lx_deleted',{n:gone.length}),{label:t('sb_discard'),fn:async()=>{for(const x of gone){const {id,...rest}=x;await saveEntry(db?rest:{...x})}if(tab==='defter')drawLedger();toast(t('t_entry_restored'))}})}},true);
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target&&(e.target.id==='lxCat'||e.target.id==='lxDate')){e.preventDefault();const b=document.querySelector(e.target.id==='lxCat'?'#lxBar [data-lxa="catok"]':'#lxBar [data-lxa="dateok"]');if(b)b.click()}});
+try{const _lxRender=render;render=function(){if(lxOn()&&tab!=='defter')lxEnd();return _lxRender.apply(this,arguments)}}catch(e){}
+try{const _nbo7=nbOverlays;nbOverlays=function(){const L=_nbo7();const b=document.getElementById('lxBar');if(b&&lxOn())L.push(b);return L};
+  const _nbc7=nbCloseTop;nbCloseTop=function(){if(lxOn()){lxEnd();return true}return _nbc7()}}catch(e){}
+
+/* ---- 5. Kategori yönetimi (Ayarlar) ---- */
+function cmStats(){const M=new Map();for(const e of ledger){const c=(e.cat||'').trim();if(!c)continue;let o=M.get(c);if(!o){o={c,n:0,v:0};M.set(c,o)}o.n++;o.v+=num(e.amount)}return [...M.values()].sort((a,b)=>b.n-a.n||a.c.localeCompare(b.c,LOC[LANG]))}
+function cmSim(S){const G=new Map();for(const o of S){const k=crFold(o.c).replace(/[^\p{L}\p{N}]/gu,'');if(!k)continue;if(!G.has(k))G.set(k,[]);G.get(k).push(o)}return [...G.values()].filter(g=>g.length>1)}
+let cmEdit=null;
+function cmHTML(){const S=cmStats();const sim=cmSim(S);
+  return `${S.length?'':`<p class="hint">${esc(ux('cm_none'))}</p>`}
+   ${sim.length?`<div class="cmsim"><b>${ic('alert-triangle')}${esc(ux('cm_sim'))}</b>${sim.map(g=>`<div class="cmsr"><span>${g.map(o=>`<i>${esc(o.c)}</i>`).join(' · ')}</span><button type="button" class="btn mini primary" data-cmm="${esc(JSON.stringify(g.map(o=>o.c)))}">${esc(ux('cm_merge'))}</button></div>`).join('')}</div>`:''}
+   <div class="cml">${S.map(o=>cmEdit===o.c?`<div class="cmr ed"><input id="cmIn" value="${esc(o.c)}" aria-label="${esc(ux('cm_ren'))}" autocomplete="off"><button type="button" class="btn mini primary" data-cms="${esc(o.c)}">${esc(ux('cm_save'))}</button><button type="button" class="btn mini" data-cmx>${ic('close')}</button></div>`:
+    `<div class="cmr"><span class="cmi">${ic(catIcon({cat:o.c,type:'gider'}))}</span><span class="cmt"><b>${esc(o.c)}</b><small>${esc(ux('cm_cnt',{n:o.n,v:v7m(o.v)}))}</small></span><button type="button" class="btn mini" data-cme="${esc(o.c)}" aria-label="${esc(ux('cm_ren'))}: ${esc(o.c)}">${ic('pencil')}</button></div>`).join('')}</div>`}
+function cmDraw(){const b=document.getElementById('cmBody');if(b)b.innerHTML=cmHTML();const s=document.querySelector('#cmCard .sxt small');if(s)s.textContent=ux('cm_sub',{n:cmStats().length})}
+async function cmRename(from,to){to=to.trim();if(!to)return 0;const F=new Set(from);let n=0;
+  const cnt=await (async()=>{if(db){for(const e of ledger)if(F.has((e.cat||'').trim())&&e.cat!==to){await saveEntry({...e,cat:to});n++}}else{ledger=ledger.map(e=>{if(F.has((e.cat||'').trim())&&e.cat!==to){n++;return {...e,cat:to}}return e});try{await lsWrite(LS_LEDGER,ledger)}catch(e){}}return n})();
+  let ch=false;const B=plan.budgets;if(B){let sum=0,had=false;for(const k of Object.keys(B))if(F.has(k)&&k!==to){sum+=num(B[k]);had=true;delete B[k]}if(had){B[to]=r2(num(B[to])+sum);ch=true}}
+  for(const r of (plan.crules||[]))if(F.has(r.c)&&r.c!==to){r.c=to;ch=true}
+  for(const arr of [plan.recurring,plan.subs])for(const x of (arr||[]))if(x&&F.has(x.cat)&&x.cat!==to){x.cat=to;ch=true}
+  if(ch)queueSave();try{ntSync()}catch(e){}return cnt}
+function cmInject(){const v=document.getElementById('view');if(!v||!v.querySelector('.langseg')||v.querySelector('#cmCard'))return;const K='ayar:92';if(!(K in colState))colState[K]=true;
+  const ref=[...v.querySelectorAll(':scope > section.card')].find(c=>{const h=c.querySelector(':scope > .cardhead h2');return h&&(h.dataset.t||h.textContent).trim()===ux('led_h')});
+  const h=`<section class="card colb sxc${colState[K]?' col':''}" id="cmCard" data-ckey="${K}" style="--sc:#ea580c"><div class="cardhead"><h2 data-t="${esc(ux('cm_h'))}"><span class="sxi">${ic('tag')}</span><span class="sxt"><b>${esc(ux('cm_h'))}</b><small>${esc(ux('cm_sub',{n:cmStats().length}))}</small></span></h2></div><p class="hint">${esc(ux('cm_n'))}</p><div id="cmBody">${cmHTML()}</div></section>`;
+  if(ref)ref.insertAdjacentHTML('beforebegin',h);else v.insertAdjacentHTML('beforeend',h)}
+try{const _ss7=setSpecs;setSpecs=function(){const a=_ss7.apply(this,arguments);a.push([ux('cm_h'),'tag','#ea580c',()=>ux('cm_sub',{n:cmStats().length})]);return a}}catch(e){}
+const _cmRA=renderAyar;renderAyar=function(){cmEdit=null;const r=_cmRA.apply(this,arguments);try{cmInject()}catch(e){}return r};
+document.addEventListener('click',async e=>{const T=e.target.closest&&e.target.closest('#cmCard [data-cme],#cmCard [data-cms],#cmCard [data-cmx],#cmCard [data-cmm]');if(!T)return;e.preventDefault();e.stopPropagation();
+  if(T.dataset.cme!==undefined){cmEdit=T.dataset.cme;cmDraw();const i=document.getElementById('cmIn');if(i){i.focus();i.select()}return}
+  if(T.dataset.cmx!==undefined){cmEdit=null;cmDraw();return}
+  if(T.dataset.cms!==undefined){const from=T.dataset.cms,to=(document.getElementById('cmIn').value||'').trim();if(!to||to===from){cmEdit=null;cmDraw();return}
+    const ex=cmStats().find(o=>o.c!==from&&crFold(o.c)===crFold(to));const target=ex?ex.c:to;
+    if(ex&&!(await uiConfirm({title:ux('cm_merge_h'),msg:ux('cm_merge_p',{a:from,b:target}),ok:ux('cm_merge'),icon:'tag'})))return;
+    const n=await cmRename([from],target);cmEdit=null;cmDraw();toast(ux('cm_done',{n}));return}
+  if(T.dataset.cmm!==undefined){let g=[];try{g=JSON.parse(T.dataset.cmm)}catch(z){}if(g.length<2)return;const S=cmStats();const tgt=g.map(c=>S.find(o=>o.c===c)).filter(Boolean).sort((a,b)=>b.n-a.n)[0].c;
+    if(!(await uiConfirm({title:ux('cm_merge_h'),msg:ux('cm_merge_p',{a:g.filter(c=>c!==tgt).join(', '),b:tgt}),ok:ux('cm_merge'),icon:'tag'})))return;
+    const n=await cmRename(g.filter(c=>c!==tgt),tgt);cmDraw();toast(ux('cm_done',{n}))}},true);
+document.addEventListener('keydown',e=>{if(e.target&&e.target.id==='cmIn'){if(e.key==='Enter'){e.preventDefault();const b=document.querySelector('#cmCard [data-cms]');if(b)b.click()}else if(e.key==='Escape'){e.preventDefault();cmEdit=null;cmDraw()}}});
 
 /* ================= Bildirim merkezi ================= */
 const LS_NF='gg_nf';let nfOpenAt=0,nfTab='all',nfSnz=null,nfUndo=null;
@@ -9759,7 +10014,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='256';
+const APP_VER='257';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
