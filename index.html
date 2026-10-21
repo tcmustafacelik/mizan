@@ -2258,6 +2258,21 @@ input[data-nm]{font-variant-numeric:tabular-nums}
 body.as-on #savebar{display:none!important}
 .asbox{margin:2px 0 10px}
 body.tabs-hid .top{transform:translateY(calc(-1 * var(--headh,110px) - 12px))!important;pointer-events:none}
+/* v265: üst menü — sabit, ince ve sade */
+html:root .tabs,html:root[data-theme] .tabs{gap:2px!important;padding:5px!important;border-radius:20px!important;box-shadow:0 1px 2px rgba(20,26,46,.05),0 6px 18px -14px rgba(20,26,46,.45)!important}
+html:root .tabs button,html:root[data-theme] .tabs button{min-height:44px!important;flex:1 1 0!important;flex-direction:row!important;gap:6px!important;padding:0 6px!important;border-radius:15px!important;color:var(--muted-tx,var(--muted))!important}
+html:root .tabs button[aria-selected="true"],html:root[data-theme] .tabs button[aria-selected="true"]{flex:0 0 auto!important;padding:0 14px 0 12px!important;color:var(--accent)!important;font:650 13px var(--f-body)!important;letter-spacing:-.005em}
+html:root .tabs button:not([aria-selected="true"]) span{display:none!important}
+html:root .tabs button span{max-width:96px}
+html:root .tabs button .ic,html:root .tabs button:not([aria-selected="true"]) .ic{width:22px!important;height:22px!important;flex:0 0 22px;transform:none!important;animation:none!important}
+html:root .tabs button[aria-selected="true"] .ic{width:20px!important;height:20px!important;flex-basis:20px}
+html:root .tabs button:active .ic{transform:scale(.88)!important}
+html:root .tabs .tabind{top:5px!important;bottom:5px!important;border-radius:15px!important}
+html:root .tabs button:hover:not([aria-selected="true"]){color:var(--fg)!important}
+@media (max-width:360px){html:root .tabs button[aria-selected="true"]{padding:0 10px 0 9px!important;font-size:12px!important}html:root .tabs button span{max-width:74px}}
+html:root .tabs svg.tic{fill:none!important;stroke:currentColor}
+html:root .tabs svg.tic *{fill:none!important}
+html:root .tabs .tabind::after,html:root .tabs .tabind::before{display:none!important}
 </style>
 
 <div class="app">
@@ -7144,13 +7159,27 @@ asApply();
     const ae=document.activeElement,typing=ae&&/^(INPUT|TEXTAREA|SELECT)$/.test(ae.tagName);
     if(y<160||typing){acc=0;document.body.classList.remove('tabs-hid');return}
     if((d>0&&acc<0)||(d<0&&acc>0))acc=0;acc+=d;
-    if(acc>40)document.body.classList.add('tabs-hid');else if(acc<-24)document.body.classList.remove('tabs-hid')})},{passive:true});
+    if(false)document.body.classList.add('tabs-hid');else if(acc<-24)document.body.classList.remove('tabs-hid')})},{passive:true});
   const show=()=>document.body.classList.remove('tabs-hid');
   /* ölçüme dayanan kaydırmalar (seçim özetinden karta dön) öncesinde menüyü animasyonsuz göster */
   window.tabsShowNow=()=>{if(!document.body.classList.contains('tabs-hid'))return;const t=document.querySelector('.top');if(t)t.style.transition='none';document.body.classList.remove('tabs-hid');if(t){void t.offsetHeight;requestAnimationFrame(()=>{t.style.transition=''})}};
   document.addEventListener('click',e=>{if(e.target.closest&&e.target.closest('#selmini [data-smn]'))tabsShowNow()},true);
   document.addEventListener('focusin',e=>{if(e.target&&e.target.closest&&e.target.closest('.top'))show()});
   const _thR=render;render=function(){show();return _thR.apply(this,arguments)}})();
+
+/* ================= v265: sabit ve sade üst menü ================= */
+/* Aynı çizgi kalınlığında, ince hatlı sekme simgeleri (dolgulu karışık simgelerin yerine) */
+const TAB_IC={plan:'<rect x="3.5" y="4.5" width="17" height="16" rx="3"/><path d="M8 2.8v3.4M16 2.8v3.4M3.5 9.5h17"/><path d="M8 13.5h2M14 13.5h2M8 17h2"/>',
+ defter:'<path d="M4 4.5h10.5a2.5 2.5 0 0 1 2.5 2.5v13.5H6.5A2.5 2.5 0 0 1 4 18z"/><path d="M4 18a2.5 2.5 0 0 1 2.5-2.5H17"/><path d="M8 8.5h5M8 11.5h3"/><path d="M20 7v13.5"/>',
+ ozet:'<path d="M4 20.5h16"/><rect x="5.5" y="12" width="3" height="6" rx="1"/><rect x="10.5" y="7.5" width="3" height="10.5" rx="1"/><rect x="15.5" y="4" width="3" height="14" rx="1"/>',
+ kalem:'<path d="M9 6.5h11M9 12h11M9 17.5h11"/><path d="M3.8 6.6l1.2 1.1 2.1-2.4M3.8 12.1l1.2 1.1 2.1-2.4"/><circle cx="5.3" cy="17.5" r="1.2"/>',
+ arac:'<rect x="3.5" y="3.5" width="7" height="7" rx="2"/><rect x="13.5" y="3.5" width="7" height="7" rx="2"/><rect x="3.5" y="13.5" width="7" height="7" rx="2"/><rect x="13.5" y="13.5" width="7" height="7" rx="2"/>',
+ ayar:'<path d="M4 6.5h9M17 6.5h3M4 12h3M11 12h9M4 17.5h11M19 17.5h1"/><circle cx="15" cy="6.5" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17" cy="17.5" r="2"/>'};
+function tabIcons(){document.querySelectorAll('#tabs button[data-tab]').forEach(b=>{const k=b.dataset.tab;if(!TAB_IC[k]||b.dataset.ti===k)return;const old=b.querySelector('svg');const s=`<svg class="ic tic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${TAB_IC[k]}</svg>`;
+  if(old)old.outerHTML=s;else b.insertAdjacentHTML('afterbegin',s);b.dataset.ti=k})}
+try{const _tiR=render;render=function(){const r=_tiR.apply(this,arguments);try{tabIcons();requestAnimationFrame(()=>{try{tabInd()}catch(e){}})}catch(e){}return r}}catch(e){}
+try{new MutationObserver(()=>{try{tabIcons()}catch(e){}}).observe(document.getElementById('tabs'),{childList:true})}catch(e){}
+setTimeout(()=>{try{tabIcons();tabInd()}catch(e){}},0);
 
 /* ================= Bildirim merkezi ================= */
 const LS_NF='gg_nf';let nfOpenAt=0,nfTab='all',nfSnz=null,nfUndo=null;
@@ -10317,7 +10346,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='264';const APP_VER_UI='1.0';
+const APP_VER='265';const APP_VER_UI='1.0';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
