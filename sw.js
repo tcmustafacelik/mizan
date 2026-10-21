@@ -1,5 +1,5 @@
 /* Mizan service worker: çevrimdışı çalışma + ödeme günü bildirimleri */
-const V='mizan-v4';
+const V='mizan-v5';
 const SHELL=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(V).then(c=>c.addAll(SHELL)).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>/^mizan-v/.test(k)&&k!==V).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
@@ -35,6 +35,10 @@ async function check(){
   // günlük kayıt hatırlatması (v255)
   try{const R=cfg.rem,n=new Date(),td=ds(n),hm=pad(n.getHours())+':'+pad(n.getMinutes());
     if(R&&R.on&&hm>=R.t&&R.last!==td&&R.shown!==td){const sh=await readJSON(c,'/nt-shown.json',{});if(!sh['rem|'+td]){await self.registration.showNotification('Mizan',{body:R.tx||'',icon:'icon-192.png',badge:'icon-192.png',tag:'mizan-rem-'+td,data:{url:'./'}});sh['rem|'+td]=td;await c.put('/nt-shown.json',new Response(JSON.stringify(sh),{headers:{'content-type':'application/json'}}))}}}catch(e){}
+  // haftalık özet (v256): pazar 20:00
+  try{const W=cfg.wsum,n=new Date(),hm=pad(n.getHours())+':'+pad(n.getMinutes());
+    if(W&&W.on&&n.getDay()===0&&hm>=(W.t||'20:00')){const mon=ds(new Date(n.getFullYear(),n.getMonth(),n.getDate()-6));
+      if(W.shown!==mon){const sh=await readJSON(c,'/nt-shown.json',{});if(!sh['ws|'+mon]){await self.registration.showNotification(W.h||'Mizan',{body:W.wk===mon?W.tx:W.tx0,icon:'icon-192.png',badge:'icon-192.png',tag:'mizan-ws-'+mon,data:{url:'./'}});sh['ws|'+mon]=ds(n);await c.put('/nt-shown.json',new Response(JSON.stringify(sh),{headers:{'content-type':'application/json'}}))}}}}catch(e){}
   if(!cfg.on||!cfg.items)return;
   const now=new Date(),today=ds(now),tom=ds(new Date(now.getFullYear(),now.getMonth(),now.getDate()+1));
   const shown=await readJSON(c,'/nt-shown.json',{});

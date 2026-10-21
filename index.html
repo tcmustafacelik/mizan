@@ -2081,6 +2081,52 @@ html[dir=rtl] #paycard label.payrow.du-soon{box-shadow:inset -3px 0 0 var(--warn
 .du-late .dupill{background:color-mix(in srgb,var(--bad) 14%,transparent);color:var(--bad-tx,var(--bad))}
 
 #rmCard .rmbox{border-top:0;margin-top:0;padding-top:0}
+/* v256: sık kayıtlar */
+.fvbox{margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.fvh{display:flex;flex-direction:column;gap:2px;margin-bottom:8px}
+.fvh b{display:flex;align-items:center;gap:6px;font-size:13.5px}.fvh b .ic{width:16px;height:16px;color:var(--accent)}
+.fvh small{font-size:11.5px;color:var(--muted-tx,var(--muted))}
+.fvrow{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.fvc{display:flex;align-items:center;gap:8px;min-width:0;padding:8px 10px;border-radius:14px;border:1px solid var(--line);background:var(--surface2);color:var(--text);text-align:start;cursor:pointer;font:inherit;transition:transform .12s ease}
+.fvc:active{transform:scale(.97)}
+.fvc .fvi{flex:0 0 30px;height:30px;border-radius:10px;display:grid;place-items:center;background:rgba(var(--acc-rgb),.14);color:var(--accent)}
+.fvc.g .fvi{background:rgba(22,163,74,.14);color:var(--good-tx,var(--good))}
+.fvc .fvi .ic{width:17px;height:17px}
+.fvc .fvt{display:flex;flex-direction:column;min-width:0}
+.fvc .fvt b{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fvc .fvt small{font:500 12px var(--f-num);color:var(--muted-tx,var(--muted));white-space:nowrap}
+.fvc.g .fvt small{color:var(--good-tx,var(--good))}
+.fvc:disabled{opacity:.6}
+/* ay sonu tahmini */
+.pjrow{display:flex;gap:8px;align-items:flex-start;margin-top:10px;padding:9px 11px;border-radius:12px;background:rgba(var(--acc-rgb),.08);font-size:12.5px;line-height:1.4}
+.pjrow>.ic{flex:0 0 16px;width:16px;height:16px;margin-top:1px;color:var(--accent)}
+.pjrow>span{display:flex;flex-direction:column;gap:2px;min-width:0}.pjrow .pjl{display:block}
+.pjrow b.pos{color:var(--good-tx,var(--good))}.pjrow b.neg{color:var(--bad-tx,var(--bad))}
+.pjrow.bad{background:rgba(220,38,38,.09)}.pjrow.bad>.ic{color:var(--bad-tx,var(--bad))}
+.pjrow small{font-size:11.5px;color:var(--bad-tx,var(--bad))}
+/* harcama takvimi */
+#hcCard{padding:12px 14px!important}
+.hch{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.hct{display:flex;align-items:center;gap:8px;background:none;border:0;padding:4px 0;color:var(--text);font:inherit;cursor:pointer}
+.hct b{font-size:15px}.hct .ic{width:18px;height:18px;color:var(--accent)}.hct .ic:last-child{width:16px;height:16px;color:var(--muted-tx,var(--muted));transition:transform .2s}
+#hcCard.hcx .hct .ic:last-child{transform:rotate(-90deg)}[dir=rtl] #hcCard.hcx .hct .ic:last-child{transform:rotate(90deg)}
+#hcCard.hcx .hcb,#hcCard.hcx .hcnav{display:none}
+.hcnav{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted-tx,var(--muted))}
+.hcnav .btn{min-width:30px;min-height:30px;padding:0 8px;font-size:17px;line-height:1}
+.hcb{margin-top:8px}
+.hcg{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.hcw span{text-align:center;font-size:10.5px;font-weight:600;color:var(--muted-tx,var(--muted));padding-bottom:2px}
+.hcc{aspect-ratio:1;max-height:44px;border-radius:9px;border:0;display:grid;place-items:center;font:500 12px var(--f-num);color:var(--text);background:var(--surface2);cursor:pointer;padding:0;position:relative}
+.hcc.hce{background:none;cursor:default}
+.hcc.l1{background:rgba(var(--acc-rgb),.2)}.hcc.l2{background:rgba(var(--acc-rgb),.4)}.hcc.l3{background:rgba(var(--acc-rgb),.65);color:#fff}.hcc.l4{background:rgba(var(--acc-rgb),.9);color:#fff}
+.hcc.td{box-shadow:inset 0 0 0 2px var(--accent)}
+.hcc.on{box-shadow:0 0 0 2px var(--surface,#fff),0 0 0 4px var(--accent);z-index:1}
+.hcf{display:flex;align-items:center;gap:4px;margin-top:10px;font-size:11px;color:var(--muted-tx,var(--muted))}
+.hcf i{width:12px;height:12px;border-radius:3px}.hcf i.l1{background:rgba(var(--acc-rgb),.2)}.hcf i.l2{background:rgba(var(--acc-rgb),.4)}.hcf i.l3{background:rgba(var(--acc-rgb),.65)}.hcf i.l4{background:rgba(var(--acc-rgb),.9)}
+.hcf b{margin-inline-start:auto;font:600 12.5px var(--f-num);color:var(--text)}
+.hcclr{margin-top:10px}
+.hcn{margin:8px 0 0!important}
+.pjrow .pjp{display:block;font-style:normal;font-size:11px;color:var(--muted-tx,var(--muted));margin-top:2px}
 </style>
 
 <div class="app">
@@ -6450,6 +6496,104 @@ document.addEventListener('change',async e=>{const x=e.target;if(!x)return;
 /* yeniden çizimlerde işaretler */
 const _duRP=renderPlan;renderPlan=function(){const r=_duRP.apply(this,arguments);try{duMark()}catch(e){}return r};
 
+/* ================= v256: sık kayıtlar, ay sonu tahmini, harcama takvimi, haftalık özet ================= */
+Object.assign(UX.tr,{pj_plan:'Kalan, plandaki gelirine göre hesaplandı.',fv_h:'Sık kayıtların',fv_n:'Dokun, bugünün tarihiyle hemen eklensin.',fv_added:p=>`${p.c} eklendi`,
+ pj_line:p=>`Bu hızla ay sonunda gider ≈ ${p.x}, kalan ≈ ${p.l}`,pj_over:'Bu hız gelirini aşıyor, harcamayı biraz yavaşlat.',
+ hc_h:'Harcama takvimi',hc_n:'Koyu gün daha çok harcama demek. Bir güne dokun, o günün kayıtları listelensin.',hc_all:'Tüm günler',hc_none:'Bu ay gider kaydı yok.',hc_less:'Az',hc_more:'Çok',hc_prev:'Önceki ay',hc_next:'Sonraki ay',
+ ws_h:'Haftalık özet',ws_chk:'Pazar akşamı özet gönder',ws_n:'Pazar 20:00’de bu haftanın toplam giderini ve en çok harcadığın kategoriyi bildirir. Uygulama kapalıyken telefonun izin verdiği zamanlarda gelir; uygulamayı açtığında da gösterilir.',
+ ws_msg:p=>`Bu hafta ${p.x} harcadın${p.c?`, en çok ${p.c}`:''}.`,ws_up:p=>` Geçen haftadan %${p.p} fazla.`,ws_dn:p=>` Geçen haftadan %${p.p} az.`,ws_none:'Bu hafta hiç gider kaydı girmedin.',ws_on:'Haftalık özet açık',ws_off:'Haftalık özet kapalı',ws_sub:'Pazar 20:00'});
+Object.assign(UX.en,{pj_plan:'“Left” uses the income in your plan.',fv_h:'Your frequent entries',fv_n:'Tap to add it right away with today’s date.',fv_added:p=>`${p.c} added`,
+ pj_line:p=>`At this pace: spending ≈ ${p.x}, left ≈ ${p.l} by month end`,pj_over:'This pace exceeds your income — slow down a little.',
+ hc_h:'Spending calendar',hc_n:'Darker days mean more spending. Tap a day to list its entries.',hc_all:'All days',hc_none:'No spending entries this month.',hc_less:'Less',hc_more:'More',hc_prev:'Previous month',hc_next:'Next month',
+ ws_h:'Weekly summary',ws_chk:'Send a summary on Sunday evening',ws_n:'On Sunday at 20:00 it tells you this week’s total spending and your top category. While the app is closed it arrives when your phone allows; it is also shown when you open the app.',
+ ws_msg:p=>`You spent ${p.x} this week${p.c?`, mostly on ${p.c}`:''}.`,ws_up:p=>` ${p.p}% more than last week.`,ws_dn:p=>` ${p.p}% less than last week.`,ws_none:'You didn’t log any spending this week.',ws_on:'Weekly summary on',ws_off:'Weekly summary off',ws_sub:'Sunday 20:00'});
+Object.assign(UX.ru,{pj_plan:'Остаток посчитан по доходу из плана.',fv_h:'Частые записи',fv_n:'Нажмите — запись сразу добавится с сегодняшней датой.',fv_added:p=>`${p.c}: добавлено`,
+ pj_line:p=>`В таком темпе к концу месяца: расходы ≈ ${p.x}, остаток ≈ ${p.l}`,pj_over:'Такой темп превышает доход — притормозите расходы.',
+ hc_h:'Календарь расходов',hc_n:'Чем темнее день, тем больше расходов. Нажмите на день, чтобы увидеть его записи.',hc_all:'Все дни',hc_none:'В этом месяце расходов нет.',hc_less:'Меньше',hc_more:'Больше',hc_prev:'Предыдущий месяц',hc_next:'Следующий месяц',
+ ws_h:'Итоги недели',ws_chk:'Присылать итоги в воскресенье вечером',ws_n:'В воскресенье в 20:00 сообщает расходы за неделю и главную категорию. Когда приложение закрыто — когда позволит телефон; также показывается при открытии.',
+ ws_msg:p=>`За эту неделю вы потратили ${p.x}${p.c?`, больше всего — ${p.c}`:''}.`,ws_up:p=>` На ${p.p}% больше, чем на прошлой неделе.`,ws_dn:p=>` На ${p.p}% меньше, чем на прошлой неделе.`,ws_none:'На этой неделе расходов не записано.',ws_on:'Итоги недели включены',ws_off:'Итоги недели выключены',ws_sub:'Воскресенье 20:00'});
+Object.assign(UX.ar,{pj_plan:'حُسب المتبقي وفق الدخل في خطتك.',fv_h:'قيودك المتكررة',fv_n:'اضغط لإضافته فورًا بتاريخ اليوم.',fv_added:p=>`تمت إضافة ${p.c}`,
+ pj_line:p=>`بهذه الوتيرة في نهاية الشهر: المصروف ≈ ${p.x}، المتبقي ≈ ${p.l}`,pj_over:'هذه الوتيرة تتجاوز دخلك، خفّف الإنفاق قليلًا.',
+ hc_h:'تقويم المصروف',hc_n:'اليوم الأغمق يعني إنفاقًا أكثر. اضغط على يوم لعرض قيوده.',hc_all:'كل الأيام',hc_none:'لا مصروفات هذا الشهر.',hc_less:'أقل',hc_more:'أكثر',hc_prev:'الشهر السابق',hc_next:'الشهر التالي',
+ ws_h:'الملخص الأسبوعي',ws_chk:'أرسل ملخصًا مساء الأحد',ws_n:'يوم الأحد الساعة 20:00 يخبرك بإجمالي مصروف الأسبوع وأكثر فئة أنفقت عليها. عندما يكون التطبيق مغلقًا يصل حين يسمح الهاتف، ويظهر أيضًا عند فتح التطبيق.',
+ ws_msg:p=>`أنفقت ${p.x} هذا الأسبوع${p.c?`، أكثرها على ${p.c}`:''}.`,ws_up:p=>` أكثر بنسبة ${p.p}% من الأسبوع الماضي.`,ws_dn:p=>` أقل بنسبة ${p.p}% من الأسبوع الماضي.`,ws_none:'لم تسجّل أي مصروف هذا الأسبوع.',ws_on:'الملخص الأسبوعي مفعّل',ws_off:'الملخص الأسبوعي متوقف',ws_sub:'الأحد 20:00'});
+const v6ds=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+const v6add=(s,n)=>{const [y,m,d]=s.split('-').map(Number);return v6ds(new Date(y,m-1,d+n))};
+const v6M=v=>`<bdi class="mv" dir="ltr">${esc(money(Math.round(v)).replace(/[.,]\d\d(?!\d)(?=\D*$)/,''))}</bdi>`;
+
+/* ---- 1. Sık kayıtlar ---- */
+function fvList(){const from=v6add(todayStr(),-120),M=new Map();
+  for(const e of ledger){if(String(e.date)<from)continue;const a=r2(num(e.amount));if(!(a>0))continue;const k=[e.type,(e.cat||'').trim().toLowerCase(),(e.desc||'').trim().toLowerCase(),a].join('|');const o=M.get(k);if(o){o.n++;if(String(e.date)>o.last){o.last=String(e.date);o.e=e}}else M.set(k,{k,n:1,last:String(e.date),e})}
+  return [...M.values()].filter(o=>o.n>=3).sort((a,b)=>b.n-a.n||(a.last<b.last?1:-1)).slice(0,6)}
+function fvHTML(){const L=fvList();if(!L.length)return '';
+  return `<div class="fvbox"><div class="fvh"><b>${ic('zap')}${esc(ux('fv_h'))}</b><small>${esc(ux('fv_n'))}</small></div><div class="fvrow">${L.map(o=>{const e=o.e,lb=(e.desc||e.cat||(e.type==='gelir'?t('lg_income'):t('lg_expense')));return `<button type="button" class="fvc ${e.type==='gelir'?'g':'x'}" data-fv="${esc(o.k)}"><span class="fvi">${ic(catIcon(e))}</span><span class="fvt"><b>${esc(lb)}</b><small>${e.type==='gelir'?'+':'−'}${moneyH(num(e.amount))}</small></span></button>`}).join('')}</div></div>`}
+function fvDraw(){const q=document.querySelector('#view .qe');if(!q)return;const card=q.closest('section');if(!card)return;const old=card.querySelector('.fvbox');const h=fvHTML();if(old)old.remove();if(h)card.insertAdjacentHTML('beforeend',h)}
+document.addEventListener('click',async ev=>{const b=ev.target.closest&&ev.target.closest('[data-fv]');if(!b)return;ev.preventDefault();if(b.disabled)return;
+  const o=fvList().find(z=>z.k===b.dataset.fv);if(!o)return;const s=o.e;b.disabled=true;const ts=Date.now();
+  const en={type:s.type,amount:r2(num(s.amount)),date:todayStr(),cat:s.cat||'',desc:s.desc||'',ts,...(s.acc?{acc:s.acc}:{})};
+  try{if(await saveEntry(en)){if(!db&&tab==='defter')drawLedger();const lb=s.desc||s.cat||'';let msg='';try{msg=budAlert(en)||''}catch(z){}
+    toast(msg||ux('fv_added',{c:lb}),{label:t('sb_discard'),fn:async()=>{const x=ledger.find(z=>z.ts===ts&&z.date===en.date&&num(z.amount)===en.amount);if(x){await removeEntry(x.id);if(tab==='defter')drawLedger()}}})}}finally{b.disabled=false}});
+
+/* ---- 2. Ay sonu tahmini ("bu ay bir bakışta" içinde) ---- */
+function pjCalc(){const ym=ymToday(),n=new Date(),d=n.getDate(),D=new Date(n.getFullYear(),n.getMonth()+1,0).getDate();if(d<3)return null;
+  let g=0,x=0,c=0;for(const e of ledger){if(String(e.date).slice(0,7)!==ym)continue;c++;if(e.type==='gelir')g+=num(e.amount);else x+=num(e.amount)}
+  if(!c||!(x>0))return null;let pinc=0;try{const m=plan.months.find(z=>z.ym===ym);if(m)pinc=num(calc(m).income)}catch(e){}
+  const px=r2(x/d*D),inc=Math.max(g,pinc);return {x:px,l:r2(inc-px),inc,pl:pinc>g}}
+const _pjGL=glHTML;glHTML=function(){let h=_pjGL.apply(this,arguments);try{const P=pjCalc();if(h&&P){const bad=P.l<0;
+  const row=`<div class="pjrow${bad?' bad':''}">${ic(bad?'alert-triangle':'bar-chart-3')}<span><span class="pjl">${ux('pj_line',{x:v6M(P.x),l:`<b class="${bad?'neg':'pos'}">${v6M(P.l)}</b>`})}${P.pl?`<em class="pjp">${esc(ux('pj_plan'))}</em>`:''}</span>${bad?`<small>${esc(ux('pj_over'))}</small>`:''}</span></div>`;
+  const k=h.lastIndexOf('</section>');h=h.slice(0,k)+row+h.slice(k)}}catch(e){}return h};
+
+/* ---- 3. Harcama takvimi (Defter) ---- */
+let hcYm=null,hcSel=null;
+function hcOpen(){try{return localStorage.getItem('gg_hc')!=='0'}catch(e){return true}}
+function hcHTML(){const ym=hcYm||(ledgerFilter&&ledgerFilter!=='all'?ledgerFilter:ymToday());const [Y,Mo]=ym.split('-').map(Number);const D=new Date(Y,Mo,0).getDate();
+  const S={};let mx=0,tot=0;for(const e of ledger){if(e.type==='gelir'||String(e.date).slice(0,7)!==ym)continue;const k=String(e.date);S[k]=(S[k]||0)+num(e.amount)}
+  for(const k in S){mx=Math.max(mx,S[k]);tot+=S[k]}
+  const off=(new Date(Y,Mo-1,1).getDay()+6)%7;let wd=[];try{const f=new Intl.DateTimeFormat(LOC[LANG],{weekday:'narrow'});for(let i=0;i<7;i++)wd.push(f.format(new Date(2024,0,1+i)))}catch(e){wd=['P','S','Ç','P','C','C','P']}
+  const td=todayStr(),cells=[];for(let i=0;i<off;i++)cells.push('<span class="hcc hce"></span>');
+  for(let d=1;d<=D;d++){const k=ym+'-'+pad(d),v=S[k]||0,lv=v>0?Math.max(1,Math.ceil(v/mx*4)):0;const sel=hcSel===k&&lq===dmy(k);
+    cells.push(`<button type="button" class="hcc l${lv}${k===td?' td':''}${sel?' on':''}" data-hcd="${k}" aria-label="${esc(dmy(k))}${v?' · '+esc(money(v)):''}"${v?'':' data-z="1"'}>${d}</button>`)}
+  const open=hcOpen();
+  return `<section class="card hcc-card${open?'':' hcx'}" id="hcCard"><div class="hch"><button type="button" class="hct" data-hctog aria-expanded="${open}">${ic('calendar')}<b>${esc(ux('hc_h'))}</b>${ic('chev-down')}</button>
+   <span class="hcnav"><button type="button" class="btn mini" data-hcm="-1" aria-label="${esc(ux('hc_prev'))}">${LANG==='ar'?'›':'‹'}</button><span>${esc(ymLabel(ym))}</span><button type="button" class="btn mini" data-hcm="1" aria-label="${esc(ux('hc_next'))}">${LANG==='ar'?'‹':'›'}</button></span></div>
+   <div class="hcb"><div class="hcg hcw">${wd.map(w=>`<span>${esc(w)}</span>`).join('')}</div><div class="hcg">${cells.join('')}</div>
+   ${mx?`<div class="hcf"><span>${esc(ux('hc_less'))}</span><i class="l1"></i><i class="l2"></i><i class="l3"></i><i class="l4"></i><span>${esc(ux('hc_more'))}</span><b>${v6M(tot)}</b></div>`:`<p class="hint">${esc(ux('hc_none'))}</p>`}
+   ${hcSel&&lq===dmy(hcSel)?`<button type="button" class="btn mini hcclr" data-hcclr>${ic('close')}${esc(ux('hc_all'))}</button>`:''}<p class="hint hcn">${esc(ux('hc_n'))}</p></div></section>`}
+function hcDraw(){const lh=document.querySelector('#view .listhead');if(!lh)return;const old=document.getElementById('hcCard');const h=hcHTML();if(old)old.outerHTML=h;else lh.insertAdjacentHTML('beforebegin',h)}
+function hcSetQ(v){lq=v;const s=document.getElementById('lSearch');if(s)s.value=v;drawLedger()}
+document.addEventListener('click',ev=>{const T=ev.target.closest&&ev.target.closest('#hcCard [data-hcd],#hcCard [data-hcm],#hcCard [data-hctog],#hcCard [data-hcclr]');if(!T)return;ev.preventDefault();
+  if(T.dataset.hctog!==undefined){const o=!hcOpen();try{localStorage.setItem('gg_hc',o?'1':'0')}catch(e){}hcDraw();return}
+  if(T.dataset.hcm){const cur=hcYm||(ledgerFilter&&ledgerFilter!=='all'?ledgerFilter:ymToday());hcYm=addYm(cur,+T.dataset.hcm);hcDraw();return}
+  if(T.dataset.hcclr!==undefined){hcSel=null;hcSetQ('');return}
+  const k=T.dataset.hcd;if(hcSel===k&&lq===dmy(k)){hcSel=null;hcSetQ('')}else{hcSel=k;hcSetQ(dmy(k));try{hap(10)}catch(e){}setTimeout(()=>{const L=document.getElementById('lSum');if(L){const r=L.getBoundingClientRect();if(r.top>innerHeight-120||r.top<60)L.scrollIntoView({block:'start',behavior:'smooth'})}},60)}});
+const _hcDL=drawLedger;drawLedger=function(){const r=_hcDL.apply(this,arguments);try{if(hcSel&&lq!==dmy(hcSel))hcSel=null;hcDraw();fvDraw()}catch(e){}return r};
+const _hcRD=renderDefter;renderDefter=function(){hcYm=null;const r=_hcRD.apply(this,arguments);try{hcDraw();fvDraw()}catch(e){}return r};
+
+/* ---- 4. Haftalık özet ---- */
+function wsGet(){let o={};try{o=JSON.parse(localStorage.getItem('gg_ws')||'{}')||{}}catch(e){}return {on:!!o.on}}
+function wsSet(o){try{localStorage.setItem('gg_ws',JSON.stringify(o))}catch(e){}try{ntSync()}catch(e){}}
+function wsMon(s){const [y,m,d]=(s||todayStr()).split('-').map(Number);const dt=new Date(y,m-1,d);return v6ds(new Date(y,m-1,d-((dt.getDay()+6)%7)))}
+function wsData(){const td=todayStr(),mon=wsMon(td),span=Math.round((new Date(td)-new Date(mon))/864e5),pm=v6add(mon,-7),pe=v6add(pm,span);
+  let x=0,px=0;const C={};for(const e of ledger){if(e.type==='gelir')continue;const d=String(e.date),a=num(e.amount);if(d>=mon&&d<=td){x+=a;const c=(e.cat||'').trim();if(c)C[c]=(C[c]||0)+a}else if(d>=pm&&d<=pe)px+=a}
+  let top='',tv=0;for(const c in C)if(C[c]>tv){tv=C[c];top=c}return {mon,x:r2(x),px:r2(px),top}}
+function wsText(){const W=wsData();if(!(W.x>0))return ux('ws_none');let s=ux('ws_msg',{x:money(Math.round(W.x)).replace(/[.,]\d\d(?!\d)(?=\D*$)/,''),c:W.top});
+  if(W.px>0){const p=Math.round((W.x-W.px)/W.px*100);if(p>=5)s+=ux('ws_up',{p});else if(p<=-5)s+=ux('ws_dn',{p:-p})}return s}
+function wsShown(){try{return localStorage.getItem('gg_ws_shown')||''}catch(e){return ''}}
+function wsCfg(){const W=wsGet();return {on:W.on,wk:wsMon(),tx:wsText(),tx0:ux('ws_none'),shown:wsShown(),t:'20:00',h:ux('ws_h')}}
+function wsDue(){if(!wsGet().on)return false;const n=new Date();if(n.getDay()!==0)return false;const hm=pad(n.getHours())+':'+pad(n.getMinutes());return hm>='20:00'&&wsShown()!==wsMon()}
+async function wsCheck(){if(!wsDue())return;const wk=wsMon(),tx=wsText();try{localStorage.setItem('gg_ws_shown',wk)}catch(e){}
+  try{if(typeof Notification!=='undefined'&&Notification.permission==='granted'&&swReg)await swReg.showNotification(ux('ws_h'),{body:tx,icon:'icon-192.png',badge:'icon-192.png',tag:'mizan-ws-'+wk,data:{url:'./'}})}catch(e){}
+  try{toast(tx,{label:t('tab_ledger'),fn:()=>{tab='defter';render();scrollTo(0,0)}})}catch(e){}try{ntSync()}catch(e){}}
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')setTimeout(wsCheck,1400)});setInterval(()=>{if(document.visibilityState==='visible')wsCheck()},60000);setTimeout(wsCheck,4000);
+function wsSub(){return wsGet().on?ux('ss_on')+' · '+ux('ws_sub'):ux('ss_off')}
+try{const _ss6=setSpecs;setSpecs=function(){const a=_ss6.apply(this,arguments);a.push([ux('ws_h'),'calendar-range','#0d9488',wsSub]);return a}}catch(e){}
+function wsInject(){const v=document.getElementById('view');if(!v||!v.querySelector('.langseg')||v.querySelector('#wsCard'))return;const ref=document.getElementById('rmCard');const K='ayar:91';if(!(K in colState))colState[K]=true;const W=wsGet();
+  const h=`<section class="card colb sxc${colState[K]?' col':''}" id="wsCard" data-ckey="${K}" style="--sc:#0d9488"><div class="cardhead"><h2 data-t="${esc(ux('ws_h'))}"><span class="sxi">${ic('calendar-range')}</span><span class="sxt"><b>${esc(ux('ws_h'))}</b><small>${esc(wsSub())}</small></span></h2></div><label class="chk pvrow"><input type="checkbox" id="wsChk"${W.on?' checked':''}><span>${esc(ux('ws_chk'))}</span></label><p class="hint">${esc(ux('ws_n'))}</p></section>`;
+  if(ref)ref.insertAdjacentHTML('afterend',h);else v.insertAdjacentHTML('beforeend',h)}
+const _wsRA=renderAyar;renderAyar=function(){const r=_wsRA.apply(this,arguments);try{wsInject()}catch(e){}return r};
+document.addEventListener('change',async e=>{const x=e.target;if(!x||x.id!=='wsChk')return;wsSet({on:x.checked});if(x.checked){try{await rmEnable()}catch(z){}}toast(ux(x.checked?'ws_on':'ws_off'));
+  const h=document.querySelector('#wsCard .sxt');if(h){let s=h.querySelector('small');if(!s){s=document.createElement('small');h.append(s)}s.textContent=wsSub()}});
+
 /* ================= Bildirim merkezi ================= */
 const LS_NF='gg_nf';let nfOpenAt=0,nfTab='all',nfSnz=null,nfUndo=null;
 const dayAdd=(iso,n)=>{const [y,m,d]=iso.split('-').map(Number),x=new Date(y,m-1,d+n);return x.getFullYear()+'-'+pad(x.getMonth()+1)+'-'+pad(x.getDate())};
@@ -8805,7 +8949,7 @@ function ntItems(){
 }
 async function ntSync(){
   if(!WEB||!('caches' in window))return;
-  try{const c=await caches.open('mizan-nt');await c.put('/nt.json',new Response(JSON.stringify({on:ntOn(),tx:{today:ux('nt_today'),tom:ux('nt_tom'),more:ux('nt_more',{n:'{n}'})},items:ntItems(),rem:typeof remCfg==='function'?remCfg():null}),{headers:{'content-type':'application/json'}}))}catch(e){}
+  try{const c=await caches.open('mizan-nt');await c.put('/nt.json',new Response(JSON.stringify({on:ntOn(),tx:{today:ux('nt_today'),tom:ux('nt_tom'),more:ux('nt_more',{n:'{n}'})},items:ntItems(),rem:typeof remCfg==='function'?remCfg():null,wsum:(()=>{try{return wsCfg()}catch(e){return null}})()}),{headers:{'content-type':'application/json'}}))}catch(e){}
 }
 async function ntBg(){try{if(swReg&&swReg.periodicSync){const st=await navigator.permissions.query({name:'periodic-background-sync'});if(st.state==='granted')await swReg.periodicSync.register('mizan-due',{minInterval:6*3600*1000})}}catch(e){}}
 async function ntEnable(){
@@ -9615,7 +9759,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='255';
+const APP_VER='256';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
