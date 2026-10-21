@@ -2241,6 +2241,17 @@ body.has-bar .lxbar{bottom:calc(92px + env(safe-area-inset-bottom,0px))}
 .bvline{display:flex;align-items:flex-start;gap:8px;margin:2px 0 10px;padding:8px 10px;border-radius:10px;background:var(--good-bg,rgba(22,163,74,.1));color:var(--good-tx,var(--good));font-size:12.5px;line-height:1.4}
 .bvline .ic{width:16px;height:16px;flex:0 0 auto;margin-top:1px}
 .bvline.bad{background:var(--bad-bg,rgba(220,38,38,.1));color:var(--bad-tx,var(--bad))}
+/* v262: metne çevrilen tutar kutuları eski sayı kutusu görünümünü korusun */
+.ismr input[data-nm]{height:34px!important;padding:4px 8px!important;font-size:13.5px!important;text-align:end;min-width:0}
+input[data-nm]{font-variant-numeric:tabular-nums}
+.cpw{position:relative;display:block;min-width:0}
+.cpw>input{width:100%;padding-inline-end:38px!important}
+.cpyi{position:absolute;inset-inline-end:3px;top:50%;transform:translateY(-50%);width:34px;height:34px;border:0;border-radius:10px;background:transparent;color:var(--muted-tx,var(--muted));display:grid;place-items:center;cursor:pointer;padding:0}
+.cpyi .ic{width:17px;height:17px}.cpyi:active{background:var(--surface2)}
+.cpyi.on{color:var(--good-tx,var(--good))}
+.drow>.cpw{grid-column:3;grid-row:1}
+.drow>.cpw>input{min-height:38px;padding:7px 10px}
+.drow:has(>.cpw){grid-template-columns:22px minmax(0,1fr) 142px!important}
 </style>
 
 <div class="app">
@@ -3573,7 +3584,7 @@ function editorHTML(m){
   <h3>${ux('extra_h')}</h3>
   <div>${(m.extra||[]).map((x,i)=>`<div class="xrow"><input type="text" data-xn="${i}" value="${esc(x.n||'')}" placeholder="${esc(ux('extra_ph'))}" aria-label="${esc(ux('extra_ph'))}"><input type="number" step="any" inputmode="decimal" data-xv="${i}" value="${val(x.v)}" aria-label="${esc(ux('extra_h'))}"><button type="button" class="pill del" data-xdel="${i}" aria-label="${esc(t('del'))}">×</button></div>`).join('')}<button type="button" class="btn mini" data-xadd="1" style="margin-top:6px">${ic('plus')}${ux('extra_add')}</button></div>
   <h3>${t('ed_debts_h')}</h3>
-  <div>${vis.length?vis.map(d=>`<div class="drow"><span class="dn">${ic(debtIcon(d))}<span class="dtx"><span class="dnm">${esc(d.name)}</span>${isUnit(d)?`<em class="unote" data-unote="${d.id}">${esc(unitNoteText(d,m.d[d.id]))}</em>`:''}<span class="dact"><button type="button" class="pill ${paidOf(m.ym,d.id)?'on':lateDays(m,d)?'late':partRaw(m.ym,d.id)?'half':''}" data-ptog="${d.id}">${paidOf(m.ym,d.id)?t('cal_l_paid'):lateDays(m,d)?esc(ux('late_p',{n:lateDays(m,d)})):t('cal_l_wait')}${paidOf(m.ym,d.id)&&plan.paidAt&&plan.paidAt[m.ym]&&plan.paidAt[m.ym][d.id]?' · '+esc(shortDay(plan.paidAt[m.ym][d.id])):''}</button><button type="button" class="pill ${partRaw(m.ym,d.id)||partOpen.has(m.ym+'|'+d.id)?'half':''}" data-popen="${d.id}">${pt_('part')}</button>${!paidOf(m.ym,d.id)&&dvLeft(m,d.id)>0?`<button type="button" class="pill ${deferOpen.has(m.ym+'|'+d.id)?'half':''}" data-dfopen="${d.id}">${ux('df_btn')}</button>`:''}<button type="button" class="pill${rcSet.has(m.ym+'|'+d.id)?' rcon':''}" data-rc="${d.id}">${rcSet.has(m.ym+'|'+d.id)?'✓ ':''}${ux('rc_btn')}</button><button type="button" class="pill del" data-rmd="${d.id}">${t('del')}</button></span>${deferInText(m,d)?`<em class="unote dfin">${esc(deferInText(m,d))}</em>`:''}${deferOpen.has(m.ym+'|'+d.id)&&!paidOf(m.ym,d.id)?(deferTargets(m).length?`<span class="pbox dfbox"><select data-dfto="${d.id}" aria-label="${esc(ux('df_to'))}">${deferTargets(m).map(n=>`<option value="${n.ym}">${esc(ymLabel(n.ym))}</option>`).join('')}</select><button type="button" class="btn mini primary" data-dfgo="${d.id}">${ux('df_go')}</button></span>`:`<em class="unote">${ux('df_nomonth')}</em>`):''}${(partOpen.has(m.ym+'|'+d.id)||partRaw(m.ym,d.id))&&!paidOf(m.ym,d.id)?`<span class="pbox"><input type="number" step="any" min="0" inputmode="decimal" data-part="${d.id}" value="${partRaw(m.ym,d.id)||''}" placeholder="${esc(pt_('paid_amt')+(isUnit(d)?' ('+unitName(d.unit)+')':''))}" aria-label="${esc(pt_('paid_amt'))}"><em class="unote" data-pnote="${d.id}">${esc(partNoteText(d,m))}</em></span>`:''}</span></span><input type="number" step="any" inputmode="decimal" data-debt="${d.id}" value="${val(m.d[d.id])}" aria-label="${esc(t('ed_amount_aria',{name:d.name}))}"></div>`).join(''):`<p class="hint">${t('ed_nodebt')}</p>`}</div>${deferListHTML(m)}
+  <div>${vis.length?vis.map(d=>`<div class="drow"><span class="dn">${ic(debtIcon(d))}<span class="dtx"><span class="dnm">${esc(d.name)}</span>${isUnit(d)?`<em class="unote" data-unote="${d.id}">${esc(unitNoteText(d,m.d[d.id]))}</em>`:''}<span class="dact"><button type="button" class="pill ${paidOf(m.ym,d.id)?'on':lateDays(m,d)?'late':partRaw(m.ym,d.id)?'half':''}" data-ptog="${d.id}">${paidOf(m.ym,d.id)?t('cal_l_paid'):lateDays(m,d)?esc(ux('late_p',{n:lateDays(m,d)})):t('cal_l_wait')}${paidOf(m.ym,d.id)&&plan.paidAt&&plan.paidAt[m.ym]&&plan.paidAt[m.ym][d.id]?' · '+esc(shortDay(plan.paidAt[m.ym][d.id])):''}</button><button type="button" class="pill ${partRaw(m.ym,d.id)||partOpen.has(m.ym+'|'+d.id)?'half':''}" data-popen="${d.id}">${pt_('part')}</button>${!paidOf(m.ym,d.id)&&dvLeft(m,d.id)>0?`<button type="button" class="pill ${deferOpen.has(m.ym+'|'+d.id)?'half':''}" data-dfopen="${d.id}">${ux('df_btn')}</button>`:''}<button type="button" class="pill${rcSet.has(m.ym+'|'+d.id)?' rcon':''}" data-rc="${d.id}">${rcSet.has(m.ym+'|'+d.id)?'✓ ':''}${ux('rc_btn')}</button><button type="button" class="pill del" data-rmd="${d.id}">${t('del')}</button></span>${deferInText(m,d)?`<em class="unote dfin">${esc(deferInText(m,d))}</em>`:''}${deferOpen.has(m.ym+'|'+d.id)&&!paidOf(m.ym,d.id)?(deferTargets(m).length?`<span class="pbox dfbox"><select data-dfto="${d.id}" aria-label="${esc(ux('df_to'))}">${deferTargets(m).map(n=>`<option value="${n.ym}">${esc(ymLabel(n.ym))}</option>`).join('')}</select><button type="button" class="btn mini primary" data-dfgo="${d.id}">${ux('df_go')}</button></span>`:`<em class="unote">${ux('df_nomonth')}</em>`):''}${(partOpen.has(m.ym+'|'+d.id)||partRaw(m.ym,d.id))&&!paidOf(m.ym,d.id)?`<span class="pbox"><input type="number" step="any" min="0" inputmode="decimal" data-part="${d.id}" value="${partRaw(m.ym,d.id)||''}" placeholder="${esc(pt_('paid_amt')+(isUnit(d)?' ('+unitName(d.unit)+')':''))}" aria-label="${esc(pt_('paid_amt'))}"><em class="unote" data-pnote="${d.id}">${esc(partNoteText(d,m))}</em></span>`:''}</span></span><span class="cpw"><input type="number" step="any" inputmode="decimal" data-debt="${d.id}" value="${val(m.d[d.id])}" aria-label="${esc(t('ed_amount_aria',{name:d.name}))}"><button type="button" class="cpyi" data-cpy="${d.id}" aria-label="${esc(ux('cp_btn'))}" title="${esc(ux('cp_btn'))}">${ic('content-copy')}</button></span></div>`).join(''):`<p class="hint">${t('ed_nodebt')}</p>`}</div>${deferListHTML(m)}
   ${hidden.length?`<div style="margin-top:8px"><select data-adddebt aria-label="${esc(t('ed_addto_aria'))}"><option value="">${t('ed_addto')}</option>${hidden.map(d=>`<option value="${d.id}">${esc(d.name)}</option>`).join('')}</select></div>`:''}
   <div class="calc" data-calc></div>
   <div class="actions"><button class="btn" data-act="copyNext">${t('ed_copy')}</button><button class="btn danger" data-act="delMonth">${t('ed_delmonth')}</button></div>`;
@@ -7036,6 +7047,48 @@ try{const _a11R=render;render=function(){try{dhSoft()}catch(e){}const r=_a11R.ap
 setTimeout(()=>{try{dhNotify()}catch(e){}},5000);
 setTimeout(()=>{try{a11yFix()}catch(e){}},0);
 
+/* ================= v262: tutar kutuları — rahat yazma ve yapıştırma =================
+   Tarayıcının sayı kutusu (type=number) "24.990,97", "₺1.250" ya da "Kalan: 18.777,78 TL" gibi metinleri sessizce boşaltıyordu.
+   Ondalıklı tutar kutuları metin kutusuna çevrilir; yazılan/yapıştırılan her biçim okunur, kutudan çıkınca binlik ayırıcıyla gösterilir.
+   Uygulama kodu .value'dan her zaman sade sayı ("24990.97") okur. */
+const NMD=Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value');
+function nmDec(){try{return (1.5).toLocaleString(LOC[LANG]||'tr-TR').replace(/[0-9]/g,'').charAt(0)||','}catch(e){return ','}}
+function nmCanon(s){s=String(s==null?'':s).replace(/[٠-٩]/g,d=>'٠١٢٣٤٥٦٧٨٩'.indexOf(d)).replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).replace(/[٫]/g,'.').replace(/[٬]/g,',').replace(/[−–]/g,'-');
+  const neg=/^\s*-/.test(s)||/^\s*\(.*\)\s*$/.test(s);s=s.replace(/[^0-9.,]/g,'');if(!/\d/.test(s))return '';
+  const hasD=s.includes('.'),hasC=s.includes(',');let out;
+  if(hasD&&hasC){const last=Math.max(s.lastIndexOf('.'),s.lastIndexOf(','));out=s.slice(0,last).replace(/[.,]/g,'')+'.'+s.slice(last+1).replace(/[.,]/g,'')}
+  else if(hasD||hasC){const ch=hasD?'.':',',parts=s.split(ch);
+    if(parts.length>2)out=parts.join('');
+    else{const [a,b]=parts;if(ch!==nmDec()&&b.length===3&&a.length>=1&&a.length<=3&&a!=='0')out=a+b;else out=a+'.'+b}}
+  else out=s;
+  out=out.replace(/\.$/,'');if(out.startsWith('.'))out='0'+out;const n=Number(out);if(!isFinite(n))return '';return String(neg?-n:n)}
+function nmCode(v){if(v===''||v==null)return '';if(typeof v==='number')return isFinite(v)?String(v):'';const t=String(v).trim();return /^-?\d+(\.\d+)?$/.test(t)?String(Number(t)):nmCanon(t)}
+function nmDisp(c){c=String(c==null?'':c);if(c===''||!isFinite(Number(c)))return '';const n=Number(c);try{const dp=(c.split('.')[1]||'').length;return n.toLocaleString(LOC[LANG]||'tr-TR',{minimumFractionDigits:dp,maximumFractionDigits:Math.max(dp,0),useGrouping:true})}catch(e){return c}}
+function numify(el){if(!el||el.dataset.nm||el.type!=='number'||el.getAttribute('inputmode')!=='decimal')return;const raw=NMD.get.call(el);
+  el.type='text';el.dataset.nm='1';el.setAttribute('autocomplete','off');el.setAttribute('spellcheck','false');el.setAttribute('enterkeyhint',el.getAttribute('enterkeyhint')||'done');
+  Object.defineProperty(el,'value',{configurable:true,get(){return nmCanon(NMD.get.call(this))},set(v){NMD.set.call(this,nmDisp(nmCode(v)))}});
+  NMD.set.call(el,nmDisp(nmCode(raw)))}
+function numifyAll(root){try{(root||document).querySelectorAll('input[type=number][inputmode=decimal]').forEach(numify)}catch(e){}}
+numifyAll();
+try{new MutationObserver(ms=>{for(const m of ms)for(const n of m.addedNodes){if(n.nodeType!==1)continue;if(n.matches&&n.matches('input[type=number][inputmode=decimal]'))numify(n);else if(n.querySelector)numifyAll(n)}}).observe(document.documentElement,{childList:true,subtree:true})}catch(e){}
+/* kutudan çıkınca binlik ayırıcıyla göster */
+document.addEventListener('blur',e=>{const x=e.target;if(!x||!x.dataset||!x.dataset.nm)return;const cur=NMD.get.call(x),d=nmDisp(nmCanon(cur));if(d!==cur)NMD.set.call(x,d)},true);
+/* yapıştırma: metnin içindeki tutarı bul (₺, TL, harfler, birden çok sayı) */
+function nmPick(t){t=String(t||'').replace(/[٠-٩]/g,d=>'٠١٢٣٤٥٦٧٨٩'.indexOf(d));const M=t.match(/-?\d[\d.,\s  ']*\d|-?\d/g);if(!M)return '';
+  const C=M.map(x=>x.replace(/[\s  ']/g,''));const money=C.filter(x=>/[.,]\d{1,2}$/.test(x)||/\d{1,3}([.,]\d{3})+/.test(x));const pick=(money.length?money:C).sort((a,b)=>b.replace(/\D/g,'').length-a.replace(/\D/g,'').length)[0];return nmCanon(pick)}
+document.addEventListener('paste',e=>{const x=e.target;if(!x||!x.dataset||!x.dataset.nm)return;const t=((e.clipboardData||window.clipboardData)||{getData:()=>''}).getData('text')||'';const c=nmPick(t);if(c==='')return;
+  e.preventDefault();e.stopImmediatePropagation();NMD.set.call(x,nmDisp(c));try{x.setSelectionRange(NMD.get.call(x).length,NMD.get.call(x).length)}catch(z){}
+  x.dispatchEvent(new Event('input',{bubbles:true}));x.dispatchEvent(new Event('change',{bubbles:true}));try{hap(8)}catch(z){}},true);
+/* yazarken yalnızca rakam, ayırıcı ve eksi kabul et */
+document.addEventListener('beforeinput',e=>{const x=e.target;if(!x||!x.dataset||!x.dataset.nm||!e.data||e.inputType==='insertFromPaste')return;if(/[^0-9.,\-−٠-٩٫٬\s]/.test(e.data))e.preventDefault()},true);
+/* ay düzenleyicide kalem tutarını tek dokunuşla kopyala */
+Object.assign(UX.tr,{cp_btn:'Kopyala',cp_done:p=>`${p.v} kopyalandı`});Object.assign(UX.en,{cp_btn:'Copy',cp_done:p=>`${p.v} copied`});
+Object.assign(UX.ru,{cp_btn:'Копировать',cp_done:p=>`${p.v} скопировано`});Object.assign(UX.ar,{cp_btn:'نسخ',cp_done:p=>`تم نسخ ${p.v}`});
+function cpText(c){const n=Number(c);if(!isFinite(n)||c==='')return '';const dp=(String(c).split('.')[1]||'').length;try{return n.toLocaleString(LOC[LANG]||'tr-TR',{minimumFractionDigits:dp,maximumFractionDigits:dp,useGrouping:false})}catch(e){return String(c)}}
+async function cpWrite(t){try{await navigator.clipboard.writeText(t);return true}catch(e){}try{const a=document.createElement('textarea');a.value=t;a.setAttribute('readonly','');a.style.cssText='position:fixed;opacity:0;top:0;left:0';document.body.append(a);a.select();const ok=document.execCommand('copy');a.remove();return ok}catch(e){return false}}
+document.addEventListener('click',async e=>{const b=e.target.closest&&e.target.closest('[data-cpy]');if(!b)return;e.preventDefault();e.stopPropagation();const row=b.closest('.drow');const i=row&&row.querySelector('input[data-debt="'+b.dataset.cpy+'"]');if(!i)return;
+  const c=i.value;const t=cpText(c);if(!t)return;if(await cpWrite(t)){b.classList.add('on');setTimeout(()=>b.classList.remove('on'),900);toast(ux('cp_done',{v:t}));try{hap(10)}catch(z){}}},true);
+
 /* ================= Bildirim merkezi ================= */
 const LS_NF='gg_nf';let nfOpenAt=0,nfTab='all',nfSnz=null,nfUndo=null;
 const dayAdd=(iso,n)=>{const [y,m,d]=iso.split('-').map(Number),x=new Date(y,m-1,d+n);return x.getFullYear()+'-'+pad(x.getMonth()+1)+'-'+pad(x.getDate())};
@@ -9012,7 +9065,7 @@ view.addEventListener('click',async e=>{
   const ib=x.closest('[data-ico]');
   if(ib){kIcon=kIcon===ib.dataset.ico?'':ib.dataset.ico;document.querySelectorAll('[data-ico]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.ico===kIcon)));return}
   const tog=x.closest('[data-toggle]');
-  if(tog){const ym=tog.closest('.mrow').dataset.ym;openYm=openYm===ym?null:ym;drawMonths();return}
+  if(tog){const ym=tog.closest('.mrow').dataset.ym;const t0=tog.getBoundingClientRect().top;openYm=openYm===ym?null:ym;drawMonths();const nt=document.querySelector('.mrow[data-ym="'+ym+'"] [data-toggle]');if(nt){const d=nt.getBoundingClientRect().top-t0;if(Math.abs(d)>1)window.scrollBy(0,d)}return}
   const edit=x.closest('[data-edit]');
   if(edit){
     const en=ledger.find(z=>z.id===edit.dataset.edit);if(!en)return;
@@ -10201,7 +10254,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='261';
+const APP_VER='262';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
