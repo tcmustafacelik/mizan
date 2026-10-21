@@ -2252,6 +2252,12 @@ input[data-nm]{font-variant-numeric:tabular-nums}
 .drow>.cpw{grid-column:3;grid-row:1}
 .drow>.cpw>input{min-height:38px;padding:7px 10px}
 .drow:has(>.cpw){grid-template-columns:22px minmax(0,1fr) 142px!important}
+/* v263: ödeme satırında kopyala, otomatik kaydet, üst menü gizleme */
+.payrow:has(>.pcy){grid-template-columns:auto minmax(0,1fr) auto 34px!important}
+.payrow .pcy{position:static;transform:none;flex:0 0 34px;width:34px;height:34px;margin-inline-start:2px;align-self:center}
+body.as-on #savebar{display:none!important}
+.asbox{margin:2px 0 10px}
+body.tabs-hid .top{transform:translateY(calc(-1 * var(--headh,110px) - 12px))!important;pointer-events:none}
 </style>
 
 <div class="app">
@@ -7089,6 +7095,63 @@ async function cpWrite(t){try{await navigator.clipboard.writeText(t);return true
 document.addEventListener('click',async e=>{const b=e.target.closest&&e.target.closest('[data-cpy]');if(!b)return;e.preventDefault();e.stopPropagation();const row=b.closest('.drow');const i=row&&row.querySelector('input[data-debt="'+b.dataset.cpy+'"]');if(!i)return;
   const c=i.value;const t=cpText(c);if(!t)return;if(await cpWrite(t)){b.classList.add('on');setTimeout(()=>b.classList.remove('on'),900);toast(ux('cp_done',{v:t}));try{hap(10)}catch(z){}}},true);
 
+/* ================= v263: ödeme akışı (kopyala → dönünce "ödendi mi?"), otomatik kaydet, kaydırırken üst menüyü gizle ================= */
+Object.assign(UX.tr,{pp_ask:p=>`${p.n} ödemesini yaptın mı?`,pp_yes:'Ödendi işaretle',pp_done:p=>`${p.n} ödendi olarak işaretlendi`,pp_cp:p=>`${p.n} tutarını kopyala`,as_h:'Değişiklikleri otomatik kaydet',as_n:'Açıkken her değişiklik 2 saniye sonra kendiliğinden kaydedilir, "Kaydet" çubuğu çıkmaz. Yanlış bir değişikliği buradaki geçmişten geri alabilirsin.',as_on:'Otomatik kaydetme açık',as_off:'Otomatik kaydetme kapalı'});
+Object.assign(UX.en,{pp_ask:p=>`Did you pay ${p.n}?`,pp_yes:'Mark as paid',pp_done:p=>`${p.n} marked as paid`,pp_cp:p=>`Copy the ${p.n} amount`,as_h:'Save changes automatically',as_n:'When on, every change is saved by itself after 2 seconds and the "Save" bar does not appear. You can undo a wrong change from the history here.',as_on:'Auto-save on',as_off:'Auto-save off'});
+Object.assign(UX.ru,{pp_ask:p=>`Вы оплатили ${p.n}?`,pp_yes:'Отметить оплату',pp_done:p=>`${p.n}: отмечено как оплачено`,pp_cp:p=>`Копировать сумму: ${p.n}`,as_h:'Сохранять изменения автоматически',as_n:'Когда включено, каждое изменение сохраняется само через 2 секунды, панель «Сохранить» не появляется. Ошибку можно отменить через историю здесь.',as_on:'Автосохранение включено',as_off:'Автосохранение выключено'});
+Object.assign(UX.ar,{pp_ask:p=>`هل دفعت ${p.n}؟`,pp_yes:'علّمه كمدفوع',pp_done:p=>`تم تعليم ${p.n} كمدفوع`,pp_cp:p=>`انسخ مبلغ ${p.n}`,as_h:'احفظ التغييرات تلقائيًا',as_n:'عند التفعيل يُحفظ كل تغيير تلقائيًا بعد ثانيتين ولا يظهر شريط «حفظ». يمكنك التراجع عن تغيير خاطئ من السجل هنا.',as_on:'الحفظ التلقائي مفعّل',as_off:'الحفظ التلقائي متوقف'});
+
+/* ---- 1. Ödeme akışı ---- */
+let ppPend=null,ppHidAt=0;
+function ppRemember(id,ym){const d=plan.debts.find(x=>x.id===id);if(!d||!ym||paidOf(ym,id))return;ppPend={id,ym,n:d.name,ts:Date.now()}}
+function ppMark(ym,id){const d=plan.debts.find(x=>x.id===id);if(!d||paidOf(ym,id))return;setPaid(ym,id,true);try{setPart(ym,id,0)}catch(e){}queueSave();
+  try{if(tab==='plan'){drawPay();drawMonths();drawTiles()}else render()}catch(e){try{render()}catch(z){}}try{drawRemind()}catch(e){}try{hap(16)}catch(e){}
+  toast(ux('pp_done',{n:d.name}),{label:t('sb_discard'),fn:()=>{setPaid(ym,id,false);queueSave();try{if(tab==='plan'){drawPay();drawMonths();drawTiles()}else render()}catch(e){}}})}
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden'){ppHidAt=Date.now();return}
+  const P=ppPend;if(!P||!ppHidAt)return;const away=Date.now()-ppHidAt;ppHidAt=0;if(away<2000||Date.now()-P.ts>45*60000||paidOf(P.ym,P.id)){if(Date.now()-P.ts>45*60000)ppPend=null;return}
+  ppPend=null;setTimeout(()=>toast(ux('pp_ask',{n:P.n}),{label:ux('pp_yes'),fn:()=>ppMark(P.ym,P.id)}),500)});
+/* ay düzenleyicideki kopyala da hatırlansın */
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-cpy]');if(!b)return;const r=b.closest('.mrow');if(r)ppRemember(b.dataset.cpy,r.dataset.ym)},true);
+/* "Bu ayın ödemeleri" satırlarına kopyala */
+function ppDecorate(){document.querySelectorAll('#paycard label.payrow').forEach(row=>{const cb=row.querySelector('input[data-paid]');if(!cb||row.querySelector('.pcy'))return;const d=plan.debts.find(x=>x.id===cb.dataset.paid);if(!d)return;
+  const b=document.createElement('button');b.type='button';b.className='cpyi pcy';b.dataset.pcy=cb.dataset.paid;b.dataset.pym=cb.dataset.pym;b.setAttribute('aria-label',ux('pp_cp',{n:d.name}));b.title=ux('cp_btn');b.innerHTML=ic('content-copy');row.append(b)})}
+document.addEventListener('click',async e=>{const b=e.target.closest&&e.target.closest('[data-pcy]');if(!b)return;e.preventDefault();e.stopPropagation();const row=b.closest('.payrow');const am=row&&row.querySelector(':scope > b');if(!am)return;
+  const c=nmCanon(am.textContent);const tx=cpText(c);if(!tx)return;if(await cpWrite(tx)){b.classList.add('on');setTimeout(()=>b.classList.remove('on'),900);toast(ux('cp_done',{v:tx}));try{hap(10)}catch(z){}ppRemember(b.dataset.pcy,b.dataset.pym)}},true);
+['pointerdown','touchstart'].forEach(ev=>document.addEventListener(ev,e=>{if(e.target.closest&&e.target.closest('[data-pcy]'))e.stopPropagation()},{capture:true,passive:true}));
+const _ppDP=drawPay;drawPay=function(){const r=_ppDP.apply(this,arguments);try{ppDecorate()}catch(e){}return r};
+const _ppRP=renderPlan;renderPlan=function(){const r=_ppRP.apply(this,arguments);try{ppDecorate()}catch(e){}return r};
+
+/* ---- 2. Otomatik kaydet ---- */
+function asOn(){try{return localStorage.getItem('gg_autosave')==='1'}catch(e){return false}}
+let asT=0,asQuiet=false;
+function asApply(){document.body.classList.toggle('as-on',asOn())}
+const _asQS=queueSave;queueSave=function(){const r=_asQS.apply(this,arguments);try{if(asOn()&&dirty&&!loadBad){clearTimeout(asT);asT=setTimeout(async()=>{if(!dirty||saving||loadBad||!asOn())return;asQuiet=true;try{await flush()}finally{asQuiet=false}},2000)}}catch(e){}return r};
+const _asTo=toast;toast=function(m){if(asQuiet&&m===t('t_saved'))return;return _asTo.apply(this,arguments)};
+const _asSB=drawSaveBar;drawSaveBar=function(){const r=_asSB.apply(this,arguments);try{if(asOn()){const b=document.getElementById('savebar');if(b)b.hidden=true;document.body.classList.remove('has-bar')}}catch(e){}return r};
+window.addEventListener('pagehide',()=>{try{if(asOn()&&dirty&&!saving&&!loadBad)flush()}catch(e){}});
+document.addEventListener('visibilitychange',()=>{try{if(document.visibilityState==='hidden'&&asOn()&&dirty&&!saving&&!loadBad){clearTimeout(asT);asQuiet=true;flush().finally(()=>{asQuiet=false})}}catch(e){}});
+function asInject(){const v=document.getElementById('view');if(!v||!v.querySelector('.langseg')||v.querySelector('#asChk'))return;
+  const c=[...v.querySelectorAll(':scope > section.card')].find(c=>{const h=c.querySelector(':scope > .cardhead h2');return h&&(h.dataset.t||h.textContent).trim()===t('hs_title')});if(!c)return;
+  const hd=c.querySelector(':scope > .cardhead');const h=`<div class="asbox"><label class="chk pvrow"><input type="checkbox" id="asChk"${asOn()?' checked':''}><span>${esc(ux('as_h'))}</span></label><p class="hint">${esc(ux('as_n'))}</p></div>`;
+  if(hd)hd.insertAdjacentHTML('afterend',h);else c.insertAdjacentHTML('afterbegin',h)}
+const _asRA=renderAyar;renderAyar=function(){const r=_asRA.apply(this,arguments);try{asInject()}catch(e){}return r};
+document.addEventListener('change',e=>{if(!e.target||e.target.id!=='asChk')return;try{localStorage.setItem('gg_autosave',e.target.checked?'1':'0')}catch(z){}asApply();toast(ux(e.target.checked?'as_on':'as_off'));if(e.target.checked&&dirty)queueSave();else drawSaveBar()});
+asApply();
+
+/* ---- 3. Aşağı kaydırırken üst menüyü gizle, yukarı kaydırınca göster ---- */
+(function(){let last=window.scrollY,tick=false,acc=0;
+  window.addEventListener('scroll',()=>{if(tick)return;tick=true;requestAnimationFrame(()=>{tick=false;const y=window.scrollY,d=y-last;last=y;
+    const ae=document.activeElement,typing=ae&&/^(INPUT|TEXTAREA|SELECT)$/.test(ae.tagName);
+    if(y<160||typing){acc=0;document.body.classList.remove('tabs-hid');return}
+    if((d>0&&acc<0)||(d<0&&acc>0))acc=0;acc+=d;
+    if(acc>40)document.body.classList.add('tabs-hid');else if(acc<-24)document.body.classList.remove('tabs-hid')})},{passive:true});
+  const show=()=>document.body.classList.remove('tabs-hid');
+  /* ölçüme dayanan kaydırmalar (seçim özetinden karta dön) öncesinde menüyü animasyonsuz göster */
+  window.tabsShowNow=()=>{if(!document.body.classList.contains('tabs-hid'))return;const t=document.querySelector('.top');if(t)t.style.transition='none';document.body.classList.remove('tabs-hid');if(t){void t.offsetHeight;requestAnimationFrame(()=>{t.style.transition=''})}};
+  document.addEventListener('click',e=>{if(e.target.closest&&e.target.closest('#selmini [data-smn]'))tabsShowNow()},true);
+  document.addEventListener('focusin',e=>{if(e.target&&e.target.closest&&e.target.closest('.top'))show()});
+  const _thR=render;render=function(){show();return _thR.apply(this,arguments)}})();
+
 /* ================= Bildirim merkezi ================= */
 const LS_NF='gg_nf';let nfOpenAt=0,nfTab='all',nfSnz=null,nfUndo=null;
 const dayAdd=(iso,n)=>{const [y,m,d]=iso.split('-').map(Number),x=new Date(y,m-1,d+n);return x.getFullYear()+'-'+pad(x.getMonth()+1)+'-'+pad(x.getDate())};
@@ -10254,7 +10317,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='262';
+const APP_VER='263';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
