@@ -2273,6 +2273,11 @@ html:root .tabs button:hover:not([aria-selected="true"]){color:var(--fg)!importa
 html:root .tabs svg.tic{fill:none!important;stroke:currentColor}
 html:root .tabs svg.tic *{fill:none!important}
 html:root .tabs .tabind::after,html:root .tabs .tabind::before{display:none!important}
+/* v266: ekran döndürülünce/boyut değişince kayan sekme göstergesi sayfayı yana taşırmasın */
+html:root .tabs,html:root[data-theme] .tabs{overflow:hidden}
+/* Yıl özeti kartları: sarı/yeşil tonlarda beyaz yazı okunmuyordu → hafif koyu katman + gölge */
+.yosl{background-image:linear-gradient(rgba(0,0,0,.3),rgba(0,0,0,.3)),linear-gradient(150deg,hsl(calc(250 + var(--h)) 70% 35%),hsl(calc(300 + var(--h)) 70% 45%))!important;text-shadow:0 1px 2px rgba(0,0,0,.25)}
+.yosl small{opacity:.9!important}
 </style>
 
 <div class="app">
@@ -6510,7 +6515,7 @@ function pkSheet(){const N=pkNodes(),S=pkGet();let o=document.getElementById('pc
 document.addEventListener('click',e=>{if(e.target.closest&&e.target.closest('[data-pk-open]')){e.preventDefault();pkSheet()}});
 /* ---- 2. Hızlı kayıt formu: büyük tutar, son kategori çipleri, tarih tek dokunuşta ---- */
 function efCats(type){const seen=[];for(let i=ledger.length-1;i>=0&&seen.length<6;i--){const e=ledger[i];if(e.type===type&&e.cat&&!seen.includes(e.cat))seen.push(e.cat)}
-  if(seen.length<4){const def=type==='gelir'?['Maaş','Tazminat','Diğer']:['Market','Fatura','Yemek','Ulaşım','Ev / Kira'];def.forEach(c=>{if(seen.length<6&&!seen.includes(c))seen.push(c)})}return seen}
+  if(seen.length<4){const C=(I18N[LANG]&&I18N[LANG].cats)||I18N.tr.cats;const def=(type==='gelir'?[0,1,9]:[2,3,6,5,4]).map(i=>C[i]).filter(Boolean);def.forEach(c=>{if(seen.length<6&&!seen.includes(c))seen.push(c)})}return seen}
 function efDateLab(){const d=document.getElementById('eDate');if(!d)return '';const v=d.value,td=todayStr();const y=new Date();y.setDate(y.getDate()-1);const yd=y.toISOString().slice(0,10);return v===td?ux('ef_today'):v===yd?ux('ef_yday'):dmy(v)}
 function efDraw(){const f=document.getElementById('entryForm');if(!f)return;const type=(f.querySelector('input[name=etype]:checked')||{}).value||'gider';
   let ch=document.getElementById('eChips');const cat=document.getElementById('eCat');
@@ -10346,7 +10351,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='265';const APP_VER_UI='1.0';
+const APP_VER='266';const APP_VER_UI='1.0';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
