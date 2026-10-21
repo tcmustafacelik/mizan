@@ -2225,6 +2225,22 @@ body.has-bar .lxbar{bottom:calc(92px + env(safe-area-inset-bottom,0px))}
 .aynav .tbtn{min-width:40px}
 #calcX{min-width:38px}
 #hdrPop #ping{min-height:34px}
+/* v261: veri sağlığı, yedek doğrulama, yardım */
+#hlp p{white-space:pre-line}
+.dhok{display:flex;align-items:center;gap:8px;margin:4px 0 10px;padding:10px 12px;border-radius:12px;background:var(--good-bg,rgba(22,163,74,.1));color:var(--good-tx,var(--good));font-size:13.5px;font-weight:600}
+.dhok .ic{width:18px;height:18px;flex:0 0 auto}
+.dhl{list-style:none;margin:4px 0 10px;padding:0;display:flex;flex-direction:column;gap:6px}
+.dhl li{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:12px;background:var(--surface2)}
+.dhi{flex:0 0 28px;height:28px;border-radius:9px;display:grid;place-items:center;background:rgba(217,119,6,.14);color:var(--warn-tx,#b45309)}
+.dhi .ic{width:15px;height:15px}
+.dhl li.man .dhi{background:rgba(100,116,139,.15);color:var(--muted-tx,var(--muted))}
+.dht{flex:1;min-width:0;font-size:13px;line-height:1.4;display:flex;flex-direction:column}
+.dht small{font-size:11.5px;color:var(--muted-tx,var(--muted))}
+.dhl .btn{flex:0 0 auto}
+#dhBody>.btn{gap:8px}#dhBody>.btn .ic{width:16px;height:16px}
+.bvline{display:flex;align-items:flex-start;gap:8px;margin:2px 0 10px;padding:8px 10px;border-radius:10px;background:var(--good-bg,rgba(22,163,74,.1));color:var(--good-tx,var(--good));font-size:12.5px;line-height:1.4}
+.bvline .ic{width:16px;height:16px;flex:0 0 auto;margin-top:1px}
+.bvline.bad{background:var(--bad-bg,rgba(220,38,38,.1));color:var(--bad-tx,var(--bad))}
 </style>
 
 <div class="app">
@@ -6879,6 +6895,147 @@ document.addEventListener('keydown',e=>{if(e.target&&e.target.id==='cmIn'){if(e.
 (function(){const light=h=>{const m=/^#?([0-9a-f]{6})$/i.exec(String(h||'').trim());if(!m)return false;const n=parseInt(m[1],16),r=n>>16&255,g=n>>8&255,b=n&255;const f=x=>{x/=255;return x<=.03928?x/12.92:Math.pow((x+.055)/1.055,2.4)};return .2126*f(r)+.7152*f(g)+.0722*f(b)>.22};
   const _bri=brIcon;brIcon=function(b,sz){const h=_bri.apply(this,arguments);return b&&light(b[3])?h.replace('<b>','<b style="color:#1d2433">'):h}})();
 
+/* ================= v261: veri sağlığı, yedek doğrulama, yardım metinleri, ekran okuyucu ================= */
+Object.assign(UX.tr,{dh_h:'Veri sağlığı',dh_n:'Kayıtlarında ve planında bozuk ya da çelişkili bir şey var mı diye bakar. Onarmadan önce ne yapılacağını gösterir; onarım geri alınabilir.',dh_btn:'Verilerimi kontrol et',dh_ok:'Her şey yolunda, sorun bulunmadı.',dh_ok_s:'Sorun yok',dh_n_s:p=>`${p.n} sorun`,dh_fix:'Onar',dh_fixall:'Hepsini onar',dh_fixed:p=>`${p.n} sorun onarıldı`,dh_manual:'Elle bakılmalı',dh_last:p=>`Son kontrol: ${p.d}`,
+ dh_led_date:p=>`${p.n} kaydın tarihi geçersiz → kayıt saatinden ya da bugünden alınır`,dh_led_amt0:p=>`${p.n} kaydın tutarı boş veya sıfır → silinir`,dh_led_neg:p=>`${p.n} kaydın tutarı eksi → artıya çevrilir`,dh_led_type:p=>`${p.n} kaydın türü belirsiz → gider yapılır`,dh_led_dup:p=>`${p.n} kayıt aynı kimliği paylaşıyor → yeni kimlik verilir`,dh_led_acc:p=>`${p.n} kayıt silinmiş bir hesaba bağlı → hesap bağlantısı kaldırılır`,dh_led_str:p=>`${p.n} kayıtta kategori/açıklama bozuk → metne çevrilir`,
+ dh_mon_d:p=>`${p.n} ayın borç tablosu eksik → boş tablo oluşturulur`,dh_mon_orph:p=>`${p.n} tutar silinmiş kalemlere ait → kaldırılır`,dh_mon_nan:p=>`${p.n} tutar sayı değil → düzeltilir`,dh_mark_orph:p=>`${p.n} ödeme işareti silinmiş kalemlere ait → kaldırılır`,dh_bud_bad:p=>`${p.n} bütçe sıfır ya da geçersiz → kaldırılır`,dh_xf_orph:p=>`${p.n} aktarım silinmiş hesaplara bağlı → kaldırılır`,
+ dh_mon_dup:p=>`${p.n} ay iki kez var (elle birleştir)`,dh_mon_ym:p=>`${p.n} ayın tarihi geçersiz`,dh_debt_dup:p=>`${p.n} kalem aynı kimliği paylaşıyor`,dh_bk_warn:'Yedek doğrulanamadı: bazı kayıtlar bozuk. Ayarlar › Veri sağlığı ile onar.',
+ bv_ok:p=>`Yedek doğrulandı: ${p.m} ay, ${p.d} kalem, ${p.l} kayıt.`,bv_bad:'Son yedek doğrulanamadı; geri yüklenemeyebilir. Ayarlar › Veri sağlığı ile onarıp yeniden yedekle.',bv_last:p=>`Son yedek ${p.d} tarihinde doğrulandı (${p.l} kayıt).`,bv_lastbad:p=>`Son yedek (${p.d}) doğrulanamadı.`,
+ lg_home:'Mizan — açılış ekranı'});
+Object.assign(UX.en,{dh_h:'Data health',dh_n:'Checks your entries and plan for anything broken or contradictory. Shows what will be done before repairing; repairs can be undone.',dh_btn:'Check my data',dh_ok:'All good, no problems found.',dh_ok_s:'No problems',dh_n_s:p=>`${p.n} problems`,dh_fix:'Repair',dh_fixall:'Repair all',dh_fixed:p=>`${p.n} problems repaired`,dh_manual:'Needs a manual look',dh_last:p=>`Last check: ${p.d}`,
+ dh_led_date:p=>`${p.n} entries have an invalid date → taken from the entry time or today`,dh_led_amt0:p=>`${p.n} entries have an empty or zero amount → deleted`,dh_led_neg:p=>`${p.n} entries have a negative amount → made positive`,dh_led_type:p=>`${p.n} entries have an unknown type → set to spending`,dh_led_dup:p=>`${p.n} entries share an ID → given new IDs`,dh_led_acc:p=>`${p.n} entries point to a deleted account → link removed`,dh_led_str:p=>`${p.n} entries have a broken category/description → converted to text`,
+ dh_mon_d:p=>`${p.n} months have no debt table → an empty one is created`,dh_mon_orph:p=>`${p.n} amounts belong to deleted items → removed`,dh_mon_nan:p=>`${p.n} amounts are not numbers → fixed`,dh_mark_orph:p=>`${p.n} payment marks belong to deleted items → removed`,dh_bud_bad:p=>`${p.n} budgets are zero or invalid → removed`,dh_xf_orph:p=>`${p.n} transfers point to deleted accounts → removed`,
+ dh_mon_dup:p=>`${p.n} months appear twice (merge by hand)`,dh_mon_ym:p=>`${p.n} months have an invalid date`,dh_debt_dup:p=>`${p.n} items share an ID`,dh_bk_warn:'Backup could not be verified: some entries are broken. Repair them in Settings › Data health.',
+ bv_ok:p=>`Backup verified: ${p.m} months, ${p.d} items, ${p.l} entries.`,bv_bad:'The last backup could not be verified and may not restore. Repair in Settings › Data health and back up again.',bv_last:p=>`Last backup verified on ${p.d} (${p.l} entries).`,bv_lastbad:p=>`Last backup (${p.d}) could not be verified.`,
+ lg_home:'Mizan — welcome screen'});
+Object.assign(UX.ru,{dh_h:'Состояние данных',dh_n:'Проверяет записи и план на ошибки и противоречия. Перед исправлением показывает, что будет сделано; исправление можно отменить.',dh_btn:'Проверить данные',dh_ok:'Всё в порядке, проблем нет.',dh_ok_s:'Проблем нет',dh_n_s:p=>`Проблем: ${p.n}`,dh_fix:'Исправить',dh_fixall:'Исправить всё',dh_fixed:p=>`Исправлено проблем: ${p.n}`,dh_manual:'Нужно проверить вручную',dh_last:p=>`Последняя проверка: ${p.d}`,
+ dh_led_date:p=>`Записей с неверной датой: ${p.n} → дата из времени записи или сегодняшняя`,dh_led_amt0:p=>`Записей с пустой или нулевой суммой: ${p.n} → удаляются`,dh_led_neg:p=>`Записей с отрицательной суммой: ${p.n} → делаются положительными`,dh_led_type:p=>`Записей с неизвестным типом: ${p.n} → становятся расходом`,dh_led_dup:p=>`Записей с одинаковым ID: ${p.n} → получают новые ID`,dh_led_acc:p=>`Записей, связанных с удалённым счётом: ${p.n} → связь убирается`,dh_led_str:p=>`Записей с повреждённой категорией/описанием: ${p.n} → превращаются в текст`,
+ dh_mon_d:p=>`Месяцев без таблицы долгов: ${p.n} → создаётся пустая`,dh_mon_orph:p=>`Сумм удалённых статей: ${p.n} → удаляются`,dh_mon_nan:p=>`Сумм, не являющихся числом: ${p.n} → исправляются`,dh_mark_orph:p=>`Отметок оплаты удалённых статей: ${p.n} → удаляются`,dh_bud_bad:p=>`Нулевых или неверных бюджетов: ${p.n} → удаляются`,dh_xf_orph:p=>`Переводов с удалёнными счетами: ${p.n} → удаляются`,
+ dh_mon_dup:p=>`Повторяющихся месяцев: ${p.n} (объедините вручную)`,dh_mon_ym:p=>`Месяцев с неверной датой: ${p.n}`,dh_debt_dup:p=>`Статей с одинаковым ID: ${p.n}`,dh_bk_warn:'Резервную копию не удалось проверить: есть повреждённые записи. Исправьте в Настройки › Состояние данных.',
+ bv_ok:p=>`Копия проверена: месяцев ${p.m}, статей ${p.d}, записей ${p.l}.`,bv_bad:'Последнюю копию не удалось проверить, она может не восстановиться. Исправьте в Настройки › Состояние данных и сделайте копию снова.',bv_last:p=>`Последняя копия проверена ${p.d} (записей: ${p.l}).`,bv_lastbad:p=>`Последнюю копию (${p.d}) проверить не удалось.`,
+ lg_home:'Mizan — экран приветствия'});
+Object.assign(UX.ar,{dh_h:'سلامة البيانات',dh_n:'يفحص قيودك وخطتك بحثًا عن أي خلل أو تناقض. يعرض ما سيفعله قبل الإصلاح، ويمكن التراجع عن الإصلاح.',dh_btn:'افحص بياناتي',dh_ok:'كل شيء سليم، لم يُعثر على مشكلات.',dh_ok_s:'لا مشكلات',dh_n_s:p=>`${p.n} مشكلات`,dh_fix:'إصلاح',dh_fixall:'إصلاح الكل',dh_fixed:p=>`تم إصلاح ${p.n} مشكلات`,dh_manual:'يحتاج إلى مراجعة يدوية',dh_last:p=>`آخر فحص: ${p.d}`,
+ dh_led_date:p=>`${p.n} قيود بتاريخ غير صالح ← يؤخذ من وقت القيد أو اليوم`,dh_led_amt0:p=>`${p.n} قيود بمبلغ فارغ أو صفر ← تُحذف`,dh_led_neg:p=>`${p.n} قيود بمبلغ سالب ← يُجعل موجبًا`,dh_led_type:p=>`${p.n} قيود بنوع غير معروف ← تصبح مصروفًا`,dh_led_dup:p=>`${p.n} قيود تتشارك المعرّف ← تُعطى معرّفات جديدة`,dh_led_acc:p=>`${p.n} قيود مرتبطة بحساب محذوف ← يُزال الربط`,dh_led_str:p=>`${p.n} قيود بفئة/وصف تالف ← يُحوَّل إلى نص`,
+ dh_mon_d:p=>`${p.n} أشهر بلا جدول ديون ← يُنشأ جدول فارغ`,dh_mon_orph:p=>`${p.n} مبالغ لبنود محذوفة ← تُزال`,dh_mon_nan:p=>`${p.n} مبالغ ليست أرقامًا ← تُصحَّح`,dh_mark_orph:p=>`${p.n} علامات دفع لبنود محذوفة ← تُزال`,dh_bud_bad:p=>`${p.n} ميزانيات صفرية أو غير صالحة ← تُزال`,dh_xf_orph:p=>`${p.n} تحويلات لحسابات محذوفة ← تُزال`,
+ dh_mon_dup:p=>`${p.n} أشهر مكررة (ادمجها يدويًا)`,dh_mon_ym:p=>`${p.n} أشهر بتاريخ غير صالح`,dh_debt_dup:p=>`${p.n} بنود تتشارك المعرّف`,dh_bk_warn:'تعذّر التحقق من النسخة الاحتياطية: بعض القيود تالفة. أصلحها من الإعدادات › سلامة البيانات.',
+ bv_ok:p=>`تم التحقق من النسخة: ${p.m} أشهر، ${p.d} بنود، ${p.l} قيود.`,bv_bad:'تعذّر التحقق من آخر نسخة وقد لا تُستعاد. أصلح من الإعدادات › سلامة البيانات ثم انسخ مجددًا.',bv_last:p=>`تم التحقق من آخر نسخة بتاريخ ${p.d} (${p.l} قيود).`,bv_lastbad:p=>`تعذّر التحقق من آخر نسخة (${p.d}).`,
+ lg_home:'Mizan — شاشة الترحيب'});
+
+/* ---- 3. Yardım metinleri (güncel özelliklerle) ---- */
+Object.assign(UX.tr,{
+ hp_plan:'• Üstte: bugün ve bu hafta ödenecekler, gecikenler, ay kapanışı.\n• Özet kutular ve "Bu ayın ödemeleri": satırı sağa kaydır → Ödendi, sola → Ertele. Ödeme günü yaklaşan satırlar renkle öne çıkar.\n• Nakit akışı ve aylık grafik. "Kartları düzenle" ile kartların sırasını ve görünürlüğünü değiştir.\n• En altta aylar: dokununca açılır. Ay seçerek toplamı alttaki özet kartında gör.',
+ hp_defter:'• Hızlı giriş: "market 450" yaz ya da mikrofona söyle. "Sık kayıtların" düğmeleri tek dokunuşla ekler.\n• Açıklamaya #tatil gibi etiket yaz; etikete dokununca toplamı ve bütçesi açılır.\n• Harcama takvimi: güne dokun, o günün kayıtları listelensin.\n• Filtre: tür, kategori, hesap, tutar aralığı. Seç: birden çok kaydı sil, kategori ya da tarih değiştir.\n• Kaydı sola kaydır → sil (Geri al var), sağa → düzenle. Aynı kaydı iki kez girersen uyarır.',
+ hp_ozet:'• "Bu ay bir bakışta": gelir, gider, kalan, geçen aya göre değişim ve ay sonu tahmini.\n• "Bu ayın içgörüleri": harcamandaki dikkat çeken değişiklikler.\n• Ay karnesi ve ayrıntılı PDF rapor, plan ve gerçek, kime ne kadar borç, harcama analizi, aylık bütçeler.',
+ hp_kalem:'• Borç kalemlerini ekle, düzenle, sil; bankası tanınan kalemlerde banka simgesi görünür.\n• Üstte eksik bilgiler tablosu. Satıra dokununca ayrıntı açılır.\n• Gelir kaynakları: tutar değişen dönemleri ayrı satırlarda düzenle.',
+ hp_arac:'• 30 araç: takvim, takvime aktar, tekrarlayanlar, yıllık ödemeler, abonelikler, faturalar, net servet, sağlık puanı, borç bitirme planı, ay raporu, hedefler, birikim, kredi, kartlar, bölüşüm ve daha fazlası.\n• Sık kullandıkların en üstte toplanır. Sağ üstteki büyüteçle araç, kayıt veya ayar ara.',
+ hp_ayar:'• Görünüm: renk paleti, sade/cam tema, açık/koyu, yazı boyutu, dokunuşta titreşim.\n• Hatırlatmalar: günlük kayıt hatırlatması ve Pazar akşamı haftalık özet.\n• Kategoriler: yeniden adlandır, benzerleri birleştir. Veri sağlığı: bozuk kayıtları bul ve onar.\n• Gizlilik, kilit, bulut eşitleme, yedek (alınca otomatik doğrulanır), değişiklik geçmişi.'});
+Object.assign(UX.en,{
+ hp_plan:'• Top: due today and this week, overdue items, month closing.\n• Summary tiles and "This month\'s payments": swipe right → Paid, left → Postpone. Rows due soon are highlighted.\n• Cash flow and the monthly chart. Use "Edit cards" to reorder or hide cards.\n• Months at the bottom: tap to open. Select months to see the total in the summary card.',
+ hp_defter:'• Quick entry: type "groceries 450" or say it. "Your frequent entries" add with one tap.\n• Write a tag like #holiday in the description; tap a tag to see its total and budget.\n• Spending calendar: tap a day to list its entries.\n• Filter: type, category, account, amount range. Select: delete several entries or change their category or date.\n• Swipe an entry left → delete (with Undo), right → edit. You are warned if you enter the same entry twice.',
+ hp_ozet:'• "This month at a glance": income, spending, left, change vs last month and the month-end forecast.\n• "This month\'s insights": notable changes in your spending.\n• Month report card and detailed PDF report, plan vs actual, debt by creditor, spending analysis, monthly budgets.',
+ hp_kalem:'• Add, edit and delete debt items; recognized banks show their logo.\n• The missing-info table is at the top. Tap a row for details.\n• Income sources: edit periods with different amounts on separate rows.',
+ hp_arac:'• 30 tools: calendar, calendar export, recurring, yearly payments, subscriptions, bills, net worth, health score, debt payoff plan, month report, goals, savings, loans, cards, split expenses and more.\n• Your most used tools gather at the top. Use the magnifier at the top right to search tools, entries or settings.',
+ hp_ayar:'• Appearance: colour palette, plain/glass, light/dark, text size, vibration on touch.\n• Reminders: daily entry reminder and Sunday-evening weekly summary.\n• Categories: rename, merge look-alikes. Data health: find and repair broken entries.\n• Privacy, lock, cloud sync, backup (verified automatically), change history.'});
+Object.assign(UX.ru,{
+ hp_plan:'• Вверху: платежи на сегодня и неделю, просрочки, закрытие месяца.\n• Итоги и «Платежи месяца»: вправо → оплачено, влево → отложить. Близкие сроки подсвечиваются.\n• Денежный поток и график по месяцам. «Изменить карточки» — порядок и видимость.\n• Внизу месяцы: нажмите, чтобы открыть. Выберите месяцы — итог появится в карточке снизу.',
+ hp_defter:'• Быстрый ввод: «продукты 450» текстом или голосом. «Частые записи» добавляются одним нажатием.\n• Метка вроде #отпуск в описании; нажмите на метку — итог и бюджет.\n• Календарь расходов: нажмите на день, чтобы увидеть его записи.\n• Фильтр: тип, категория, счёт, сумма. Выбрать: удалить несколько записей или сменить категорию/дату.\n• Смахните запись влево → удалить (с отменой), вправо → изменить. Повторная запись вызывает предупреждение.',
+ hp_ozet:'• «Этот месяц кратко»: доход, расход, остаток, изменение к прошлому месяцу и прогноз.\n• «Наблюдения за месяц»: заметные изменения в расходах.\n• Итоги месяца и подробный PDF-отчёт, план и факт, долги по кредиторам, анализ расходов, бюджеты.',
+ hp_kalem:'• Добавляйте, меняйте и удаляйте статьи; у известных банков виден логотип.\n• Вверху — таблица недостающих данных. Нажмите на строку для подробностей.\n• Источники дохода: периоды с разными суммами — отдельными строками.',
+ hp_arac:'• 30 инструментов: календарь, экспорт в календарь, повторы, годовые платежи, подписки, счета, капитал, оценка здоровья, план погашения, отчёт, цели, накопления, кредит, карты, раздел расходов и др.\n• Частые инструменты собираются вверху. Лупа справа вверху ищет инструменты, записи и настройки.',
+ hp_ayar:'• Вид: палитра, обычный/стекло, светлая/тёмная, размер текста, вибрация.\n• Напоминания: ежедневное и итоги недели в воскресенье.\n• Категории: переименовать, объединить похожие. Состояние данных: найти и исправить ошибки.\n• Приватность, блокировка, синхронизация, резервная копия (проверяется автоматически), история.'});
+Object.assign(UX.ar,{
+ hp_plan:'• في الأعلى: مستحقات اليوم والأسبوع، المتأخرات، إغلاق الشهر.\n• الملخص و«مدفوعات هذا الشهر»: اسحب يمينًا ← مدفوع، يسارًا ← تأجيل. تُبرز الدفعات القريبة.\n• التدفق النقدي والرسم الشهري. «تعديل البطاقات» لترتيبها أو إخفائها.\n• الأشهر في الأسفل: اضغط للفتح. حدّد أشهرًا لترى المجموع في البطاقة السفلية.',
+ hp_defter:'• الإدخال السريع: اكتب «بقالة 450» أو قلها. «قيودك المتكررة» تُضاف بلمسة.\n• اكتب وسمًا مثل #سفر في الوصف؛ اضغط عليه لترى مجموعه وميزانيته.\n• تقويم المصروف: اضغط على يوم لعرض قيوده.\n• التصفية: النوع، الفئة، الحساب، المبلغ. التحديد: احذف عدة قيود أو غيّر فئتها أو تاريخها.\n• اسحب القيد يسارًا ← حذف (مع تراجع)، يمينًا ← تعديل. يُنبّهك إذا أدخلت القيد نفسه مرتين.',
+ hp_ozet:'• «هذا الشهر باختصار»: الدخل والمصروف والمتبقي والتغير وتوقع نهاية الشهر.\n• «ملاحظات هذا الشهر»: تغيّرات لافتة في إنفاقك.\n• بطاقة الشهر وتقرير PDF مفصّل، الخطة مقابل الفعلي، الديون حسب الدائن، تحليل المصروف، الميزانيات.',
+ hp_kalem:'• أضف بنود الديون وعدّلها واحذفها؛ تظهر شعارات البنوك المعروفة.\n• جدول المعلومات الناقصة في الأعلى. اضغط على صف للتفاصيل.\n• مصادر الدخل: عدّل الفترات ذات المبالغ المختلفة في صفوف منفصلة.',
+ hp_arac:'• 30 أداة: التقويم، التصدير إلى التقويم، المتكرر، الدفعات السنوية، الاشتراكات، الفواتير، صافي الثروة، درجة الصحة المالية، خطة سداد الديون، تقرير الشهر، الأهداف، الادخار، القروض، البطاقات، تقسيم المصاريف وغيرها.\n• تتجمع أدواتك الأكثر استخدامًا في الأعلى. العدسة أعلى اليمين تبحث في الأدوات والقيود والإعدادات.',
+ hp_ayar:'• المظهر: لوحة الألوان، عادي/زجاجي، فاتح/داكن، حجم الخط، الاهتزاز.\n• التذكيرات: تذكير يومي وملخص أسبوعي مساء الأحد.\n• الفئات: إعادة التسمية ودمج المتشابه. سلامة البيانات: اكتشاف القيود التالفة وإصلاحها.\n• الخصوصية، القفل، المزامنة، النسخ الاحتياطي (يُتحقق منه تلقائيًا)، سجل التغييرات.'});
+
+/* ---- 1. Veri sağlığı ---- */
+const DH_FIXABLE=['led_date','led_amt0','led_neg','led_type','led_dup','led_acc','led_str','mon_d','mon_orph','mon_nan','mark_orph','bud_bad','xf_orph'];
+function dhOkDate(s){if(!/^\d{4}-\d{2}-\d{2}$/.test(String(s||'')))return false;const [y,m,d]=String(s).split('-').map(Number);const x=new Date(y,m-1,d);return x.getFullYear()===y&&x.getMonth()===m-1&&x.getDate()===d}
+function dhScan(){const R={};const inc=(k,n=1)=>{R[k]=(R[k]||0)+n};
+  const acc=new Set((plan.accts||[]).map(a=>a&&a.id)),deb=new Set((plan.debts||[]).map(d=>d&&d.id));const ids=new Set();
+  for(const e of ledger){if(!e)continue;if(!dhOkDate(e.date))inc('led_date');const a=Number(e.amount);if(!isFinite(a)||a===0)inc('led_amt0');else if(a<0)inc('led_neg');
+    if(e.type!=='gelir'&&e.type!=='gider')inc('led_type');if(!db&&e.id){if(ids.has(e.id))inc('led_dup');ids.add(e.id)}
+    if(e.acc&&!acc.has(e.acc))inc('led_acc');if((e.cat!=null&&typeof e.cat!=='string')||(e.desc!=null&&typeof e.desc!=='string'))inc('led_str')}
+  const yms=new Set();for(const m of (plan.months||[])){if(!m||!/^\d{4}-\d{2}$/.test(m.ym)){inc('mon_ym');continue}if(yms.has(m.ym))inc('mon_dup');yms.add(m.ym);
+    if(!m.d||typeof m.d!=='object'){inc('mon_d');continue}for(const k in m.d){if(!deb.has(k))inc('mon_orph');else if(m.d[k]!==''&&m.d[k]!=null&&!isFinite(Number(m.d[k])))inc('mon_nan')}}
+  for(const key of ['paid','paidAt','defer','part'])for(const ym in (plan[key]||{})){const o=plan[key][ym];if(o&&typeof o==='object')for(const id in o)if(!deb.has(id))inc('mark_orph')}
+  for(const B of [plan.budgets,plan.tagBud])for(const k in (B||{})){const v=Number(B[k]);if(!isFinite(v)||v<=0)inc('bud_bad')}
+  for(const x of (plan.xfers||[]))if(x&&((x.from&&!acc.has(x.from))||(x.to&&!acc.has(x.to))))inc('xf_orph');
+  const did=new Set();for(const d of (plan.debts||[])){if(!d)continue;if(did.has(d.id))inc('debt_dup');did.add(d.id)}
+  return R}
+async function dhFix(keys){const K=new Set(keys);const snapP=JSON.stringify(plan),snapL=JSON.stringify(ledger);let n=0;const R=dhScan();for(const k of keys)n+=R[k]||0;
+  try{await histPush(snapP)}catch(e){}
+  const acc=new Set((plan.accts||[]).map(a=>a&&a.id)),deb=new Set((plan.debts||[]).map(d=>d&&d.id));
+  const tsDate=ts=>{const d=new Date(Number(ts));return isFinite(d)&&ts?d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()):todayStr()};
+  const seen=new Set();const out=[],gone=[],changed=[];
+  for(const e0 of ledger){if(!e0)continue;let e={...e0},ch=false;const a=Number(e.amount);
+    if(K.has('led_amt0')&&(!isFinite(a)||a===0)){gone.push(e0);continue}
+    if(K.has('led_neg')&&isFinite(a)&&a<0){e.amount=-a;ch=true}else if(typeof e.amount!=='number'&&isFinite(a)&&a!==0&&K.has('led_amt0')){e.amount=a;ch=true}
+    if(K.has('led_date')&&!dhOkDate(e.date)){e.date=tsDate(e.ts);ch=true}
+    if(K.has('led_type')&&e.type!=='gelir'&&e.type!=='gider'){e.type='gider';ch=true}
+    if(K.has('led_acc')&&e.acc&&!acc.has(e.acc)){delete e.acc;ch=true}
+    if(K.has('led_str')){if(e.cat!=null&&typeof e.cat!=='string'){e.cat=String(e.cat);ch=true}if(e.desc!=null&&typeof e.desc!=='string'){e.desc=String(e.desc);ch=true}}
+    if(!db&&K.has('led_dup')&&e.id&&seen.has(e.id)){e.id='l'+Date.now()+Math.random().toString(36).slice(2,8);ch=true}if(e.id)seen.add(e.id);
+    out.push(e);if(ch)changed.push(e)}
+  if(db){for(const e of gone)await removeEntry(e.id);for(const e of changed)await saveEntry(e)}else{ledger=out;try{await lsWrite(LS_LEDGER,ledger)}catch(e){}}
+  for(const m of (plan.months||[])){if(!m||!/^\d{4}-\d{2}$/.test(m.ym))continue;if(K.has('mon_d')&&(!m.d||typeof m.d!=='object')){m.d={};continue}if(!m.d||typeof m.d!=='object')continue;
+    for(const k of Object.keys(m.d)){if(K.has('mon_orph')&&!deb.has(k)){delete m.d[k];continue}if(K.has('mon_nan')&&m.d[k]!==''&&m.d[k]!=null&&!isFinite(Number(m.d[k]))){const v=parseFloat(String(m.d[k]).replace(/\./g,'').replace(',','.'));if(isFinite(v))m.d[k]=v;else delete m.d[k]}}}
+  if(K.has('mark_orph'))for(const key of ['paid','paidAt','defer','part'])for(const ym of Object.keys(plan[key]||{})){const o=plan[key][ym];if(!o||typeof o!=='object')continue;for(const id of Object.keys(o))if(!deb.has(id))delete o[id];if(!Object.keys(o).length)delete plan[key][ym]}
+  if(K.has('bud_bad'))for(const B of [plan.budgets,plan.tagBud])for(const k of Object.keys(B||{})){const v=Number(B[k]);if(!isFinite(v)||v<=0)delete B[k]}
+  if(K.has('xf_orph')&&plan.xfers)plan.xfers=plan.xfers.filter(x=>x&&!((x.from&&!acc.has(x.from))||(x.to&&!acc.has(x.to))));
+  queueSave();try{ruSync()}catch(e){}try{ntSync()}catch(e){}
+  const undo=db?null:{label:t('sb_discard'),fn:async()=>{plan=JSON.parse(snapP);ledger=JSON.parse(snapL);try{await lsWrite(LS_LEDGER,ledger)}catch(e){}queueSave();render()}};
+  toast(ux('dh_fixed',{n}),undo||undefined);return n}
+function dhSub(){const R=dhScan();const n=Object.values(R).reduce((a,b)=>a+b,0);return n?ux('dh_n_s',{n}):ux('dh_ok_s')}
+let dhShown=false;
+function dhBody(){const R=dhScan();const keys=Object.keys(R);if(!dhShown)return `<button type="button" class="btn" data-dh="scan">${ic('shield-check')}${esc(ux('dh_btn'))}</button>`;
+  if(!keys.length)return `<p class="dhok">${ic('check')}<span>${esc(ux('dh_ok'))}</span></p><button type="button" class="btn mini" data-dh="scan">${ic('refresh')}${esc(ux('dh_btn'))}</button>`;
+  const fx=keys.filter(k=>DH_FIXABLE.includes(k)),mn=keys.filter(k=>!DH_FIXABLE.includes(k));
+  return `<ul class="dhl">${fx.map(k=>`<li><span class="dhi">${ic('alert-triangle')}</span><span class="dht">${esc(ux('dh_'+k,{n:R[k]}))}</span><button type="button" class="btn mini" data-dhfix="${k}">${esc(ux('dh_fix'))}</button></li>`).join('')}
+   ${mn.map(k=>`<li class="man"><span class="dhi">${ic('help')}</span><span class="dht">${esc(ux('dh_'+k,{n:R[k]}))}<small>${esc(ux('dh_manual'))}</small></span></li>`).join('')}</ul>
+   ${fx.length>1?`<button type="button" class="btn primary" data-dh="all">${ic('check')}${esc(ux('dh_fixall'))}</button>`:''}`}
+function dhDraw(){const b=document.getElementById('dhBody');if(b)b.innerHTML=dhBody();const s=document.querySelector('#dhCard .sxt small');if(s)s.textContent=dhSub()}
+function dhInject(){const v=document.getElementById('view');if(!v||!v.querySelector('.langseg')||v.querySelector('#dhCard'))return;const K='ayar:93';if(!(K in colState))colState[K]=true;
+  const cards=[...v.querySelectorAll(':scope > section.card')];const tt=c=>{const h=c.querySelector(':scope > .cardhead h2');return h?(h.dataset.t||h.textContent).trim():''};
+  const ref=cards.find(c=>tt(c)===t('bk_title'));
+  const h=`<section class="card colb sxc${colState[K]?' col':''}" id="dhCard" data-ckey="${K}" style="--sc:#059669"><div class="cardhead"><h2 data-t="${esc(ux('dh_h'))}"><span class="sxi">${ic('shield-check')}</span><span class="sxt"><b>${esc(ux('dh_h'))}</b><small>${esc(dhSub())}</small></span></h2></div><p class="hint">${esc(ux('dh_n'))}</p><div id="dhBody">${dhBody()}</div></section>`;
+  if(ref)ref.insertAdjacentHTML('beforebegin',h);else v.insertAdjacentHTML('beforeend',h)}
+try{const _ss8=setSpecs;setSpecs=function(){const a=_ss8.apply(this,arguments);a.push([ux('dh_h'),'shield-check','#059669',dhSub]);return a}}catch(e){}
+const _dhRA=renderAyar;renderAyar=function(){const r=_dhRA.apply(this,arguments);try{dhInject();bvLine()}catch(e){}return r};
+document.addEventListener('click',async e=>{const T=e.target.closest&&e.target.closest('#dhCard [data-dh],#dhCard [data-dhfix]');if(!T)return;e.preventDefault();e.stopPropagation();
+  if(T.dataset.dh==='scan'){dhShown=true;dhDraw();try{hap(10)}catch(z){}return}
+  const keys=T.dataset.dh==='all'?Object.keys(dhScan()).filter(k=>DH_FIXABLE.includes(k)):[T.dataset.dhfix];T.disabled=true;
+  try{await dhFix(keys)}finally{dhShown=true;dhDraw()}},true);
+
+/* ---- 2. Yedek doğrulama ---- */
+async function bvVerify(){try{
+  const data={app:'gelir-gider-takip',version:1,plan:clone(plan),ledger:ledger.map(({id,...r})=>r)};let text=JSON.stringify(data,null,1);let d;
+  const pass=(document.getElementById('bkPw')?document.getElementById('bkPw').value:'')||secPw;
+  if(pass&&secOK()){const enc=await encryptBackup(text,pass);d=await decryptBackup(JSON.parse(enc),pass)}else d=JSON.parse(text);
+  const ok=validBackup(d)&&d.plan.months.length===plan.months.length&&d.plan.debts.length===plan.debts.length&&(d.ledger||[]).length===ledger.length;
+  return {ok,m:plan.months.length,d:plan.debts.length,l:ledger.length}}catch(e){return {ok:false,m:0,d:0,l:0}}}
+function bvGet(){try{return JSON.parse(localStorage.getItem('gg_bkver')||'null')}catch(e){return null}}
+function bvLine(){const b=[...document.querySelectorAll('#view > section.card')].find(c=>{const h=c.querySelector(':scope > .cardhead h2');return h&&(h.dataset.t||h.textContent).trim()===t('bk_title')});if(!b)return;
+  const V=bvGet();let el=b.querySelector('.bvline');if(!V){if(el)el.remove();return}const d=new Date(V.ts);const ds=dmy(d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()));
+  const h=`${ic(V.ok?'shield-check':'alert-triangle')}<span>${esc(V.ok?ux('bv_last',{d:ds,l:V.l}):ux('bv_lastbad',{d:ds}))}</span>`;
+  if(!el){el=document.createElement('p');el.className='bvline';const hd=b.querySelector(':scope > .cardhead');(hd||b).insertAdjacentElement('afterend',el)}el.classList.toggle('bad',!V.ok);el.innerHTML=h}
+const _bvDone=bkDone;bkDone=function(){const r=_bvDone.apply(this,arguments);(async()=>{const V=await bvVerify();try{localStorage.setItem('gg_bkver',JSON.stringify({ts:Date.now(),...V}))}catch(e){}
+  if(tab==='ayar')bvLine();if(!V.ok)setTimeout(()=>toast(ux('bv_bad')),1600);else setTimeout(()=>{const x=document.getElementById('toast');if(!x||x.hidden)toast(ux('bv_ok',V))},3200)})();return r};
+
+/* ---- 4. Ekran okuyucu ---- */
+function a11yFix(){const lg=document.querySelector('.top .logo[role=button]');if(lg)lg.setAttribute('aria-label',ux('lg_home'));const ts=document.getElementById('toast');if(ts&&!ts.getAttribute('role')){ts.setAttribute('role','status');ts.setAttribute('aria-live','polite')}}
+/* bozuk metin alanları (sayı/null) ekranı çökertmesin: çizimden önce sessizce metne çevrilir, bir kez kaydedilir */
+let dhSoftT=0;function dhSoft(){if(!Array.isArray(ledger))return;let ch=0;for(const e of ledger){if(!e)continue;if(e.cat!=null&&typeof e.cat!=='string'){e.cat=String(e.cat);ch++}if(e.desc!=null&&typeof e.desc!=='string'){e.desc=String(e.desc);ch++}}
+  if(ch&&!db){clearTimeout(dhSoftT);dhSoftT=setTimeout(()=>{try{lsWrite(LS_LEDGER,ledger)}catch(e){}},400)}}
+function dhNotify(){if(!plan||!Array.isArray(ledger))return;const R=dhScan();const n=Object.keys(R).filter(k=>DH_FIXABLE.includes(k)).reduce((a,k)=>a+R[k],0);if(!n)return;let last='';try{last=localStorage.getItem('gg_dhnote')||''}catch(e){}if(last===todayStr())return;try{localStorage.setItem('gg_dhnote',todayStr())}catch(e){}
+  toast(ux('dh_n_s',{n})+' · '+ux('dh_h'),{label:ux('dh_fix'),fn:()=>{tab='ayar';render();setTimeout(()=>{const c=document.getElementById('dhCard');if(c){c.classList.remove('col');colState[c.dataset.ckey]=false;dhShown=true;dhDraw();c.scrollIntoView({block:'start',behavior:'smooth'})}},60)}})}
+try{const _a11R=render;render=function(){try{dhSoft()}catch(e){}const r=_a11R.apply(this,arguments);try{a11yFix()}catch(e){}return r}}catch(e){}
+setTimeout(()=>{try{dhNotify()}catch(e){}},5000);
+setTimeout(()=>{try{a11yFix()}catch(e){}},0);
+
 /* ================= Bildirim merkezi ================= */
 const LS_NF='gg_nf';let nfOpenAt=0,nfTab='all',nfSnz=null,nfUndo=null;
 const dayAdd=(iso,n)=>{const [y,m,d]=iso.split('-').map(Number),x=new Date(y,m-1,d+n);return x.getFullYear()+'-'+pad(x.getMonth()+1)+'-'+pad(x.getDate())};
@@ -10044,7 +10201,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='260';
+const APP_VER='261';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
