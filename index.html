@@ -2127,6 +2127,7 @@ html[dir=rtl] #paycard label.payrow.du-soon{box-shadow:inset -3px 0 0 var(--warn
 .hcclr{margin-top:10px}
 .hcn{margin:8px 0 0!important}
 .pjrow .pjp{display:block;font-style:normal;font-size:11px;color:var(--muted-tx,var(--muted));margin-top:2px}
+.hcnone{margin:10px 0 0;padding:8px 10px;border-radius:10px;background:var(--surface2);font-size:12.5px;color:var(--muted-tx,var(--muted));text-align:center}
 /* v257: filtre çubuğu ve etiketler */
 #qfWrap{margin:8px 0 4px}
 .qfbar{display:flex;align-items:center;gap:6px;min-width:0}
@@ -2201,6 +2202,8 @@ body.has-bar .lxbar{bottom:calc(92px + env(safe-area-inset-bottom,0px))}
 .cmsim{margin:4px 0 10px;padding:10px 12px;border-radius:12px;background:rgba(217,119,6,.1);display:flex;flex-direction:column;gap:6px}
 .cmsim>b{display:flex;align-items:center;gap:6px;font-size:13px}.cmsim>b .ic{width:15px;height:15px;color:var(--warn,#d97706)}
 .cmsr{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:13px}.cmsr span{min-width:0;overflow-wrap:anywhere}.cmsr i{font-style:normal;font-weight:600}
+.qfg .qfw{grid-column:1/-1}
+.cmnone{margin:6px 0 0;font-size:13px;color:var(--muted-tx,var(--muted))}
 </style>
 
 <div class="app">
@@ -6620,7 +6623,8 @@ const _pjGL=glHTML;glHTML=function(){let h=_pjGL.apply(this,arguments);try{const
 /* ---- 3. Harcama takvimi (Defter) ---- */
 let hcYm=null,hcSel=null;
 function hcOpen(){try{return localStorage.getItem('gg_hc')!=='0'}catch(e){return true}}
-function hcHTML(){const ym=hcYm||(ledgerFilter&&ledgerFilter!=='all'?ledgerFilter:ymToday());const [Y,Mo]=ym.split('-').map(Number);const D=new Date(Y,Mo,0).getDate();
+function hcDefYm(){if(ledgerFilter&&ledgerFilter!=='all')return ledgerFilter;const cur=ymToday();let last='';for(const e of ledger){if(e.type==='gelir')continue;const m=String(e.date).slice(0,7);if(m===cur)return cur;if(m<cur&&m>last)last=m}return last||cur}
+function hcHTML(){const ym=hcYm||hcDefYm();const [Y,Mo]=ym.split('-').map(Number);const D=new Date(Y,Mo,0).getDate();
   const S={};let mx=0,tot=0;for(const e of ledger){if(e.type==='gelir'||String(e.date).slice(0,7)!==ym)continue;const k=String(e.date);S[k]=(S[k]||0)+num(e.amount)}
   for(const k in S){mx=Math.max(mx,S[k]);tot+=S[k]}
   const off=(new Date(Y,Mo-1,1).getDay()+6)%7;let wd=[];try{const f=new Intl.DateTimeFormat(LOC[LANG],{weekday:'narrow'});for(let i=0;i<7;i++)wd.push(f.format(new Date(2024,0,1+i)))}catch(e){wd=['P','S','Ç','P','C','C','P']}
@@ -6631,13 +6635,13 @@ function hcHTML(){const ym=hcYm||(ledgerFilter&&ledgerFilter!=='all'?ledgerFilte
   return `<section class="card hcc-card${open?'':' hcx'}" id="hcCard"><div class="hch"><button type="button" class="hct" data-hctog aria-expanded="${open}">${ic('calendar')}<b>${esc(ux('hc_h'))}</b>${ic('chev-down')}</button>
    <span class="hcnav"><button type="button" class="btn mini" data-hcm="-1" aria-label="${esc(ux('hc_prev'))}">${LANG==='ar'?'›':'‹'}</button><span>${esc(ymLabel(ym))}</span><button type="button" class="btn mini" data-hcm="1" aria-label="${esc(ux('hc_next'))}">${LANG==='ar'?'‹':'›'}</button></span></div>
    <div class="hcb"><div class="hcg hcw">${wd.map(w=>`<span>${esc(w)}</span>`).join('')}</div><div class="hcg">${cells.join('')}</div>
-   ${mx?`<div class="hcf"><span>${esc(ux('hc_less'))}</span><i class="l1"></i><i class="l2"></i><i class="l3"></i><i class="l4"></i><span>${esc(ux('hc_more'))}</span><b>${v6M(tot)}</b></div>`:`<p class="hint">${esc(ux('hc_none'))}</p>`}
+   ${mx?`<div class="hcf"><span>${esc(ux('hc_less'))}</span><i class="l1"></i><i class="l2"></i><i class="l3"></i><i class="l4"></i><span>${esc(ux('hc_more'))}</span><b>${v6M(tot)}</b></div>`:`<p class="hcnone">${esc(ux('hc_none'))}</p>`}
    ${hcSel&&lq===dmy(hcSel)?`<button type="button" class="btn mini hcclr" data-hcclr>${ic('close')}${esc(ux('hc_all'))}</button>`:''}<p class="hint hcn">${esc(ux('hc_n'))}</p></div></section>`}
-function hcDraw(){const lh=document.querySelector('#view .listhead');if(!lh)return;const old=document.getElementById('hcCard');const h=hcHTML();if(old)old.outerHTML=h;else lh.insertAdjacentHTML('beforebegin',h)}
+function hcDraw(){const lh=document.querySelector('#view .listhead');if(!lh)return;const old=document.getElementById('hcCard');if(!ledger.some(e=>e.type!=='gelir')){if(old)old.remove();return}const h=hcHTML();if(old)old.outerHTML=h;else lh.insertAdjacentHTML('beforebegin',h)}
 function hcSetQ(v){lq=v;const s=document.getElementById('lSearch');if(s)s.value=v;drawLedger()}
 document.addEventListener('click',ev=>{const T=ev.target.closest&&ev.target.closest('#hcCard [data-hcd],#hcCard [data-hcm],#hcCard [data-hctog],#hcCard [data-hcclr]');if(!T)return;ev.preventDefault();
   if(T.dataset.hctog!==undefined){const o=!hcOpen();try{localStorage.setItem('gg_hc',o?'1':'0')}catch(e){}hcDraw();return}
-  if(T.dataset.hcm){const cur=hcYm||(ledgerFilter&&ledgerFilter!=='all'?ledgerFilter:ymToday());hcYm=addYm(cur,+T.dataset.hcm);hcDraw();return}
+  if(T.dataset.hcm){const cur=hcYm||hcDefYm();hcYm=addYm(cur,+T.dataset.hcm);hcDraw();return}
   if(T.dataset.hcclr!==undefined){hcSel=null;hcSetQ('');return}
   const k=T.dataset.hcd;if(hcSel===k&&lq===dmy(k)){hcSel=null;hcSetQ('')}else{hcSel=k;hcSetQ(dmy(k));try{hap(10)}catch(e){}setTimeout(()=>{const L=document.getElementById('lSum');if(L){const r=L.getBoundingClientRect();if(r.top>innerHeight-120||r.top<60)L.scrollIntoView({block:'start',behavior:'smooth'})}},60)}});
 const _hcDL=drawLedger;drawLedger=function(){const r=_hcDL.apply(this,arguments);try{if(hcSel&&lq!==dmy(hcSel))hcSel=null;hcDraw();fvDraw()}catch(e){}return r};
@@ -6717,8 +6721,8 @@ function qfBarHTML(){const T=tgAll(),n=qfCount();
 function qfPanelHTML(){const cats=qfCats();let A=[];try{A=hvList()}catch(e){}
   const seg=[['',ux('qf_all')],['gider',t('lg_expense')],['gelir',t('lg_income')]];
   return `<div id="qfPanel" class="card qfp"><div class="qfseg" role="radiogroup" aria-label="${esc(ux('qf_type'))}">${seg.map(([v,l])=>`<button type="button" role="radio" aria-checked="${QF.type===v}" class="${QF.type===v?'on':''}" data-qft="${v}">${esc(l)}</button>`).join('')}</div>
-   <div class="qfg"><label class="f">${esc(ux('qf_cat'))}<select id="qfCat"><option value="">${esc(ux('qf_any'))}</option>${cats.map(c=>`<option value="${esc(c)}"${v7lo(c)===v7lo(QF.cat)?' selected':''}>${esc(c)}</option>`).join('')}</select></label>
-   ${A.length?`<label class="f">${esc(ux('qf_acc'))}<select id="qfAcc"><option value="">${esc(ux('qf_any'))}</option>${A.map(a=>`<option value="${esc(a.id)}"${QF.acc===a.id?' selected':''}>${esc(a.n)}</option>`).join('')}</select></label>`:''}
+   <div class="qfg">${cats.length?`<label class="f qfw">${esc(ux('qf_cat'))}<select id="qfCat"><option value="">${esc(ux('qf_any'))}</option>${cats.map(c=>`<option value="${esc(c)}"${v7lo(c)===v7lo(QF.cat)?' selected':''}>${esc(c)}</option>`).join('')}</select></label>`:''}
+   ${A.length?`<label class="f qfw">${esc(ux('qf_acc'))}<select id="qfAcc"><option value="">${esc(ux('qf_any'))}</option>${A.map(a=>`<option value="${esc(a.id)}"${QF.acc===a.id?' selected':''}>${esc(a.n)}</option>`).join('')}</select></label>`:''}
    <label class="f">${esc(ux('qf_min'))} (${esc(curSym())})<input id="qfMin" type="number" inputmode="decimal" min="0" step="0.01" value="${esc(QF.min)}"></label><label class="f">${esc(ux('qf_max'))} (${esc(curSym())})<input id="qfMax" type="number" inputmode="decimal" min="0" step="0.01" value="${esc(QF.max)}"></label></div>
    ${qfCount()?`<button type="button" class="btn mini" data-qf="clear">${ic('close')}${esc(ux('qf_clear'))}</button>`:''}</div>`}
 function tgCardHTML(){const o=tgAll().find(z=>z.k===QF.tag);if(!o)return '';const B=num(tgBud()[o.k]);const pct=B>0?Math.min(100,o.x/B*100):0,over=B>0&&o.x>B;
@@ -6726,7 +6730,7 @@ function tgCardHTML(){const o=tgAll().find(z=>z.k===QF.tag);if(!o)return '';cons
    <div class="tgs"><div><small>${esc(ux('tg_spent'))}</small><b>${v7M(o.x)}</b></div>${o.g?`<div><small>${esc(ux('tg_inc'))}</small><b class="pos">${v7M(o.g)}</b></div>`:''}<div><small>&nbsp;</small><span>${esc(ux('tg_tot',{n:o.n,d:o.a===o.b?dmy(o.a):dmy(o.a)+' – '+dmy(o.b)}))}</span></div></div>
    ${B>0?`<div class="tgbar${over?' over':pct>=80?' warn':''}"><i style="width:${pct.toFixed(1)}%"></i></div><p class="tgbl"><span>${esc(ux('tg_bud'))}: ${v7M(B)}</span><b class="${over?'neg':''}">${esc(over?ux('tg_over',{v:v7m(o.x-B)}):ux('tg_left',{v:v7m(B-o.x)}))}</b></p>`:''}
    <div class="tgbud" id="tgBudRow"><button type="button" class="btn mini" data-tgb="edit">${ic('target')}${esc(ux(B>0?'tg_bud_ch':'tg_bud_set'))}</button>${B>0?`<button type="button" class="btn mini" data-tgb="rm">${esc(ux('tg_bud_rm'))}</button>`:''}</div></div>`}
-function qfDraw(){const s=document.getElementById('lSearch');if(!s)return;const old=document.getElementById('qfWrap');const h=`<div id="qfWrap">${qfBarHTML()}</div>`;if(old)old.outerHTML=h;else s.insertAdjacentHTML('afterend',h)}
+function qfDraw(){const s=document.getElementById('lSearch');if(!s)return;const old=document.getElementById('qfWrap');if(!ledger.length){if(old)old.remove();QF={type:'',cat:'',acc:'',min:'',max:'',tag:''};qfOpen=false;return}const h=`<div id="qfWrap">${qfBarHTML()}</div>`;if(old)old.outerHTML=h;else s.insertAdjacentHTML('afterend',h)}
 /* drawLedger: filtreyi uygula (ledger geçici olarak süzülür) */
 const _qfDL=drawLedger;drawLedger=function(){const all=ledger;let r;if(qfAny()){ledger=all.filter(qfPass);try{r=_qfDL.apply(this,arguments)}finally{ledger=all}}else r=_qfDL.apply(this,arguments);
   try{if(typeof hcDraw==='function')hcDraw();if(typeof fvDraw==='function')fvDraw()}catch(e){}try{qfDraw();tgDecorate();lxApply()}catch(e){}return r};
@@ -6820,7 +6824,7 @@ function cmStats(){const M=new Map();for(const e of ledger){const c=(e.cat||'').
 function cmSim(S){const G=new Map();for(const o of S){const k=crFold(o.c).replace(/[^\p{L}\p{N}]/gu,'');if(!k)continue;if(!G.has(k))G.set(k,[]);G.get(k).push(o)}return [...G.values()].filter(g=>g.length>1)}
 let cmEdit=null;
 function cmHTML(){const S=cmStats();const sim=cmSim(S);
-  return `${S.length?'':`<p class="hint">${esc(ux('cm_none'))}</p>`}
+  return `${S.length?'':`<p class="cmnone">${esc(ux('cm_none'))}</p>`}
    ${sim.length?`<div class="cmsim"><b>${ic('alert-triangle')}${esc(ux('cm_sim'))}</b>${sim.map(g=>`<div class="cmsr"><span>${g.map(o=>`<i>${esc(o.c)}</i>`).join(' · ')}</span><button type="button" class="btn mini primary" data-cmm="${esc(JSON.stringify(g.map(o=>o.c)))}">${esc(ux('cm_merge'))}</button></div>`).join('')}</div>`:''}
    <div class="cml">${S.map(o=>cmEdit===o.c?`<div class="cmr ed"><input id="cmIn" value="${esc(o.c)}" aria-label="${esc(ux('cm_ren'))}" autocomplete="off"><button type="button" class="btn mini primary" data-cms="${esc(o.c)}">${esc(ux('cm_save'))}</button><button type="button" class="btn mini" data-cmx>${ic('close')}</button></div>`:
     `<div class="cmr"><span class="cmi">${ic(catIcon({cat:o.c,type:'gider'}))}</span><span class="cmt"><b>${esc(o.c)}</b><small>${esc(ux('cm_cnt',{n:o.n,v:v7m(o.v)}))}</small></span><button type="button" class="btn mini" data-cme="${esc(o.c)}" aria-label="${esc(ux('cm_ren'))}: ${esc(o.c)}">${ic('pencil')}</button></div>`).join('')}</div>`}
@@ -10014,7 +10018,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='257';
+const APP_VER='258';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
