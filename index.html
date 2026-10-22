@@ -4897,7 +4897,7 @@ document.addEventListener('click',async e=>{const cb=e.target.closest&&e.target.
   if(a==='bioon'){if(await bioEnable('vault',WV.pin)){toast(ux('bi_done'));renderTools()}else toast(ux('bi_fail'));return}if(a==='biooff'){bioDisable('vault');toast(ux('bi_offd'));renderTools();return}
   if(a==='bin'){const n=((document.getElementById('wvNum')||{}).value||'').replace(/\D/g,'');if(n.length>=6)wvBinLookup(n.slice(0,6),true);return}
   if(a==='create')return wvCreate();if(a==='unlock')return wvUnlock();if(a==='lock'){wvLock();return}
-  if(a==='reset'){if(await uiConfirm({title:ux('wv_reset_h'),msg:ux('wv_reset_p'),kind:'danger',icon:'trash',ok:ux('uc_del')})){try{localStorage.removeItem(LS_VAULT)}catch(x){}wvLock()}return}
+  if(a==='reset'){if(await uiConfirm({title:ux('wv_reset_h'),msg:ux('wv_reset_p'),kind:'danger',icon:'trash',ok:ux('uc_del')})){try{localStorage.removeItem(LS_VAULT)}catch(x){}try{vlStamp()}catch(x){}wvLock()}return}
   if(a==='add'){WV.edit='new';WV.form=null;renderTools();return}if(a==='edit'){WV.edit=+i;WV.form=null;renderTools();return}if(a==='cancel'){WV.edit=null;WV.form=null;renderTools();return}
   if(a==='eye'){WV.show[i]=!WV.show[i];renderTools();return}
   if(a==='copy'){const c=WV.cards[+i];if(!c)return;const v=f==='num'?String(c.num||'').replace(/\D/g,''):c[f]||'';if(!v)return;try{await navigator.clipboard.writeText(v);toast(ux('wv_copied',{f:f==='num'?ux('wv_num'):f==='exp'?ux('wv_exp'):f==='cvv'?cvvName((WV.cards[+i]||{}).num):ux('wv_holder')}))}catch(x){toast(ux('dv_copy_err'))}return}
@@ -7185,6 +7185,30 @@ function tabIcons(){document.querySelectorAll('#tabs button[data-tab]').forEach(
 try{const _tiR=render;render=function(){const r=_tiR.apply(this,arguments);try{tabIcons();requestAnimationFrame(()=>{try{tabInd()}catch(e){}})}catch(e){}return r}}catch(e){}
 try{new MutationObserver(()=>{try{tabIcons()}catch(e){}}).observe(document.getElementById('tabs'),{childList:true})}catch(e){}
 setTimeout(()=>{try{tabIcons();tabInd()}catch(e){}},0);
+
+/* ================= v267: kart kasası bulut eşitlemeye dahil (kullanıcı tercihi: aynı 6 haneli PIN, CVV dahil) =================
+   Kasa buluta zaten şifreli haliyle (PIN + PBKDF2) gider; bulut parolası açıksa bunun üstüne bir kat daha şifrelenir.
+   Tarayıcı verisi silinip bulut yeniden bağlanınca kasa geri gelir. Sürüm karşılaştırması gg_vault_ts ile; silme de eşitlenir. */
+Object.assign(UX.tr,{wv_sec:'Kartlar 6 haneli PIN’inle şifreli saklanır. Bulut eşitleme açıksa kasa şifreli haliyle buluta da kaydedilir; tarayıcı verisi silinse de bulutu yeniden bağlayınca geri gelir. Yedek dosyasına ve Excel’e girmez.',vl_back:'Kart kasası buluttan geri yüklendi',vl_gone:'Kart kasası başka bir cihazda silindi'});
+Object.assign(UX.en,{wv_sec:'Cards are stored encrypted with your 6-digit PIN. If cloud sync is on, the vault is also saved to the cloud in encrypted form, so it comes back after you clear browser data and reconnect. It is not included in backup files or Excel.',vl_back:'Card vault restored from the cloud',vl_gone:'Card vault was deleted on another device'});
+Object.assign(UX.ru,{wv_sec:'Карты хранятся зашифрованными вашим 6-значным PIN. Если включена синхронизация, хранилище в зашифрованном виде сохраняется и в облаке и вернётся после очистки данных браузера и повторного подключения. В файлы копий и Excel не попадает.',vl_back:'Хранилище карт восстановлено из облака',vl_gone:'Хранилище карт удалено на другом устройстве'});
+Object.assign(UX.ar,{wv_sec:'تُحفظ البطاقات مشفّرة برمزك المكوّن من 6 أرقام. إذا كانت المزامنة السحابية مفعّلة تُحفظ الخزنة مشفّرة في السحابة أيضًا، فتعود بعد مسح بيانات المتصفح وإعادة الربط. لا تدخل ملفات النسخ الاحتياطي أو Excel.',vl_back:'تمت استعادة خزنة البطاقات من السحابة',vl_gone:'حُذفت خزنة البطاقات على جهاز آخر'});
+function vlGet(){try{const b=localStorage.getItem(LS_VAULT)||null,ts=Number(localStorage.getItem('gg_vault_ts')||0);if(!b&&!ts)return null;return {b,ts:ts||1}}catch(e){return null}}
+function vlStamp(){try{localStorage.setItem('gg_vault_ts',String(Date.now()))}catch(e){}try{if(ghOn()){GH.pending=true;ghSave();ghSoon(2500)}}catch(e){}}
+function vlApply(v){if(!v||typeof v!=='object'||!v.ts)return;const l=vlGet();if(l&&l.ts>=v.ts)return;
+  try{if(v.b)localStorage.setItem(LS_VAULT,v.b);else localStorage.removeItem(LS_VAULT);localStorage.setItem('gg_vault_ts',String(v.ts))}catch(e){return}
+  try{if(WV.open)wvLock();else if(tab==='arac'&&toolSec==='wal')renderTools()}catch(e){}
+  setTimeout(()=>{try{toast(ux(v.b?'vl_back':'vl_gone'))}catch(e){}},1400)}
+/* buluta giden anlık görüntüye kasayı ekle */
+const _vlSnap=ghSnap;ghSnap=function(){const d=_vlSnap.apply(this,arguments);const v=vlGet();if(v)d.vault=v;return d};
+/* yalnız kasa değiştiyse de "farklı" say ki uygulansın */
+const _vlSame=ghSame;ghSame=function(d){const r=_vlSame.apply(this,arguments);if(!r)return r;const rv=d&&d.vault,l=vlGet();if(rv&&rv.ts&&(!l||rv.ts>l.ts))return false;return r};
+/* buluttan gelen veriyi uygularken kasayı da al */
+const _vlApply=ghApply;ghApply=async function(d){const r=await _vlApply.apply(this,arguments);try{vlApply(d&&d.vault)}catch(e){}return r};
+/* kasa her kaydedildiğinde / silindiğinde zaman damgası + eşitleme */
+const _vlSave=wvSave;wvSave=async function(){const r=await _vlSave.apply(this,arguments);vlStamp();return r};
+/* var olan kasa ilk kez buluta gönderilsin */
+setTimeout(()=>{try{if(wvHas()&&!localStorage.getItem('gg_vault_ts'))vlStamp()}catch(e){}},3000);
 
 /* ================= Bildirim merkezi ================= */
 const LS_NF='gg_nf';let nfOpenAt=0,nfTab='all',nfSnz=null,nfUndo=null;
@@ -10351,7 +10375,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='266';const APP_VER_UI='1.0';
+const APP_VER='267';const APP_VER_UI='1.0';
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
