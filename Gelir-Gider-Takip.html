@@ -7178,8 +7178,8 @@ const TAB_IC={plan:'<rect x="3.5" y="4.5" width="17" height="16" rx="3"/><path d
  kalem:'<path d="M9 6.5h11M9 12h11M9 17.5h11"/><path d="M3.8 6.6l1.2 1.1 2.1-2.4M3.8 12.1l1.2 1.1 2.1-2.4"/><circle cx="5.3" cy="17.5" r="1.2"/>',
  arac:'<rect x="3.5" y="3.5" width="7" height="7" rx="2"/><rect x="13.5" y="3.5" width="7" height="7" rx="2"/><rect x="3.5" y="13.5" width="7" height="7" rx="2"/><rect x="13.5" y="13.5" width="7" height="7" rx="2"/>',
  ayar:'<path d="M4 6.5h9M17 6.5h3M4 12h3M11 12h9M4 17.5h11M19 17.5h1"/><circle cx="15" cy="6.5" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17" cy="17.5" r="2"/>'};
-function tabIcons(){document.querySelectorAll('#tabs button[data-tab]').forEach(b=>{const k=b.dataset.tab;if(!TAB_IC[k]||b.dataset.ti===k)return;const old=b.querySelector('svg');const s=`<svg class="ic tic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${TAB_IC[k]}</svg>`;
-  if(old)old.outerHTML=s;else b.insertAdjacentHTML('afterbegin',s);b.dataset.ti=k})}
+function tabIcons(){document.querySelectorAll('#tabs button[data-tab]').forEach(b=>{const k=b.dataset.tab;if(!TAB_IC[k])return;if(b.dataset.ti===k&&b.querySelector('svg.tic'))return;const old=b.querySelector('svg');const s=`<svg class="ic tic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${TAB_IC[k]}</svg>`;
+  if(old)old.outerHTML=s;else b.insertAdjacentHTML('afterbegin',s);b.dataset.ti=k});document.querySelectorAll('#tabs button[data-tab]').forEach(b=>{const sp=b.querySelector('span');const n=sp?sp.textContent.trim():'';if(n&&b.getAttribute('aria-label')!==n)b.setAttribute('aria-label',n)})}
 try{const _tiR=render;render=function(){const r=_tiR.apply(this,arguments);try{tabIcons();requestAnimationFrame(()=>{try{tabInd()}catch(e){}})}catch(e){}return r}}catch(e){}
 try{new MutationObserver(()=>{try{tabIcons()}catch(e){}}).observe(document.getElementById('tabs'),{childList:true})}catch(e){}
 setTimeout(()=>{try{tabIcons();tabInd()}catch(e){}},0);
@@ -10420,7 +10420,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='270';const APP_VER_BASE=264,APP_VER_MM='1.0';const APP_VER_UI=APP_VER_MM+'.'+(Number(APP_VER)-APP_VER_BASE);
+const APP_VER='271';const APP_VER_BASE=264,APP_VER_MM='1.0';const APP_VER_UI=APP_VER_MM+'.'+(Number(APP_VER)-APP_VER_BASE);
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
