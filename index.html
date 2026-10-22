@@ -2278,6 +2278,16 @@ html:root .tabs,html:root[data-theme] .tabs{overflow:hidden}
 /* Yıl özeti kartları: sarı/yeşil tonlarda beyaz yazı okunmuyordu → hafif koyu katman + gölge */
 .yosl{background-image:linear-gradient(rgba(0,0,0,.3),rgba(0,0,0,.3)),linear-gradient(150deg,hsl(calc(250 + var(--h)) 70% 35%),hsl(calc(300 + var(--h)) 70% 45%))!important;text-shadow:0 1px 2px rgba(0,0,0,.25)}
 .yosl small{opacity:.9!important}
+/* v269: yeni sürüm uyarısı */
+.remind.upw,#alerts .remind.upw{background:color-mix(in srgb,var(--accent) 10%,var(--surface))!important;border:1px solid color-mix(in srgb,var(--accent) 30%,var(--line))!important}
+.remind.upw>.ic{color:var(--accent)}
+.remind.upw .bkt{display:flex;flex-direction:column;gap:2px;min-width:0}
+.remind.upw .bkt small{font-size:12px;color:var(--muted-tx,var(--muted));overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.verl .tlink{background:none;border:0;padding:4px 0;font:inherit;color:var(--accent);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.remind.upw{color:var(--fg)!important}
+.remind.upw .btn{white-space:nowrap;flex:0 0 auto}
+.remind.upw .bkt{flex:1 1 auto}
+.remind.upw .btn{padding:0 14px!important;min-height:36px}
 </style>
 
 <div class="app">
@@ -7210,6 +7220,38 @@ const _vlSave=wvSave;wvSave=async function(){const r=await _vlSave.apply(this,ar
 /* var olan kasa ilk kez buluta gönderilsin */
 setTimeout(()=>{try{if(wvHas()&&!localStorage.getItem('gg_vault_ts'))vlStamp()}catch(e){}},3000);
 
+/* ================= v269: yeni sürüm uyarısı =================
+   Site her yayında version.json yazar ({build,ver,date,note}). Uygulama açılışta (en çok 3 saatte bir) ve Ayarlar'a girince bakar.
+   Web/kurulu uygulama: "Güncelle" sayfayı yeniden yükler (sayfa önce ağdan gelir). Telefon dosyası: yeni dosyanın sayfasını açar. */
+Object.assign(UX.tr,{up_new:p=>`Yeni sürüm var: v${p.v}`,up_go:'Güncelle',up_dl:'Güncelle',up_ok:'Güncel',up_chk:'Güncellemeyi denetle',up_none:'En yeni sürümü kullanıyorsun',up_err:'Güncelleme denetlenemedi (internet yok)',up_file:'Açılan sayfada ⋮ → İndir ya da “HTML olarak kaydet” ile yeni dosyayı kaydet.',up_later:'Sonra'});
+Object.assign(UX.en,{up_new:p=>`New version available: v${p.v}`,up_go:'Update',up_dl:'Update',up_ok:'Up to date',up_chk:'Check for updates',up_none:'You are on the latest version',up_err:'Could not check for updates (no internet)',up_file:'On the page that opens, use ⋮ → Download or “Save as HTML” to save the new file.',up_later:'Later'});
+Object.assign(UX.ru,{up_new:p=>`Доступна новая версия: v${p.v}`,up_go:'Обновить',up_dl:'Обновить',up_ok:'Актуально',up_chk:'Проверить обновления',up_none:'У вас последняя версия',up_err:'Не удалось проверить обновления (нет интернета)',up_file:'На открывшейся странице: ⋮ → Скачать или «Сохранить как HTML».',up_later:'Позже'});
+Object.assign(UX.ar,{up_new:p=>`يتوفر إصدار جديد: v${p.v}`,up_go:'تحديث',up_dl:'تحديث',up_ok:'محدّث',up_chk:'تحقق من التحديثات',up_none:'أنت تستخدم أحدث إصدار',up_err:'تعذّر التحقق من التحديثات (لا يوجد إنترنت)',up_file:'في الصفحة التي تُفتح: ⋮ ← تنزيل أو «حفظ بتنسيق HTML».',up_later:'لاحقًا'});
+let UP=null;try{UP=JSON.parse(localStorage.getItem('gg_upinfo')||'null')}catch(e){}
+function upNewer(){return !!(UP&&Number(UP.build)>Number(APP_VER))}
+async function upCheck(force){try{const last=Number(localStorage.getItem('gg_upat')||0);if(!force&&Date.now()-last<3*3600e3)return UP}catch(e){}
+  try{const base=window.MIZAN_WEB?new URL('./',location.href).href:MV_SITE;const r=await fetch(base+'version.json?t='+Date.now(),{cache:'no-store'});if(!r.ok)throw 0;const j=await r.json();if(!j||!j.build)throw 0;
+    UP={build:Number(j.build),ver:String(j.ver||''),date:String(j.date||''),note:String(j.note||'')};try{localStorage.setItem('gg_upinfo',JSON.stringify(UP));localStorage.setItem('gg_upat',String(Date.now()))}catch(e){}
+    upDraw();return UP}catch(e){if(force)throw e;return UP}}
+function upAct(){if(window.MIZAN_WEB){(async()=>{try{const r=swReg||await navigator.serviceWorker.getRegistration();if(r)await r.update()}catch(e){}location.reload()})();return}
+  try{window.open(MV_SITE+'Gelir-Gider-Takip.html?v='+(UP&&UP.build||''),'_blank','noopener')}catch(e){location.href=MV_SITE+'Gelir-Gider-Takip.html'}setTimeout(()=>toast(ux('up_file')),300)}
+function upDraw(){let b=document.getElementById('upwarn');const snz=(()=>{try{return localStorage.getItem('gg_upsnz')||''}catch(e){return ''}})();
+  if(!upNewer()||snz===String(UP.build)){if(b)b.hidden=true;upVerl();return}
+  if(!b){b=document.createElement('div');b.id='upwarn';b.className='remind upw';try{alertsBox().prepend(b)}catch(e){return}
+    b.addEventListener('click',e=>{if(e.target.closest('.x')){try{localStorage.setItem('gg_upsnz',String(UP.build))}catch(x){}b.hidden=true;return}if(e.target.closest('.go'))upAct()})}
+  const note=UP.note&&LANG==='tr'?`<small>${esc(UP.note)}</small>`:'';
+  b.innerHTML=`${ic('download')}<span class="bkt"><b>${esc(ux('up_new',{v:UP.ver||UP.build}))}</b>${note}</span><button type="button" class="btn mini primary go">${esc(ux(window.MIZAN_WEB?'up_go':'up_dl'))}</button><button type="button" class="x" aria-label="${esc(ux('up_later'))}">×</button>`;b.hidden=false;upVerl()}
+/* Ayarlar en alttaki sürüm satırı: durum + denetle */
+function upVerl(){const v=document.querySelector('#view .verl');if(!v)return;let s=v.querySelector('.upst');if(!s){s=document.createElement('span');s.className='upst';v.append(s)}
+  if(upNewer())s.innerHTML=` · <button type="button" class="tlink upgo">${esc(ux('up_new',{v:UP.ver||UP.build}))} → ${esc(ux(window.MIZAN_WEB?'up_go':'up_dl'))}</button>`;
+  else s.innerHTML=` · <button type="button" class="tlink upchk">${UP&&UP.build?esc(ux('up_ok'))+' ✓ · ':''}${esc(ux('up_chk'))}</button>`}
+document.addEventListener('click',async e=>{const g=e.target.closest&&e.target.closest('.verl .upgo');if(g){e.preventDefault();upAct();return}
+  const c=e.target.closest&&e.target.closest('.verl .upchk');if(!c)return;e.preventDefault();c.disabled=true;try{await upCheck(true);if(!upNewer())toast(ux('up_none'))}catch(z){toast(ux('up_err'))}finally{upVerl()}});
+const _upRA=renderAyar;renderAyar=function(){const r=_upRA.apply(this,arguments);try{upVerl();upCheck(false)}catch(e){}return r};
+try{const _upR=render;render=function(){const r=_upR.apply(this,arguments);try{if(tab==='ayar')upVerl()}catch(e){}return r}}catch(e){}
+setTimeout(()=>{try{upDraw();if(!navigator.webdriver||window.__upTest)upCheck(false)}catch(e){}},4000);
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')setTimeout(()=>{try{upCheck(false)}catch(e){}},1500)});
+
 /* ================= Bildirim merkezi ================= */
 const LS_NF='gg_nf';let nfOpenAt=0,nfTab='all',nfSnz=null,nfUndo=null;
 const dayAdd=(iso,n)=>{const [y,m,d]=iso.split('-').map(Number),x=new Date(y,m-1,d+n);return x.getFullYear()+'-'+pad(x.getMonth()+1)+'-'+pad(x.getDate())};
@@ -10375,7 +10417,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='268';const APP_VER_BASE=264,APP_VER_MM='1.0';const APP_VER_UI=APP_VER_MM+'.'+(Number(APP_VER)-APP_VER_BASE);
+const APP_VER='269';const APP_VER_BASE=264,APP_VER_MM='1.0';const APP_VER_UI=APP_VER_MM+'.'+(Number(APP_VER)-APP_VER_BASE);
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
