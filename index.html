@@ -2288,6 +2288,16 @@ html:root .tabs,html:root[data-theme] .tabs{overflow:hidden}
 .remind.upw .btn{white-space:nowrap;flex:0 0 auto}
 .remind.upw .bkt{flex:1 1 auto}
 .remind.upw .btn{padding:0 14px!important;min-height:36px}
+/* v270: sade sürüm satırı */
+.verl{margin:22px 0 10px!important;display:flex;justify-content:center;letter-spacing:0!important}
+.vpill{display:inline-flex;align-items:center;gap:8px;padding:6px 8px 6px 14px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font:500 13px var(--f-body);color:var(--muted-tx,var(--muted))}
+.vpill b{color:var(--fg);font-weight:650}
+.vpill .vno{font-family:var(--f-num);font-size:12.5px}
+.vst{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:600}
+.vst::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.vst.ok{background:var(--good-bg,rgba(22,163,74,.12));color:var(--good-tx,var(--good))}
+.vst.new{background:var(--accent);color:var(--accent-fg,#fff);cursor:pointer}
+.vpill:not(:has(.vst)){padding-right:14px}
 </style>
 
 <div class="app">
@@ -7252,6 +7262,21 @@ try{const _upR=render;render=function(){const r=_upR.apply(this,arguments);try{i
 setTimeout(()=>{try{upDraw();if(!navigator.webdriver||window.__upTest)upCheck(false)}catch(e){}},4000);
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')setTimeout(()=>{try{upCheck(false)}catch(e){}},1500)});
 
+/* ================= v270: sade sürüm satırı + "yeni sürüm algılandı, sayfayı yenileyin" ================= */
+Object.assign(UX.tr,{up_det:p=>`Yeni sürüm algılandı (v${p.v}). Sayfayı yenileyin.`,up_rl:'Yenile',up_cur:'Güncel',up_has:'Yeni sürüm var'});
+Object.assign(UX.en,{up_det:p=>`A new version was detected (v${p.v}). Please reload the page.`,up_rl:'Reload',up_cur:'Up to date',up_has:'New version'});
+Object.assign(UX.ru,{up_det:p=>`Обнаружена новая версия (v${p.v}). Обновите страницу.`,up_rl:'Обновить',up_cur:'Актуально',up_has:'Есть новая версия'});
+Object.assign(UX.ar,{up_det:p=>`تم اكتشاف إصدار جديد (v${p.v}). أعد تحميل الصفحة.`,up_rl:'إعادة تحميل',up_cur:'محدّث',up_has:'إصدار جديد'});
+/* her açılışta ve uygulamaya dönüşte bak (en sık dakikada bir) */
+const _upC0=upCheck;upCheck=function(force){try{if(!force&&Date.now()-Number(localStorage.getItem('gg_upat')||0)>=60e3)return _upC0(true).catch(()=>UP)}catch(e){}return _upC0(force)};
+upDraw=function(){let b=document.getElementById('upwarn');if(!upNewer()){if(b)b.hidden=true;upVerl();return}
+  if(!b){b=document.createElement('div');b.id='upwarn';b.className='remind upw';b.setAttribute('role','status');try{alertsBox().prepend(b)}catch(e){return}b.addEventListener('click',e=>{if(e.target.closest('.go'))upAct()})}
+  b.innerHTML=`${ic('refresh')}<span class="bkt"><b>${esc(ux('up_det',{v:UP.ver||UP.build}))}</b></span><button type="button" class="btn mini primary go">${esc(ux('up_rl'))}</button>`;b.hidden=false;upVerl()};
+upVerl=function(){const v=document.querySelector('#view .verl');if(!v)return;const nw=upNewer();
+  v.innerHTML=`<span class="vpill"><b>Mizan</b><span class="vno">v${esc(typeof APP_VER_UI!=='undefined'?APP_VER_UI:APP_VER)}</span>${UP&&UP.build?`<span class="vst ${nw?'new':'ok'}">${esc(ux(nw?'up_has':'up_cur'))}</span>`:''}</span>`};
+document.addEventListener('click',e=>{const p=e.target.closest&&e.target.closest('.verl .vst.new');if(p){e.preventDefault();upAct()}});
+setTimeout(()=>{try{upCheck(false)}catch(e){}},2500);
+
 /* ================= Bildirim merkezi ================= */
 const LS_NF='gg_nf';let nfOpenAt=0,nfTab='all',nfSnz=null,nfUndo=null;
 const dayAdd=(iso,n)=>{const [y,m,d]=iso.split('-').map(Number),x=new Date(y,m-1,d+n);return x.getFullYear()+'-'+pad(x.getMonth()+1)+'-'+pad(x.getDate())};
@@ -10417,7 +10442,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='269';const APP_VER_BASE=264,APP_VER_MM='1.0';const APP_VER_UI=APP_VER_MM+'.'+(Number(APP_VER)-APP_VER_BASE);
+const APP_VER='270';const APP_VER_BASE=264,APP_VER_MM='1.0';const APP_VER_UI=APP_VER_MM+'.'+(Number(APP_VER)-APP_VER_BASE);
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
