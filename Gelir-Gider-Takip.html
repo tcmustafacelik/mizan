@@ -2276,6 +2276,50 @@ html:root .tabs,html:root[data-theme] .tabs{overflow:hidden}
 .vst.ok{background:var(--good-bg,rgba(22,163,74,.12));color:var(--good-tx,var(--good))}
 .vst.new{background:var(--accent);color:var(--accent-fg,#fff);cursor:pointer}
 .vpill:not(:has(.vst)){padding-right:14px}
+/* v272: Bu ayın ödemeleri — sade ve gruplu */
+.pc2 .pcold{display:none!important}
+.pc2 .pcsum{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:2px 0 6px}
+.pc2 .pcsl{display:flex;flex-direction:column;gap:2px;min-width:0}
+.pc2 .pcsl small{font-size:12.5px;color:var(--muted-tx,var(--muted))}
+.pc2 .pcsl b{font:700 26px/1.1 var(--f-num);letter-spacing:-.01em}
+.pc2 .pccnt{font-size:12.5px;font-weight:600;padding:5px 11px;border-radius:999px;background:var(--surface2);color:var(--muted-tx,var(--muted));white-space:nowrap}
+.pc2 .pccnt.ok{background:var(--good-bg,rgba(22,163,74,.12));color:var(--good-tx,var(--good))}
+.pc2 .pcsum>.bar{flex:1 0 100%;height:6px;margin:6px 0 0;border-radius:4px}
+.pc2 .pcok{margin:6px 0 2px;padding:10px 12px;border-radius:12px;background:var(--good-bg,rgba(22,163,74,.1));color:var(--good-tx,var(--good));font-weight:600;font-size:13.5px;text-align:center}
+.pc2 .pcg{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:16px 0 2px;padding:0 2px}
+.pc2 .pcgt{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;min-width:0}
+.pc2 .pcgt b{font-size:13px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;color:var(--muted-tx,var(--muted))}
+.pc2 .pcgt i{font-style:normal;font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px;background:var(--surface2);color:var(--muted-tx,var(--muted))}
+.pc2 .pcg.soon .pcgt i{background:var(--warn-bg,rgba(217,119,6,.14));color:var(--warn-tx,#b45309)}
+.pc2 .pcg.late .pcgt i{background:var(--bad-bg,rgba(220,38,38,.12));color:var(--bad-tx,var(--bad))}
+.pc2 .pcga{font:600 13px var(--f-num);color:var(--muted-tx,var(--muted));white-space:nowrap}
+.pc2 .pcga.pos{color:var(--good-tx,var(--good))}
+.pc2 .pcgone{display:none!important}
+.pc2 .payrow .pn>.pill,.pc2 .payrow .dupill{display:none!important}
+/* satır */
+.pc2 .payrow{position:relative;grid-template-columns:28px minmax(0,1fr) auto!important;gap:10px;padding:12px 4px;border-top:0;border-bottom:1px solid color-mix(in srgb,var(--line) 70%,transparent);border-radius:0;box-shadow:none!important;background:none}
+.pc2 .payrow:has(>.pcy){grid-template-columns:28px minmax(0,1fr) auto 28px!important}
+.pc2 .payrow>input[type=checkbox]{position:absolute;opacity:0;width:28px;height:28px;margin:0;inset-inline-start:4px;top:50%;transform:translateY(-50%);z-index:1;cursor:pointer}
+.pc2 .pcck{grid-column:1;width:24px;height:24px;border-radius:50%;border:2px solid color-mix(in srgb,var(--muted-tx,#888) 55%,transparent);display:block;transition:background .15s,border-color .15s}
+.pc2 .payrow>input:focus-visible+.pcck{outline:2px solid var(--accent);outline-offset:2px}
+.pc2 .payrow.done .pcck,.pc2 .payrow>input:checked+.pcck{background:var(--good) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center/15px no-repeat;border-color:var(--good)}
+.pc2 .payrow .dn{display:flex;align-items:center;gap:10px;min-width:0}
+.pc2 .payrow .dn>.ic,.pc2 .payrow .dn>.bri{flex:0 0 32px;width:32px!important;height:32px!important;padding:7px;border-radius:11px;background:color-mix(in srgb,var(--accent) 10%,transparent);color:var(--accent);box-sizing:border-box}
+.pc2 .payrow.inc .dn>.ic{background:var(--good-bg,rgba(22,163,74,.12));color:var(--good-tx,var(--good))}
+.pc2 .payrow .pn{display:flex;flex-direction:column;gap:1px;font-size:15px;font-weight:600;min-width:0;overflow:hidden;text-overflow:ellipsis}
+.pc2 .payrow .pn small{font-size:12px;font-weight:500;color:var(--muted-tx,var(--muted))}
+.pc2 .payrow>b{font:650 15px var(--f-num);letter-spacing:-.01em}
+.pc2 .payrow.done{opacity:.6}
+.pc2 .payrow.done .pn{text-decoration:none!important}
+.pc2 .payrow.done>b{text-decoration:line-through;text-decoration-thickness:1px}
+.pc2 .payrow .pcy{opacity:.55}
+.pc2 .payrow .pcy:hover,.pc2 .payrow .pcy:active,.pc2 .payrow .pcy.on{opacity:1}
+.pc2 .payrow.du-late .pn,.pc2 .payrow.du-today .pn{color:var(--fg)}
+.pc2 .swhint{margin-top:10px;text-align:center;font-size:12px}
+.pc2 .payrow.du-late,.pc2 .payrow.du-today,.pc2 .payrow.du-soon{background:none!important}
+.pc2 .payrow .pn{overflow-wrap:break-word;hyphens:auto;line-height:1.25}
+@media (max-width:380px){.pc2 .payrow .dn>.ic,.pc2 .payrow .dn>.bri{display:none}.pc2 .payrow>b{font-size:14px}.pc2 .payrow{gap:8px}}
+.pc2 .payrow .pcy{justify-self:end}
 </style>
 
 <div class="app">
@@ -7255,6 +7299,43 @@ upVerl=function(){const v=document.querySelector('#view .verl');if(!v)return;con
 document.addEventListener('click',e=>{const p=e.target.closest&&e.target.closest('.verl .vst.new');if(p){e.preventDefault();upAct()}});
 setTimeout(()=>{try{upCheck(false)}catch(e){}},2500);
 
+/* ================= v272: "Bu ayın ödemeleri" kartı — sade, gruplu tasarım =================
+   Satırlar ve onay kutuları (data-paid / data-recv) aynen kalır; üstüne düzen kurulur:
+   özet (kalan tutar + kaç ödendi), Gelirler, ödeme günlerine göre gruplar ("15 Kasım · 6 gün kaldı"), Ödendi.
+   Her satırdaki tekrar eden "Her ayın 15. günü" ve "6 gün kaldı" grup başlığına taşınır. */
+Object.assign(UX.tr,{pc_left:'Bu ay ödenecek',pc_cnt:p=>`${p.a}/${p.b} ödendi`,pc_inc:'Gelirler',pc_done:'Ödendi',pc_nodue:'Günü belli değil',pc_all:'Bu ayın ödemelerinin hepsi tamam 🎉',pc_after:p=>`${p.n} gün sonra`});
+Object.assign(UX.en,{pc_left:'To pay this month',pc_cnt:p=>`${p.a}/${p.b} paid`,pc_inc:'Income',pc_done:'Paid',pc_nodue:'No due day',pc_all:'All of this month’s payments are done 🎉',pc_after:p=>`in ${p.n} days`});
+Object.assign(UX.ru,{pc_left:'К оплате в этом месяце',pc_cnt:p=>`оплачено ${p.a}/${p.b}`,pc_inc:'Доходы',pc_done:'Оплачено',pc_nodue:'Без даты',pc_all:'Все платежи этого месяца выполнены 🎉',pc_after:p=>`через ${p.n} дн.`});
+Object.assign(UX.ar,{pc_left:'المستحق هذا الشهر',pc_cnt:p=>`دُفع ${p.a}/${p.b}`,pc_inc:'الدخل',pc_done:'مدفوع',pc_nodue:'بلا يوم محدد',pc_all:'اكتملت كل مدفوعات هذا الشهر 🎉',pc_after:p=>`بعد ${p.n} يوم`});
+function pcMoney(el){return el?Number(nmCanon(el.textContent))||0:0}
+function pcDate(d){const n=new Date();try{return new Date(n.getFullYear(),n.getMonth(),d).toLocaleDateString(LOC[LANG]||'tr-TR',{day:'numeric',month:'long'})}catch(e){return String(d)}}
+function pcStyle(){const host=document.getElementById('paycard');const card=host&&host.querySelector(':scope > section.card');if(!card||card.dataset.pc2)return;
+  const list=[...card.querySelectorAll('label.payrow')];if(!list.length)return;card.dataset.pc2='1';card.classList.add('pc2');
+  const wrap=list[0].parentElement;const today=new Date().getDate();
+  const debts=list.filter(r=>r.querySelector('input[data-paid]')),incs=list.filter(r=>r.querySelector('input[data-recv]'));
+  /* özet */
+  const unpaid=debts.filter(r=>!r.classList.contains('done')),left=unpaid.reduce((a,r)=>a+pcMoney(r.querySelector(':scope > b')),0);
+  const bar=card.querySelector(':scope > .bar'),hint=bar&&bar.nextElementSibling&&bar.nextElementSibling.matches('p.hint')?bar.nextElementSibling:null;
+  const sum=document.createElement('div');sum.className='pcsum';
+  sum.innerHTML=`<div class="pcsl"><small>${esc(ux('pc_left'))}</small><b>${moneyH(left)}</b></div><span class="pccnt${unpaid.length?'':' ok'}">${esc(ux('pc_cnt',{a:debts.length-unpaid.length,b:debts.length}))}</span>`;
+  if(bar){bar.before(sum);sum.append(bar)}else card.querySelector(':scope > .cardhead').after(sum);
+  if(hint)hint.classList.add('pcold');
+  if(debts.length&&!unpaid.length){const ok=document.createElement('p');ok.className='pcok';ok.textContent=ux('pc_all');sum.after(ok)}
+  /* gruplar */
+  const head=(cls,title,sub,amt,pos)=>{const h=document.createElement('div');h.className='pcg '+cls;h.innerHTML=`<span class="pcgt"><b>${esc(title)}</b>${sub?`<i>${esc(sub)}</i>`:''}</span>${amt!=null?`<span class="pcga${pos?' pos':''}">${pos?'+':''}${moneyH(amt)}</span>`:''}`;return h};
+  card.querySelectorAll('.payrow .tlink').forEach(l=>{const n=l.lastChild;if(n&&n.nodeType===3)n.nodeValue=n.nodeValue.replace(/ (→|←)\s*$/,'\u00a0$1')});
+  if(incs.length){const amt=incs.reduce((a,r)=>a+pcMoney(r.querySelector(':scope > b')),0);incs[0].before(head('inc',ux('pc_inc'),'',amt,true))}
+  let lastKey=null;
+  for(const r of unpaid){const id=r.querySelector('input[data-paid]').dataset.paid;const d=plan.debts.find(x=>x.id===id);const due=d?Number(d.due)||0:0;
+    const sm=r.querySelector('.pn > small');if(sm){const day=(due?t('pay_day',{d:due}):t('pay_nodue')).trim(),tx=sm.textContent.trim();if(tx===day)sm.classList.add('pcgone');else if(tx.startsWith(day)){const n=sm.firstChild;if(n&&n.nodeType===3&&n.nodeValue.trim().startsWith(day))n.nodeValue=n.nodeValue.replace(day,'').replace(/^\s*·\s*/,'');else sm.textContent=tx.slice(day.length).replace(/^\s*·\s*/,'')}}
+    if(due!==lastKey){lastKey=due;let sub='',cls='';if(due){const diff=due-today;sub=diff<0?t('pay_overdue',{n:-diff}):diff===0?t('pay_today'):diff<=7?t('pay_in',{n:diff}):ux('pc_after',{n:diff});cls=diff<=0?'late':diff<=7?'soon':''}
+      const grp=unpaid.filter(x=>{const dd=plan.debts.find(z=>z.id===x.querySelector('input[data-paid]').dataset.paid);return (dd?Number(dd.due)||0:0)===due});
+      r.before(head('due '+cls,due?pcDate(due):ux('pc_nodue'),sub,grp.reduce((a,x)=>a+pcMoney(x.querySelector(':scope > b')),0)))}}
+  const done=debts.filter(r=>r.classList.contains('done'));if(done.length){done[0].before(head('done',ux('pc_done'),'',done.reduce((a,r)=>a+pcMoney(r.querySelector(':scope > b')),0)));done.forEach(r=>{const sm=r.querySelector('.pn > small');if(sm)sm.classList.add('pcgone')})}
+  card.querySelectorAll('.payrow').forEach(r=>{const cb=r.querySelector(':scope > input[type=checkbox]');if(cb&&!r.querySelector(':scope > .pcck')){const c=document.createElement('span');c.className='pcck';c.setAttribute('aria-hidden','true');cb.after(c)}})}
+const _pcDP=drawPay;drawPay=function(){const r=_pcDP.apply(this,arguments);try{pcStyle()}catch(e){}return r};
+const _pcRP=renderPlan;renderPlan=function(){const r=_pcRP.apply(this,arguments);try{pcStyle()}catch(e){}return r};
+
 /* ================= Bildirim merkezi ================= */
 const LS_NF='gg_nf';let nfOpenAt=0,nfTab='all',nfSnz=null,nfUndo=null;
 const dayAdd=(iso,n)=>{const [y,m,d]=iso.split('-').map(Number),x=new Date(y,m-1,d+n);return x.getFullYear()+'-'+pad(x.getMonth()+1)+'-'+pad(x.getDate())};
@@ -10420,7 +10501,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='271';const APP_VER_BASE=264,APP_VER_MM='1.0';const APP_VER_UI=APP_VER_MM+'.'+(Number(APP_VER)-APP_VER_BASE);
+const APP_VER='272';const APP_VER_BASE=264,APP_VER_MM='1.0';const APP_VER_UI=APP_VER_MM+'.'+(Number(APP_VER)-APP_VER_BASE);
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
