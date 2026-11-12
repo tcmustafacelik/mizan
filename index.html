@@ -2378,6 +2378,61 @@ body #view .ahub.ah2.ah2 .ahgrid .ahb svg{fill:var(--card)}
 body #view .ahub.ah2.ah2 .ahgrid .ahl{-webkit-line-clamp:3}
 @media (max-width:360px){body #view .ahub.ah2.ah2 .ahgrid{gap:0!important;padding:6px 3px!important}body #view .ahub.ah2.ah2 .ahgrid .aht{padding:8px 1px 6px!important}body #view .ahub.ah2.ah2 .ahgrid .ahl{font-size:11px!important;letter-spacing:-.01em;hyphens:auto}}
 @media (max-width:340px){body #view .ahub.ah2.ah2 .ahgrid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+/* v276: Plan üstü — ince, derli toplu */
+/* Bu hafta: tek satırlık şerit, dokununca açılır */
+body #view #weekbox .weekc.wk2{padding:0!important;overflow:hidden}
+body #view #weekbox .wk2>.cardhead{display:flex;align-items:center;gap:10px;margin:0!important;padding:12px 14px;cursor:pointer;-webkit-tap-highlight-color:transparent;min-height:52px;box-sizing:border-box}
+body #view #weekbox .wk2>.cardhead h2{flex:1;min-width:0;display:flex!important;flex-direction:row!important;align-items:center!important;gap:10px!important;margin:0!important;font-size:15px!important;font-weight:600;line-height:1.2}
+body #view #weekbox .wk2>.cardhead h2>svg{width:20px!important;height:20px!important;flex:none;margin:0!important}
+body #view #weekbox .wk2 .wkcol{display:flex;flex-direction:column;gap:2px;min-width:0}
+body #view #weekbox .wk2 .wktt{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body #view #weekbox .wk2 .wkn{font-size:12px;font-weight:500;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body #view #weekbox .wk2 .wkt{font-size:15px!important;font-weight:700!important;color:var(--ink)!important;white-space:nowrap;margin:0!important}
+body #view #weekbox .wk2 .wkch{flex:none;display:grid;place-items:center;width:24px;height:24px;transition:transform .2s}
+body #view #weekbox .wk2 .wkch svg{width:20px;height:20px;fill:var(--muted)}
+body #view #weekbox .wk2.open .wkch{transform:rotate(180deg)}
+body #view #weekbox .wk2 .wkbody{display:none;padding:0 14px 8px;border-top:1px solid var(--line)}
+body #view #weekbox .wk2.open .wkbody{display:block}
+body #view #weekbox .wk2 .wkd{margin:10px 0 2px!important;font-size:12px!important;font-weight:600;color:var(--muted)!important;text-transform:none}
+body #view #weekbox .wk2 .wkr{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0!important;min-height:0!important;font-size:14px!important;border-bottom:1px solid color-mix(in srgb,var(--line) 60%,transparent)}
+body #view #weekbox .wk2 .wkr:last-child{border-bottom:0}
+body #view #weekbox .wk2 .wkr .dn{display:flex;align-items:center;gap:8px;min-width:0}
+body #view #weekbox .wk2 .wkr .dn>span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+body #view #weekbox .wk2 .wkr svg{width:16px!important;height:16px!important;flex:none}
+body #view #weekbox .wk2 .wkr b{font-size:14px!important;font-weight:600}
+/* Kalan borç: daha kısa, sıkı */
+body #view #herobox .card.hero{padding:14px 16px!important;gap:14px!important;align-items:center!important;min-height:0!important;border-radius:20px!important}
+body #view #herobox .hero .hring{width:74px!important;height:74px!important;flex:none}
+body #view #herobox .hero .hring svg{width:74px!important;height:74px!important}
+body #view #herobox .hero .hrc b{font-size:18px!important;line-height:1}
+body #view #herobox .hero .hrc small{font-size:10.5px!important}
+body #view #herobox .hero .hst{gap:8px!important;min-width:0}
+body #view #herobox .hero .hst small{font-size:12px!important;line-height:1.2}
+body #view #herobox .hero .hst>div:first-child b{font-size:22px!important;line-height:1.15;letter-spacing:-.01em}
+body #view #herobox .hero .hmb{height:6px!important;margin:5px 0 4px!important}
+body #view #herobox .hero .hmt{font-size:12.5px!important}
+body #view #herobox .hero .hfr{display:flex!important;align-items:baseline;gap:6px;flex-wrap:wrap}
+body #view #herobox .hero .hfr b{font-size:14px!important}
+body #view #herobox .hero .hfr em{font-size:12px!important}
+body #view #herobox .hero .hst>div:not(:first-child):not(.hfr) b{font-size:13px!important}
+/* 4 özet kutusu: tek kart, 2×2, ince ayraçlar */
+body #view #tiles.tiles{display:grid!important;grid-template-columns:1fr 1fr!important;gap:0!important;padding:0!important;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+body #view #tiles.tiles>.tile,html[data-glass] body #view #tiles.tiles>.tile{margin:0!important;border:0!important;border-radius:0!important;box-shadow:none!important;background:transparent!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;padding:12px 14px!important;min-height:0!important;display:flex!important;flex-direction:column;gap:3px!important;min-width:0}
+body #view #tiles.tiles>.tile:nth-child(odd){border-inline-end:1px solid var(--line)!important}
+body #view #tiles.tiles>.tile:nth-child(n+3){border-top:1px solid var(--line)!important}
+body #view #tiles.tiles>.tile>span{font-size:12.5px!important;color:var(--muted)!important;display:flex;align-items:center;gap:6px;margin:0!important}
+body #view #tiles.tiles>.tile>span svg{width:15px!important;height:15px!important}
+body #view #tiles.tiles>.tile>b{font-size:17px!important;font-weight:700!important;line-height:1.2;margin:0!important;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+body #view #tiles.tiles>.tile>small{font-size:12px!important;color:var(--muted)!important;margin:0!important}
+body #view #tiles.tiles>.tile .tlink{font-size:12.5px!important;margin:2px 0 0!important;padding:0!important;min-height:0!important;align-self:flex-start;text-align:start}
+@media (max-width:360px){body #view #tiles.tiles>.tile{padding:10px 11px!important}body #view #tiles.tiles>.tile>b{font-size:15.5px!important}}
+body #view #herobox .card.hero{display:grid!important;grid-template-columns:74px minmax(0,1fr)!important}
+body #view #herobox .hero .hring{margin:0!important;justify-self:start}
+body #view #herobox .hero .hst>div,body #view #herobox .hero .hst>div>*{margin-top:0!important;margin-bottom:0!important}
+body #view #herobox .hero .hst{display:flex!important;flex-direction:column;gap:9px!important}
+body #view #herobox .hero .hst>div:first-child small{display:block;margin-bottom:1px!important}
+body #view #weekbox .wk2 .wktt{white-space:normal}
+@media (max-width:360px){body #view #weekbox .wk2>.cardhead h2>svg{display:none}body #view #weekbox .wk2>.cardhead{padding:11px 12px;gap:8px}body #view #weekbox .wk2 .wkt{font-size:14px!important}}
 </style>
 
 <div class="app">
@@ -7413,6 +7468,27 @@ function ahFilter(q){const hub=document.querySelector('.ahub.ah2');if(!hub)retur
 document.addEventListener('input',e=>{if(e.target&&e.target.id==='ahq')ahFilter(e.target.value)});
 document.addEventListener('click',e=>{const x=e.target.closest&&e.target.closest('.ahqx');if(!x)return;e.preventDefault();const i=document.getElementById('ahq');if(i){i.value='';ahFilter('');i.focus()}});
 
+/* ================= v276: Plan üstü — "Bu hafta" katlanır şerit ================= */
+ICON_PATHS['chevron-down']=ICON_PATHS['chevron-down']||'M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z';
+Object.assign(UX.tr,{wk_n:p=>`${p.n} ödeme`});Object.assign(UX.en,{wk_n:p=>`${p.n} payment${p.n>1?'s':''}`});
+Object.assign(UX.ru,{wk_n:p=>`Платежей: ${p.n}`});Object.assign(UX.ar,{wk_n:p=>`${p.n} دفعات`});
+function wkOpen(){try{return localStorage.getItem('gg_wkopen')==='1'}catch(e){return false}}
+function wkDecorate(){const c=document.querySelector('#weekbox .weekc');if(!c||c.dataset.wk2)return;c.dataset.wk2=1;c.classList.add('wk2');
+  const hd=c.querySelector('.cardhead'),rows=[...c.children].filter(x=>x!==hd);if(!hd||!rows.length)return;
+  const body=document.createElement('div');body.className='wkbody';rows.forEach(r=>body.appendChild(r));c.appendChild(body);
+  const n=body.querySelectorAll('.wkr').length,tot=hd.querySelector('.wkt'),h2=hd.querySelector('h2');
+  if(tot){const tx=tot.textContent.trim(),m=tx.replace(/^[^\d₺$€£¥₽+\-−]+/,'').trim()||tx;tot.innerHTML=typeof escMv==='function'?escMv(m):esc(m);if(!tot.querySelector('.mv'))tot.innerHTML=`<bdi class="mv" dir="ltr">${esc(m)}</bdi>`}
+  const d1=body.querySelector('.wkd');
+  if(h2){const tt=document.createElement('span');tt.className='wktt';[...h2.childNodes].forEach(x=>{if(x.nodeType===3){tt.appendChild(document.createTextNode(x.nodeValue));x.remove()}});
+    const sub=document.createElement('small');sub.className='wkn';sub.textContent=ux('wk_n',{n})+(d1?' · '+d1.textContent.trim():'');
+    const col=document.createElement('span');col.className='wkcol';col.append(tt,sub);h2.appendChild(col)}
+  hd.setAttribute('role','button');hd.tabIndex=0;const ch=document.createElement('span');ch.className='wkch';ch.innerHTML=ic('chevron-down');hd.appendChild(ch);
+  const set=o=>{c.classList.toggle('open',o);hd.setAttribute('aria-expanded',String(o))};set(wkOpen());
+  const tg=()=>{const o=!c.classList.contains('open');set(o);try{localStorage.setItem('gg_wkopen',o?'1':'0')}catch(e){}};
+  hd.addEventListener('click',tg);hd.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();tg()}})}
+(function(){const _r=render;render=function(){const x=_r.apply(this,arguments);try{wkDecorate()}catch(e){}return x}})();
+if(typeof renderPlan==='function'){const _p=renderPlan;renderPlan=function(){const x=_p.apply(this,arguments);try{wkDecorate()}catch(e){}return x}}
+
 /* ================= Bildirim merkezi ================= */
 const LS_NF='gg_nf';let nfOpenAt=0,nfTab='all',nfSnz=null,nfUndo=null;
 const dayAdd=(iso,n)=>{const [y,m,d]=iso.split('-').map(Number),x=new Date(y,m-1,d+n);return x.getFullYear()+'-'+pad(x.getMonth()+1)+'-'+pad(x.getDate())};
@@ -10578,7 +10654,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='275';const APP_VER_UI=APP_VER;
+const APP_VER='276';const APP_VER_UI=APP_VER;
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
