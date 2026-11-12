@@ -2512,6 +2512,26 @@ html[data-theme="dark"] body #view .pill.late{color:color-mix(in srgb,var(--bad)
 </style>
 
 <div class="app">
+<div id="intro" hidden aria-hidden="true"><style>
+#intro{position:fixed;inset:0;z-index:2147483000;display:grid;place-items:center;background:radial-gradient(120% 80% at 30% 20%,#0B7E74 0%,#065F5B 55%,#04403E 100%);transition:opacity .35s ease,visibility .35s}
+#intro.out{opacity:0;visibility:hidden}
+#intro .ib{display:flex;flex-direction:column;align-items:center;gap:18px}
+#intro svg{width:112px;height:112px;filter:drop-shadow(0 18px 30px rgba(0,0,0,.28));animation:inPop .55s cubic-bezier(.2,.9,.25,1.15) both}
+#intro .m{stroke-dasharray:90;stroke-dashoffset:90;animation:inDraw .6s .2s cubic-bezier(.6,0,.2,1) forwards}
+#intro .l{stroke-dasharray:20;stroke-dashoffset:20;animation:inDraw .3s .55s ease-out forwards}
+#intro .a{opacity:0;transform:translate(-6px,6px);animation:inArrow .38s .7s cubic-bezier(.2,.9,.3,1.3) forwards}
+#intro b{font:700 26px/1 "IBM Plex Sans",system-ui,sans-serif;letter-spacing:-.01em;color:#fff;opacity:0;transform:translateY(6px);animation:inTxt .4s .75s ease-out forwards}
+@keyframes inPop{from{opacity:0;transform:scale(.82)}to{opacity:1;transform:none}}
+@keyframes inDraw{to{stroke-dashoffset:0}}
+@keyframes inArrow{to{opacity:1;transform:none}}
+@keyframes inTxt{to{opacity:.95;transform:none}}
+@media (prefers-reduced-motion:reduce){#intro *{animation-duration:.01s!important;animation-delay:0s!important}}
+</style><div class="ib"><svg viewBox="0 0 64 64"><defs><linearGradient id="ing" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0A7A72"/><stop offset="1" stop-color="#14C2A6"/></linearGradient></defs><rect width="64" height="64" rx="15" fill="url(#ing)"/><path class="m" d="M15.5 46V20.5l16.5 16.5 15-15" fill="none" stroke="#fff" stroke-width="5.4" stroke-linecap="round" stroke-linejoin="round"/><path class="l" d="M48.5 30V46" stroke="#fff" stroke-width="5.4" stroke-linecap="round"/><path class="a" d="M37.5 19.5h11v11" fill="none" stroke="#FDE68A" stroke-width="5.4" stroke-linecap="round" stroke-linejoin="round"/></svg><b>Mizan</b></div>
+<script>(function(){try{var sa=matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;var seen=sessionStorage.getItem('gg_intro');if(!sa||seen)return;sessionStorage.setItem('gg_intro','1')}catch(e){return}
+var el=document.getElementById('intro');el.hidden=false;var t0=Date.now(),done=false;
+function end(){if(done)return;done=true;var w=Math.max(0,1150-(Date.now()-t0));setTimeout(function(){el.classList.add('out');setTimeout(function(){el.remove()},400)},w)}
+if(document.readyState==='complete')end();else addEventListener('load',end);setTimeout(end,2600);el.addEventListener('click',function(){done=false;t0=0;end()})})();</script></div>
+
   <header class="top">
     <div class="brand"><h1><span class="logo" id="logo"></span><span class="ttl"><span id="appTitle"></span><small id="appTag"></small></span></h1><span class="brr"><span class="brtop"><button type="button" id="ping" class="ping" hidden></button><button type="button" id="ghBadge" class="ghb" hidden aria-label="GitHub"></button><button type="button" id="nfBtn" class="hbtn nfb"></button><button type="button" id="helpBtn" class="hbtn"></button><button type="button" id="lkNow" class="hbtn lkn" hidden></button></span><span class="brbot"><button type="button" id="srBtn" class="pvb srb"></button><button type="button" id="pvBtn" class="pvb"></button><span id="batt" class="batt" hidden></span><span id="status" class="status"></span></span></span></div>
     <nav class="tabs" id="tabs" role="tablist"></nav>
@@ -10753,7 +10773,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='278';const APP_VER_UI=APP_VER;
+const APP_VER='279';const APP_VER_UI=APP_VER;
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
