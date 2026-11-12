@@ -2350,9 +2350,10 @@ body #view .ahub.ah2.ah2 .ahrecg .ahi,html[data-glass] body #view .ahub.ah2.ah2 
 body #view .ahub.ah2.ah2 .ahrecg .ahi svg{fill:#fff!important}
 body #view .ahub.ah2.ah2 .ahrecg .ahl{color:var(--ink)!important;text-shadow:none!important}
 @media (max-width:360px){body #view .ahub.ah2.ah2 .ahgrid .ahi{width:40px!important;height:40px!important}body #view .ahub.ah2.ah2 .ahgrid .ahl{font-size:11.5px!important}}
-body #view .ahub.ah2.ah2 .ahrecg .ahi svg{fill:var(--card)!important}
-body #view .ahub.ah2.ah2 .ahgrid .ahb{color:var(--card)!important}
-body #view .ahub.ah2.ah2 .ahgrid .ahb svg{fill:var(--card)}
+body #view .ahub.ah2.ah2 .ahrecg .ahi,html[data-glass] body #view .ahub.ah2.ah2 .ahrecg .ahi{background:var(--btn,var(--accent))!important}
+body #view .ahub.ah2.ah2 .ahrecg .ahi svg{fill:var(--btn-fg,#fff)!important}
+body #view .ahub.ah2.ah2 .ahgrid .ahb{background:var(--btn,var(--accent))!important;color:var(--btn-fg,#fff)!important}
+body #view .ahub.ah2.ah2 .ahgrid .ahb svg{fill:var(--btn-fg,#fff)}
 body #view .ahub.ah2.ah2 .ahgrid .ahl{-webkit-line-clamp:3}
 @media (max-width:360px){body #view .ahub.ah2.ah2 .ahgrid{gap:0!important;padding:6px 3px!important}body #view .ahub.ah2.ah2 .ahgrid .aht{padding:8px 1px 6px!important}body #view .ahub.ah2.ah2 .ahgrid .ahl{font-size:11px!important;letter-spacing:-.01em;hyphens:auto}}
 @media (max-width:340px){body #view .ahub.ah2.ah2 .ahgrid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
@@ -2411,6 +2412,67 @@ body #view #herobox .hero .hst{display:flex!important;flex-direction:column;gap:
 body #view #herobox .hero .hst>div:first-child small{display:block;margin-bottom:1px!important}
 body #view #weekbox .wk2 .wktt{white-space:normal}
 @media (max-width:360px){body #view #weekbox .wk2>.cardhead h2>svg{display:none}body #view #weekbox .wk2>.cardhead{padding:11px 12px;gap:8px}body #view #weekbox .wk2 .wkt{font-size:14px!important}}
+/* v277: "Sade banka" görsel dili — açık zemin, ince çizgili kartlar, koyu blok yok */
+:root{--sb-sh:0 1px 2px rgba(20,26,46,.05)}
+html[data-theme="dark"]{--sb-sh:none}
+/* Başlık: tek satır, küçük */
+html body header{padding-top:6px!important;padding-bottom:4px!important;min-height:0!important}
+html body header h1{font-size:19px!important;gap:10px!important;letter-spacing:-.01em}
+html body header .logo{width:30px!important;height:30px!important;margin-bottom:0!important;box-shadow:none!important;border-radius:9px!important}
+html body header .logo svg{width:30px!important;height:30px!important}
+html body header .brand b{font-size:11.5px!important;font-weight:500!important}
+/* Sekme çubuğu: ince */
+html body .tabs,html[data-glass] body .tabs{box-shadow:var(--sb-sh)!important;border:1px solid var(--line)!important;border-radius:18px!important;padding:3px!important;min-height:0!important}
+html body .tabs button{height:40px!important;min-height:40px!important;border-radius:12px!important;font-size:13px!important;font-weight:600!important}
+html body .tabs button svg.tic{width:21px!important;height:21px!important}
+/* Kartlar: düz, ince kenar, neredeyse gölgesiz */
+html body #view{gap:12px!important}
+html body #view .card,html[data-glass] body #view .card,html body #view .months,html[data-glass] body #view .months{box-shadow:var(--sb-sh)!important;border:1px solid var(--line)!important;border-radius:18px!important}
+html[data-glass] body #view .card,html[data-glass] body #view .months{background:color-mix(in srgb,var(--card) 92%,transparent)!important;-webkit-backdrop-filter:blur(12px)!important;backdrop-filter:blur(12px)!important}
+html body #view .card h2{font-size:16px!important;font-weight:600!important;letter-spacing:-.005em}
+html body #view .card h2>svg{width:19px!important;height:19px!important}
+/* Ödeme kartı özeti */
+html body #view #paycard .pcsum b{font-size:24px!important;letter-spacing:-.01em}
+/* Kalan borç: açık kart, halka yerine küçük etiket */
+html body #view #herobox#herobox#herobox .card.hero,html[data-glass] body #view #herobox#herobox#herobox .card.hero{display:block!important;position:relative;background:var(--card)!important;background-image:none!important;color:var(--ink)!important;padding:14px 16px!important;border:1px solid var(--line)!important;box-shadow:var(--sb-sh)!important;border-radius:18px!important}
+html body #view #herobox#herobox#herobox .hero .hring{position:absolute!important;top:13px;inset-inline-end:14px;width:auto!important;height:auto!important;margin:0!important}
+html body #view #herobox#herobox#herobox .hero .hring>svg{display:none!important}
+html body #view #herobox#herobox#herobox .hero .hrc{position:static!important;transform:none!important;display:flex!important;flex-direction:row!important;align-items:baseline;gap:4px;padding:3px 9px;border-radius:8px;background:color-mix(in srgb,var(--accent) 10%,transparent);color:var(--accent)!important}
+html body #view #herobox#herobox#herobox .hero .hrc b,html body #view #herobox#herobox#herobox .hero .hrc small{font-size:12.5px!important;font-weight:600!important;color:var(--accent)!important;line-height:1.3}
+html body #view #herobox#herobox#herobox .hero .hst{display:flex!important;flex-direction:column;gap:8px!important;color:var(--ink)!important}
+html body #view #herobox#herobox#herobox .hero .hst *{color:inherit;text-shadow:none!important}
+html body #view #herobox#herobox#herobox .hero .hst small{color:var(--muted)!important;font-size:12.5px!important;font-weight:500}
+html body #view #herobox#herobox#herobox .hero .hst>div:first-child{padding-inline-end:96px}
+html body #view #herobox#herobox#herobox .hero .hst>div:first-child b{font-size:24px!important;font-weight:700;color:var(--ink)!important;letter-spacing:-.01em}
+html body #view #herobox#herobox#herobox .hero .hmb{height:6px!important;border-radius:4px!important;background:color-mix(in srgb,currentColor 12%,transparent)!important;margin:6px 0 4px!important;overflow:hidden}
+html body #view #herobox#herobox#herobox .hero .hmb i{background:var(--accent)!important;border-radius:4px}
+html body #view #herobox#herobox#herobox .hero .hmt{font-size:12.5px!important;color:var(--muted)!important}
+html body #view #herobox#herobox#herobox .hero .hmt .mv{color:var(--ink)!important}
+html body #view #herobox#herobox#herobox .hero .hdn{font-size:12.5px!important;font-weight:500!important;color:var(--muted)!important}
+html body #view #herobox#herobox#herobox .hero .hfr{display:flex!important;align-items:baseline;gap:6px;padding-top:8px;border-top:1px solid var(--line)}
+html body #view #herobox#herobox#herobox .hero .hfr b{font-size:14px!important;color:var(--ink)!important}
+html body #view #herobox#herobox#herobox .hero .hfr em{font-size:12.5px!important;font-style:normal;color:var(--muted)!important}
+/* Özet 2×2: cam temada da ayraç görünsün */
+html body #view #tiles.tiles,html[data-glass] body #view #tiles.tiles{box-shadow:var(--sb-sh)!important;border-radius:18px!important;background:var(--card)!important}
+html body #view #tiles.tiles>.tile:nth-child(odd),html[data-glass] body #view #tiles.tiles>.tile:nth-child(odd){border-inline-end:1px solid var(--line)!important}
+html body #view #tiles.tiles>.tile:nth-child(n+3),html[data-glass] body #view #tiles.tiles>.tile:nth-child(n+3){border-top:1px solid var(--line)!important}
+html body #view #tiles.tiles>.tile>b{font-size:16.5px!important}
+/* Bu hafta şeridi */
+html body #view #weekbox .weekc.wk2,html[data-glass] body #view #weekbox .weekc.wk2{padding:0!important}
+html body #view #herobox#herobox#herobox .hero .hmb{display:block!important;width:100%!important;min-height:6px}
+html body #view #herobox#herobox#herobox .hero .hmb i{display:block!important;height:100%!important;min-width:4px}
+html body #view>#herobox,html body #view>#tiles,html body #view>#weekbox,html body #view>#paycard{margin-top:0!important;margin-bottom:0!important}
+html body #view #herobox#herobox#herobox .card.hero{--fg:inherit;--muted:inherit;--muted-tx:inherit;--line:inherit;--surface2:inherit;--accent:inherit;--good:inherit;--bad:inherit;--warn:inherit;--good-tx:inherit;--bad-tx:inherit;--warn-tx:inherit;--ink:inherit}
+html body #view #herobox#herobox#herobox>.card{margin:0!important}
+html body #view #tiles.tiles>.tile .tlink{padding:9px 0!important;margin:-7px 0 -9px!important;min-height:0!important}
+/* Defter satırı: etiketler tutarın üstüne binmesin */
+html body #view #lList .entry>.tx{min-width:0!important;overflow:hidden}
+html body #view #lList .entry>.tx>small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+/* Ay kapanışı hapları: açık zemin + koyu yazı (kontrast) */
+html body #view .closec .pill.on{background:color-mix(in srgb,var(--good) 13%,var(--card))!important;color:color-mix(in srgb,var(--good) 72%,var(--ink,#111))!important;border:1px solid color-mix(in srgb,var(--good) 30%,transparent)!important}
+html body #view .pill.late{background:color-mix(in srgb,var(--bad) 11%,var(--card))!important;color:color-mix(in srgb,var(--bad) 72%,var(--ink,#111))!important;border:1px solid color-mix(in srgb,var(--bad) 28%,transparent)!important}
+html[data-theme="dark"] body #view .closec .pill.on{color:color-mix(in srgb,var(--good) 80%,#fff)!important}
+html[data-theme="dark"] body #view .pill.late{color:color-mix(in srgb,var(--bad) 80%,#fff)!important}
 </style>
 
 <div class="app">
@@ -10632,7 +10694,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='276';const APP_VER_UI=APP_VER;
+const APP_VER='277';const APP_VER_UI=APP_VER;
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
