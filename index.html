@@ -2342,6 +2342,42 @@ html:root .tabs,html:root[data-theme] .tabs{overflow:hidden}
 .pc2 .payrow .pn{overflow-wrap:break-word;hyphens:auto;line-height:1.25}
 @media (max-width:380px){.pc2 .payrow .dn>.ic,.pc2 .payrow .dn>.bri{display:none}.pc2 .payrow>b{font-size:14px}.pc2 .payrow{gap:8px}}
 .pc2 .payrow .pcy{justify-self:end}
+/* v275: Araçlar — kompakt, sade düzen */
+body #view .ahub.ah2.ah2{gap:14px!important;padding-bottom:84px!important}
+body #view .ahub.ah2.ah2 .ahfind{display:flex;align-items:center;gap:8px;height:44px;padding:0 6px 0 12px;border-radius:14px;background:var(--card);border:1px solid var(--line);box-shadow:none;margin:2px 0 0}
+body #view .ahub.ah2.ah2 .ahfind:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 16%,transparent)}
+body #view .ahub.ah2.ah2 .ahfind>svg{width:20px;height:20px;fill:var(--muted);flex:none}
+body #view .ahub.ah2.ah2 .ahfind input{flex:1;min-width:0;border:0!important;background:transparent!important;outline:0;box-shadow:none!important;font:inherit;font-size:15px;color:var(--ink);padding:0!important;height:100%}
+body #view .ahub.ah2.ah2 .ahfind input::-webkit-search-cancel-button{display:none}
+body #view .ahub.ah2.ah2 .ahqx{flex:none;width:32px;height:32px;border:0;border-radius:10px;background:transparent;color:var(--muted);font-size:20px;line-height:1;cursor:pointer}
+body #view .ahub.ah2.ah2 .ahnone{margin:4px 4px 0;color:var(--muted);font-size:14px;text-align:center}
+/* grup: başlık + tek kart içinde 4 sütun */
+body #view .ahub.ah2.ah2 .ahs,html[data-glass] body #view .ahub.ah2.ah2 .ahs{background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important;margin:0!important}
+body #view .ahub.ah2.ah2 .ahs>h3{margin:0 6px 7px!important;font-size:11.5px!important;letter-spacing:.08em;font-weight:700;color:var(--muted)!important;text-transform:uppercase}
+body #view .ahub.ah2.ah2 .ahgrid{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:2px!important;padding:8px 6px!important;margin:0!important;width:auto!important;overflow:visible!important;background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+body #view .ahub.ah2.ah2 .ahgrid .aht,html[data-glass] body #view .ahub.ah2.ah2 .ahgrid .aht{position:relative;grid-column:auto!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-start!important;gap:6px!important;min-height:0!important;max-width:none!important;width:auto!important;padding:8px 2px 6px!important;border:0!important;border-radius:12px!important;background:transparent!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;color:var(--ink)!important;flex:none!important}
+body #view .ahub.ah2.ah2 .ahgrid .aht[hidden]{display:none!important}
+body #view .ahub.ah2.ah2 .ahgrid .aht:active{background:color-mix(in srgb,var(--accent) 8%,transparent)!important}
+body #view .ahub.ah2.ah2 .ahgrid .ahi,html[data-glass] body #view .ahub.ah2.ah2 .ahgrid .ahi{width:44px!important;height:44px!important;border-radius:13px!important;margin:0!important;display:grid!important;place-items:center;background:color-mix(in srgb,var(--accent) 10%,transparent)!important;box-shadow:none!important}
+body #view .ahub.ah2.ah2 .ahgrid .ahi svg{width:22px!important;height:22px!important;fill:var(--accent)!important}
+body #view .ahub.ah2.ah2 .ahgrid .ahl{font-size:12px!important;font-weight:500!important;line-height:1.2!important;color:var(--ink)!important;text-align:center!important;white-space:normal!important;opacity:1!important;text-shadow:none!important;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;max-width:100%;overflow-wrap:normal;word-break:normal;hyphens:none}
+body #view .ahub.ah2.ah2 .ahgrid .ahb{position:absolute!important;top:3px!important;inset-inline-end:calc(50% - 32px)!important;inset-inline-start:auto!important;min-width:18px;height:18px;padding:0 5px;border-radius:9px;display:grid;place-items:center;font-size:10.5px!important;font-weight:700;line-height:1;background:var(--accent)!important;color:#fff!important;border:2px solid var(--card);transform:none!important;box-shadow:none!important}
+body #view .ahub.ah2.ah2 .ahgrid .ahb svg{width:10px;height:10px;fill:#fff}
+/* sık kullandıkların: aynı kart dili, sadece biraz vurgulu */
+body #view .ahub.ah2.ah2 .ahs.ahrec,html[data-glass] body #view .ahub.ah2.ah2 .ahs.ahrec{background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important}
+body #view .ahub.ah2.ah2 .ahs.ahrec>h3{color:var(--accent)!important}
+body #view .ahub.ah2.ah2 .ahrecg{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;flex-wrap:initial;overflow:visible!important;background:color-mix(in srgb,var(--accent) 5%,var(--card));border-color:color-mix(in srgb,var(--accent) 22%,var(--line))}
+body #view .ahub.ah2.ah2 .ahrecg .aht,html[data-glass] body #view .ahub.ah2.ah2 .ahrecg .aht{color:var(--ink)!important;background:transparent!important}
+body #view .ahub.ah2.ah2 .ahrecg .ahi,html[data-glass] body #view .ahub.ah2.ah2 .ahrecg .ahi{background:var(--accent)!important;box-shadow:none!important}
+body #view .ahub.ah2.ah2 .ahrecg .ahi svg{fill:#fff!important}
+body #view .ahub.ah2.ah2 .ahrecg .ahl{color:var(--ink)!important;text-shadow:none!important}
+@media (max-width:360px){body #view .ahub.ah2.ah2 .ahgrid .ahi{width:40px!important;height:40px!important}body #view .ahub.ah2.ah2 .ahgrid .ahl{font-size:11.5px!important}}
+body #view .ahub.ah2.ah2 .ahrecg .ahi svg{fill:var(--card)!important}
+body #view .ahub.ah2.ah2 .ahgrid .ahb{color:var(--card)!important}
+body #view .ahub.ah2.ah2 .ahgrid .ahb svg{fill:var(--card)}
+body #view .ahub.ah2.ah2 .ahgrid .ahl{-webkit-line-clamp:3}
+@media (max-width:360px){body #view .ahub.ah2.ah2 .ahgrid{gap:0!important;padding:6px 3px!important}body #view .ahub.ah2.ah2 .ahgrid .aht{padding:8px 1px 6px!important}body #view .ahub.ah2.ah2 .ahgrid .ahl{font-size:11px!important;letter-spacing:-.01em;hyphens:auto}}
+@media (max-width:340px){body #view .ahub.ah2.ah2 .ahgrid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
 </style>
 
 <div class="app">
@@ -7360,6 +7396,23 @@ function pcStyle(){const host=document.getElementById('paycard');const card=host
 const _pcDP=drawPay;drawPay=function(){const r=_pcDP.apply(this,arguments);try{pcStyle()}catch(e){}return r};
 const _pcRP=renderPlan;renderPlan=function(){const r=_pcRP.apply(this,arguments);try{pcStyle()}catch(e){}return r};
 
+/* ================= v275: Araçlar ekranı — kompakt düzen + arama ================= */
+Object.assign(UX.tr,{ah_find:'Araç ara',ah_none:'Bu adla bir araç yok'});
+Object.assign(UX.en,{ah_find:'Search tools',ah_none:'No tool with that name'});
+Object.assign(UX.ru,{ah_find:'Поиск инструментов',ah_none:'Нет инструмента с таким названием'});
+Object.assign(UX.ar,{ah_find:'ابحث عن أداة',ah_none:'لا توجد أداة بهذا الاسم'});
+(function(){const _h=hubHTML;hubHTML=function(){let h=_h.apply(this,arguments);
+  try{h=h.replace('<div class="ahub">','<div class="ahub ah2">').replace(/<div class="ahh">[\s\S]*?<\/div><\/div>/,
+    `<label class="ahfind">${ic('search')}<input type="search" id="ahq" autocomplete="off" enterkeyhint="search" placeholder="${esc(ux('ah_find'))}" aria-label="${esc(ux('ah_find'))}"><button type="button" class="ahqx" aria-label="${esc(t('cancel')||'×')}" hidden>×</button></label><p class="ahnone" hidden>${esc(ux('ah_none'))}</p>`)}catch(e){}
+  return h}})();
+const ahNorm=s=>String(s||'').toLocaleLowerCase(LOC[LANG]||'tr').normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/ı/g,'i');
+function ahFilter(q){const hub=document.querySelector('.ahub.ah2');if(!hub)return;const n=ahNorm(q.trim());let any=0;
+  hub.querySelectorAll('.ahs').forEach(sec=>{if(sec.classList.contains('ahrec')){sec.hidden=!!n;return}let c=0;
+    sec.querySelectorAll('.aht').forEach(b=>{const ok=!n||ahNorm(b.textContent).includes(n);b.hidden=!ok;if(ok)c++});sec.hidden=!c;any+=c});
+  const no=hub.querySelector('.ahnone');if(no)no.hidden=!!any||!n;const x=hub.querySelector('.ahqx');if(x)x.hidden=!n}
+document.addEventListener('input',e=>{if(e.target&&e.target.id==='ahq')ahFilter(e.target.value)});
+document.addEventListener('click',e=>{const x=e.target.closest&&e.target.closest('.ahqx');if(!x)return;e.preventDefault();const i=document.getElementById('ahq');if(i){i.value='';ahFilter('');i.focus()}});
+
 /* ================= Bildirim merkezi ================= */
 const LS_NF='gg_nf';let nfOpenAt=0,nfTab='all',nfSnz=null,nfUndo=null;
 const dayAdd=(iso,n)=>{const [y,m,d]=iso.split('-').map(Number),x=new Date(y,m-1,d+n);return x.getFullYear()+'-'+pad(x.getMonth()+1)+'-'+pad(x.getDate())};
@@ -10525,7 +10578,7 @@ function pkChoose(i){const s=pkSel;pkClose();if(!s||!s.isConnected)return;if(s.s
    "kaydırma" sayılıp hem click hem pointerup iptal ediliyor. touchend iptal edilmez: kısa ve az kayan
    dokunuşta işlemi hemen biz çalıştırır, touchend'i preventDefault ile durdurup tarayıcının kendi click'ini engelleriz. */
 const TAP={log:[],on:false};
-const APP_VER='274';const APP_VER_UI=APP_VER;
+const APP_VER='275';const APP_VER_UI=APP_VER;
 function tapLog(m){if(!TAP.on)return;TAP.log.push((performance.now()/1000).toFixed(2)+' '+m);if(TAP.log.length>14)TAP.log.shift();const p=document.getElementById('tapdbg');if(p)p.querySelector('pre').textContent=TAP.log.join('\n')}
 (function(){
   const SEL='button,[role="button"],[role="link"],.tlink,a[href],label,summary,.chip,[data-act],[data-tab],[data-toggle],.cardhead,input[type=checkbox],input[type=radio]';
