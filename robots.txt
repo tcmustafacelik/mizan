@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://tcmustafacelik.github.io/mizan/sitemap.xml
