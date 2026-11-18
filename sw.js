@@ -1,6 +1,6 @@
 /* Mizan service worker: çevrimdışı çalışma + ödeme günü bildirimleri */
-const V='mizan-v5';
-const SHELL=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
+const V='mizan-v6';
+const SHELL=['./','./index.html','./manifest.webmanifest','./icon-192.png?v=287','./icon-512.png?v=287'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(V).then(c=>c.addAll(SHELL)).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>/^mizan-v/.test(k)&&k!==V).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
 self.addEventListener('fetch',e=>{
@@ -20,6 +20,8 @@ self.addEventListener('fetch',e=>{
       return;
     }
     if(/\/(ocr|bins|pdf)\//.test(u.pathname)){e.respondWith(caches.open('mizan-data').then(c=>c.match(r).then(m=>m||fetch(r).then(res=>{if(res.ok)c.put(r,res.clone());return res}))));return}
+    // manifest ve simgeler: önce ağ (ana ekran simgesi güncellensin), yoksa önbellek
+    if(/\.webmanifest$|\/(icon-[\w-]+|apple-touch-icon|favicon-32)\.png$/.test(u.pathname)){e.respondWith(fetch(r,{cache:'no-cache'}).then(res=>{if(res.ok){const c=res.clone();caches.open(V).then(x=>x.put(r,c))}return res}).catch(()=>caches.match(r)));return}
     e.respondWith(caches.match(r).then(m=>m||fetch(r)));return;
   }
   if(u.host==='fonts.googleapis.com'||u.host==='fonts.gstatic.com'){
