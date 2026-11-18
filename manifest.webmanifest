@@ -9,8 +9,8 @@
   "id": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#065F5B",
-  "theme_color": "#065F5B",
+  "background_color": "#F6F1EC",
+  "theme_color": "#F6F1EC",
   "categories": [
     "finance",
     "productivity"
